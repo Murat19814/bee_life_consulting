@@ -360,9 +360,56 @@
             to { transform: rotate(360deg); }
         }
         
+        .hero-logo-main {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
         .hero-logo-main svg {
-            width: 200px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
+            filter: drop-shadow(0 0 20px rgba(255,215,0,0.3));
+        }
+        
+        .hero-logo-main svg path {
+            stroke: #FFD700;
+        }
+        
+        .hero-logo-divider {
+            width: 2px;
+            height: 70px;
+            background: linear-gradient(to bottom, transparent, rgba(255,215,0,0.6), transparent);
+        }
+        
+        .hero-logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .hero-logo-blc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: #FFD700;
+            letter-spacing: 8px;
+            text-shadow: 0 0 30px rgba(255,215,0,0.5);
+            animation: heroTextGlow 3s ease-in-out infinite;
+        }
+        
+        .hero-logo-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        
+        @keyframes heroTextGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255,215,0,0.4); }
+            50% { text-shadow: 0 0 40px rgba(255,215,0,0.8), 0 0 60px rgba(255,215,0,0.3); }
         }
         
         .floating-card {
@@ -1771,9 +1818,14 @@
                         <div class="hero-logo-bg" style="transform: rotate(0deg); width: 80%; height: 80%;"></div>
                         <div class="hero-logo-main">
                             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M50 10L90 80H10L50 10Z" stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="none"/>
-                                <path d="M50 30L75 70H25L50 30Z" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" fill="none"/>
+                                <path d="M50 8L92 85H8L50 8Z" stroke-width="3" fill="none"/>
+                                <path d="M50 25L78 75H22L50 25Z" stroke-width="2" fill="none"/>
                             </svg>
+                            <div class="hero-logo-divider"></div>
+                            <div class="hero-logo-text">
+                                <span class="hero-logo-blc">BLC</span>
+                                <span class="hero-logo-subtitle">Bee Life Consulting</span>
+                            </div>
                         </div>
                         
                         <div class="floating-card card-1">
