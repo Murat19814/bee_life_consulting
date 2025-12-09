@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Bee Life Consulting - Profesyonel Çağrı Merkezi Hizmetleri. Inbound ve Outbound çözümlerle işletmenizi büyütün.">
     <meta name="keywords" content="çağrı merkezi, call center, inbound, outbound, Türkiye, Almanya">
-    <title>Bee Life Consulting | Profesyonel Çağrı Merkezi Hizmetleri</title>
+    <title>BLC | Bee Life Consulting - Profesyonel Çağrı Merkezi</title>
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
@@ -18,12 +18,24 @@
 </head>
 <body>
 
+    <!-- ========== INTERACTIVE HONEYCOMB BACKGROUND ========== -->
+    <div class="honeycomb-bg">
+        <canvas id="honeycombCanvas" class="honeycomb-canvas"></canvas>
+    </div>
+
     <!-- ========== NAVIGATION ========== -->
     <nav class="navbar" id="navbar">
         <div class="container">
             <a href="index.html" class="logo">
-                <div class="logo-icon">🐝</div>
-                <div class="logo-text">Bee Life <span>Consulting</span></div>
+                <!-- Triangle Logo SVG -->
+                <div class="logo-icon">
+                    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 5L55 50H5L30 5Z" stroke="white" stroke-width="3" fill="none"/>
+                        <path d="M30 15L45 45H15L30 15Z" stroke="white" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <div class="logo-divider"></div>
+                <div class="logo-text">BLC</div>
             </a>
             
             <ul class="nav-links">
@@ -37,10 +49,10 @@
             
             <div class="nav-buttons">
                 <a href="employee-login.html" class="btn btn-outline">
-                    <i class="fas fa-user"></i> Çalışan Girişi
+                    Çalışan Girişi
                 </a>
                 <a href="basvuru.html" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i> Başvur
+                    Başvur
                 </a>
             </div>
             
@@ -57,7 +69,10 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Kariyerinizi <span>Bee Life</span> ile Şekillendirin</h1>
+                    <h1>
+                        <span>Bee Life Consulting</span>
+                        Kariyerinizi Bizimle Şekillendirin
+                    </h1>
                     <p class="hero-tagline">
                         Türkiye ve Almanya'da 5 yılı aşkın deneyimimizle, profesyonel çağrı merkezi 
                         hizmetleri sunuyor ve çalışanlarımıza eşsiz kazanç fırsatları sağlıyoruz.
@@ -80,19 +95,29 @@
                     
                     <div class="hero-buttons">
                         <a href="basvuru.html" class="btn btn-primary">
-                            <i class="fas fa-rocket"></i> Hemen Başvur
+                            Hemen Başvur
                         </a>
                         <a href="#services" class="btn btn-outline">
-                            <i class="fas fa-info-circle"></i> Daha Fazla
+                            Daha Fazla
                         </a>
                     </div>
                 </div>
                 
                 <div class="hero-visual">
-                    <div class="hero-image-wrapper">
-                        <div class="hero-image">
-                            <i class="fas fa-headset"></i>
-                        </div>
+                    <!-- Large Logo SVG -->
+                    <div class="hero-logo-large">
+                        <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Main Triangle -->
+                            <path d="M120 220L200 60L280 220H120Z" stroke="rgba(255,255,255,0.8)" stroke-width="4" fill="none"/>
+                            <!-- Inner Triangle -->
+                            <path d="M150 200L200 100L250 200H150Z" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
+                            <!-- Vertical Line -->
+                            <line x1="310" y1="80" x2="310" y2="200" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+                            <!-- BLC Text -->
+                            <text x="330" y="150" fill="rgba(255,255,255,0.9)" font-family="Cormorant Garamond" font-size="48" font-weight="400">BLC</text>
+                            <!-- Full Name -->
+                            <text x="200" y="260" fill="rgba(255,255,255,0.6)" font-family="Montserrat" font-size="14" text-anchor="middle" letter-spacing="8">BEE LIFE CONSULTING</text>
+                        </svg>
                     </div>
                     
                     <div class="floating-card card-1">
@@ -121,8 +146,13 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-image">
-                    <div style="width:100%; height:400px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 30px; display: flex; align-items: center; justify-content: center;">
-                        <i class="fas fa-building" style="font-size: 8rem; color: #FFB800;"></i>
+                    <div class="about-image-wrapper">
+                        <div class="about-image-placeholder" style="background: linear-gradient(135deg, #0d2b2a 0%, #1a4a48 100%); display: flex; align-items: center; justify-content: center;">
+                            <svg viewBox="0 0 200 200" width="150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M60 150L100 50L140 150H60Z" stroke="rgba(255,255,255,0.6)" stroke-width="3" fill="none"/>
+                                <path d="M75 140L100 80L125 140H75Z" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="about-badge">
                         <div class="badge-number">5+</div>
@@ -178,32 +208,32 @@
             
             <div class="branches-grid">
                 <div class="branch-card">
-                    <div class="branch-icon">📍</div>
+                    <div class="branch-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h4>Yozgat</h4>
                     <p>Ana Merkez</p>
                 </div>
                 
                 <div class="branch-card">
-                    <div class="branch-icon">📍</div>
+                    <div class="branch-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h4>İzmit</h4>
                     <p>Kocaeli Şubesi</p>
                 </div>
                 
                 <div class="branch-card">
-                    <div class="branch-icon">📍</div>
+                    <div class="branch-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h4>Eskişehir</h4>
                     <p>Eskişehir Şubesi</p>
                 </div>
                 
                 <div class="branch-card coming-soon">
-                    <div class="branch-icon">🚀</div>
+                    <div class="branch-icon"><i class="fas fa-rocket"></i></div>
                     <h4>Balıkesir</h4>
                     <p>Yeni Şube</p>
                     <span class="coming-badge">Yakında</span>
                 </div>
                 
                 <div class="branch-card">
-                    <div class="branch-icon">🇩🇪</div>
+                    <div class="branch-icon"><i class="fas fa-globe-europe"></i></div>
                     <h4>Almanya</h4>
                     <p>Avrupa Merkezi</p>
                 </div>
@@ -222,7 +252,7 @@
             
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">📞</div>
+                    <div class="service-icon"><i class="fas fa-phone-volume"></i></div>
                     <h3>Outbound Satış</h3>
                     <p>Aktif satış ekibimizle potansiyel müşterilere ulaşıyor, satışlarınızı artırıyoruz.</p>
                     <ul class="service-features">
@@ -234,7 +264,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">🎧</div>
+                    <div class="service-icon"><i class="fas fa-headset"></i></div>
                     <h3>Inbound Hotline</h3>
                     <p>Müşteri çağrılarını profesyonelce karşılıyor, memnuniyeti en üst seviyede tutuyoruz.</p>
                     <ul class="service-features">
@@ -246,7 +276,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">📊</div>
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Kalite Kontrol</h3>
                     <p>Tüm görüşmeler kalite standartlarımıza göre değerlendiriliyor.</p>
                     <ul class="service-features">
@@ -273,7 +303,7 @@
                 <!-- Monthly Winner -->
                 <div class="reward-card">
                     <span class="reward-badge">Ay Birincisi</span>
-                    <div class="reward-icon">🎈</div>
+                    <div class="reward-icon">🏅</div>
                     <h3>Aylık Şampiyon</h3>
                     <div class="reward-amount">5€ - 100€</div>
                     <ul class="reward-list">
@@ -317,7 +347,7 @@
             </div>
             
             <div class="text-center mt-4">
-                <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem;">
+                <p style="color: rgba(255,255,255,0.7); font-size: 1rem;">
                     🎈 Kazananlar, şık balon patlatma oyunuyla hediyelerini seçiyor!
                 </p>
             </div>
@@ -353,7 +383,7 @@
                         </div>
                     </div>
                     <div class="job-salary">QC OK: 35€ / Satış</div>
-                    <a href="basvuru.html" class="btn btn-primary">Hemen Başvur</a>
+                    <a href="basvuru.html" class="btn btn-dark">Hemen Başvur</a>
                 </div>
                 
                 <div class="job-card">
@@ -375,13 +405,13 @@
                         </div>
                     </div>
                     <div class="job-salary">Sabit Yüksek Maaş</div>
-                    <a href="basvuru.html" class="btn btn-primary">Hemen Başvur</a>
+                    <a href="basvuru.html" class="btn btn-dark">Hemen Başvur</a>
                 </div>
             </div>
             
             <div class="text-center mt-4">
-                <a href="basvuru.html" class="btn btn-dark btn-lg">
-                    <i class="fas fa-file-alt"></i> Tüm Pozisyonlara Başvur
+                <a href="basvuru.html" class="btn btn-primary" style="background: var(--primary-dark); color: white;">
+                    Tüm Pozisyonlara Başvur
                 </a>
             </div>
         </div>
@@ -397,37 +427,37 @@
             
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">💰</div>
+                    <div class="service-icon"><i class="fas fa-euro-sign"></i></div>
                     <h3>Yüksek Kazanç</h3>
                     <p>QC OK başına 35€ komisyon ve sabit yüksek maaş imkanları ile sektörün en iyi kazançlarını sunuyoruz.</p>
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">🎁</div>
+                    <div class="service-icon"><i class="fas fa-gift"></i></div>
                     <h3>Eşsiz Ödül Sistemi</h3>
                     <p>Balon patlatma oyunuyla 500€'ya kadar hediyeler, PS5, tatil paketleri ve daha fazlası!</p>
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">📈</div>
+                    <div class="service-icon"><i class="fas fa-chart-bar"></i></div>
                     <h3>Kariyer Fırsatları</h3>
                     <p>Sürekli büyüyen yapımızla, çalışanlarımıza kariyer basamaklarını hızla tırmanma fırsatı sunuyoruz.</p>
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">🌍</div>
+                    <div class="service-icon"><i class="fas fa-globe"></i></div>
                     <h3>Uluslararası Proje</h3>
                     <p>Almanya merkezli projelerimizle uluslararası deneyim kazanma fırsatı.</p>
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">👥</div>
+                    <div class="service-icon"><i class="fas fa-users"></i></div>
                     <h3>Güçlü Ekip</h3>
                     <p>40+ deneyimli personelimizle birlikte çalışarak sürekli gelişim sağlayın.</p>
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-icon">🏢</div>
+                    <div class="service-icon"><i class="fas fa-building"></i></div>
                     <h3>Çoklu Lokasyon</h3>
                     <p>Türkiye'nin 4 farklı şehrinde ve Almanya'da şubelerimizle size en yakın lokasyonda çalışın.</p>
                 </div>
@@ -527,8 +557,8 @@
                             <textarea id="message" name="message" rows="4" placeholder="Mesajınızı buraya yazın..."></textarea>
                         </div>
                         
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-paper-plane"></i> Gönder
+                        <button type="submit" class="btn btn-dark" style="width: 100%;">
+                            Gönder
                         </button>
                     </form>
                 </div>
@@ -542,14 +572,20 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">
-                        <div class="logo-icon">🐝</div>
-                        <div class="logo-text">Bee Life <span>Consulting</span></div>
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 5L55 50H5L30 5Z" stroke="white" stroke-width="3" fill="none"/>
+                                <path d="M30 15L45 45H15L30 15Z" stroke="white" stroke-width="2" fill="none"/>
+                            </svg>
+                        </div>
+                        <div class="logo-divider"></div>
+                        <div class="logo-text">BLC</div>
                     </a>
                     <p>
                         5 yılı aşkın deneyimimizle Türkiye ve Almanya'da profesyonel çağrı merkezi 
                         hizmetleri sunuyoruz. Çalışan memnuniyeti ve müşteri başarısı bizim önceliğimiz.
                     </p>
-                    <div class="social-links">
+                    <div class="social-links" style="margin-top: 20px;">
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
@@ -580,9 +616,9 @@
                 <div class="footer-column">
                     <h4>İletişim</h4>
                     <ul class="footer-links">
-                        <li><i class="fas fa-envelope" style="margin-right: 10px; color: #FFB800;"></i> info@beelife-consulting.com</li>
-                        <li><i class="fas fa-phone" style="margin-right: 10px; color: #FFB800;"></i> +90 531 765 41 66</li>
-                        <li><i class="fab fa-whatsapp" style="margin-right: 10px; color: #FFB800;"></i> +90 535 663 41 66</li>
+                        <li><i class="fas fa-envelope" style="margin-right: 10px; opacity: 0.6;"></i> info@beelife-consulting.com</li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px; opacity: 0.6;"></i> +90 531 765 41 66</li>
+                        <li><i class="fab fa-whatsapp" style="margin-right: 10px; opacity: 0.6;"></i> +90 535 663 41 66</li>
                     </ul>
                 </div>
             </div>
@@ -599,7 +635,108 @@
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
-        // Navbar Scroll Effect
+        // ========== INTERACTIVE HONEYCOMB BACKGROUND ==========
+        const canvas = document.getElementById('honeycombCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
+        // Track mouse movement
+        document.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+        });
+        
+        // Honeycomb properties
+        const hexSize = 40;
+        const hexHeight = hexSize * Math.sqrt(3);
+        const hexWidth = hexSize * 2;
+        const hexVerticalSpacing = hexHeight;
+        const hexHorizontalSpacing = hexWidth * 0.75;
+        
+        function drawHexagon(x, y, size, alpha) {
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+                const angle = (Math.PI / 3) * i - Math.PI / 6;
+                const hx = x + size * Math.cos(angle);
+                const hy = y + size * Math.sin(angle);
+                if (i === 0) {
+                    ctx.moveTo(hx, hy);
+                } else {
+                    ctx.lineTo(hx, hy);
+                }
+            }
+            ctx.closePath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+        
+        function animate() {
+            // Smooth mouse following
+            mouseX += (targetX - mouseX) * 0.05;
+            mouseY += (targetY - mouseY) * 0.05;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Calculate offset based on mouse position
+            const offsetX = (mouseX - canvas.width / 2) * 0.02;
+            const offsetY = (mouseY - canvas.height / 2) * 0.02;
+            
+            // Draw honeycomb grid
+            const cols = Math.ceil(canvas.width / hexHorizontalSpacing) + 4;
+            const rows = Math.ceil(canvas.height / hexVerticalSpacing) + 4;
+            
+            for (let row = -2; row < rows; row++) {
+                for (let col = -2; col < cols; col++) {
+                    let x = col * hexHorizontalSpacing + offsetX;
+                    let y = row * hexVerticalSpacing + offsetY;
+                    
+                    // Offset every other row
+                    if (row % 2 === 1) {
+                        x += hexHorizontalSpacing / 2;
+                    }
+                    
+                    // Calculate distance from mouse for interactive effect
+                    const dx = x - mouseX;
+                    const dy = y - mouseY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    // Base alpha with distance-based brightness
+                    let alpha = 0.03;
+                    
+                    // Increase brightness near mouse
+                    if (distance < 300) {
+                        alpha = 0.03 + (1 - distance / 300) * 0.12;
+                    }
+                    
+                    // Slight size variation based on distance
+                    let size = hexSize;
+                    if (distance < 200) {
+                        size = hexSize + (1 - distance / 200) * 5;
+                    }
+                    
+                    drawHexagon(x, y, size, alpha);
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // ========== NAVBAR SCROLL EFFECT ==========
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -609,7 +746,7 @@
             }
         });
 
-        // Smooth Scroll for Navigation Links
+        // ========== SMOOTH SCROLL ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -623,7 +760,7 @@
             });
         });
 
-        // Mobile Menu Toggle
+        // ========== MOBILE MENU ==========
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.querySelector('.nav-links');
         
@@ -633,7 +770,7 @@
             });
         }
 
-        // Form Submit Handler
+        // ========== FORM SUBMIT ==========
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(e) {
@@ -643,7 +780,7 @@
             });
         }
 
-        // Animation on Scroll
+        // ========== SCROLL ANIMATIONS ==========
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -668,4 +805,3 @@
 
 </body>
 </html>
-
