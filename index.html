@@ -529,70 +529,106 @@
             overflow: visible;
         }
         
-        /* Subtle Border Frame - Glows on Hover */
+        /* Elegant Double Frame */
         .about-image-wrapper::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(90deg, 
-                rgba(255,215,0,0.3), rgba(255,165,0,0.2), rgba(64,145,108,0.3), 
-                rgba(255,215,0,0.3), rgba(255,165,0,0.2));
-            background-size: 300% 100%;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border: 2px solid #FFD700;
             z-index: -1;
-            opacity: 0.5;
-            transition: all 1s ease;
+            animation: borderPulse 3s ease-in-out infinite;
         }
         
         .about-image-wrapper::after {
             content: '';
             position: absolute;
-            top: -6px;
-            left: -6px;
-            right: -6px;
-            bottom: -6px;
-            background: linear-gradient(90deg, 
-                rgba(255,215,0,0.2), rgba(255,165,0,0.15), rgba(64,145,108,0.2), 
-                rgba(255,215,0,0.2));
-            background-size: 300% 100%;
+            top: -12px;
+            left: -12px;
+            right: -12px;
+            bottom: -12px;
+            border: 1px solid rgba(255,215,0,0.4);
             z-index: -2;
-            filter: blur(8px);
-            opacity: 0;
-            transition: all 1s ease;
+            animation: borderPulse 3s ease-in-out infinite 0.5s;
         }
         
-        /* Hover - Activate glow animation */
-        .about-image-wrapper:hover::before {
-            opacity: 1;
-            animation: glowingBorder 6s linear infinite;
+        @keyframes borderPulse {
+            0%, 100% { 
+                opacity: 0.4;
+                box-shadow: 0 0 10px rgba(255,215,0,0.2);
+            }
+            50% { 
+                opacity: 1;
+                box-shadow: 0 0 30px rgba(255,215,0,0.5), 0 0 60px rgba(255,215,0,0.2);
+            }
         }
         
-        .about-image-wrapper:hover::after {
-            opacity: 0.6;
-            animation: glowingBorder 6s linear infinite;
+        /* Corner Decorations */
+        .about-image-wrapper .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 2px solid #FFD700;
+            z-index: 1;
+            animation: cornerPulse 3s ease-in-out infinite;
         }
         
-        @keyframes glowingBorder {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
+        .about-image-wrapper .corner-tl {
+            top: 8px;
+            left: 8px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .about-image-wrapper .corner-tr {
+            top: 8px;
+            right: 8px;
+            border-left: none;
+            border-bottom: none;
+        }
+        
+        .about-image-wrapper .corner-bl {
+            bottom: 8px;
+            left: 8px;
+            border-right: none;
+            border-top: none;
+        }
+        
+        .about-image-wrapper .corner-br {
+            bottom: 8px;
+            right: 8px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        @keyframes cornerPulse {
+            0%, 100% { 
+                opacity: 0.5;
+                box-shadow: none;
+            }
+            50% { 
+                opacity: 1;
+                box-shadow: 0 0 15px rgba(255,215,0,0.8);
+            }
         }
         
         /* Inner frame line */
         .about-image-wrapper .inner-frame {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid rgba(255,215,0,0.2);
             pointer-events: none;
-            transition: border-color 1s ease;
+            animation: innerFramePulse 3s ease-in-out infinite 0.25s;
         }
         
-        .about-image-wrapper:hover .inner-frame {
-            border-color: rgba(255,215,0,0.3);
+        @keyframes innerFramePulse {
+            0%, 100% { border-color: rgba(255,215,0,0.1); }
+            50% { border-color: rgba(255,215,0,0.4); }
         }
         
         /* 3D Logo Container */
@@ -1727,6 +1763,12 @@
             <div class="about-grid">
                 <div class="about-image">
                     <div class="about-image-wrapper">
+                        <!-- Corner Decorations -->
+                        <div class="corner corner-tl"></div>
+                        <div class="corner corner-tr"></div>
+                        <div class="corner corner-bl"></div>
+                        <div class="corner corner-br"></div>
+                        
                         <!-- Inner Frame -->
                         <div class="inner-frame"></div>
                         
