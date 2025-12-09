@@ -562,67 +562,62 @@
             }
         }
         
-        .logo-3d-container svg {
-            width: 180px;
-            height: 180px;
-            filter: drop-shadow(0 20px 40px rgba(255,215,0,0.3));
+        /* Original Logo Style */
+        .original-logo {
+            display: flex;
+            align-items: center;
+            gap: 25px;
         }
         
-        .logo-3d-container .triangle-outer {
-            stroke: #FFD700;
-            stroke-width: 2.5;
-            fill: none;
-            animation: pulseGlow 3s ease-in-out infinite;
+        .logo-triangle {
+            width: 100px;
+            height: 100px;
+            filter: drop-shadow(0 10px 30px rgba(255,255,255,0.2));
         }
         
-        .logo-3d-container .triangle-inner {
-            stroke: rgba(255,215,0,0.5);
-            stroke-width: 1.5;
-            fill: none;
-            animation: pulseGlow 3s ease-in-out infinite 0.5s;
+        .logo-triangle path {
+            animation: trianglePulse 3s ease-in-out infinite;
         }
         
-        .logo-3d-container .triangle-core {
-            stroke: rgba(255,215,0,0.3);
-            stroke-width: 1;
-            fill: rgba(255,215,0,0.05);
-            animation: pulseGlow 3s ease-in-out infinite 1s;
+        @keyframes trianglePulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; filter: drop-shadow(0 0 10px rgba(255,255,255,0.5)); }
         }
         
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+        .logo-divider-line {
+            width: 2px;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent);
+        }
+        
+        .logo-blc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            color: white;
+            letter-spacing: 8px;
+            text-shadow: 0 0 30px rgba(255,255,255,0.3);
         }
         
         /* Company Name Styling */
         .company-name-3d {
-            margin-top: 30px;
+            margin-top: 40px;
             text-align: center;
         }
         
-        .company-name-3d .main-name {
+        .company-name-3d .full-name {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #FFD700;
-            letter-spacing: 8px;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 12px;
             text-transform: uppercase;
-            text-shadow: 0 0 30px rgba(255,215,0,0.5);
-            animation: textGlow 3s ease-in-out infinite;
-        }
-        
-        .company-name-3d .sub-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.7);
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-top: 10px;
+            animation: textGlow 4s ease-in-out infinite;
         }
         
         @keyframes textGlow {
-            0%, 100% { text-shadow: 0 0 30px rgba(255,215,0,0.5); }
-            50% { text-shadow: 0 0 50px rgba(255,215,0,0.8), 0 0 80px rgba(255,215,0,0.4); }
+            0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.3); }
+            50% { text-shadow: 0 0 40px rgba(255,255,255,0.5); }
         }
         
         /* Floating particles around logo */
@@ -636,12 +631,12 @@
         
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #FFD700;
+            width: 3px;
+            height: 3px;
+            background: rgba(255,255,255,0.6);
             border-radius: 50%;
             animation: particleFloat 8s ease-in-out infinite;
-            opacity: 0.6;
+            opacity: 0.4;
         }
         
         .particle:nth-child(1) { left: 20%; top: 30%; animation-delay: 0s; }
@@ -652,8 +647,8 @@
         .particle:nth-child(6) { left: 30%; top: 85%; animation-delay: 5s; }
         
         @keyframes particleFloat {
-            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
-            50% { transform: translateY(-30px) scale(1.5); opacity: 1; }
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.4; }
+            50% { transform: translateY(-20px) scale(1.3); opacity: 0.8; }
         }
         
         .about-badge {
@@ -1693,22 +1688,26 @@
                             <div class="particle"></div>
                         </div>
                         
-                        <!-- 3D Animated Logo -->
+                        <!-- Original Logo - 3D Animated -->
                         <div class="logo-3d-container">
-                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Outer Triangle -->
-                                <path class="triangle-outer" d="M50 5L95 85H5L50 5Z"/>
-                                <!-- Inner Triangle -->
-                                <path class="triangle-inner" d="M50 20L80 75H20L50 20Z"/>
-                                <!-- Core Triangle -->
-                                <path class="triangle-core" d="M50 35L65 65H35L50 35Z"/>
-                            </svg>
+                            <div class="original-logo">
+                                <!-- Triangle Icon -->
+                                <svg class="logo-triangle" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M50 8L92 85H8L50 8Z" stroke="white" stroke-width="4" fill="none"/>
+                                    <path d="M50 28L75 72H25L50 28Z" stroke="white" stroke-width="2.5" fill="none"/>
+                                </svg>
+                                
+                                <!-- Divider Line -->
+                                <div class="logo-divider-line"></div>
+                                
+                                <!-- BLC Text -->
+                                <div class="logo-blc">BLC</div>
+                            </div>
                         </div>
                         
-                        <!-- Company Name -->
+                        <!-- Company Full Name -->
                         <div class="company-name-3d">
-                            <div class="main-name">BEE LIFE</div>
-                            <div class="sub-name">CONSULTING</div>
+                            <div class="full-name">BEE LIFE CONSULTING</div>
                         </div>
                     </div>
                     <div class="about-badge">
