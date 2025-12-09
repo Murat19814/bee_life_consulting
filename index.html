@@ -1810,9 +1810,9 @@
         
         // Elegant Floating Particles with Electric Connections
         const particles = [];
-        const particleCount = 120;
-        const connectionDistance = 150;
-        const mouseRadius = 200;
+        const particleCount = 140;
+        const connectionDistance = 170;
+        const mouseRadius = 220;
         
         class Particle {
             constructor() {
@@ -1824,8 +1824,8 @@
                 this.y = Math.random() * canvas.height;
                 this.vx = (Math.random() - 0.5) * 0.8;
                 this.vy = (Math.random() - 0.5) * 0.8;
-                this.radius = Math.random() * 2.5 + 0.5;
-                this.baseAlpha = Math.random() * 0.4 + 0.1;
+                this.radius = Math.random() * 3 + 1;
+                this.baseAlpha = Math.random() * 0.5 + 0.2;
                 this.pulseSpeed = Math.random() * 0.002 + 0.001;
                 this.pulseOffset = Math.random() * Math.PI * 2;
             }
@@ -1853,20 +1853,20 @@
                 let radius = this.radius;
                 let glowIntensity = 0;
                 
-                // Mouse interaction
+                // Mouse interaction - enhanced glow
                 if (distToMouse < mouseRadius) {
                     const intensity = 1 - (distToMouse / mouseRadius);
-                    glowIntensity = Math.pow(intensity, 2);
-                    alpha = Math.min(1, alpha + glowIntensity * 0.7);
-                    radius = this.radius + glowIntensity * 4;
+                    glowIntensity = Math.pow(intensity, 1.5);
+                    alpha = Math.min(1, alpha + glowIntensity * 0.9);
+                    radius = this.radius + glowIntensity * 6;
                 }
                 
                 ctx.save();
                 
-                // Glow effect
-                if (glowIntensity > 0.1) {
-                    ctx.shadowColor = `rgba(64, 145, 108, ${glowIntensity})`;
-                    ctx.shadowBlur = 20 * glowIntensity;
+                // Enhanced glow effect
+                if (glowIntensity > 0.05) {
+                    ctx.shadowColor = `rgba(64, 145, 108, ${glowIntensity * 1.2})`;
+                    ctx.shadowBlur = 30 * glowIntensity;
                 }
                 
                 // Draw particle with gradient
@@ -1905,28 +1905,28 @@
                         const midY = (particles[i].y + particles[j].y) / 2;
                         const distToMouse = Math.sqrt((midX - mouseX) ** 2 + (midY - mouseY) ** 2);
                         
-                        let alpha = (1 - distance / connectionDistance) * 0.08;
-                        let lineWidth = 0.5;
+                        let alpha = (1 - distance / connectionDistance) * 0.15;
+                        let lineWidth = 0.8;
                         
                         // Enhanced effect near mouse
                         if (distToMouse < mouseRadius) {
-                            const intensity = Math.pow(1 - (distToMouse / mouseRadius), 2);
-                            alpha = (1 - distance / connectionDistance) * (0.08 + intensity * 0.4);
-                            lineWidth = 0.5 + intensity * 1.5;
+                            const intensity = Math.pow(1 - (distToMouse / mouseRadius), 1.5);
+                            alpha = (1 - distance / connectionDistance) * (0.15 + intensity * 0.6);
+                            lineWidth = 0.8 + intensity * 2;
                             
-                            // Electric pulse effect
-                            if (intensity > 0.3) {
+                            // Electric pulse effect - brighter
+                            if (intensity > 0.2) {
                                 ctx.save();
-                                ctx.shadowColor = 'rgba(64, 145, 108, 0.6)';
-                                ctx.shadowBlur = 8;
+                                ctx.shadowColor = 'rgba(64, 145, 108, 0.9)';
+                                ctx.shadowBlur = 15;
                                 
-                                const pulsePos = (time * 0.004 + i * 0.05) % 1;
+                                const pulsePos = (time * 0.005 + i * 0.05) % 1;
                                 const pulseX = particles[i].x + dx * -pulsePos;
                                 const pulseY = particles[i].y + dy * -pulsePos;
                                 
                                 ctx.beginPath();
-                                ctx.arc(pulseX, pulseY, 1.5, 0, Math.PI * 2);
-                                ctx.fillStyle = `rgba(255, 255, 255, ${intensity * 0.8})`;
+                                ctx.arc(pulseX, pulseY, 2.5, 0, Math.PI * 2);
+                                ctx.fillStyle = `rgba(255, 255, 255, ${intensity})`;
                                 ctx.fill();
                                 ctx.restore();
                             }
@@ -1944,25 +1944,25 @@
             }
         }
         
-        // Draw mouse attraction lines
+        // Draw mouse attraction lines - brighter
         function drawMouseConnections() {
             particles.forEach((particle) => {
                 const dx = particle.x - mouseX;
                 const dy = particle.y - mouseY;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                if (distance < mouseRadius * 0.7) {
-                    const alpha = Math.pow(1 - distance / (mouseRadius * 0.7), 2) * 0.25;
+                if (distance < mouseRadius * 0.8) {
+                    const alpha = Math.pow(1 - distance / (mouseRadius * 0.8), 1.5) * 0.4;
                     
                     ctx.save();
-                    ctx.shadowColor = 'rgba(64, 145, 108, 0.3)';
-                    ctx.shadowBlur = 3;
+                    ctx.shadowColor = 'rgba(64, 145, 108, 0.5)';
+                    ctx.shadowBlur = 6;
                     
                     ctx.beginPath();
                     ctx.moveTo(mouseX, mouseY);
                     ctx.lineTo(particle.x, particle.y);
                     ctx.strokeStyle = `rgba(64, 145, 108, ${alpha})`;
-                    ctx.lineWidth = 0.8;
+                    ctx.lineWidth = 1.2;
                     ctx.stroke();
                     
                     ctx.restore();
@@ -1970,11 +1970,11 @@
             });
         }
         
-        // Draw subtle ambient glow at mouse position
+        // Draw ambient glow at mouse position - brighter
         function drawMouseGlow() {
             const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, mouseRadius);
-            gradient.addColorStop(0, 'rgba(64, 145, 108, 0.08)');
-            gradient.addColorStop(0.5, 'rgba(64, 145, 108, 0.03)');
+            gradient.addColorStop(0, 'rgba(64, 145, 108, 0.15)');
+            gradient.addColorStop(0.4, 'rgba(64, 145, 108, 0.06)');
             gradient.addColorStop(1, 'rgba(64, 145, 108, 0)');
             
             ctx.fillStyle = gradient;
