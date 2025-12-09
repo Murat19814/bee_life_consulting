@@ -43,7 +43,7 @@
             color: var(--text-dark);
             line-height: 1.7;
             overflow-x: hidden;
-            background: var(--white);
+            background: var(--primary-dark);
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -64,23 +64,15 @@
             padding: 0 40px;
         }
         
-        /* Honeycomb Background */
-        .honeycomb-bg {
+        /* Global Honeycomb Canvas */
+        #honeycombCanvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
-        }
-        
-        #honeycombCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            z-index: 1;
         }
         
         /* Navigation */
@@ -96,7 +88,7 @@
         }
         
         .navbar.scrolled {
-            background: rgba(13, 43, 42, 0.98);
+            background: rgba(13, 43, 42, 0.95);
             backdrop-filter: blur(20px);
             padding: 15px 0;
         }
@@ -234,16 +226,16 @@
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 50%, var(--primary-light) 100%);
             position: relative;
             display: flex;
             align-items: center;
             overflow: hidden;
+            z-index: 2;
         }
         
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             display: grid;
             grid-template-columns: 1.2fr 1fr;
             gap: 80px;
@@ -395,6 +387,7 @@
             text-align: center;
             color: rgba(255,255,255,0.5);
             animation: bounce 2s infinite;
+            z-index: 3;
         }
         
         .scroll-indicator span {
@@ -414,16 +407,22 @@
         .section {
             padding: 120px 0;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
         
+        /* Dark sections - transparent to show honeycomb */
         .section-dark {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            background: transparent;
             color: var(--white);
         }
         
+        /* Light sections - solid white to hide honeycomb */
         .section-light {
             background: var(--off-white);
+        }
+        
+        .section-white {
+            background: var(--white);
         }
         
         .section-header {
@@ -449,7 +448,7 @@
         }
         
         .section-light .section-badge,
-        .section .section-badge {
+        .section-white .section-badge {
             border-color: var(--primary-dark);
             color: var(--primary-dark);
         }
@@ -721,7 +720,7 @@
             font-size: 0.8rem;
         }
         
-        /* Rewards Section - Corporate Style */
+        /* Rewards Section */
         .rewards-intro {
             text-align: center;
             max-width: 800px;
@@ -746,6 +745,7 @@
             transition: all 0.4s ease;
             position: relative;
             border-right: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.02);
         }
         
         .reward-card:last-child {
@@ -753,14 +753,14 @@
         }
         
         .reward-card:hover {
-            background: rgba(255,255,255,0.03);
+            background: rgba(255,255,255,0.05);
         }
         
         .reward-card.featured {
             background: var(--white);
             margin: -20px 0;
             padding: 80px 50px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
             border: none;
         }
         
@@ -1069,10 +1069,11 @@
         
         /* Footer */
         .footer {
-            background: var(--primary-darker);
+            background: transparent;
             color: var(--white);
             padding: 100px 0 40px;
             position: relative;
+            z-index: 2;
         }
         
         .footer-grid {
@@ -1268,10 +1269,8 @@
 </head>
 <body>
 
-    <!-- Honeycomb Background -->
-    <div class="honeycomb-bg">
-        <canvas id="honeycombCanvas"></canvas>
-    </div>
+    <!-- Global Honeycomb Canvas -->
+    <canvas id="honeycombCanvas"></canvas>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -1370,8 +1369,8 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="section" id="about">
+    <!-- About Section (Light - no honeycomb) -->
+    <section class="section section-white" id="about">
         <div class="container">
             <div class="about-grid">
                 <div class="about-image">
@@ -1423,7 +1422,7 @@
         </div>
     </section>
 
-    <!-- Branches Section -->
+    <!-- Branches Section (Light) -->
     <section class="section section-light">
         <div class="container">
             <div class="section-header">
@@ -1463,8 +1462,8 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="section" id="services">
+    <!-- Services Section (Light) -->
+    <section class="section section-white" id="services">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Hizmetler</span>
@@ -1512,7 +1511,7 @@
         </div>
     </section>
 
-    <!-- Rewards Section - Corporate -->
+    <!-- Rewards Section (Dark - with honeycomb) -->
     <section class="section section-dark" id="rewards">
         <div class="container">
             <div class="section-header">
@@ -1570,7 +1569,7 @@
         </div>
     </section>
 
-    <!-- Careers Section -->
+    <!-- Careers Section (Light) -->
     <section class="section section-light" id="careers">
         <div class="container">
             <div class="section-header">
@@ -1623,7 +1622,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section (Dark - with honeycomb) -->
     <section class="section section-dark" id="contact">
         <div class="container">
             <div class="contact-grid">
@@ -1702,7 +1701,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (Dark - with honeycomb) -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -1768,7 +1767,7 @@
     </footer>
 
     <script>
-        // Honeycomb Animation
+        // Honeycomb Animation - Visible on dark sections
         const canvas = document.getElementById('honeycombCanvas');
         const ctx = canvas.getContext('2d');
         
@@ -1779,18 +1778,28 @@
         
         function resizeCanvas() {
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.height = document.documentElement.scrollHeight;
         }
         
         window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        window.addEventListener('load', resizeCanvas);
+        
+        // Update canvas height when content changes
+        const resizeObserver = new ResizeObserver(() => {
+            resizeCanvas();
+        });
+        resizeObserver.observe(document.body);
         
         document.addEventListener('mousemove', (e) => {
             targetX = e.clientX;
-            targetY = e.clientY;
+            targetY = e.clientY + window.scrollY;
         });
         
-        const hexSize = 35;
+        document.addEventListener('scroll', () => {
+            targetY = mouseY - (mouseY - window.scrollY - window.innerHeight/2);
+        });
+        
+        const hexSize = 40;
         const hexHeight = hexSize * Math.sqrt(3);
         const hexWidth = hexSize * 2;
         const hexHorizontalSpacing = hexWidth * 0.75;
@@ -1817,8 +1826,12 @@
             
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            const offsetX = (mouseX - canvas.width / 2) * 0.03;
-            const offsetY = (mouseY - canvas.height / 2) * 0.03;
+            const scrollY = window.scrollY;
+            const viewportHeight = window.innerHeight;
+            
+            // Calculate offset based on mouse
+            const offsetX = (targetX - window.innerWidth / 2) * 0.02;
+            const offsetY = (targetY - scrollY - viewportHeight / 2) * 0.02;
             
             const cols = Math.ceil(canvas.width / hexHorizontalSpacing) + 4;
             const rows = Math.ceil(canvas.height / hexVerticalSpacing) + 4;
@@ -1830,18 +1843,19 @@
                     
                     if (row % 2 === 1) x += hexHorizontalSpacing / 2;
                     
-                    const dx = x - mouseX;
-                    const dy = y - mouseY;
+                    // Distance from mouse (considering scroll)
+                    const dx = x - targetX;
+                    const dy = y - targetY;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    let alpha = 0.04;
-                    if (distance < 250) {
-                        alpha = 0.04 + (1 - distance / 250) * 0.15;
+                    let alpha = 0.06;
+                    if (distance < 300) {
+                        alpha = 0.06 + (1 - distance / 300) * 0.18;
                     }
                     
                     let size = hexSize;
-                    if (distance < 150) {
-                        size = hexSize + (1 - distance / 150) * 4;
+                    if (distance < 200) {
+                        size = hexSize + (1 - distance / 200) * 6;
                     }
                     
                     drawHexagon(x, y, size, alpha);
@@ -1851,6 +1865,7 @@
             requestAnimationFrame(animate);
         }
         
+        resizeCanvas();
         animate();
         
         // Navbar
