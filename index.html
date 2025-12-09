@@ -64,7 +64,7 @@
             padding: 0 40px;
         }
         
-        /* Global Honeycomb Canvas */
+        /* Global Animation Canvas */
         #honeycombCanvas {
             position: fixed;
             top: 0;
@@ -72,7 +72,27 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
+        }
+        
+        /* Ensure dark sections show the canvas */
+        .hero, .rewards-section, .contact-section, .footer {
+            position: relative;
+        }
+        
+        /* White sections hide the canvas effect */
+        .about-section, .branches-section, .services-section, .careers-section {
+            position: relative;
+            z-index: 3;
+            background: var(--white);
+        }
+        
+        .branches-section {
+            background: var(--off-white);
+        }
+        
+        .careers-section {
+            background: var(--light-gray);
         }
         
         /* Navigation */
@@ -1778,41 +1798,35 @@
         
         function resizeCanvas() {
             canvas.width = window.innerWidth;
-            canvas.height = document.documentElement.scrollHeight;
+            canvas.height = window.innerHeight;
         }
         
         window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('load', resizeCanvas);
-        
-        // Update canvas height when content changes
-        const resizeObserver = new ResizeObserver(() => {
-            resizeCanvas();
-        });
-        resizeObserver.observe(document.body);
         
         document.addEventListener('mousemove', (e) => {
             targetX = e.clientX;
-            targetY = e.clientY + window.scrollY;
+            targetY = e.clientY;
         });
         
-        document.addEventListener('scroll', () => {
-            targetY = mouseY - (mouseY - window.scrollY - window.innerHeight/2);
-        });
-        
-        // Electric Network Animation - Neural network style
+        // Elegant Floating Particles with Electric Connections
         const particles = [];
-        const particleCount = 80;
-        const connectionDistance = 180;
-        const mouseRadius = 250;
+        const particleCount = 120;
+        const connectionDistance = 150;
+        const mouseRadius = 200;
         
         class Particle {
             constructor() {
+                this.reset();
+            }
+            
+            reset() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 2 + 1;
-                this.baseAlpha = Math.random() * 0.3 + 0.2;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.radius = Math.random() * 2.5 + 0.5;
+                this.baseAlpha = Math.random() * 0.4 + 0.1;
+                this.pulseSpeed = Math.random() * 0.002 + 0.001;
                 this.pulseOffset = Math.random() * Math.PI * 2;
             }
             
@@ -1820,13 +1834,11 @@
                 this.x += this.vx;
                 this.y += this.vy;
                 
-                // Bounce off edges
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-                
-                // Keep in bounds
-                this.x = Math.max(0, Math.min(canvas.width, this.x));
-                this.y = Math.max(0, Math.min(canvas.height, this.y));
+                // Wrap around edges smoothly
+                if (this.x < -50) this.x = canvas.width + 50;
+                if (this.x > canvas.width + 50) this.x = -50;
+                if (this.y < -50) this.y = canvas.height + 50;
+                if (this.y > canvas.height + 50) this.y = -50;
             }
             
             draw(time) {
@@ -1834,38 +1846,37 @@
                 const dy = this.y - mouseY;
                 const distToMouse = Math.sqrt(dx * dx + dy * dy);
                 
-                // Pulse effect
-                const pulse = Math.sin(time * 0.002 + this.pulseOffset) * 0.2 + 0.8;
+                // Elegant pulse
+                const pulse = Math.sin(time * this.pulseSpeed + this.pulseOffset) * 0.3 + 0.7;
                 
-                // Glow intensity based on mouse proximity
-                let glowIntensity = 0;
                 let alpha = this.baseAlpha * pulse;
                 let radius = this.radius;
+                let glowIntensity = 0;
                 
+                // Mouse interaction
                 if (distToMouse < mouseRadius) {
                     const intensity = 1 - (distToMouse / mouseRadius);
-                    glowIntensity = intensity * intensity;
-                    alpha = Math.min(1, alpha + glowIntensity * 0.6);
-                    radius = this.radius + glowIntensity * 3;
+                    glowIntensity = Math.pow(intensity, 2);
+                    alpha = Math.min(1, alpha + glowIntensity * 0.7);
+                    radius = this.radius + glowIntensity * 4;
                 }
                 
                 ctx.save();
                 
-                // Outer glow
-                if (glowIntensity > 0) {
-                    ctx.shadowColor = 'rgba(64, 145, 108, ' + glowIntensity + ')';
-                    ctx.shadowBlur = 15 + glowIntensity * 20;
+                // Glow effect
+                if (glowIntensity > 0.1) {
+                    ctx.shadowColor = `rgba(64, 145, 108, ${glowIntensity})`;
+                    ctx.shadowBlur = 20 * glowIntensity;
                 }
                 
-                // Draw particle
+                // Draw particle with gradient
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, radius, 0, Math.PI * 2);
                 
-                // Gradient fill
                 const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, radius);
                 gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
-                gradient.addColorStop(0.5, `rgba(64, 145, 108, ${alpha * 0.8})`);
-                gradient.addColorStop(1, `rgba(45, 106, 79, ${alpha * 0.3})`);
+                gradient.addColorStop(0.4, `rgba(64, 145, 108, ${alpha * 0.7})`);
+                gradient.addColorStop(1, `rgba(45, 106, 79, 0)`);
                 
                 ctx.fillStyle = gradient;
                 ctx.fill();
@@ -1875,8 +1886,11 @@
         }
         
         // Initialize particles
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
+        function initParticles() {
+            particles.length = 0;
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
         }
         
         function drawConnections(time) {
@@ -1887,84 +1901,68 @@
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
                     if (distance < connectionDistance) {
-                        // Check if connection is near mouse
                         const midX = (particles[i].x + particles[j].x) / 2;
                         const midY = (particles[i].y + particles[j].y) / 2;
                         const distToMouse = Math.sqrt((midX - mouseX) ** 2 + (midY - mouseY) ** 2);
                         
-                        let alpha = (1 - distance / connectionDistance) * 0.15;
+                        let alpha = (1 - distance / connectionDistance) * 0.08;
                         let lineWidth = 0.5;
-                        let electricEffect = false;
                         
-                        // Electric effect near mouse
+                        // Enhanced effect near mouse
                         if (distToMouse < mouseRadius) {
-                            const intensity = 1 - (distToMouse / mouseRadius);
-                            alpha = (1 - distance / connectionDistance) * (0.15 + intensity * 0.5);
-                            lineWidth = 0.5 + intensity * 2;
-                            electricEffect = intensity > 0.3;
+                            const intensity = Math.pow(1 - (distToMouse / mouseRadius), 2);
+                            alpha = (1 - distance / connectionDistance) * (0.08 + intensity * 0.4);
+                            lineWidth = 0.5 + intensity * 1.5;
+                            
+                            // Electric pulse effect
+                            if (intensity > 0.3) {
+                                ctx.save();
+                                ctx.shadowColor = 'rgba(64, 145, 108, 0.6)';
+                                ctx.shadowBlur = 8;
+                                
+                                const pulsePos = (time * 0.004 + i * 0.05) % 1;
+                                const pulseX = particles[i].x + dx * -pulsePos;
+                                const pulseY = particles[i].y + dy * -pulsePos;
+                                
+                                ctx.beginPath();
+                                ctx.arc(pulseX, pulseY, 1.5, 0, Math.PI * 2);
+                                ctx.fillStyle = `rgba(255, 255, 255, ${intensity * 0.8})`;
+                                ctx.fill();
+                                ctx.restore();
+                            }
                         }
                         
-                        ctx.save();
-                        
-                        if (electricEffect) {
-                            // Electric glow
-                            ctx.shadowColor = 'rgba(64, 145, 108, 0.8)';
-                            ctx.shadowBlur = 10;
-                            
-                            // Animated electric pulse
-                            const pulsePos = (time * 0.003 + i * 0.1) % 1;
-                            const pulseX = particles[i].x + (particles[j].x - particles[i].x) * pulsePos;
-                            const pulseY = particles[i].y + (particles[j].y - particles[i].y) * pulsePos;
-                            
-                            // Draw pulse point
-                            ctx.beginPath();
-                            ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2);
-                            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                            ctx.fill();
-                        }
-                        
-                        // Draw connection line
+                        // Draw elegant connection line
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        
-                        const gradient = ctx.createLinearGradient(
-                            particles[i].x, particles[i].y,
-                            particles[j].x, particles[j].y
-                        );
-                        gradient.addColorStop(0, `rgba(64, 145, 108, ${alpha})`);
-                        gradient.addColorStop(0.5, `rgba(255, 255, 255, ${alpha * 1.2})`);
-                        gradient.addColorStop(1, `rgba(64, 145, 108, ${alpha})`);
-                        
-                        ctx.strokeStyle = gradient;
+                        ctx.strokeStyle = `rgba(64, 145, 108, ${alpha})`;
                         ctx.lineWidth = lineWidth;
                         ctx.stroke();
-                        
-                        ctx.restore();
                     }
                 }
             }
         }
         
-        // Draw connection to mouse
+        // Draw mouse attraction lines
         function drawMouseConnections() {
-            particles.forEach((particle, index) => {
+            particles.forEach((particle) => {
                 const dx = particle.x - mouseX;
                 const dy = particle.y - mouseY;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                if (distance < mouseRadius * 0.8) {
-                    const alpha = (1 - distance / (mouseRadius * 0.8)) * 0.3;
+                if (distance < mouseRadius * 0.7) {
+                    const alpha = Math.pow(1 - distance / (mouseRadius * 0.7), 2) * 0.25;
                     
                     ctx.save();
-                    ctx.shadowColor = 'rgba(64, 145, 108, 0.5)';
-                    ctx.shadowBlur = 5;
+                    ctx.shadowColor = 'rgba(64, 145, 108, 0.3)';
+                    ctx.shadowBlur = 3;
                     
                     ctx.beginPath();
                     ctx.moveTo(mouseX, mouseY);
                     ctx.lineTo(particle.x, particle.y);
                     ctx.strokeStyle = `rgba(64, 145, 108, ${alpha})`;
-                    ctx.lineWidth = 1;
+                    ctx.lineWidth = 0.8;
                     ctx.stroke();
                     
                     ctx.restore();
@@ -1972,23 +1970,48 @@
             });
         }
         
+        // Draw subtle ambient glow at mouse position
+        function drawMouseGlow() {
+            const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, mouseRadius);
+            gradient.addColorStop(0, 'rgba(64, 145, 108, 0.08)');
+            gradient.addColorStop(0.5, 'rgba(64, 145, 108, 0.03)');
+            gradient.addColorStop(1, 'rgba(64, 145, 108, 0)');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(mouseX - mouseRadius, mouseY - mouseRadius, mouseRadius * 2, mouseRadius * 2);
+        }
+        
         function animate(time) {
-            mouseX += (targetX - mouseX) * 0.1;
-            mouseY += (targetY - mouseY) * 0.1;
+            mouseX += (targetX - mouseX) * 0.08;
+            mouseY += (targetY - mouseY) * 0.08;
             
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Update and draw
+            // Draw mouse glow first (background)
+            drawMouseGlow();
+            
+            // Update particles
             particles.forEach(p => p.update());
+            
+            // Draw connections
             drawConnections(time);
             drawMouseConnections();
+            
+            // Draw particles on top
             particles.forEach(p => p.draw(time));
             
             requestAnimationFrame(animate);
         }
         
         resizeCanvas();
+        initParticles();
         animate(0);
+        
+        // Reinitialize on resize
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
         
         // Navbar
         window.addEventListener('scroll', function() {
