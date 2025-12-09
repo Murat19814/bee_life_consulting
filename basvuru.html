@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bee Life Consulting - İş Başvurusu. Kariyerinize bizimle başlayın!">
+    <title>İş Başvurusu | Bee Life Consulting</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+    
+    <style>
+        .page-header {
+            background: var(--gradient-dark);
+            padding: 150px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="honeycomb" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(0.5)"><path fill="none" stroke="rgba(255,184,0,0.1)" stroke-width="1" d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100"/></pattern></defs><rect width="100%" height="100%" fill="url(%23honeycomb)"/></svg>');
+            opacity: 0.5;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .page-header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.2rem;
+            position: relative;
+        }
+        
+        .application-section {
+            padding: 80px 0;
+            background: var(--light-gray);
+        }
+        
+        .application-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .application-info {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            position: sticky;
+            top: 100px;
+        }
+        
+        .application-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        
+        .application-info p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--light-gray);
+            border-radius: 12px;
+        }
+        
+        .info-item-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,184,0,0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .info-item-text h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 3px;
+            color: var(--text-dark);
+        }
+        
+        .info-item-text p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: var(--text-light);
+        }
+        
+        .application-form-container {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .form-header {
+            margin-bottom: 40px;
+        }
+        
+        .form-header h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        
+        .form-header p {
+            color: var(--text-light);
+        }
+        
+        .form-section-title {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin: 35px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-section-title i {
+            color: var(--primary-gold);
+        }
+        
+        .form-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--light-gray);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox-item:hover {
+            background: rgba(255,184,0,0.15);
+        }
+        
+        .checkbox-item input[type="checkbox"],
+        .checkbox-item input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-gold);
+        }
+        
+        .file-upload {
+            border: 2px dashed #e9ecef;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary-gold);
+            background: rgba(255,184,0,0.05);
+        }
+        
+        .file-upload i {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+        
+        .file-upload p {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        
+        .file-upload span {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .file-upload input[type="file"] {
+            display: none;
+        }
+        
+        .form-agreement {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 30px 0;
+            padding: 20px;
+            background: var(--light-gray);
+            border-radius: 12px;
+        }
+        
+        .form-agreement input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+            accent-color: var(--primary-gold);
+        }
+        
+        .form-agreement label {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .form-agreement a {
+            color: var(--primary-gold);
+            text-decoration: underline;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.1rem;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 60px 40px;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 3rem;
+            color: #28a745;
+        }
+        
+        .success-message h2 {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+        
+        .success-message p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 992px) {
+            .application-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .application-info {
+                position: static;
+            }
+            
+            .form-grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .application-form-container {
+                padding: 30px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">Bee Life <span>Consulting</span></div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#about">Hakkımızda</a></li>
+                <li><a href="index.html#services">Hizmetler</a></li>
+                <li><a href="index.html#rewards">Ödüller</a></li>
+                <li><a href="index.html#careers">Kariyer</a></li>
+                <li><a href="index.html#contact">İletişim</a></li>
+            </ul>
+            
+            <div class="nav-buttons">
+                <a href="employee-login.html" class="btn btn-outline">
+                    <i class="fas fa-user"></i> Çalışan Girişi
+                </a>
+                <a href="basvuru.html" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Başvur
+                </a>
+            </div>
+            
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <header class="page-header">
+        <div class="container">
+            <h1>İş Başvurusu</h1>
+            <p>Bee Life ailesine katılın, kariyerinizi şekillendirin!</p>
+        </div>
+    </header>
+
+    <!-- ========== APPLICATION SECTION ========== -->
+    <section class="application-section">
+        <div class="container">
+            <div class="application-container">
+                <!-- Sidebar Info -->
+                <div class="application-info">
+                    <h3>Neden Bee Life?</h3>
+                    <p>Türkiye ve Almanya'da 5 yılı aşkın deneyimimizle, çalışanlarımıza eşsiz fırsatlar sunuyoruz.</p>
+                    
+                    <div class="info-item">
+                        <div class="info-item-icon">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="info-item-text">
+                            <h4>Yüksek Kazanç</h4>
+                            <p>QC OK: 35€ komisyon + sabit maaş</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-item-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="info-item-text">
+                            <h4>Ödül Sistemi</h4>
+                            <p>500€'ya kadar hediyeler, PS5, tatil...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-item-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="info-item-text">
+                            <h4>Kariyer Fırsatı</h4>
+                            <p>Hızlı yükselme imkanları</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-item-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="info-item-text">
+                            <h4>Uluslararası Proje</h4>
+                            <p>Almanya merkezli projeler</p>
+                        </div>
+                    </div>
+                    
+                    <hr style="margin: 25px 0; border: none; border-top: 1px solid #e9ecef;">
+                    
+                    <h4 style="margin-bottom: 15px; font-family: 'Montserrat', sans-serif;">İletişim</h4>
+                    <p style="margin-bottom: 10px; font-size: 0.9rem;">
+                        <i class="fas fa-envelope" style="color: var(--primary-gold); margin-right: 10px;"></i>
+                        info@beelife-consulting.com
+                    </p>
+                    <p style="margin-bottom: 10px; font-size: 0.9rem;">
+                        <i class="fas fa-phone" style="color: var(--primary-gold); margin-right: 10px;"></i>
+                        +90 531 765 41 66
+                    </p>
+                    <p style="font-size: 0.9rem;">
+                        <i class="fab fa-whatsapp" style="color: var(--primary-gold); margin-right: 10px;"></i>
+                        +90 535 663 41 66
+                    </p>
+                </div>
+                
+                <!-- Application Form -->
+                <div class="application-form-container">
+                    <div id="applicationForm">
+                        <div class="form-header">
+                            <h2>Başvuru Formu</h2>
+                            <p>Lütfen aşağıdaki formu eksiksiz doldurun. Başvurunuz en kısa sürede değerlendirilecektir.</p>
+                        </div>
+                        
+                        <form id="jobApplicationForm">
+                            <!-- Personal Information -->
+                            <h3 class="form-section-title">
+                                <i class="fas fa-user"></i> Kişisel Bilgiler
+                            </h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">Adınız *</label>
+                                    <input type="text" id="firstName" name="firstName" required placeholder="Adınız">
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Soyadınız *</label>
+                                    <input type="text" id="lastName" name="lastName" required placeholder="Soyadınız">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">E-Posta *</label>
+                                    <input type="email" id="email" name="email" required placeholder="ornek@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Telefon *</label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="+90 5XX XXX XX XX">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="birthDate">Doğum Tarihi *</label>
+                                    <input type="date" id="birthDate" name="birthDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">Şehir *</label>
+                                    <select id="city" name="city" required>
+                                        <option value="">Şehir Seçin</option>
+                                        <option value="yozgat">Yozgat</option>
+                                        <option value="izmit">İzmit</option>
+                                        <option value="eskisehir">Eskişehir</option>
+                                        <option value="balikesir">Balıkesir (Yakında)</option>
+                                        <option value="other">Diğer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="address">Adres</label>
+                                <textarea id="address" name="address" rows="2" placeholder="Açık adresiniz..."></textarea>
+                            </div>
+                            
+                            <!-- Education & Experience -->
+                            <h3 class="form-section-title">
+                                <i class="fas fa-graduation-cap"></i> Eğitim ve Deneyim
+                            </h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="education">Eğitim Durumu *</label>
+                                    <select id="education" name="education" required>
+                                        <option value="">Seçin</option>
+                                        <option value="ilkokul">İlkokul</option>
+                                        <option value="ortaokul">Ortaokul</option>
+                                        <option value="lise">Lise</option>
+                                        <option value="onlisans">Ön Lisans</option>
+                                        <option value="lisans">Lisans</option>
+                                        <option value="yukseklisans">Yüksek Lisans</option>
+                                        <option value="doktora">Doktora</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="experience">Çağrı Merkezi Deneyimi</label>
+                                    <select id="experience" name="experience">
+                                        <option value="">Seçin</option>
+                                        <option value="yok">Deneyimim Yok</option>
+                                        <option value="0-1">0-1 Yıl</option>
+                                        <option value="1-3">1-3 Yıl</option>
+                                        <option value="3-5">3-5 Yıl</option>
+                                        <option value="5+">5+ Yıl</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Dil Bilgisi *</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="languages" value="turkce" checked>
+                                        <span>Türkçe</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="languages" value="almanca">
+                                        <span>Almanca</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="languages" value="ingilizce">
+                                        <span>İngilizce</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="languages" value="diger">
+                                        <span>Diğer</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Position & Availability -->
+                            <h3 class="form-section-title">
+                                <i class="fas fa-briefcase"></i> Pozisyon ve Çalışma Tercihi
+                            </h3>
+                            
+                            <div class="form-group">
+                                <label>Başvurmak İstediğiniz Pozisyon *</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="radio" name="position" value="outbound" required>
+                                        <span>Outbound Satış (35€/QC OK)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="radio" name="position" value="inbound">
+                                        <span>Inbound Hotline (Sabit Maaş)</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="radio" name="position" value="both">
+                                        <span>Her İkisi</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Çalışma Şekli *</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-item">
+                                        <input type="radio" name="workType" value="fulltime" required>
+                                        <span>Tam Zamanlı</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="radio" name="workType" value="parttime">
+                                        <span>Yarı Zamanlı</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="startDate">Ne Zaman Başlayabilirsiniz?</label>
+                                    <select id="startDate" name="startDate">
+                                        <option value="">Seçin</option>
+                                        <option value="hemen">Hemen</option>
+                                        <option value="1hafta">1 Hafta İçinde</option>
+                                        <option value="2hafta">2 Hafta İçinde</option>
+                                        <option value="1ay">1 Ay İçinde</option>
+                                        <option value="diger">Diğer</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reference">Referans (Varsa)</label>
+                                    <input type="text" id="reference" name="reference" placeholder="Sizi yönlendiren kişi">
+                                </div>
+                            </div>
+                            
+                            <!-- CV Upload -->
+                            <h3 class="form-section-title">
+                                <i class="fas fa-file-alt"></i> CV Yükleme
+                            </h3>
+                            
+                            <div class="form-group">
+                                <label class="file-upload" for="cvFile">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>CV'nizi buraya sürükleyin veya tıklayın</p>
+                                    <span>PDF, DOC, DOCX (Maks. 5MB)</span>
+                                    <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx">
+                                </label>
+                                <p id="fileName" style="text-align: center; margin-top: 10px; color: var(--primary-gold);"></p>
+                            </div>
+                            
+                            <!-- Additional Information -->
+                            <h3 class="form-section-title">
+                                <i class="fas fa-comment-alt"></i> Ek Bilgiler
+                            </h3>
+                            
+                            <div class="form-group">
+                                <label for="about">Kendinizi Tanıtın</label>
+                                <textarea id="about" name="about" rows="4" placeholder="Kendiniz, deneyimleriniz ve hedefleriniz hakkında kısa bilgi..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="motivation">Neden Bee Life'da Çalışmak İstiyorsunuz?</label>
+                                <textarea id="motivation" name="motivation" rows="3" placeholder="Motivasyonunuzu paylaşın..."></textarea>
+                            </div>
+                            
+                            <!-- Agreement -->
+                            <div class="form-agreement">
+                                <input type="checkbox" id="agreement" name="agreement" required>
+                                <label for="agreement">
+                                    Kişisel verilerimin <a href="#">Gizlilik Politikası</a> kapsamında işlenmesini ve 
+                                    <a href="#">Kullanım Koşullarını</a> kabul ediyorum. *
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary submit-btn">
+                                <i class="fas fa-paper-plane"></i> Başvuruyu Gönder
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Success Message -->
+                    <div class="success-message" id="successMessage">
+                        <div class="success-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2>Başvurunuz Alındı!</h2>
+                        <p>
+                            Başvurunuz başarıyla gönderildi. İnsan kaynakları ekibimiz en kısa sürede 
+                            sizinle iletişime geçecektir. Başvurunuzu takip etmek için e-postanızı kontrol edin.
+                        </p>
+                        <a href="index.html" class="btn btn-primary">
+                            <i class="fas fa-home"></i> Ana Sayfaya Dön
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <div class="logo-icon">🐝</div>
+                        <div class="logo-text">Bee Life <span>Consulting</span></div>
+                    </a>
+                    <p>
+                        5 yılı aşkın deneyimimizle Türkiye ve Almanya'da profesyonel çağrı merkezi 
+                        hizmetleri sunuyoruz.
+                    </p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Hızlı Linkler</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="index.html#about">Hakkımızda</a></li>
+                        <li><a href="index.html#services">Hizmetler</a></li>
+                        <li><a href="index.html#careers">Kariyer</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Giriş</h4>
+                    <ul class="footer-links">
+                        <li><a href="employee-login.html">Çalışan Girişi</a></li>
+                        <li><a href="admin-login.html">Admin Girişi</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>İletişim</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope" style="margin-right: 10px; color: #FFB800;"></i> info@beelife-consulting.com</li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px; color: #FFB800;"></i> +90 531 765 41 66</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bee Life Consulting. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // File Upload Display
+        const cvFile = document.getElementById('cvFile');
+        const fileName = document.getElementById('fileName');
+        
+        if (cvFile) {
+            cvFile.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    fileName.textContent = '📎 ' + this.files[0].name;
+                }
+            });
+        }
+        
+        // Form Submit Handler
+        const applicationForm = document.getElementById('jobApplicationForm');
+        const formContainer = document.getElementById('applicationForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        if (applicationForm) {
+            applicationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate form submission
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
+                submitBtn.disabled = true;
+                
+                setTimeout(() => {
+                    formContainer.querySelector('form').style.display = 'none';
+                    formContainer.querySelector('.form-header').style.display = 'none';
+                    successMessage.classList.add('show');
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 1500);
+            });
+        }
+        
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            }
+        });
+    </script>
+
+</body>
+</html>
+

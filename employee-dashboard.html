@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bee Life Consulting - Çalışan Paneli">
+    <title>Çalışan Paneli | Bee Life Consulting</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+    
+    <style>
+        :root {
+            --sidebar-width: 280px;
+        }
+        
+        body {
+            background: #f0f2f5;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--gradient-dark);
+            padding: 30px 20px;
+            z-index: 100;
+            overflow-y: auto;
+        }
+        
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 10px 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-logo .logo-icon {
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+        }
+        
+        .sidebar-logo .logo-text {
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            color: rgba(255,255,255,0.7);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(255,184,0,0.15);
+            color: var(--primary-gold);
+        }
+        
+        .sidebar-menu a i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .sidebar-menu .menu-badge {
+            margin-left: auto;
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .sidebar-user {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+        }
+        
+        .sidebar-user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-user-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .sidebar-user-details h4 {
+            color: var(--white);
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .sidebar-user-details p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+        }
+        
+        .logout-btn {
+            width: 100%;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 8px;
+            color: rgba(255,255,255,0.7);
+            font-family: 'Montserrat', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255,59,48,0.2);
+            color: #ff3b30;
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 30px;
+            min-height: 100vh;
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .top-bar h1 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+        }
+        
+        .top-bar-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .notification-btn {
+            width: 45px;
+            height: 45px;
+            background: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            cursor: pointer;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .notification-btn .badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #ff3b30;
+            color: white;
+            font-size: 0.7rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,184,0,0.1);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+        
+        .stat-card-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,184,0,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+        
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .stat-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .stat-card .trend {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        
+        .stat-card .trend.up {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+        
+        .stat-card .trend.down {
+            background: rgba(255, 59, 48, 0.1);
+            color: #ff3b30;
+        }
+        
+        /* Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+        
+        /* Card Styles */
+        .dashboard-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .card-header h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+        
+        .card-header .view-all {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Leaderboard */
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .leaderboard-item:hover {
+            background: var(--light-gray);
+        }
+        
+        .leaderboard-item.you {
+            background: rgba(255,184,0,0.1);
+            border: 2px solid var(--primary-gold);
+        }
+        
+        .leaderboard-rank {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .leaderboard-rank.gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+        }
+        
+        .leaderboard-rank.silver {
+            background: linear-gradient(135deg, #C0C0C0 0%, #A9A9A9 100%);
+            color: #333;
+        }
+        
+        .leaderboard-rank.bronze {
+            background: linear-gradient(135deg, #CD7F32 0%, #B87333 100%);
+            color: white;
+        }
+        
+        .leaderboard-rank.normal {
+            background: var(--light-gray);
+            color: var(--text-light);
+        }
+        
+        .leaderboard-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .leaderboard-info {
+            flex: 1;
+        }
+        
+        .leaderboard-info h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+        
+        .leaderboard-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .leaderboard-score {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+        
+        /* Prize Banner */
+        .prize-banner {
+            background: var(--gradient-gold);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .prize-banner::before {
+            content: '🎈';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .prize-banner::after {
+            content: '🎈';
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float 3s ease-in-out infinite 1.5s;
+        }
+        
+        .prize-banner h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .prize-banner p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .prize-banner .btn {
+            background: var(--primary-dark);
+            color: var(--white);
+        }
+        
+        /* Recent Activity */
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f2f5;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .activity-icon.sale {
+            background: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+        }
+        
+        .activity-icon.call {
+            background: rgba(0, 122, 255, 0.1);
+            color: #007aff;
+        }
+        
+        .activity-icon.bonus {
+            background: rgba(255, 184, 0, 0.1);
+            color: var(--primary-gold);
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-content h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+        }
+        
+        .activity-content p {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        /* Balloon Game Modal */
+        .balloon-game-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .balloon-game-overlay.active {
+            display: flex;
+        }
+        
+        .balloon-game-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .balloon-game-header {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
+        }
+        
+        .balloon-game-header h2 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        
+        .balloon-game-header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.2rem;
+        }
+        
+        .close-game {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .close-game:hover {
+            background: rgba(255,59,48,0.5);
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 100px;
+            height: 120px;
+            cursor: pointer;
+            animation: floatBalloon 4s ease-in-out infinite;
+            transition: transform 0.1s ease;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+        }
+        
+        .balloon:hover {
+            transform: scale(1.15);
+        }
+        
+        .balloon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .balloon-1 { top: 20%; left: 10%; animation-delay: 0s; }
+        .balloon-2 { top: 30%; left: 30%; animation-delay: 0.5s; }
+        .balloon-3 { top: 25%; left: 50%; animation-delay: 1s; }
+        .balloon-4 { top: 35%; left: 70%; animation-delay: 1.5s; }
+        .balloon-5 { top: 20%; left: 85%; animation-delay: 2s; }
+        .balloon-6 { top: 50%; left: 20%; animation-delay: 2.5s; }
+        .balloon-7 { top: 55%; left: 45%; animation-delay: 3s; }
+        .balloon-8 { top: 45%; left: 75%; animation-delay: 3.5s; }
+        
+        @keyframes floatBalloon {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-25px) rotate(5deg); }
+        }
+        
+        /* Prize Reveal */
+        .prize-reveal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 20;
+            display: none;
+        }
+        
+        .prize-reveal.active {
+            display: block;
+            animation: prizeReveal 0.5s ease;
+        }
+        
+        @keyframes prizeReveal {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .prize-reveal-card {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 30px 100px rgba(255,184,0,0.5);
+        }
+        
+        .prize-icon {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            animation: bounce 1s ease infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .prize-reveal-card h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        
+        .prize-reveal-card .prize-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+        
+        .prize-reveal-card p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 15;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .top-bar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">🐝</div>
+            <div class="logo-text">Bee Life <span>Consulting</span></div>
+        </div>
+        
+        <ul class="sidebar-menu">
+            <li>
+                <a href="#" class="active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Satışlarım</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-trophy"></i>
+                    <span>Sıralama</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" id="openBalloonGame">
+                    <i class="fas fa-gift"></i>
+                    <span>Ödüllerim</span>
+                    <span class="menu-badge">1</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Mesai Takibi</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Raporlar</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    <span>Ayarlar</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div class="sidebar-user">
+            <div class="sidebar-user-info">
+                <div class="sidebar-user-avatar">AK</div>
+                <div class="sidebar-user-details">
+                    <h4>Ahmet Kaya</h4>
+                    <p>Satış Temsilcisi</p>
+                </div>
+            </div>
+            <button class="logout-btn" onclick="window.location.href='employee-login.html'">
+                <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+            </button>
+        </div>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div>
+                <h1>Hoş Geldin, Ahmet! 👋</h1>
+                <p style="color: var(--text-light);">Bugünkü performansını takip et</p>
+            </div>
+            <div class="top-bar-actions">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">3</span>
+                </button>
+                <button class="btn btn-primary" id="openBalloonGameBtn">
+                    <i class="fas fa-gift"></i> Ödül Kazan
+                </button>
+            </div>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>127</h3>
+                <p>Toplam Arama</p>
+                <span class="trend up">
+                    <i class="fas fa-arrow-up"></i> +12% bu hafta
+                </span>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-card-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>23</h3>
+                <p>QC OK Satış</p>
+                <span class="trend up">
+                    <i class="fas fa-arrow-up"></i> +8% bu hafta
+                </span>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-card-icon">
+                    <i class="fas fa-euro-sign"></i>
+                </div>
+                <h3>805€</h3>
+                <p>Bu Ay Kazanç</p>
+                <span class="trend up">
+                    <i class="fas fa-arrow-up"></i> +15% geçen aya göre
+                </span>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-card-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>#3</h3>
+                <p>Sıralama</p>
+                <span class="trend up">
+                    <i class="fas fa-arrow-up"></i> 2 sıra yükseldin
+                </span>
+            </div>
+        </div>
+        
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Left Column -->
+            <div>
+                <!-- Prize Banner -->
+                <div class="prize-banner">
+                    <h3>🎉 Tebrikler! Ay Birincisisin!</h3>
+                    <p>Balon patlatarak muhteşem hediyeni seç!</p>
+                    <button class="btn" id="claimPrizeBtn">
+                        <i class="fas fa-gift"></i> Hediyemi Al
+                    </button>
+                </div>
+                
+                <!-- Leaderboard -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>🏆 Liderlik Tablosu</h3>
+                        <a href="#" class="view-all">Tümünü Gör</a>
+                    </div>
+                    
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank gold">1</div>
+                        <div class="leaderboard-avatar">MK</div>
+                        <div class="leaderboard-info">
+                            <h4>Mehmet Koç</h4>
+                            <p>45 QC OK</p>
+                        </div>
+                        <div class="leaderboard-score">1.575€</div>
+                    </div>
+                    
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank silver">2</div>
+                        <div class="leaderboard-avatar">AY</div>
+                        <div class="leaderboard-info">
+                            <h4>Ayşe Yılmaz</h4>
+                            <p>38 QC OK</p>
+                        </div>
+                        <div class="leaderboard-score">1.330€</div>
+                    </div>
+                    
+                    <div class="leaderboard-item you">
+                        <div class="leaderboard-rank bronze">3</div>
+                        <div class="leaderboard-avatar">AK</div>
+                        <div class="leaderboard-info">
+                            <h4>Ahmet Kaya (Sen)</h4>
+                            <p>23 QC OK</p>
+                        </div>
+                        <div class="leaderboard-score">805€</div>
+                    </div>
+                    
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank normal">4</div>
+                        <div class="leaderboard-avatar">FD</div>
+                        <div class="leaderboard-info">
+                            <h4>Fatma Demir</h4>
+                            <p>21 QC OK</p>
+                        </div>
+                        <div class="leaderboard-score">735€</div>
+                    </div>
+                    
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank normal">5</div>
+                        <div class="leaderboard-avatar">EC</div>
+                        <div class="leaderboard-info">
+                            <h4>Emre Can</h4>
+                            <p>19 QC OK</p>
+                        </div>
+                        <div class="leaderboard-score">665€</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column -->
+            <div>
+                <!-- Recent Activity -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3>📋 Son Aktiviteler</h3>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon sale">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>QC OK Satış</h4>
+                            <p>Müşteri #12847 - 35€ kazandın</p>
+                        </div>
+                        <div class="activity-time">10 dk önce</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon call">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Arama Tamamlandı</h4>
+                            <p>8 dakika 32 saniye</p>
+                        </div>
+                        <div class="activity-time">25 dk önce</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon bonus">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Haftalık Bonus</h4>
+                            <p>20 satış hedefi aşıldı!</p>
+                        </div>
+                        <div class="activity-time">2 saat önce</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon sale">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>QC OK Satış</h4>
+                            <p>Müşteri #12843 - 35€ kazandın</p>
+                        </div>
+                        <div class="activity-time">3 saat önce</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon call">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4>Arama Tamamlandı</h4>
+                            <p>5 dakika 18 saniye</p>
+                        </div>
+                        <div class="activity-time">4 saat önce</div>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="dashboard-card" style="margin-top: 25px;">
+                    <div class="card-header">
+                        <h3>📊 Bu Hafta</h3>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; text-align: center;">
+                        <div>
+                            <h3 style="font-size: 1.5rem; color: var(--primary-gold);">42</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-light);">Arama</p>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 1.5rem; color: var(--primary-gold);">8</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-light);">QC OK</p>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 1.5rem; color: var(--primary-gold);">280€</h3>
+                            <p style="font-size: 0.85rem; color: var(--text-light);">Kazanç</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== BALLOON GAME OVERLAY ========== -->
+    <div class="balloon-game-overlay" id="balloonGameOverlay">
+        <button class="close-game" id="closeGame">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="balloon-game-header">
+            <h2>🎈 Balon Patlatma Oyunu 🎈</h2>
+            <p>Bir balon seç ve hediyeni kazan!</p>
+        </div>
+        
+        <div class="balloon-game-container">
+            <!-- Balloons -->
+            <div class="balloon balloon-1" data-prize="25€ Nakit">
+                <svg viewBox="0 0 100 130">
+                    <defs>
+                        <radialGradient id="balloon1" cx="30%" cy="30%">
+                            <stop offset="0%" style="stop-color:#FF6B6B"/>
+                            <stop offset="100%" style="stop-color:#EE5A5A"/>
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#balloon1)"/>
+                    <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
+                    <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
+                    <polygon points="45,105 55,105 50,115" fill="#EE5A5A"/>
+                </svg>
+            </div>
+            
+            <div class="balloon balloon-2" data-prize="50€ Nakit">
+                <svg viewBox="0 0 100 130">
+                    <defs>
+                        <radialGradient id="balloon2" cx="30%" cy="30%">
+                            <stop offset="0%" style="stop-color:#4ECDC4"/>
+                            <stop offset="100%" style="stop-color:#3DB9B1"/>
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#balloon2)"/>
+                    <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
+                    <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
+                    <polygon points="45,105 55,105 50,115" fill="#3DB9B1"/>
+                </svg>
+            </div>
+            
+            <div class="balloon balloon-3" data-prize="🎁 Sürpriz Hediye">
+                <svg viewBox="0 0 100 130">
+                    <defs>
+                        <radialGradient id="balloon3" cx="30%" cy="30%">
+                            <stop offset="0%" style="stop-color:#FFE66D"/>
+                            <stop offset="100%" style="stop-color:#FFD93D"/>
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#balloon3)"/>
+                    <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
+                    <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
+                    <polygon points="45,105 55,105 50,115" fill="#FFD93D"/>
+                </svg>
+            </div>
+            
+            <div class="balloon balloon-4" data-prize="10€ Nakit">
+                <svg viewBox="0 0 100 130">
+                    <defs>
+                        <radialGradient id="balloon4" cx="30%" cy="30%">
+                            <stop offset="0%" style="stop-color:#A855F7"/>
+                            <stop offset="100%" style="stop-color:#9333EA"/>
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#balloon4)"/>
+                    <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
+                    <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
+                    <polygon points="45,105 55,105 50,115" fill="#9333EA"/>
+                </svg>
+            </div>
+            
+            <div class="balloon balloon-5" data-prize="💝 Bağış Yap">
+                <svg viewBox="0 0 100 130">
+                    <defs>
+                        <radialGradient id="balloon5" cx="30%" cy="30%">
+                            <stop offset="0%" style="stop-color:#F97316"/>
+                            <stop offset="100%" style="stop-color:#EA580C"/>
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#balloon5)"/>
+                    <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
+                    <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
+                    <polygon points="45,105 55,105 50,115" fill="#EA580C"/>
+                </svg>
+            </div>
+            
+            <div class="balloon balloon-6" data-prize="75€ Nakit">
+                <svg viewBox="0 0 100 130">
+                    <defs>
+                        <radialGradient id="balloon6" cx="30%" cy="30%">
+                            <stop offset="0%" style="stop-color:#EC4899"/>
+                            <stop offset="100%" style="stop-color:#DB2777"/>
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#balloon6)"/>
+                    <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
+                    <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
+                    <polygon points="45,105 55,105 50,115" fill="#DB2777"/>
+                </svg>
+            </div>
+            
+            <div class="balloon balloon-7" data-prize="100€ Nakit 🎉">
+                <svg viewBox="0 0 100 130">
+                    <defs>
+                        <radialGradient id="balloon7" cx="30%" cy="30%">
+                            <stop offset="0%" style="stop-color:#22C55E"/>
+                            <stop offset="100%" style="stop-color:#16A34A"/>
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#balloon7)"/>
+                    <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
+                    <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
+                    <polygon points="45,105 55,105 50,115" fill="#16A34A"/>
+                </svg>
+            </div>
+            
+            <div class="balloon balloon-8" data-prize="🍬 Falım Sakız">
+                <svg viewBox="0 0 100 130">
+                    <defs>
+                        <radialGradient id="balloon8" cx="30%" cy="30%">
+                            <stop offset="0%" style="stop-color:#3B82F6"/>
+                            <stop offset="100%" style="stop-color:#2563EB"/>
+                        </radialGradient>
+                    </defs>
+                    <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#balloon8)"/>
+                    <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
+                    <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
+                    <polygon points="45,105 55,105 50,115" fill="#2563EB"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Prize Reveal -->
+        <div class="prize-reveal" id="prizeReveal">
+            <div class="prize-reveal-card">
+                <div class="prize-icon" id="prizeIcon">🎁</div>
+                <h2>Tebrikler!</h2>
+                <div class="prize-value" id="prizeValue">50€ Nakit</div>
+                <p>Hediyeniz hesabınıza tanımlandı!</p>
+                <button class="btn btn-primary" id="closePrizeReveal">
+                    <i class="fas fa-check"></i> Tamam
+                </button>
+            </div>
+        </div>
+        
+        <!-- Confetti Canvas -->
+        <canvas class="confetti" id="confettiCanvas"></canvas>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // Balloon Game Logic
+        const balloonGameOverlay = document.getElementById('balloonGameOverlay');
+        const prizeReveal = document.getElementById('prizeReveal');
+        const prizeValue = document.getElementById('prizeValue');
+        const prizeIcon = document.getElementById('prizeIcon');
+        const confettiCanvas = document.getElementById('confettiCanvas');
+        const ctx = confettiCanvas.getContext('2d');
+        
+        // Open Balloon Game
+        document.getElementById('openBalloonGame').addEventListener('click', (e) => {
+            e.preventDefault();
+            openBalloonGame();
+        });
+        
+        document.getElementById('openBalloonGameBtn').addEventListener('click', openBalloonGame);
+        document.getElementById('claimPrizeBtn').addEventListener('click', openBalloonGame);
+        
+        function openBalloonGame() {
+            balloonGameOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close Balloon Game
+        document.getElementById('closeGame').addEventListener('click', closeBalloonGame);
+        document.getElementById('closePrizeReveal').addEventListener('click', () => {
+            prizeReveal.classList.remove('active');
+            closeBalloonGame();
+        });
+        
+        function closeBalloonGame() {
+            balloonGameOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            // Reset balloons
+            document.querySelectorAll('.balloon').forEach(balloon => {
+                balloon.style.display = 'block';
+            });
+        }
+        
+        // Balloon Click Handler
+        document.querySelectorAll('.balloon').forEach(balloon => {
+            balloon.addEventListener('click', function() {
+                const prize = this.getAttribute('data-prize');
+                
+                // Pop animation
+                this.style.transform = 'scale(1.5)';
+                this.style.opacity = '0';
+                
+                setTimeout(() => {
+                    this.style.display = 'none';
+                    
+                    // Hide all other balloons
+                    document.querySelectorAll('.balloon').forEach(b => {
+                        if (b !== this) {
+                            b.style.transition = 'all 0.5s ease';
+                            b.style.opacity = '0';
+                        }
+                    });
+                    
+                    // Show prize
+                    setTimeout(() => {
+                        prizeValue.textContent = prize;
+                        
+                        // Set icon based on prize
+                        if (prize.includes('€')) {
+                            prizeIcon.textContent = '💰';
+                        } else if (prize.includes('Bağış')) {
+                            prizeIcon.textContent = '💝';
+                        } else if (prize.includes('Sakız')) {
+                            prizeIcon.textContent = '🍬';
+                        } else {
+                            prizeIcon.textContent = '🎁';
+                        }
+                        
+                        prizeReveal.classList.add('active');
+                        launchConfetti();
+                    }, 500);
+                }, 200);
+            });
+        });
+        
+        // Confetti Animation
+        function launchConfetti() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+            
+            const confettiPieces = [];
+            const colors = ['#FFB800', '#FF6B6B', '#4ECDC4', '#A855F7', '#22C55E', '#3B82F6', '#EC4899'];
+            
+            for (let i = 0; i < 150; i++) {
+                confettiPieces.push({
+                    x: Math.random() * confettiCanvas.width,
+                    y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+                    r: Math.random() * 6 + 4,
+                    d: Math.random() * 150,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.floor(Math.random() * 10) - 10,
+                    tiltAngle: 0,
+                    tiltAngleIncrement: Math.random() * 0.07 + 0.05
+                });
+            }
+            
+            function draw() {
+                ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                
+                confettiPieces.forEach((p, index) => {
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r / 2;
+                    ctx.strokeStyle = p.color;
+                    ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
+                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
+                    ctx.stroke();
+                    
+                    p.tiltAngle += p.tiltAngleIncrement;
+                    p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+                    p.x += Math.sin(0);
+                    p.tilt = Math.sin(p.tiltAngle) * 15;
+                    
+                    if (p.y > confettiCanvas.height) {
+                        confettiPieces[index] = {
+                            ...p,
+                            x: Math.random() * confettiCanvas.width,
+                            y: -10,
+                            tilt: Math.floor(Math.random() * 10) - 10
+                        };
+                    }
+                });
+            }
+            
+            let animationFrames = 0;
+            function animate() {
+                draw();
+                animationFrames++;
+                if (animationFrames < 300) {
+                    requestAnimationFrame(animate);
+                } else {
+                    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+                }
+            }
+            
+            animate();
+        }
+    </script>
+
+</body>
+</html>
+

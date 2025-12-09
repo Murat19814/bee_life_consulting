@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bee Life Consulting - Çalışan Girişi">
+    <title>Çalışan Girişi | Bee Life Consulting</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+    
+    <style>
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            background: var(--gradient-dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="honeycomb" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(0.5)"><path fill="none" stroke="rgba(255,184,0,0.1)" stroke-width="1" d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100"/></pattern></defs><rect width="100%" height="100%" fill="url(%23honeycomb)"/></svg>');
+            opacity: 0.5;
+        }
+        
+        .login-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .login-left .logo {
+            margin-bottom: 50px;
+        }
+        
+        .login-left h1 {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .login-left h1 span {
+            color: var(--primary-gold);
+        }
+        
+        .login-left p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+        
+        .login-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .login-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--white);
+        }
+        
+        .login-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,184,0,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--primary-gold);
+        }
+        
+        .login-feature-text h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+        
+        .login-feature-text p {
+            font-size: 0.9rem;
+            margin: 0;
+            opacity: 0.7;
+        }
+        
+        .login-right {
+            width: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .login-card {
+            background: var(--white);
+            border-radius: 30px;
+            padding: 50px;
+            width: 100%;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+        
+        .login-card-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .login-card-header .icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,184,0,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 20px;
+        }
+        
+        .login-card-header h2 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        
+        .login-card-header p {
+            color: var(--text-light);
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .login-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .input-icon {
+            position: relative;
+        }
+        
+        .input-icon i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+        
+        .input-icon input {
+            padding-left: 50px;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 4px rgba(255,184,0,0.1);
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .remember-me input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-gold);
+        }
+        
+        .remember-me label {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+        
+        .forgot-password {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.1rem;
+        }
+        
+        .login-divider {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .login-divider::before,
+        .login-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e9ecef;
+        }
+        
+        .login-divider span {
+            padding: 0 15px;
+        }
+        
+        .back-to-home {
+            text-align: center;
+        }
+        
+        .back-to-home a {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        .back-to-home a:hover {
+            color: var(--primary-gold);
+        }
+        
+        .back-to-home i {
+            margin-right: 8px;
+        }
+        
+        /* Floating Balloons Animation */
+        .floating-balloons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .balloon-float {
+            position: absolute;
+            font-size: 3rem;
+            animation: floatUp 15s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .login-page {
+                flex-direction: column;
+            }
+            
+            .login-left {
+                padding: 40px 30px;
+                text-align: center;
+            }
+            
+            .login-left h1 {
+                font-size: 2rem;
+            }
+            
+            .login-left p {
+                margin: 0 auto 30px;
+            }
+            
+            .login-features {
+                display: none;
+            }
+            
+            .login-right {
+                width: 100%;
+            }
+            
+            .login-card {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-page">
+        <!-- Floating Balloons -->
+        <div class="floating-balloons">
+            <div class="balloon-float" style="left: 10%; animation-delay: 0s;">🎈</div>
+            <div class="balloon-float" style="left: 30%; animation-delay: 3s;">🎈</div>
+            <div class="balloon-float" style="left: 50%; animation-delay: 6s;">🎈</div>
+            <div class="balloon-float" style="left: 70%; animation-delay: 9s;">🎈</div>
+            <div class="balloon-float" style="left: 90%; animation-delay: 12s;">🎈</div>
+        </div>
+        
+        <!-- Left Side -->
+        <div class="login-left">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">🐝</div>
+                <div class="logo-text">Bee Life <span>Consulting</span></div>
+            </a>
+            
+            <h1>Çalışan <span>Portalına</span> Hoş Geldiniz</h1>
+            <p>Satış performansınızı takip edin, hedeflerinize ulaşın ve muhteşem ödüller kazanın!</p>
+            
+            <div class="login-features">
+                <div class="login-feature">
+                    <div class="login-feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="login-feature-text">
+                        <h4>Performans Takibi</h4>
+                        <p>Günlük, haftalık ve aylık satışlarınızı izleyin</p>
+                    </div>
+                </div>
+                
+                <div class="login-feature">
+                    <div class="login-feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="login-feature-text">
+                        <h4>Sıralama</h4>
+                        <p>Liderlik tablosunda yerinizi görün</p>
+                    </div>
+                </div>
+                
+                <div class="login-feature">
+                    <div class="login-feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="login-feature-text">
+                        <h4>Balon Patlatma</h4>
+                        <p>Birinci olun, balon patlatıp hediye kazanın!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Side - Login Card -->
+        <div class="login-right">
+            <div class="login-card">
+                <div class="login-card-header">
+                    <div class="icon">👤</div>
+                    <h2>Çalışan Girişi</h2>
+                    <p>Hesabınıza giriş yapın</p>
+                </div>
+                
+                <form class="login-form" id="employeeLoginForm">
+                    <div class="form-group">
+                        <label for="email">E-Posta veya Kullanıcı Adı</label>
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="email" name="email" required placeholder="ornek@beelife.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Şifre</label>
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" required placeholder="••••••••">
+                        </div>
+                    </div>
+                    
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Beni Hatırla</label>
+                        </div>
+                        <a href="#" class="forgot-password">Şifremi Unuttum</a>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary login-btn">
+                        <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                    </button>
+                </form>
+                
+                <div class="login-divider">
+                    <span>veya</span>
+                </div>
+                
+                <div class="back-to-home">
+                    <a href="index.html">
+                        <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // Login Form Handler
+        const loginForm = document.getElementById('employeeLoginForm');
+        
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Giriş Yapılıyor...';
+                submitBtn.disabled = true;
+                
+                // Simulate login - In production, this would be an API call
+                setTimeout(() => {
+                    // Redirect to employee dashboard
+                    window.location.href = 'employee-dashboard.html';
+                }, 1500);
+            });
+        }
+    </script>
+
+</body>
+</html>
+
