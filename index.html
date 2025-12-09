@@ -785,7 +785,7 @@
         
         /* 3D Flip Card System */
         .reward-card-wrapper {
-            perspective: 1500px;
+            perspective: 2000px;
             height: 480px;
         }
         
@@ -794,11 +794,11 @@
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 1s ease-in-out;
             cursor: pointer;
         }
         
-        .reward-card-wrapper:hover .reward-card {
+        .reward-card.flipped {
             transform: rotateY(180deg);
         }
         
@@ -960,19 +960,61 @@
         
         .flip-hint {
             position: absolute;
-            bottom: 15px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.7rem;
-            color: rgba(255,215,0,0.5);
+            font-size: 0.85rem;
+            color: #FFD700;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
+            padding: 12px 25px;
+            background: rgba(255,215,0,0.15);
+            border: 1px solid rgba(255,215,0,0.4);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .flip-hint:hover {
+            background: rgba(255,215,0,0.25);
+            transform: translateX(-50%) scale(1.05);
         }
         
         .flip-hint i {
-            font-size: 0.8rem;
+            font-size: 1rem;
             color: #FFD700;
+            animation: rotateHint 2s ease-in-out infinite;
+        }
+        
+        @keyframes rotateHint {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+        
+        .flip-back-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            background: rgba(255,215,0,0.15);
+            border: 1px solid rgba(255,215,0,0.4);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .flip-back-btn:hover {
+            background: rgba(255,215,0,0.25);
+            transform: translateX(-50%) scale(1.05);
         }
         
         /* Jobs */
@@ -1696,7 +1738,7 @@
                             <div class="flip-hint"><i class="fas fa-sync-alt"></i> Hediyeleri Gör</div>
                         </div>
                         <div class="reward-card-back">
-                            <h4 class="back-title">Aylık Ödüller</h4>
+                            <h4 class="back-title">🎁 Aylık Ödüller</h4>
                             <p class="back-subtitle">Seni bekleyen hediyeler</p>
                             <div class="prize-gallery">
                                 <div class="prize-item">
@@ -1716,6 +1758,7 @@
                                     <span>Sürpriz Hediye</span>
                                 </div>
                             </div>
+                            <div class="flip-back-btn"><i class="fas fa-undo"></i> Geri Dön</div>
                         </div>
                     </div>
                 </div>
@@ -1737,7 +1780,7 @@
                             <div class="flip-hint"><i class="fas fa-sync-alt"></i> Hediyeleri Gör</div>
                         </div>
                         <div class="reward-card-back">
-                            <h4 class="back-title">Çeyreklik Ödüller</h4>
+                            <h4 class="back-title">🏆 Çeyreklik Ödüller</h4>
                             <p class="back-subtitle">Premium hediye seçenekleri</p>
                             <div class="prize-gallery">
                                 <div class="prize-item">
@@ -1757,6 +1800,7 @@
                                     <span>Yüksek Nakit</span>
                                 </div>
                             </div>
+                            <div class="flip-back-btn"><i class="fas fa-undo"></i> Geri Dön</div>
                         </div>
                     </div>
                 </div>
@@ -1778,7 +1822,7 @@
                             <div class="flip-hint"><i class="fas fa-sync-alt"></i> Hediyeleri Gör</div>
                         </div>
                         <div class="reward-card-back">
-                            <h4 class="back-title">Yıllık Büyük Ödüller</h4>
+                            <h4 class="back-title">👑 Yıllık Büyük Ödüller</h4>
                             <p class="back-subtitle">Hayallerini gerçekleştir</p>
                             <div class="prize-gallery">
                                 <div class="prize-item">
@@ -1798,6 +1842,7 @@
                                     <span>Bungalov Tatili</span>
                                 </div>
                             </div>
+                            <div class="flip-back-btn"><i class="fas fa-undo"></i> Geri Dön</div>
                         </div>
                     </div>
                 </div>
@@ -2251,6 +2296,40 @@
             this.reset();
         });
         
+        // Flip Card System
+        document.querySelectorAll('.flip-hint').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = this.closest('.reward-card');
+                card.classList.add('flipped');
+            });
+        });
+        
+        document.querySelectorAll('.flip-back-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = this.closest('.reward-card');
+                card.classList.remove('flipped');
+            });
+        });
+        
+        // Also flip on card click
+        document.querySelectorAll('.reward-card-front').forEach(front => {
+            front.addEventListener('click', function() {
+                const card = this.closest('.reward-card');
+                card.classList.add('flipped');
+            });
+        });
+        
+        document.querySelectorAll('.reward-card-back').forEach(back => {
+            back.addEventListener('click', function(e) {
+                if (!e.target.closest('.flip-back-btn') && !e.target.closest('.prize-item')) {
+                    const card = this.closest('.reward-card');
+                    card.classList.remove('flipped');
+                }
+            });
+        });
+        
         // Scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -2261,7 +2340,7 @@
             });
         }, { threshold: 0.1 });
         
-        document.querySelectorAll('.service-card, .reward-card, .branch-card, .job-card').forEach(el => {
+        document.querySelectorAll('.service-card, .reward-card-wrapper, .branch-card, .job-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
