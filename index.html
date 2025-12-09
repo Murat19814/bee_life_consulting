@@ -524,6 +524,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
+            perspective: 1000px;
+            overflow: hidden;
         }
         
         .about-image-wrapper::before {
@@ -533,13 +536,124 @@
             left: -20px;
             right: 20px;
             bottom: 20px;
-            border: 1px solid var(--primary-dark);
+            border: 1px solid rgba(255,215,0,0.3);
             z-index: -1;
         }
         
-        .about-image-wrapper svg {
-            width: 150px;
+        /* 3D Logo Container */
+        .logo-3d-container {
+            position: relative;
+            transform-style: preserve-3d;
+            animation: float3d 6s ease-in-out infinite;
+        }
+        
+        @keyframes float3d {
+            0%, 100% { 
+                transform: translateY(0) rotateX(0deg) rotateY(0deg); 
+            }
+            25% { 
+                transform: translateY(-15px) rotateX(5deg) rotateY(10deg); 
+            }
+            50% { 
+                transform: translateY(0) rotateX(0deg) rotateY(0deg); 
+            }
+            75% { 
+                transform: translateY(-10px) rotateX(-5deg) rotateY(-10deg); 
+            }
+        }
+        
+        .logo-3d-container svg {
+            width: 180px;
+            height: 180px;
+            filter: drop-shadow(0 20px 40px rgba(255,215,0,0.3));
+        }
+        
+        .logo-3d-container .triangle-outer {
+            stroke: #FFD700;
+            stroke-width: 2.5;
+            fill: none;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        
+        .logo-3d-container .triangle-inner {
+            stroke: rgba(255,215,0,0.5);
+            stroke-width: 1.5;
+            fill: none;
+            animation: pulseGlow 3s ease-in-out infinite 0.5s;
+        }
+        
+        .logo-3d-container .triangle-core {
+            stroke: rgba(255,215,0,0.3);
+            stroke-width: 1;
+            fill: rgba(255,215,0,0.05);
+            animation: pulseGlow 3s ease-in-out infinite 1s;
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* Company Name Styling */
+        .company-name-3d {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .company-name-3d .main-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #FFD700;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            text-shadow: 0 0 30px rgba(255,215,0,0.5);
+            animation: textGlow 3s ease-in-out infinite;
+        }
+        
+        .company-name-3d .sub-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+        
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 30px rgba(255,215,0,0.5); }
+            50% { text-shadow: 0 0 50px rgba(255,215,0,0.8), 0 0 80px rgba(255,215,0,0.4); }
+        }
+        
+        /* Floating particles around logo */
+        .logo-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: particleFloat 8s ease-in-out infinite;
             opacity: 0.6;
+        }
+        
+        .particle:nth-child(1) { left: 20%; top: 30%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 80%; top: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 10%; top: 70%; animation-delay: 2s; }
+        .particle:nth-child(4) { left: 90%; top: 60%; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 50%; top: 10%; animation-delay: 4s; }
+        .particle:nth-child(6) { left: 30%; top: 85%; animation-delay: 5s; }
+        
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-30px) scale(1.5); opacity: 1; }
         }
         
         .about-badge {
@@ -1569,10 +1683,33 @@
             <div class="about-grid">
                 <div class="about-image">
                     <div class="about-image-wrapper">
-                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M50 10L90 80H10L50 10Z" stroke="rgba(255,255,255,0.5)" stroke-width="2" fill="none"/>
-                            <path d="M50 30L75 70H25L50 30Z" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none"/>
-                        </svg>
+                        <!-- Floating Particles -->
+                        <div class="logo-particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
+                        
+                        <!-- 3D Animated Logo -->
+                        <div class="logo-3d-container">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Outer Triangle -->
+                                <path class="triangle-outer" d="M50 5L95 85H5L50 5Z"/>
+                                <!-- Inner Triangle -->
+                                <path class="triangle-inner" d="M50 20L80 75H20L50 20Z"/>
+                                <!-- Core Triangle -->
+                                <path class="triangle-core" d="M50 35L65 65H35L50 35Z"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Company Name -->
+                        <div class="company-name-3d">
+                            <div class="main-name">BEE LIFE</div>
+                            <div class="sub-name">CONSULTING</div>
+                        </div>
                     </div>
                     <div class="about-badge">
                         <div class="badge-number">5+</div>
