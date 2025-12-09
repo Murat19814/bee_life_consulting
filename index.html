@@ -544,21 +544,15 @@
         .logo-3d-container {
             position: relative;
             transform-style: preserve-3d;
-            animation: float3d 6s ease-in-out infinite;
+            animation: rotate360 8s linear infinite;
         }
         
-        @keyframes float3d {
-            0%, 100% { 
-                transform: translateY(0) rotateX(0deg) rotateY(0deg); 
+        @keyframes rotate360 {
+            0% { 
+                transform: rotateY(0deg); 
             }
-            25% { 
-                transform: translateY(-15px) rotateX(5deg) rotateY(10deg); 
-            }
-            50% { 
-                transform: translateY(0) rotateX(0deg) rotateY(0deg); 
-            }
-            75% { 
-                transform: translateY(-10px) rotateX(-5deg) rotateY(-10deg); 
+            100% { 
+                transform: rotateY(360deg); 
             }
         }
         
