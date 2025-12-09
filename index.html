@@ -414,39 +414,66 @@
         
         .floating-card {
             position: absolute;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.15);
-            padding: 20px 28px;
-            animation: float 4s ease-in-out infinite;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(13,43,42,0.9) 100%);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,215,0,0.3);
+            padding: 25px 35px;
+            animation: float 5s ease-in-out infinite;
+            transition: all 0.4s ease;
+        }
+        
+        .floating-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
+            opacity: 0.8;
+        }
+        
+        .floating-card:hover {
+            border-color: #FFD700;
+            box-shadow: 0 15px 40px rgba(255,215,0,0.2);
+            transform: translateY(-5px);
         }
         
         .floating-card.card-1 {
-            top: 30px;
-            right: -20px;
+            top: 0;
+            right: -80px;
         }
         
         .floating-card.card-2 {
-            bottom: 50px;
-            left: -30px;
-            animation-delay: 2s;
+            bottom: 80px;
+            left: -100px;
+            animation-delay: 2.5s;
+        }
+        
+        .floating-card .card-icon {
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-bottom: 12px;
         }
         
         .floating-card .card-value {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
-            color: var(--white);
-            margin-bottom: 5px;
+            color: #FFD700;
+            margin-bottom: 8px;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 2px;
         }
         
         .floating-card .card-label {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: rgba(255,255,255,0.7);
+            letter-spacing: 1px;
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
         }
         
         .scroll-indicator {
@@ -1829,11 +1856,13 @@
                         </div>
                         
                         <div class="floating-card card-1">
+                            <div class="card-icon"><i class="fas fa-crown"></i></div>
                             <div class="card-value">Premium</div>
                             <div class="card-label">Ödül Sistemi</div>
                         </div>
                         
                         <div class="floating-card card-2">
+                            <div class="card-icon"><i class="fas fa-coins"></i></div>
                             <div class="card-value">Yüksek</div>
                             <div class="card-label">Kazanç İmkanı</div>
                         </div>
