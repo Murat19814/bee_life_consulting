@@ -1799,70 +1799,88 @@
             targetY = mouseY - (mouseY - window.scrollY - window.innerHeight/2);
         });
         
-        // Honeycomb settings - dense pattern like the reference image
-        const hexSize = 18; // Smaller hexagons
-        const hexGap = 2; // Small gap between hexagons
+        // Elegant honeycomb settings - large, sophisticated hexagons
+        const hexSize = 45; // Large elegant hexagons
         const hexWidth = hexSize * 2;
         const hexHeight = hexSize * Math.sqrt(3);
-        const hexHorizontalSpacing = hexWidth * 0.75 + hexGap * 0.5;
-        const hexVerticalSpacing = hexHeight + hexGap * 0.5;
+        const hexHorizontalSpacing = hexWidth * 0.78;
+        const hexVerticalSpacing = hexHeight * 0.92;
         
-        function drawHexagon(x, y, size, alpha, lineWidth) {
+        function drawHexagon(x, y, size, alpha, glowIntensity) {
+            ctx.save();
+            
+            // Draw glow effect for highlighted hexagons
+            if (glowIntensity > 0) {
+                ctx.shadowColor = 'rgba(255, 255, 255, ' + (glowIntensity * 0.5) + ')';
+                ctx.shadowBlur = 20 * glowIntensity;
+            }
+            
             ctx.beginPath();
             for (let i = 0; i < 6; i++) {
-                const angle = (Math.PI / 3) * i;
+                const angle = (Math.PI / 3) * i - Math.PI / 6;
                 const hx = x + size * Math.cos(angle);
                 const hy = y + size * Math.sin(angle);
                 if (i === 0) ctx.moveTo(hx, hy);
                 else ctx.lineTo(hx, hy);
             }
             ctx.closePath();
+            
+            // Elegant thin stroke
             ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-            ctx.lineWidth = lineWidth;
+            ctx.lineWidth = 0.8 + glowIntensity * 0.8;
             ctx.stroke();
+            
+            // Subtle inner glow for highlighted hexagons
+            if (glowIntensity > 0.3) {
+                ctx.fillStyle = `rgba(255, 255, 255, ${glowIntensity * 0.03})`;
+                ctx.fill();
+            }
+            
+            ctx.restore();
         }
         
         function animate() {
-            mouseX += (targetX - mouseX) * 0.06;
-            mouseY += (targetY - mouseY) * 0.06;
+            mouseX += (targetX - mouseX) * 0.08;
+            mouseY += (targetY - mouseY) * 0.08;
             
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             const scrollY = window.scrollY;
             const viewportHeight = window.innerHeight;
             
-            // Calculate offset based on mouse - more responsive movement
-            const offsetX = (targetX - window.innerWidth / 2) * 0.025;
-            const offsetY = (targetY - scrollY - viewportHeight / 2) * 0.025;
+            // Smooth parallax movement based on mouse
+            const offsetX = (targetX - window.innerWidth / 2) * 0.03;
+            const offsetY = (targetY - scrollY - viewportHeight / 2) * 0.03;
             
-            const cols = Math.ceil(canvas.width / hexHorizontalSpacing) + 6;
-            const rows = Math.ceil(canvas.height / hexVerticalSpacing) + 6;
+            const cols = Math.ceil(canvas.width / hexHorizontalSpacing) + 4;
+            const rows = Math.ceil(canvas.height / hexVerticalSpacing) + 4;
             
-            for (let row = -3; row < rows; row++) {
-                for (let col = -3; col < cols; col++) {
+            for (let row = -2; row < rows; row++) {
+                for (let col = -2; col < cols; col++) {
                     let x = col * hexHorizontalSpacing + offsetX;
                     let y = row * hexVerticalSpacing + offsetY;
                     
-                    // Offset every other row for honeycomb pattern
+                    // Honeycomb offset pattern
                     if (row % 2 === 1) x += hexHorizontalSpacing / 2;
                     
-                    // Distance from mouse (considering scroll)
+                    // Calculate distance from mouse
                     const dx = x - targetX;
                     const dy = y - targetY;
                     const distance = Math.sqrt(dx * dx + dy * dy);
                     
-                    // Base alpha - more visible
-                    let alpha = 0.12;
-                    let lineWidth = 1;
+                    // Elegant base visibility
+                    let alpha = 0.08;
+                    let glowIntensity = 0;
                     
-                    // Glow effect near mouse
-                    if (distance < 250) {
-                        const intensity = 1 - distance / 250;
-                        alpha = 0.12 + intensity * 0.4;
-                        lineWidth = 1 + intensity * 1.5;
+                    // Sophisticated spotlight effect
+                    if (distance < 350) {
+                        const intensity = 1 - (distance / 350);
+                        const smoothIntensity = intensity * intensity; // Smooth falloff
+                        alpha = 0.08 + smoothIntensity * 0.35;
+                        glowIntensity = smoothIntensity;
                     }
                     
-                    drawHexagon(x, y, hexSize, alpha, lineWidth);
+                    drawHexagon(x, y, hexSize, alpha, glowIntensity);
                 }
             }
             
