@@ -1477,6 +1477,34 @@
             font-size: 0.95rem;
         }
         
+        /* Holiday Info */
+        .holiday-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px 25px;
+            background: rgba(255,215,0,0.1);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 10px;
+        }
+        
+        .holiday-icon {
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-top: 2px;
+        }
+        
+        .holiday-text {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .holiday-text strong {
+            color: #FFD700;
+        }
+        
         .social-links {
             display: flex;
             gap: 12px;
@@ -1567,8 +1595,8 @@
         
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 50px;
             margin-bottom: 80px;
         }
         
@@ -2290,6 +2318,21 @@
                                 <p>+90 535 663 41 66</p>
                             </div>
                         </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
+                            <div class="contact-item-text">
+                                <h4>Çalışma Saatleri</h4>
+                                <p>Pazartesi - Cuma: 10:30 - 19:30</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tatil Bilgisi -->
+                    <div class="holiday-info">
+                        <div class="holiday-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="holiday-text">
+                            <strong>Tatil Günleri:</strong> Hafta sonları, Ramazan Bayramı, Kurban Bayramı ve Almanya resmi tatilleri
+                        </div>
                     </div>
                     
                     <div class="social-links">
@@ -2389,6 +2432,16 @@
                         <li><i class="fas fa-envelope" style="margin-right: 10px; opacity: 0.5;"></i>info@beelife-consulting.com</li>
                         <li><i class="fas fa-phone" style="margin-right: 10px; opacity: 0.5;"></i>+90 531 765 41 66</li>
                         <li><i class="fab fa-whatsapp" style="margin-right: 10px; opacity: 0.5;"></i>+90 535 663 41 66</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Çalışma Saatleri</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-clock" style="margin-right: 10px; color: #FFD700;"></i>Pzt - Cuma: 10:30 - 19:30</li>
+                        <li><i class="fas fa-calendar-times" style="margin-right: 10px; opacity: 0.5;"></i>Hafta Sonu: Kapalı</li>
+                        <li><i class="fas fa-moon" style="margin-right: 10px; opacity: 0.5;"></i>Ramazan & Kurban Bayramı</li>
+                        <li><i class="fas fa-flag" style="margin-right: 10px; opacity: 0.5;"></i>Almanya Resmi Tatilleri</li>
                     </ul>
                 </div>
             </div>
