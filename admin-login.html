@@ -9,215 +9,380 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="static/css/style.css">
-    
     <style>
-        .admin-login-page {
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-dark: #B8860B;
+            --silver: #C0C0C0;
+            --silver-light: #E8E8E8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--gradient-dark);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
             position: relative;
             overflow: hidden;
         }
         
-        .admin-login-page::before {
-            content: '';
-            position: absolute;
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="honeycomb" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(0.5)"><path fill="none" stroke="rgba(255,184,0,0.1)" stroke-width="1" d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100"/></pattern></defs><rect width="100%" height="100%" fill="url(%23honeycomb)"/></svg>');
-            opacity: 0.5;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
         }
         
-        .admin-login-card {
-            background: var(--white);
-            border-radius: 30px;
-            padding: 50px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212,175,55,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(192,192,192,0.05) 0%, transparent 30%);
+            animation: bgMove 20s ease-in-out infinite;
+        }
+        
+        @keyframes bgMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, -5%) rotate(5deg); }
+        }
+        
+        /* Login Container */
+        .login-container {
             position: relative;
             z-index: 1;
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
         }
         
-        .admin-login-header {
+        /* Login Card */
+        .login-card {
+            background: linear-gradient(145deg, rgba(26,26,26,0.95) 0%, rgba(15,15,15,0.98) 100%);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 24px;
+            padding: 50px 45px;
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.5),
+                0 0 100px rgba(212,175,55,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+        }
+        
+        /* Header */
+        .login-header {
             text-align: center;
             margin-bottom: 40px;
         }
         
-        .admin-login-header .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
             justify-content: center;
+            gap: 15px;
             margin-bottom: 30px;
         }
         
-        .admin-login-header .admin-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(255,59,48,0.1);
-            color: #ff3b30;
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+        }
+        
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: #fff;
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            color: var(--gold);
+            display: block;
+            font-size: 1rem;
+        }
+        
+        .admin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(184,134,11,0.1) 100%);
+            border: 1px solid rgba(212,175,55,0.4);
             border-radius: 50px;
-            font-size: 0.8rem;
+            color: var(--gold);
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-        
-        .admin-login-header h2 {
-            font-size: 1.8rem;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-        }
-        
-        .admin-login-header p {
-            color: var(--text-light);
-        }
-        
-        .admin-form .form-group {
+            letter-spacing: 2px;
             margin-bottom: 25px;
         }
         
-        .admin-form label {
+        .login-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        
+        .login-header p {
+            color: var(--silver);
+            font-size: 0.95rem;
+        }
+        
+        /* Form */
+        .login-form {
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
             display: block;
             margin-bottom: 10px;
             font-weight: 500;
-            color: var(--text-dark);
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
         
         .input-icon {
-            position: relative;
-        }
-        
-        .input-icon i {
             position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
+            left: 0;
+            top: 0;
+            width: 55px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.1rem;
+            background: rgba(212,175,55,0.1);
+            border-radius: 12px 0 0 12px;
+            border-right: 1px solid rgba(212,175,55,0.2);
         }
         
-        .input-icon input {
-            padding-left: 50px;
-        }
-        
-        .admin-form input {
+        .form-input {
             width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e9ecef;
+            padding: 18px 20px 18px 70px;
+            background: rgba(26,26,26,0.8);
+            border: 1px solid rgba(212,175,55,0.2);
             border-radius: 12px;
+            color: #fff;
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
         
-        .admin-form input:focus {
-            outline: none;
-            border-color: #ff3b30;
-            box-shadow: 0 0 0 4px rgba(255,59,48,0.1);
+        .form-input::placeholder {
+            color: rgba(192,192,192,0.5);
         }
         
-        .admin-login-btn {
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(26,26,26,1);
+            box-shadow: 0 0 20px rgba(212,175,55,0.15);
+        }
+        
+        /* Submit Button */
+        .submit-btn {
             width: 100%;
-            padding: 16px;
-            font-size: 1.1rem;
-            background: linear-gradient(135deg, #ff3b30 0%, #ff6b6b 100%);
+            padding: 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             border: none;
             border-radius: 12px;
-            color: white;
-            font-weight: 600;
+            color: #000;
             cursor: pointer;
-            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
         }
         
-        .admin-login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255,59,48,0.3);
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.4);
         }
         
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        /* Security Notice */
         .security-notice {
-            margin-top: 30px;
-            padding: 15px;
-            background: rgba(255,184,0,0.1);
-            border-radius: 10px;
             display: flex;
             align-items: flex-start;
-            gap: 12px;
+            gap: 15px;
+            padding: 18px;
+            background: rgba(212,175,55,0.08);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 12px;
+            margin-bottom: 25px;
         }
         
         .security-notice i {
-            color: var(--primary-gold);
-            font-size: 1.2rem;
+            color: var(--gold);
+            font-size: 1.3rem;
             margin-top: 2px;
         }
         
         .security-notice p {
             font-size: 0.85rem;
-            color: var(--text-light);
+            color: var(--silver);
+            line-height: 1.5;
             margin: 0;
         }
         
+        /* Back Link */
         .back-link {
             text-align: center;
-            margin-top: 25px;
         }
         
         .back-link a {
-            color: var(--text-light);
-            font-size: 0.95rem;
+            color: var(--silver);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
         }
         
         .back-link a:hover {
-            color: var(--primary-gold);
+            color: var(--gold);
+        }
+        
+        /* Decorative Elements */
+        .corner-decor {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border: 2px solid rgba(212,175,55,0.2);
+        }
+        
+        .corner-decor.top-left {
+            top: -10px;
+            left: -10px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 20px 0 0 0;
+        }
+        
+        .corner-decor.bottom-right {
+            bottom: -10px;
+            right: -10px;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 20px 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 520px) {
+            .login-card {
+                padding: 40px 30px;
+            }
+            
+            .login-header h2 {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="admin-login-page">
-        <div class="admin-login-card">
-            <div class="admin-login-header">
-                <a href="index.html" class="logo">
+    <div class="bg-animation"></div>
+    
+    <div class="login-container">
+        <div class="login-card">
+            <div class="corner-decor top-left"></div>
+            <div class="corner-decor bottom-right"></div>
+            
+            <div class="login-header">
+                <div class="logo-container">
                     <div class="logo-icon">🐝</div>
-                    <div class="logo-text">Bee Life <span>Consulting</span></div>
-                </a>
-                <span class="admin-badge">
-                    <i class="fas fa-shield-alt"></i> Yönetici Alanı
-                </span>
+                    <div class="logo-text">
+                        Bee Life
+                        <span>Consulting</span>
+                    </div>
+                </div>
+                
+                <div class="admin-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    Yönetici Paneli
+                </div>
+                
                 <h2>Admin Girişi</h2>
-                <p>Yönetim paneline erişim</p>
+                <p>Yönetim paneline erişim için giriş yapın</p>
             </div>
             
-            <form class="admin-form" id="adminLoginForm">
+            <form class="login-form" id="adminLoginForm">
                 <div class="form-group">
-                    <label for="username">Kullanıcı Adı</label>
-                    <div class="input-icon">
-                        <i class="fas fa-user-shield"></i>
-                        <input type="text" id="username" name="username" required placeholder="Admin kullanıcı adı">
+                    <label>Kullanıcı Adı</label>
+                    <div class="input-wrapper">
+                        <div class="input-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <input type="text" class="form-input" id="username" name="username" required placeholder="Admin kullanıcı adı">
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Şifre</label>
-                    <div class="input-icon">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="password" name="password" required placeholder="••••••••">
+                    <label>Şifre</label>
+                    <div class="input-wrapper">
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <input type="password" class="form-input" id="password" name="password" required placeholder="••••••••">
                     </div>
                 </div>
                 
-                <button type="submit" class="admin-login-btn">
-                    <i class="fas fa-sign-in-alt"></i> Giriş Yap
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Giriş Yap
                 </button>
             </form>
             
@@ -228,7 +393,8 @@
             
             <div class="back-link">
                 <a href="index.html">
-                    <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+                    <i class="fas fa-arrow-left"></i>
+                    Ana Sayfaya Dön
                 </a>
             </div>
         </div>
@@ -241,17 +407,28 @@
             adminForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
                 const submitBtn = this.querySelector('button[type="submit"]');
+                
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Doğrulanıyor...';
                 submitBtn.disabled = true;
                 
-                setTimeout(() => {
-                    window.location.href = 'admin-panel.html';
-                }, 1500);
+                // Demo login check
+                if (username === 'admin' && password === 'admin123') {
+                    setTimeout(() => {
+                        window.location.href = 'admin-panel.html';
+                    }, 1500);
+                } else {
+                    setTimeout(() => {
+                        alert('❌ Hatalı kullanıcı adı veya şifre!\n\nDemo: admin / admin123');
+                        submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Giriş Yap';
+                        submitBtn.disabled = false;
+                    }, 1500);
+                }
             });
         }
     </script>
 
 </body>
 </html>
-

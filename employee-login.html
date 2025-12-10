@@ -9,32 +9,64 @@
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="static/css/style.css">
-    
     <style>
-        .login-page {
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-dark: #B8860B;
+            --silver: #C0C0C0;
+            --silver-light: #E8E8E8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
             display: flex;
-            background: var(--gradient-dark);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
             position: relative;
             overflow: hidden;
         }
         
-        .login-page::before {
-            content: '';
-            position: absolute;
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="honeycomb" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(0.5)"><path fill="none" stroke="rgba(255,184,0,0.1)" stroke-width="1" d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100"/></pattern></defs><rect width="100%" height="100%" fill="url(%23honeycomb)"/></svg>');
-            opacity: 0.5;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.3;
         }
         
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212,175,55,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212,175,55,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(192,192,192,0.05) 0%, transparent 30%);
+            animation: bgMove 20s ease-in-out infinite;
+        }
+        
+        @keyframes bgMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-5%, -5%) rotate(5deg); }
+        }
+        
+        /* Left Side - Features */
         .login-left {
             flex: 1;
             display: flex;
@@ -45,67 +77,102 @@
             z-index: 1;
         }
         
-        .login-left .logo {
+        .login-left .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             margin-bottom: 50px;
         }
         
-        .login-left h1 {
-            font-size: 3rem;
-            color: var(--white);
-            margin-bottom: 20px;
+        .login-left .logo-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 15px 40px rgba(212,175,55,0.3);
+        }
+        
+        .login-left .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: #fff;
             line-height: 1.2;
         }
         
-        .login-left h1 span {
-            color: var(--primary-gold);
-        }
-        
-        .login-left p {
-            color: rgba(255,255,255,0.7);
+        .login-left .logo-text span {
+            color: var(--gold);
+            display: block;
             font-size: 1.1rem;
-            margin-bottom: 40px;
-            max-width: 500px;
         }
         
+        .login-left h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 400;
+        }
+        
+        .login-left h1 span {
+            color: var(--gold);
+        }
+        
+        .login-left > p {
+            color: var(--silver);
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+        
+        /* Features */
         .login-features {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
         
         .login-feature {
             display: flex;
             align-items: center;
-            gap: 15px;
-            color: var(--white);
+            gap: 20px;
         }
         
         .login-feature-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(255,184,0,0.15);
-            border-radius: 12px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(184,134,11,0.1) 100%);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            color: var(--primary-gold);
+            font-size: 1.5rem;
+            color: var(--gold);
         }
         
         .login-feature-text h4 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
-            margin-bottom: 3px;
+            color: #fff;
+            margin-bottom: 5px;
+            font-weight: 500;
         }
         
         .login-feature-text p {
             font-size: 0.9rem;
+            color: var(--silver);
             margin: 0;
-            opacity: 0.7;
         }
         
+        /* Right Side - Login Card */
         .login-right {
-            width: 500px;
+            width: 520px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -115,213 +182,232 @@
         }
         
         .login-card {
-            background: var(--white);
-            border-radius: 30px;
-            padding: 50px;
+            background: linear-gradient(145deg, rgba(26,26,26,0.95) 0%, rgba(15,15,15,0.98) 100%);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 24px;
+            padding: 50px 45px;
             width: 100%;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            box-shadow: 
+                0 30px 60px rgba(0,0,0,0.5),
+                0 0 100px rgba(212,175,55,0.1),
+                inset 0 1px 0 rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            position: relative;
         }
         
+        /* Corner Decorations */
+        .corner-decor {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(212,175,55,0.2);
+        }
+        
+        .corner-decor.top-left {
+            top: -8px;
+            left: -8px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 16px 0 0 0;
+        }
+        
+        .corner-decor.bottom-right {
+            bottom: -8px;
+            right: -8px;
+            border-left: none;
+            border-top: none;
+            border-radius: 0 0 16px 0;
+        }
+        
+        /* Card Header */
         .login-card-header {
             text-align: center;
             margin-bottom: 40px;
         }
         
         .login-card-header .icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(255,184,0,0.15);
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(184,134,11,0.1) 100%);
+            border: 2px solid rgba(212,175,55,0.4);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            margin: 0 auto 20px;
+            margin: 0 auto 25px;
+            color: var(--gold);
         }
         
         .login-card-header h2 {
-            font-size: 1.8rem;
-            color: var(--text-dark);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--gold-light);
             margin-bottom: 10px;
+            font-weight: 400;
         }
         
         .login-card-header p {
-            color: var(--text-light);
+            color: var(--silver);
+            font-size: 0.95rem;
         }
         
-        .login-form .form-group {
+        /* Form */
+        .login-form {
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
             margin-bottom: 25px;
         }
         
-        .login-form label {
+        .form-group label {
             display: block;
             margin-bottom: 10px;
             font-weight: 500;
-            color: var(--text-dark);
+            font-size: 0.85rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
         }
         
         .input-icon {
-            position: relative;
-        }
-        
-        .input-icon i {
             position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-light);
+            left: 0;
+            top: 0;
+            width: 55px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.1rem;
+            background: rgba(212,175,55,0.1);
+            border-radius: 12px 0 0 12px;
+            border-right: 1px solid rgba(212,175,55,0.2);
         }
         
-        .input-icon input {
-            padding-left: 50px;
-        }
-        
-        .login-form input {
+        .form-input {
             width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e9ecef;
+            padding: 18px 20px 18px 70px;
+            background: rgba(26,26,26,0.8);
+            border: 1px solid rgba(212,175,55,0.2);
             border-radius: 12px;
+            color: #fff;
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
         
-        .login-form input:focus {
+        .form-input::placeholder {
+            color: rgba(192,192,192,0.5);
+        }
+        
+        .form-input:focus {
             outline: none;
-            border-color: var(--primary-gold);
-            box-shadow: 0 0 0 4px rgba(255,184,0,0.1);
+            border-color: var(--gold);
+            background: rgba(26,26,26,1);
+            box-shadow: 0 0 20px rgba(212,175,55,0.15);
         }
         
-        .form-options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        
-        .remember-me {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .remember-me input {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary-gold);
-        }
-        
-        .remember-me label {
-            margin: 0;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            cursor: pointer;
-        }
-        
-        .forgot-password {
-            color: var(--primary-gold);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-        
-        .login-btn {
+        /* Submit Button */
+        .submit-btn {
             width: 100%;
-            padding: 16px;
-            font-size: 1.1rem;
-        }
-        
-        .login-divider {
+            padding: 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border: none;
+            border-radius: 12px;
+            color: #000;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            margin: 30px 0;
-            color: var(--text-light);
-            font-size: 0.9rem;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
         }
         
-        .login-divider::before,
-        .login-divider::after {
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.4);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        /* Divider */
+        .login-divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+        
+        .login-divider::before {
             content: '';
-            flex: 1;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
             height: 1px;
-            background: #e9ecef;
+            background: rgba(212,175,55,0.2);
         }
         
         .login-divider span {
-            padding: 0 15px;
+            background: rgba(15,15,15,0.98);
+            padding: 0 20px;
+            position: relative;
+            color: var(--silver);
+            font-size: 0.85rem;
         }
         
-        .back-to-home {
+        /* Back Link */
+        .back-link {
             text-align: center;
         }
         
-        .back-to-home a {
-            color: var(--text-light);
-            font-size: 0.95rem;
+        .back-link a {
+            color: var(--silver);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
         }
         
-        .back-to-home a:hover {
-            color: var(--primary-gold);
+        .back-link a:hover {
+            color: var(--gold);
         }
         
-        .back-to-home i {
-            margin-right: 8px;
-        }
-        
-        /* Floating Balloons Animation */
-        .floating-balloons {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        
-        .balloon-float {
-            position: absolute;
-            font-size: 3rem;
-            animation: floatUp 15s linear infinite;
-            opacity: 0.3;
-        }
-        
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .login-page {
+        /* Responsive */
+        @media (max-width: 1024px) {
+            body {
                 flex-direction: column;
             }
             
             .login-left {
                 padding: 40px 30px;
                 text-align: center;
+                align-items: center;
             }
             
             .login-left h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
-            .login-left p {
-                margin: 0 auto 30px;
+            .login-left > p {
+                margin-bottom: 30px;
             }
             
             .login-features {
@@ -330,117 +416,121 @@
             
             .login-right {
                 width: 100%;
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 520px) {
+            .login-card {
+                padding: 40px 25px;
             }
             
-            .login-card {
-                padding: 40px 30px;
+            .login-left h1 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="login-page">
-        <!-- Floating Balloons -->
-        <div class="floating-balloons">
-            <div class="balloon-float" style="left: 10%; animation-delay: 0s;">🎈</div>
-            <div class="balloon-float" style="left: 30%; animation-delay: 3s;">🎈</div>
-            <div class="balloon-float" style="left: 50%; animation-delay: 6s;">🎈</div>
-            <div class="balloon-float" style="left: 70%; animation-delay: 9s;">🎈</div>
-            <div class="balloon-float" style="left: 90%; animation-delay: 12s;">🎈</div>
-        </div>
-        
-        <!-- Left Side -->
-        <div class="login-left">
-            <a href="index.html" class="logo">
-                <div class="logo-icon">🐝</div>
-                <div class="logo-text">Bee Life <span>Consulting</span></div>
-            </a>
-            
-            <h1>Çalışan <span>Portalına</span> Hoş Geldiniz</h1>
-            <p>Satış performansınızı takip edin, hedeflerinize ulaşın ve muhteşem ödüller kazanın!</p>
-            
-            <div class="login-features">
-                <div class="login-feature">
-                    <div class="login-feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="login-feature-text">
-                        <h4>Performans Takibi</h4>
-                        <p>Günlük, haftalık ve aylık satışlarınızı izleyin</p>
-                    </div>
-                </div>
-                
-                <div class="login-feature">
-                    <div class="login-feature-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="login-feature-text">
-                        <h4>Sıralama</h4>
-                        <p>Liderlik tablosunda yerinizi görün</p>
-                    </div>
-                </div>
-                
-                <div class="login-feature">
-                    <div class="login-feature-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <div class="login-feature-text">
-                        <h4>Hazine Kutusu</h4>
-                        <p>Birinci olun, balon patlatıp hediye kazanın!</p>
-                    </div>
-                </div>
+    <div class="bg-animation"></div>
+    
+    <!-- Left Side -->
+    <div class="login-left">
+        <div class="logo-container">
+            <div class="logo-icon">🐝</div>
+            <div class="logo-text">
+                Bee Life
+                <span>Consulting</span>
             </div>
         </div>
         
-        <!-- Right Side - Login Card -->
-        <div class="login-right">
-            <div class="login-card">
-                <div class="login-card-header">
-                    <div class="icon">👤</div>
-                    <h2>Çalışan Girişi</h2>
-                    <p>Hesabınıza giriş yapın</p>
+        <h1>Hoş Geldin<br><span>Ekibimize!</span></h1>
+        <p>Performansını takip et, satışlarını görüntüle ve ödüllerini kazan. Başarılı çalışanları ödüllendiriyoruz!</p>
+        
+        <div class="login-features">
+            <div class="login-feature">
+                <div class="login-feature-icon">
+                    <i class="fas fa-chart-line"></i>
                 </div>
-                
-                <form class="login-form" id="employeeLoginForm">
-                    <div class="form-group">
-                        <label for="email">E-Posta veya Kullanıcı Adı</label>
+                <div class="login-feature-text">
+                    <h4>Satış Takibi</h4>
+                    <p>Günlük ve aylık performansını izle</p>
+                </div>
+            </div>
+            
+            <div class="login-feature">
+                <div class="login-feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="login-feature-text">
+                    <h4>Sıralama</h4>
+                    <p>Liderlik tablosunda yerinizi görün</p>
+                </div>
+            </div>
+            
+            <div class="login-feature">
+                <div class="login-feature-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="login-feature-text">
+                    <h4>Hazine Sandığı</h4>
+                    <p>Birinci ol, ödüllerini aç!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right Side - Login Card -->
+    <div class="login-right">
+        <div class="login-card">
+            <div class="corner-decor top-left"></div>
+            <div class="corner-decor bottom-right"></div>
+            
+            <div class="login-card-header">
+                <div class="icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h2>Çalışan Girişi</h2>
+                <p>Hesabınıza giriş yapın</p>
+            </div>
+            
+            <form class="login-form" id="employeeLoginForm">
+                <div class="form-group">
+                    <label>Kullanıcı Adı</label>
+                    <div class="input-wrapper">
                         <div class="input-icon">
                             <i class="fas fa-user"></i>
-                            <input type="text" id="email" name="email" required placeholder="ornek@beelife.com">
                         </div>
+                        <input type="text" class="form-input" id="email" name="username" required placeholder="Kullanıcı adınız">
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Şifre</label>
+                </div>
+                
+                <div class="form-group">
+                    <label>Şifre</label>
+                    <div class="input-wrapper">
                         <div class="input-icon">
                             <i class="fas fa-lock"></i>
-                            <input type="password" id="password" name="password" required placeholder="••••••••">
                         </div>
+                        <input type="password" class="form-input" id="password" name="password" required placeholder="••••••••">
                     </div>
-                    
-                    <div class="form-options">
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember">Beni Hatırla</label>
-                        </div>
-                        <a href="#" class="forgot-password">Şifremi Unuttum</a>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary login-btn">
-                        <i class="fas fa-sign-in-alt"></i> Giriş Yap
-                    </button>
-                </form>
-                
-                <div class="login-divider">
-                    <span>veya</span>
                 </div>
                 
-                <div class="back-to-home">
-                    <a href="index.html">
-                        <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
-                    </a>
-                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Giriş Yap
+                </button>
+            </form>
+            
+            <div class="login-divider">
+                <span>veya</span>
+            </div>
+            
+            <div class="back-link">
+                <a href="index.html">
+                    <i class="fas fa-arrow-left"></i>
+                    Ana Sayfaya Dön
+                </a>
             </div>
         </div>
     </div>
@@ -523,4 +613,3 @@
 
 </body>
 </html>
-
