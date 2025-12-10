@@ -28,6 +28,121 @@
             --text-light: #5a7a78;
         }
         
+        /* German Language Requirement Banner */
+        .german-banner {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            border: 2px solid #FFD700;
+            border-radius: 16px;
+            padding: 25px 35px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(255,215,0,0.15);
+        }
+        
+        .german-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #FFD700, #FFA500, #FFD700, transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .german-banner-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .german-banner-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .german-banner-text h3 {
+            font-size: 1.6rem;
+            color: #FFD700;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .german-banner-text p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        .german-banner-text .highlight {
+            color: #FFD700;
+            font-weight: 600;
+        }
+        
+        .german-banner-flag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: rgba(255,215,0,0.1);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 25px;
+            width: fit-content;
+        }
+        
+        .german-banner-flag span {
+            color: #FFD700;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        /* Compact German Badge */
+        .german-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(26,26,26,0.9));
+            border: 2px solid #FFD700;
+            border-radius: 50px;
+            padding: 12px 25px;
+            margin: 15px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .german-badge i {
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+        
+        .german-badge span {
+            color: #FFD700;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -2806,6 +2921,12 @@
                         hizmetleri sunuyor ve çalışanlarımıza benzersiz kariyer fırsatları sağlıyoruz.
                     </p>
                     
+                    <!-- German Language Requirement Badge -->
+                    <div class="german-badge">
+                        <i class="fas fa-language"></i>
+                        <span data-tr="🇩🇪 Almanca Biliyorsan, İşin Hazır!" data-de="🇩🇪 Du sprichst Deutsch? Dein Job wartet!">🇩🇪 Almanca Biliyorsan, İşin Hazır!</span>
+                    </div>
+                    
                     <div class="hero-stats">
                         <div class="stat-item">
                             <div class="stat-number">5+</div>
@@ -3066,6 +3187,12 @@
                     
                     <div class="cta-features">
                         <div class="cta-feature">
+                            <div class="cta-feature-icon" style="background: linear-gradient(135deg, #FFD700, #FFA500);">
+                                <i class="fas fa-language" style="color: #000;"></i>
+                            </div>
+                            <span class="cta-feature-text" style="color: #FFD700; font-weight: 600;" data-tr="🇩🇪 Almanca Bilgisi Şart (Anadil/C1-C2)" data-de="🇩🇪 Deutschkenntnisse erforderlich (Muttersprache/C1-C2)">🇩🇪 Almanca Bilgisi Şart (Anadil/C1-C2)</span>
+                        </div>
+                        <div class="cta-feature">
                             <div class="cta-feature-icon">
                                 <i class="fas fa-laptop-house"></i>
                             </div>
@@ -3300,6 +3427,21 @@
                 <p class="section-subtitle" data-tr="Dinamik ekibimize katılın, kariyerinizi bizimle şekillendirin." data-de="Treten Sie unserem dynamischen Team bei und gestalten Sie Ihre Karriere mit uns.">Dinamik ekibimize katılın, kariyerinizi bizimle şekillendirin.</p>
             </div>
             
+            <!-- German Language Requirement Banner -->
+            <div class="german-banner">
+                <div class="german-banner-content">
+                    <div class="german-banner-icon">🇩🇪</div>
+                    <div class="german-banner-text">
+                        <h3 data-tr="Almanca Diline Hakimsen? Başvur!" data-de="Du beherrschst Deutsch? Bewirb dich!">Almanca Diline Hakimsen? Başvur!</h3>
+                        <p data-tr="İş başvurularında <span class='highlight'>Almanca dil şartı</span> bulunmaktadır. Anadili seviyesinde veya akıcı Almanca konuşabiliyorsan, yüksek kazanç fırsatı seni bekliyor!" data-de="Für Bewerbungen ist <span class='highlight'>Deutschkenntnisse erforderlich</span>. Wenn du Deutsch auf Muttersprachenniveau oder fließend sprichst, wartet eine hohe Verdienstmöglichkeit auf dich!">İş başvurularında <span class="highlight">Almanca dil şartı</span> bulunmaktadır. Anadili seviyesinde veya akıcı Almanca konuşabiliyorsan, yüksek kazanç fırsatı seni bekliyor!</p>
+                        <div class="german-banner-flag">
+                            <i class="fas fa-language"></i>
+                            <span data-tr="Almanca C1-C2 Seviye veya Anadil" data-de="Deutsch C1-C2 Niveau oder Muttersprache">Almanca C1-C2 Seviye veya Anadil</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="jobs-grid">
                 <div class="job-card">
                     <div class="job-header">
@@ -3315,6 +3457,10 @@
                         <div class="job-detail">
                             <i class="fas fa-clock"></i>
                             <span data-tr="Tam Zamanlı" data-de="Vollzeit">Tam Zamanlı</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-language" style="color: #FFD700;"></i>
+                            <span style="color: #FFD700; font-weight: 600;" data-tr="Almanca Şart" data-de="Deutsch erforderlich">Almanca Şart</span>
                         </div>
                     </div>
                     <div class="job-highlight" data-tr="Performansa Dayalı Yüksek Kazanç" data-de="Leistungsbasiertes hohes Einkommen">Performansa Dayalı Yüksek Kazanç</div>
@@ -3335,6 +3481,10 @@
                         <div class="job-detail">
                             <i class="fas fa-clock"></i>
                             <span data-tr="Tam Zamanlı" data-de="Vollzeit">Tam Zamanlı</span>
+                        </div>
+                        <div class="job-detail">
+                            <i class="fas fa-language" style="color: #FFD700;"></i>
+                            <span style="color: #FFD700; font-weight: 600;" data-tr="Almanca Şart" data-de="Deutsch erforderlich">Almanca Şart</span>
                         </div>
                     </div>
                     <div class="job-highlight" data-tr="Sabit Maaş + Prim" data-de="Festgehalt + Provision">Sabit Maaş + Prim</div>
@@ -3714,6 +3864,14 @@
             'İletişim': 'Kontakt',
             'Giriş': 'Login',
             'Başvuru': 'Bewerbung',
+            
+            // German Language Requirement
+            '🇩🇪 Almanca Biliyorsan, İşin Hazır!': '🇩🇪 Du sprichst Deutsch? Dein Job wartet!',
+            'Almanca Diline Hakimsen? Başvur!': 'Du beherrschst Deutsch? Bewirb dich!',
+            'İş başvurularında <span class=\'highlight\'>Almanca dil şartı</span> bulunmaktadır. Anadili seviyesinde veya akıcı Almanca konuşabiliyorsan, yüksek kazanç fırsatı seni bekliyor!': 'Für Bewerbungen ist <span class=\'highlight\'>Deutschkenntnisse erforderlich</span>. Wenn du Deutsch auf Muttersprachenniveau oder fließend sprichst, wartet eine hohe Verdienstmöglichkeit auf dich!',
+            'Almanca C1-C2 Seviye veya Anadil': 'Deutsch C1-C2 Niveau oder Muttersprache',
+            'Almanca Şart': 'Deutsch erforderlich',
+            '🇩🇪 Almanca Bilgisi Şart (Anadil/C1-C2)': '🇩🇪 Deutschkenntnisse erforderlich (Muttersprache/C1-C2)',
             
             // Hero Section
             'Bee Life Consulting': 'Bee Life Consulting',
