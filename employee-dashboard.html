@@ -649,109 +649,195 @@
         /* Treasure Grid */
         .treasure-grid {
             display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            gap: 8px;
-            max-width: 900px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            max-width: 800px;
             width: 100%;
+            padding: 20px;
         }
         
+        /* Golden Chest Design */
         .treasure-box {
             aspect-ratio: 1;
-            background: linear-gradient(145deg, #2a2a3a 0%, #1a1a2a 100%);
-            border: 2px solid #3a3a4a;
-            border-radius: 12px;
+            background: linear-gradient(180deg, #8B6914 0%, #654B0F 30%, #3D2D09 100%);
+            border: 3px solid #B8860B;
+            border-radius: 8px 8px 4px 4px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
+            font-size: 2.2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            box-shadow: 
+                0 8px 20px rgba(0,0,0,0.4),
+                inset 0 2px 4px rgba(255,215,0,0.3),
+                inset 0 -5px 15px rgba(0,0,0,0.4);
         }
         
+        /* Chest Lid Effect */
         .treasure-box::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s ease;
+            top: -8px;
+            left: -3px;
+            right: -3px;
+            height: 20px;
+            background: linear-gradient(180deg, #DAA520 0%, #B8860B 50%, #8B6914 100%);
+            border: 3px solid #B8860B;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
         }
         
-        .treasure-box:hover::before {
-            left: 100%;
+        /* Chest Lock */
+        .treasure-box::after {
+            content: '🔒';
+            position: absolute;
+            top: 5px;
+            font-size: 1rem;
+            z-index: 2;
+            transition: all 0.3s ease;
         }
         
         .treasure-box:hover {
-            transform: scale(1.1) translateY(-5px);
-            border-color: #FFD700;
-            box-shadow: 0 10px 30px rgba(255,215,0,0.3);
+            transform: scale(1.15) translateY(-10px);
+            box-shadow: 
+                0 20px 40px rgba(255,215,0,0.3),
+                0 15px 30px rgba(0,0,0,0.4),
+                inset 0 2px 4px rgba(255,215,0,0.5);
+        }
+        
+        .treasure-box:hover::before {
+            transform: rotateX(-30deg);
+            transform-origin: bottom;
+            top: -15px;
+        }
+        
+        .treasure-box:hover::after {
+            content: '🔓';
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
         }
         
         /* Box Types */
         .treasure-box.silver {
-            background: linear-gradient(145deg, #4a4a5a 0%, #3a3a4a 100%);
+            background: linear-gradient(180deg, #A8A8A8 0%, #808080 30%, #505050 100%);
+            border-color: #C0C0C0;
+            box-shadow: 
+                0 8px 20px rgba(0,0,0,0.4),
+                inset 0 2px 4px rgba(255,255,255,0.4),
+                inset 0 -5px 15px rgba(0,0,0,0.4);
+        }
+        .treasure-box.silver::before {
+            background: linear-gradient(180deg, #D3D3D3 0%, #C0C0C0 50%, #A8A8A8 100%);
             border-color: #C0C0C0;
         }
         .treasure-box.silver:hover {
-            border-color: #E8E8E8;
-            box-shadow: 0 10px 30px rgba(192,192,192,0.4);
+            box-shadow: 
+                0 20px 40px rgba(192,192,192,0.4),
+                0 15px 30px rgba(0,0,0,0.4),
+                inset 0 2px 4px rgba(255,255,255,0.5);
         }
         
         .treasure-box.gold {
-            background: linear-gradient(145deg, #4a4a2a 0%, #3a3a1a 100%);
+            background: linear-gradient(180deg, #FFD700 0%, #DAA520 30%, #B8860B 100%);
+            border-color: #FFD700;
+            box-shadow: 
+                0 8px 20px rgba(255,215,0,0.3),
+                inset 0 2px 4px rgba(255,255,255,0.5),
+                inset 0 -5px 15px rgba(139,69,19,0.5);
+        }
+        .treasure-box.gold::before {
+            background: linear-gradient(180deg, #FFF8DC 0%, #FFD700 50%, #DAA520 100%);
             border-color: #FFD700;
         }
         .treasure-box.gold:hover {
-            box-shadow: 0 10px 30px rgba(255,215,0,0.5);
+            box-shadow: 
+                0 20px 40px rgba(255,215,0,0.5),
+                0 15px 30px rgba(0,0,0,0.4),
+                inset 0 2px 4px rgba(255,255,255,0.6);
         }
         
         .treasure-box.diamond {
-            background: linear-gradient(145deg, #2a4a5a 0%, #1a3a4a 100%);
-            border-color: #00CED1;
+            background: linear-gradient(180deg, #40E0D0 0%, #00CED1 30%, #008B8B 100%);
+            border-color: #00FFFF;
+            box-shadow: 
+                0 8px 20px rgba(0,206,209,0.3),
+                inset 0 2px 4px rgba(255,255,255,0.5),
+                inset 0 -5px 15px rgba(0,0,0,0.3);
+        }
+        .treasure-box.diamond::before {
+            background: linear-gradient(180deg, #E0FFFF 0%, #40E0D0 50%, #00CED1 100%);
+            border-color: #00FFFF;
         }
         .treasure-box.diamond:hover {
-            border-color: #40E0D0;
-            box-shadow: 0 10px 30px rgba(0,206,209,0.5);
+            box-shadow: 
+                0 20px 40px rgba(0,255,255,0.4),
+                0 15px 30px rgba(0,0,0,0.4),
+                inset 0 2px 4px rgba(255,255,255,0.6);
         }
         
+        /* Opened Chest */
         .treasure-box.opened {
-            background: linear-gradient(145deg, #1a3a1a 0%, #0a2a0a 100%);
-            border-color: #2ecc71;
+            background: linear-gradient(180deg, #2E8B57 0%, #228B22 30%, #006400 100%);
+            border-color: #32CD32;
             pointer-events: none;
+        }
+        .treasure-box.opened::before {
+            background: linear-gradient(180deg, #90EE90 0%, #32CD32 50%, #2E8B57 100%);
+            border-color: #32CD32;
+            transform: rotateX(-60deg);
+            top: -20px;
+        }
+        .treasure-box.opened::after {
+            content: '✨';
+            animation: sparkle 1s ease infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
         }
         
         .treasure-box.opened .box-icon {
-            color: #2ecc71;
+            color: #FFFFFF;
+            text-shadow: 0 0 10px rgba(50,205,50,0.8);
         }
         
         .box-icon {
             position: relative;
             z-index: 1;
             transition: transform 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            margin-top: 15px;
         }
         
         .treasure-box:hover .box-icon {
-            transform: scale(1.2);
+            transform: scale(1.3) translateY(-5px);
+            animation: bounce 0.5s ease;
         }
         
-        /* Shimmer Animation */
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+        @keyframes bounce {
+            0%, 100% { transform: scale(1.3) translateY(-5px); }
+            50% { transform: scale(1.3) translateY(-15px); }
         }
         
-        .treasure-box.gold .box-icon,
-        .treasure-box.diamond .box-icon {
-            animation: pulse 2s ease-in-out infinite;
+        /* Glow Animation for special chests */
+        .treasure-box.gold,
+        .treasure-box.diamond {
+            animation: glow 2s ease-in-out infinite;
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
         }
         
         /* Prize Reveal */
@@ -1281,11 +1367,11 @@
             { name: 'Apple AirPods Max', icon: '🎧' }
         ];
         
-        // Box icons by type
-        const normalIcons = ['🎁', '📦', '🎀', '✨', '⭐'];
-        const silverIcons = ['🥈', '🪙', '💫', '✨', '⚪'];
-        const goldIcons = ['🥇', '💰', '🏆', '👑', '🌟'];
-        const diamondIcons = ['💎', '💍', '👑', '🔮', '🌟'];
+        // Box icons by type (chest themed)
+        const normalIcons = ['🎁', '❓', '🎲', '🃏', '🎯'];
+        const silverIcons = ['🥈', '🌙', '⚡', '🔮', '✨'];
+        const goldIcons = ['🥇', '👑', '💰', '🌟', '🔱'];
+        const diamondIcons = ['💎', '💍', '👑', '🔮', '✨'];
         
         // Get current winner type from user data (demo: monthly winner)
         let currentWinnerType = 'monthly'; // 'monthly', 'quarterly', 'yearly'
@@ -1305,7 +1391,7 @@
         // Create treasure boxes based on winner type
         function createTreasureBoxes() {
             treasureGrid.innerHTML = '';
-            const totalBoxes = 100;
+            const totalBoxes = 50;
             
             // Select prizes based on winner type
             let availablePrizes;
