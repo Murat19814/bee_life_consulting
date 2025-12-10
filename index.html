@@ -1094,6 +1094,7 @@
         .reward-card-wrapper {
             perspective: 2000px;
             height: 550px;
+            margin-bottom: 80px;
         }
         
         .reward-card {
@@ -1103,10 +1104,20 @@
             transform-style: preserve-3d;
             transition: transform 1s ease-in-out;
             cursor: pointer;
+            overflow: visible;
         }
         
         .reward-card.flipped {
             transform: rotateY(180deg);
+        }
+        
+        .rewards-grid {
+            overflow: visible !important;
+            padding-bottom: 80px;
+        }
+        
+        .reward-card-wrapper {
+            overflow: visible;
         }
         
         .reward-card-front,
@@ -1118,7 +1129,7 @@
             height: 100%;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            padding: 40px 35px 80px;
+            padding: 40px 35px 30px;
             text-align: center;
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1);
@@ -1126,6 +1137,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+            overflow: visible;
         }
         
         .reward-card-back {
@@ -1328,7 +1340,8 @@
             font-weight: 600;
             letter-spacing: 1px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            z-index: 10;
+            z-index: 100;
+            pointer-events: auto;
         }
         
         .flip-back-btn:hover {
@@ -1336,6 +1349,10 @@
             border-color: #FFD700;
             transform: translateX(-50%) scale(1.08);
             box-shadow: 0 8px 30px rgba(255,215,0,0.3);
+        }
+        
+        .flip-hint {
+            pointer-events: auto;
         }
         
         /* Jobs */
