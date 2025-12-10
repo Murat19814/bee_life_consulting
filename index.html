@@ -451,35 +451,48 @@
         }
         
         /* ═══════════════════════════════════════════════════════════════ */
-        /* 35€ QC OK - Premium Dark Banner (Logo Rengi) */
+        /* 35€ QC OK - Floating Side Banners */
         /* ═══════════════════════════════════════════════════════════════ */
-        .qc-ok-banner {
-            position: relative;
-            margin-top: 50px;
-            display: flex;
-            justify-content: center;
-            animation: bannerFloat 4s ease-in-out infinite;
+        .qc-ok-floating {
+            position: fixed;
+            z-index: 100;
+            animation: floatUpDown 4s ease-in-out infinite;
         }
         
-        @keyframes bannerFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .qc-ok-floating.left-banner {
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .qc-ok-floating.right-banner {
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation-delay: 2s;
+        }
+        
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(-50%); }
+            50% { transform: translateY(calc(-50% - 15px)); }
         }
         
         .qc-ok-card {
             position: relative;
             background: linear-gradient(135deg, #071d1c 0%, #0d2b2a 50%, #0a2322 100%);
             border: 2px solid rgba(255,215,0,0.4);
-            padding: 30px 60px;
-            border-radius: 16px;
+            padding: 20px 25px;
+            border-radius: 12px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 40px;
+            gap: 15px;
             box-shadow: 
-                0 20px 60px rgba(0,0,0,0.5),
-                0 0 60px rgba(255,215,0,0.1),
+                0 15px 40px rgba(0,0,0,0.5),
+                0 0 40px rgba(255,215,0,0.1),
                 inset 0 1px 0 rgba(255,215,0,0.1);
             overflow: hidden;
+            min-width: 140px;
         }
         
         .qc-ok-card::before {
@@ -488,7 +501,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(90deg, transparent, #FFD700, transparent);
             animation: topLineGlow 3s ease-in-out infinite;
         }
@@ -515,46 +528,47 @@
         }
         
         .qc-ok-icon {
-            width: 80px;
-            height: 80px;
+            width: 50px;
+            height: 50px;
             background: transparent;
-            border: 3px solid #FFD700;
+            border: 2px solid #FFD700;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 
-                0 0 30px rgba(255,215,0,0.3),
-                inset 0 0 20px rgba(255,215,0,0.1);
+                0 0 20px rgba(255,215,0,0.3),
+                inset 0 0 15px rgba(255,215,0,0.1);
             animation: iconPulse 3s ease-in-out infinite;
         }
         
         @keyframes iconPulse {
             0%, 100% { 
-                box-shadow: 0 0 20px rgba(255,215,0,0.2), inset 0 0 15px rgba(255,215,0,0.05);
+                box-shadow: 0 0 15px rgba(255,215,0,0.2), inset 0 0 10px rgba(255,215,0,0.05);
                 border-color: rgba(255,215,0,0.6);
             }
             50% { 
-                box-shadow: 0 0 40px rgba(255,215,0,0.5), inset 0 0 25px rgba(255,215,0,0.15);
+                box-shadow: 0 0 30px rgba(255,215,0,0.5), inset 0 0 20px rgba(255,215,0,0.15);
                 border-color: #FFD700;
             }
         }
         
         .qc-ok-icon i {
-            font-size: 2rem;
+            font-size: 1.3rem;
             color: #FFD700;
         }
         
         .qc-ok-content {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            align-items: center;
+            gap: 3px;
         }
         
         .qc-ok-label {
-            font-size: 0.8rem;
+            font-size: 0.6rem;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: rgba(255,215,0,0.7);
         }
@@ -562,58 +576,57 @@
         .qc-ok-price {
             display: flex;
             align-items: baseline;
-            gap: 8px;
+            gap: 4px;
         }
         
         .qc-ok-amount {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 4.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
             color: #FFD700;
             line-height: 1;
-            text-shadow: 0 0 30px rgba(255,215,0,0.4);
+            text-shadow: 0 0 20px rgba(255,215,0,0.4);
             animation: amountGlow 3s ease-in-out infinite;
         }
         
         @keyframes amountGlow {
-            0%, 100% { text-shadow: 0 0 20px rgba(255,215,0,0.3); }
-            50% { text-shadow: 0 0 40px rgba(255,215,0,0.6), 0 0 60px rgba(255,215,0,0.3); }
+            0%, 100% { text-shadow: 0 0 15px rgba(255,215,0,0.3); }
+            50% { text-shadow: 0 0 30px rgba(255,215,0,0.6), 0 0 45px rgba(255,215,0,0.3); }
         }
         
         .qc-ok-currency {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem;
+            font-size: 1.8rem;
             font-weight: 600;
             color: #FFD700;
         }
         
         .qc-ok-divider {
-            width: 2px;
-            height: 70px;
-            background: linear-gradient(to bottom, transparent, rgba(255,215,0,0.5), transparent);
-            margin: 0 20px;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.5), transparent);
         }
         
         .qc-ok-badge {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 5px;
         }
         
         .qc-ok-text {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: #FFD700;
-            letter-spacing: 6px;
-            text-shadow: 0 0 25px rgba(255,215,0,0.4);
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(255,215,0,0.4);
         }
         
         .qc-ok-subtitle {
-            font-size: 0.75rem;
+            font-size: 0.55rem;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             color: #FFD700;
             opacity: 0.8;
@@ -622,41 +635,20 @@
         /* Corner decorations */
         .qc-ok-corner {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255,215,0,0.5);
+            width: 12px;
+            height: 12px;
+            border: 1px solid rgba(255,215,0,0.5);
         }
         
-        .qc-ok-corner.top-left { top: 8px; left: 8px; border-right: none; border-bottom: none; }
-        .qc-ok-corner.top-right { top: 8px; right: 8px; border-left: none; border-bottom: none; }
-        .qc-ok-corner.bottom-left { bottom: 8px; left: 8px; border-right: none; border-top: none; }
-        .qc-ok-corner.bottom-right { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+        .qc-ok-corner.top-left { top: 5px; left: 5px; border-right: none; border-bottom: none; }
+        .qc-ok-corner.top-right { top: 5px; right: 5px; border-left: none; border-bottom: none; }
+        .qc-ok-corner.bottom-left { bottom: 5px; left: 5px; border-right: none; border-top: none; }
+        .qc-ok-corner.bottom-right { bottom: 5px; right: 5px; border-left: none; border-top: none; }
         
-        @media (max-width: 768px) {
-            .qc-ok-card {
-                padding: 25px 35px;
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-            
-            .qc-ok-amount {
-                font-size: 3.5rem;
-            }
-            
-            .qc-ok-text {
-                font-size: 2.2rem;
-            }
-            
-            .qc-ok-divider {
-                width: 100px;
-                height: 2px;
-                margin: 10px 0;
-            }
-            
-            .qc-ok-icon {
-                width: 65px;
-                height: 65px;
+        /* Hide on small screens */
+        @media (max-width: 1400px) {
+            .qc-ok-floating {
+                display: none;
             }
         }
         
@@ -2081,35 +2073,6 @@
                         <a href="basvuru.html" class="btn btn-primary">Kariyer Fırsatları</a>
                         <a href="#services" class="btn btn-outline">Hizmetlerimiz</a>
                     </div>
-                    
-                    <!-- 35€ QC OK Premium Banner -->
-                    <div class="qc-ok-banner">
-                        <div class="qc-ok-card">
-                            <div class="qc-ok-corner top-left"></div>
-                            <div class="qc-ok-corner top-right"></div>
-                            <div class="qc-ok-corner bottom-left"></div>
-                            <div class="qc-ok-corner bottom-right"></div>
-                            
-                            <div class="qc-ok-icon">
-                                <i class="fas fa-euro-sign"></i>
-                            </div>
-                            
-                            <div class="qc-ok-content">
-                                <span class="qc-ok-label">Her Satışta</span>
-                                <div class="qc-ok-price">
-                                    <span class="qc-ok-amount">35</span>
-                                    <span class="qc-ok-currency">€</span>
-                                </div>
-                            </div>
-                            
-                            <div class="qc-ok-divider"></div>
-                            
-                            <div class="qc-ok-badge">
-                                <span class="qc-ok-text">QC OK</span>
-                                <span class="qc-ok-subtitle">Satış Primi</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="hero-visual">
@@ -2619,6 +2582,63 @@
             </div>
         </div>
     </section>
+
+    <!-- 35€ QC OK Floating Banners - Sol ve Sağ -->
+    <div class="qc-ok-floating left-banner">
+        <div class="qc-ok-card">
+            <div class="qc-ok-corner top-left"></div>
+            <div class="qc-ok-corner top-right"></div>
+            <div class="qc-ok-corner bottom-left"></div>
+            <div class="qc-ok-corner bottom-right"></div>
+            
+            <div class="qc-ok-icon">
+                <i class="fas fa-euro-sign"></i>
+            </div>
+            
+            <div class="qc-ok-content">
+                <span class="qc-ok-label">Her Satışta</span>
+                <div class="qc-ok-price">
+                    <span class="qc-ok-amount">35</span>
+                    <span class="qc-ok-currency">€</span>
+                </div>
+            </div>
+            
+            <div class="qc-ok-divider"></div>
+            
+            <div class="qc-ok-badge">
+                <span class="qc-ok-text">QC OK</span>
+                <span class="qc-ok-subtitle">Satış Primi</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="qc-ok-floating right-banner">
+        <div class="qc-ok-card">
+            <div class="qc-ok-corner top-left"></div>
+            <div class="qc-ok-corner top-right"></div>
+            <div class="qc-ok-corner bottom-left"></div>
+            <div class="qc-ok-corner bottom-right"></div>
+            
+            <div class="qc-ok-icon">
+                <i class="fas fa-euro-sign"></i>
+            </div>
+            
+            <div class="qc-ok-content">
+                <span class="qc-ok-label">Her Satışta</span>
+                <div class="qc-ok-price">
+                    <span class="qc-ok-amount">35</span>
+                    <span class="qc-ok-currency">€</span>
+                </div>
+            </div>
+            
+            <div class="qc-ok-divider"></div>
+            
+            <div class="qc-ok-badge">
+                <span class="qc-ok-text">QC OK</span>
+                <span class="qc-ok-subtitle">Satış Primi</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer (Dark - with honeycomb) -->
     <footer class="footer">
