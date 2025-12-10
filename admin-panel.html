@@ -15,18 +15,29 @@
     <style>
         :root {
             --sidebar-width: 260px;
-            --primary-dark: #0d2b2a;
-            --primary-darker: #071d1c;
-            --primary-green: #0f3332;
-            --primary-light: #1a4a48;
-            --accent-green: #2d6a4f;
-            --accent-mint: #40916c;
+            /* Premium Dark Theme */
+            --primary-dark: #0a0a0a;
+            --primary-darker: #050505;
+            --primary-gray: #1a1a1a;
+            --primary-light: #2a2a2a;
+            --secondary-dark: #151515;
+            /* Gold Accents */
+            --gold: #D4AF37;
+            --gold-light: #F4D03F;
+            --gold-dark: #B8860B;
+            /* Silver Accents */
+            --silver: #C0C0C0;
+            --silver-light: #E8E8E8;
+            --silver-dark: #A8A8A8;
+            /* Legacy */
+            --accent-green: #D4AF37;
+            --accent-mint: #D4AF37;
             --accent-red: #e63946;
             --white: #FFFFFF;
-            --off-white: #f0f5f4;
-            --light-gray: #e8f0ef;
-            --text-dark: #0d2b2a;
-            --text-light: #5a7a78;
+            --off-white: #121212;
+            --light-gray: #1e1e1e;
+            --text-dark: #FFFFFF;
+            --text-light: #888888;
         }
         
         * {
@@ -37,8 +48,8 @@
         
         body {
             font-family: 'Montserrat', sans-serif;
-            background: var(--off-white);
-            color: var(--text-dark);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            color: #FFFFFF;
             min-height: 100vh;
         }
         
@@ -46,17 +57,18 @@
             font-family: 'Cormorant Garamond', serif;
         }
         
-        /* Sidebar */
+        /* Sidebar - Premium Dark */
         .sidebar {
             position: fixed;
             left: 0;
             top: 0;
             width: var(--sidebar-width);
             height: 100vh;
-            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
+            background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
             padding: 25px 15px;
             z-index: 100;
             overflow-y: auto;
+            border-right: 1px solid rgba(212, 175, 55, 0.2);
         }
         
         .sidebar-logo {
@@ -64,7 +76,7 @@
             align-items: center;
             gap: 12px;
             padding: 0 10px 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
             margin-bottom: 20px;
         }
         
@@ -76,12 +88,12 @@
         .sidebar-logo-text {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.1rem;
-            color: var(--white);
+            color: var(--gold-light);
             line-height: 1.2;
         }
         
         .sidebar-logo-text span {
-            color: var(--accent-mint);
+            color: var(--gold);
         }
         
         .admin-badge {
@@ -89,12 +101,13 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 10px;
-            background: rgba(230, 57, 70, 0.15);
-            border: 1px solid rgba(230, 57, 70, 0.3);
-            color: #ff6b6b;
+            padding: 12px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(184,134,11,0.1) 100%);
+            border: 1px solid rgba(212,175,55,0.3);
+            color: var(--gold);
             font-size: 0.75rem;
             font-weight: 600;
+            border-radius: 8px;
             letter-spacing: 1px;
             margin-bottom: 25px;
         }
@@ -107,7 +120,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: rgba(255,255,255,0.4);
+            color: var(--gold-dark);
             padding: 20px 15px 10px;
         }
         
@@ -120,35 +133,38 @@
             align-items: center;
             gap: 12px;
             padding: 12px 15px;
-            color: rgba(255,255,255,0.7);
+            color: var(--silver);
             text-decoration: none;
             font-size: 0.9rem;
             transition: all 0.3s ease;
             border-left: 3px solid transparent;
+            border-radius: 0 8px 8px 0;
         }
         
         .sidebar-menu a:hover {
-            background: rgba(255,255,255,0.05);
-            color: var(--white);
-            border-left-color: var(--accent-mint);
+            background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, transparent 100%);
+            color: var(--gold-light);
+            border-left-color: var(--gold);
         }
         
         .sidebar-menu a.active {
-            background: rgba(64, 145, 108, 0.15);
-            color: var(--accent-mint);
-            border-left-color: var(--accent-mint);
+            background: linear-gradient(90deg, rgba(212,175,55,0.2) 0%, transparent 100%);
+            color: var(--gold);
+            border-left-color: var(--gold);
+            font-weight: 500;
         }
         
         .sidebar-menu a i {
             width: 20px;
             text-align: center;
             font-size: 0.95rem;
+            color: var(--gold);
         }
         
         .menu-badge {
             margin-left: auto;
-            background: var(--accent-red);
-            color: white;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: #000;
             font-size: 0.7rem;
             padding: 2px 8px;
             border-radius: 10px;
@@ -160,24 +176,31 @@
             margin-left: var(--sidebar-width);
             padding: 25px 30px;
             min-height: 100vh;
+            background: transparent;
         }
         
-        /* Top Bar */
+        /* Top Bar - Premium Dark */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(10,10,10,0.95) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(212,175,55,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
         
         .top-bar h1 {
             font-size: 1.8rem;
+            color: var(--gold-light);
             font-weight: 500;
             color: var(--text-dark);
         }
         
         .top-bar p {
-            color: var(--text-light);
+            color: var(--silver);
             font-size: 0.9rem;
             margin-top: 5px;
         }
@@ -186,6 +209,16 @@
             display: flex;
             align-items: center;
             gap: 15px;
+        }
+        
+        .top-bar-right .btn {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: #000;
+            font-weight: 600;
+        }
+        
+        .top-bar-right .btn:hover {
+            box-shadow: 0 4px 20px rgba(212,175,55,0.4);
         }
         
         .btn {
@@ -200,62 +233,69 @@
             transition: all 0.3s ease;
             text-decoration: none;
             font-family: 'Montserrat', sans-serif;
+            border-radius: 8px;
         }
         
         .btn-primary {
-            background: var(--primary-dark);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: #000;
+            font-weight: 600;
         }
         
         .btn-primary:hover {
-            background: var(--primary-light);
+            box-shadow: 0 4px 20px rgba(212,175,55,0.4);
+            transform: translateY(-2px);
         }
         
         .btn-outline {
             background: transparent;
-            border: 1px solid var(--primary-dark);
-            color: var(--primary-dark);
+            border: 1px solid rgba(212,175,55,0.5);
+            color: var(--gold);
         }
         
         .btn-outline:hover {
-            background: var(--primary-dark);
-            color: var(--white);
+            background: rgba(212,175,55,0.1);
+            border-color: var(--gold);
         }
         
         .admin-user {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 8px 15px;
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border: 1px solid rgba(212,175,55,0.2);
+            border-radius: 12px;
         }
         
         .admin-avatar {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent-red) 0%, #ff6b6b 100%);
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: #000;
             font-weight: 600;
             font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.3);
         }
         
         .admin-info h4 {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
             font-weight: 600;
+            color: var(--gold-light);
         }
         
         .admin-info p {
             font-size: 0.75rem;
-            color: var(--text-light);
+            color: var(--silver);
             margin: 0;
         }
         
-        /* Stats Grid */
+        /* Stats Grid - Premium Dark */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -264,35 +304,65 @@
         }
         
         .stat-card {
-            background: var(--white);
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
             padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(212,175,55,0.15);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .stat-card:hover {
+            border-color: rgba(212,175,55,0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(212,175,55,0.1);
         }
         
         .stat-card .icon {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 15px;
+            border-radius: 12px;
         }
         
-        .stat-card .icon.blue { background: rgba(59,130,246,0.1); color: #3b82f6; }
-        .stat-card .icon.green { background: rgba(64,145,108,0.1); color: var(--accent-mint); }
-        .stat-card .icon.gold { background: rgba(245,158,11,0.1); color: #f59e0b; }
-        .stat-card .icon.red { background: rgba(230,57,70,0.1); color: var(--accent-red); }
+        .stat-card .icon.blue { 
+            background: linear-gradient(135deg, rgba(192,192,192,0.2) 0%, rgba(168,168,168,0.1) 100%);
+            color: var(--silver);
+            border: 1px solid rgba(192,192,192,0.3);
+        }
+        .stat-card .icon.green { 
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(184,134,11,0.1) 100%);
+            color: var(--gold);
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+        .stat-card .icon.gold { 
+            background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(255,165,0,0.1) 100%);
+            color: #FFD700;
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+        .stat-card .icon.red { 
+            background: linear-gradient(135deg, rgba(230,57,70,0.2) 0%, rgba(180,30,40,0.1) 100%);
+            color: #ff6b6b;
+            border: 1px solid rgba(230,57,70,0.3);
+        }
         
         .stat-card h3 {
-            font-size: 2rem;
-            font-weight: 400;
+            font-size: 2.2rem;
+            font-weight: 300;
             margin-bottom: 5px;
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
         }
         
         .stat-card p {
-            color: var(--text-light);
+            color: var(--silver);
             font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         /* Content Grid */
@@ -302,11 +372,13 @@
             gap: 25px;
         }
         
-        /* Cards */
+        /* Cards - Premium Dark */
         .card {
-            background: var(--white);
+            background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
             padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(212,175,55,0.15);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             margin-bottom: 25px;
         }
         
@@ -316,7 +388,7 @@
             align-items: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
         }
         
         .card-header h3 {
@@ -324,6 +396,7 @@
             font-weight: 500;
             display: flex;
             align-items: center;
+            color: var(--gold-light);
             gap: 10px;
         }
         
@@ -336,18 +409,20 @@
         .table th {
             text-align: left;
             padding: 12px 15px;
-            background: var(--off-white);
+            background: rgba(26,26,26,0.8);
             font-weight: 600;
             font-size: 0.75rem;
-            color: var(--text-light);
+            color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(212,175,55,0.2);
         }
         
         .table td {
             padding: 15px;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid rgba(212,175,55,0.1);
             font-size: 0.9rem;
+            color: var(--silver-light);
         }
         
         .table tr:last-child td {
@@ -355,7 +430,7 @@
         }
         
         .table tr:hover {
-            background: var(--off-white);
+            background: rgba(212,175,55,0.05);
         }
         
         .employee-cell {
@@ -365,14 +440,16 @@
         }
         
         .employee-avatar {
-            width: 38px;
-            height: 38px;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid rgba(212,175,55,0.3);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            color: white;
+            color: var(--gold);
             font-size: 0.8rem;
         }
         
@@ -389,34 +466,39 @@
         
         .status-badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 5px 14px;
             font-size: 0.75rem;
             font-weight: 600;
+            border-radius: 20px;
         }
         
         .status-badge.active {
-            background: rgba(64,145,108,0.1);
-            color: var(--accent-mint);
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(184,134,11,0.1) 100%);
+            color: var(--gold);
+            border: 1px solid rgba(212,175,55,0.3);
         }
         
         .status-badge.pending {
-            background: rgba(245,158,11,0.1);
-            color: #f59e0b;
+            background: linear-gradient(135deg, rgba(192,192,192,0.2) 0%, rgba(168,168,168,0.1) 100%);
+            color: var(--silver);
+            border: 1px solid rgba(192,192,192,0.3);
         }
         
         .status-badge.inactive {
-            background: rgba(107,114,128,0.1);
-            color: #6b7280;
+            background: rgba(107,114,128,0.15);
+            color: #9ca3af;
+            border: 1px solid rgba(107,114,128,0.3);
         }
         
         .status-badge.delivered {
-            background: rgba(64,145,108,0.1);
-            color: var(--accent-mint);
+            background: linear-gradient(135deg, rgba(46,125,50,0.2) 0%, rgba(46,125,50,0.1) 100%);
+            color: #4caf50;
+            border: 1px solid rgba(46,125,50,0.3);
         }
         
         .euro-amount {
             font-weight: 600;
-            color: var(--accent-mint);
+            color: var(--gold);
             font-size: 0.95rem;
         }
         
@@ -647,23 +729,42 @@
             margin-bottom: 8px;
             font-weight: 500;
             font-size: 0.85rem;
-            color: var(--text-dark);
+            color: var(--gold-light);
         }
         
         .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid var(--light-gray);
+            border: 1px solid rgba(212,175,55,0.2);
+            background: rgba(26,26,26,0.8);
+            color: var(--silver-light);
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
             transition: all 0.3s ease;
+            border-radius: 8px;
         }
         
         .form-group input:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
-            border-color: var(--primary-dark);
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212,175,55,0.1);
+        }
+        
+        .form-control {
+            background: rgba(26,26,26,0.8);
+            border: 1px solid rgba(212,175,55,0.2);
+            color: var(--silver-light);
+            border-radius: 8px;
+            padding: 10px 15px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--gold);
+            outline: none;
         }
         
         .form-row {
@@ -1389,23 +1490,37 @@
                             <select class="form-control" id="salesEmployee">
                                 <option value="">-- Çalışan Seç --</option>
                                 <option value="1">Abdulcelil Arslan - Yozgat</option>
-                                <option value="2">Aslı Akdoğan - Yozgat</option>
-                                <option value="3">Deniz Beyazkoç - İzmit</option>
-                                <option value="4">Eda Nur Bağır Hatipoğlu - İzmit</option>
-                                <option value="5">Erdoğan Çuvoğlu - Eskişehir</option>
-                                <option value="6">Gönül Dağ - Eskişehir</option>
-                                <option value="7">Gülay Dikmen - Yozgat</option>
-                                <option value="8">Hilal Coşkun - Yozgat</option>
-                                <option value="9">Leyla Doğan - İzmit</option>
-                                <option value="10">Meral Taşdoğan - İzmit</option>
-                                <option value="11">Nihat Kedi - Eskişehir</option>
-                                <option value="12">Selma Delioğlu - Eskişehir</option>
-                                <option value="13">Şeyda Uludağ - Yozgat</option>
-                                <option value="14">Taner Turan - Balıkesir</option>
-                                <option value="15">Tuncay Karaca - Balıkesir</option>
-                                <option value="16">Turgay Yumrukaya - Balıkesir</option>
-                                <option value="17">Yücel Gökçe - Yozgat</option>
-                                <option value="18">Yüksel Taşkın - İzmit</option>
+                                <option value="2">Ahmet Kömür - İzmit</option>
+                                <option value="3">Ahsen Saliha Arslan - İzmit</option>
+                                <option value="4">Aslı Akdoğan - Yozgat</option>
+                                <option value="5">Ayhan Yıldızdoğan - İzmit</option>
+                                <option value="6">Burak Balkaya - İzmit</option>
+                                <option value="7">Deniz Beyazkoç - Eskişehir</option>
+                                <option value="8">Duygu Çeliköz - İzmit</option>
+                                <option value="9">Eda Nur Bağır Hatipoğlu - Yozgat</option>
+                                <option value="10">Erdoğan Çuvoğlu - Eskişehir</option>
+                                <option value="11">Fatma Karipçin - İzmit</option>
+                                <option value="12">Fidan Açıkgöz - Yozgat</option>
+                                <option value="13">Gönül Dağ - Eskişehir</option>
+                                <option value="14">Gülay Dikmen - Eskişehir</option>
+                                <option value="15">Gülayfer Altuntaş - İzmit</option>
+                                <option value="16">Hatice Yıldız - Yozgat</option>
+                                <option value="17">Hilal Coşkun - İzmit</option>
+                                <option value="18">Kader Taşpınar - Eskişehir</option>
+                                <option value="19">Leyla Doğan - İzmit</option>
+                                <option value="20">Meral Taşdoğan - Antep</option>
+                                <option value="21">Murat Atalay - İzmit</option>
+                                <option value="22">Nihat Kedi - Home Office</option>
+                                <option value="23">Saliha Arslan Atalay - Home Office</option>
+                                <option value="24">Selma Delioğlu - İzmir</option>
+                                <option value="25">Seval Çeliköz - Home Office</option>
+                                <option value="26">Şeyda Uludağ - İzmir</option>
+                                <option value="27">Taner Turan - Balıkesir</option>
+                                <option value="28">Tuncay Karaca - İzmit</option>
+                                <option value="29">Turgay Yumrukaya - Eskişehir</option>
+                                <option value="30">Yeter Uzun - Yozgat</option>
+                                <option value="31">Yücel Gökçe - Home Office</option>
+                                <option value="32">Yüksel Taşkın - İzmit</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -1420,6 +1535,9 @@
                                 <option value="izmit">İzmit</option>
                                 <option value="eskisehir">Eskişehir</option>
                                 <option value="balikesir">Balıkesir</option>
+                                <option value="izmir">İzmir</option>
+                                <option value="antep">Antep</option>
+                                <option value="homeoffice">Home Office</option>
                             </select>
                         </div>
                     </div>
