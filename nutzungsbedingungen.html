@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Bee Life Consulting - Nutzungsbedingungen">
+    <title>Nutzungsbedingungen | Bee Life Consulting</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0d2b2a">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #0d2b2a;
+            --primary-green: #0f3332;
+            --accent-green: #40916c;
+            --gold: #FFB800;
+            --white: #FFFFFF;
+            --off-white: #f8faf9;
+            --text-dark: #0d2b2a;
+            --text-light: #5a7a78;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--off-white);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+        
+        /* Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            padding: 120px 20px 60px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" d="M20 0L0 0 0 20"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .back-btn:hover {
+            opacity: 1;
+        }
+        
+        .page-header h1 {
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .page-header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            position: relative;
+        }
+        
+        /* Content */
+        .content-container {
+            max-width: 900px;
+            margin: -30px auto 50px;
+            padding: 40px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .last-updated {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(64, 145, 108, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section h2 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--off-white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h2 i {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+        }
+        
+        .section h3 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin: 20px 0 10px;
+        }
+        
+        .section p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .section ul, .section ol {
+            margin: 15px 0 15px 25px;
+            color: var(--text-light);
+        }
+        
+        .section ul li, .section ol li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(64, 145, 108, 0.08) 0%, rgba(45, 106, 79, 0.05) 100%);
+            border-left: 4px solid var(--accent-green);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            color: var(--text-dark);
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 184, 0, 0.1) 0%, rgba(255, 152, 0, 0.08) 100%);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        
+        .warning-box p {
+            margin: 0;
+            color: var(--text-dark);
+        }
+        
+        .contact-box {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .contact-box h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .contact-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 10px;
+        }
+        
+        .contact-box a {
+            color: var(--gold);
+        }
+        
+        /* Footer */
+        .simple-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+        
+        .simple-footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 100px 15px 50px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .content-container {
+                margin: -20px 15px 30px;
+                padding: 25px 20px;
+            }
+            
+            .section h2 {
+                font-size: 1.2rem;
+            }
+            
+            .back-btn {
+                top: 20px;
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Zurück zur Startseite
+        </a>
+        <h1><i class="fas fa-file-contract"></i> Nutzungsbedingungen</h1>
+        <p>Allgemeine Geschäftsbedingungen</p>
+    </header>
+
+    <!-- Content -->
+    <main class="content-container">
+        <span class="last-updated"><i class="fas fa-calendar-alt"></i> Stand: Dezember 2024</span>
+        
+        <div class="section">
+            <h2><i class="fas fa-info-circle"></i> 1. Geltungsbereich</h2>
+            <p>Diese Nutzungsbedingungen gelten für die Nutzung der Website beelife-consulting.com und aller damit verbundenen Dienste der Bee Life Consulting. Mit der Nutzung unserer Website erklären Sie sich mit diesen Bedingungen einverstanden.</p>
+            <div class="highlight-box">
+                <p><i class="fas fa-check-circle"></i> Durch die Nutzung dieser Website akzeptieren Sie diese Nutzungsbedingungen in ihrer jeweils gültigen Fassung.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-building"></i> 2. Anbieter</h2>
+            <p>Anbieter dieser Website und der angebotenen Dienstleistungen ist:</p>
+            <div class="highlight-box">
+                <p><strong>Bee Life Consulting</strong><br>
+                Professionelle Call Center Dienstleistungen<br>
+                E-Mail: info@beelife-consulting.com<br>
+                Telefon: +90 531 765 41 66</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-laptop"></i> 3. Leistungsbeschreibung</h2>
+            <p>Bee Life Consulting bietet folgende Dienstleistungen an:</p>
+            <ul>
+                <li>Professionelle Call Center Dienstleistungen (Inbound & Outbound)</li>
+                <li>Kundenservice und Support</li>
+                <li>Telemarketing und Vertriebsunterstützung</li>
+                <li>Mehrsprachige Kommunikationslösungen (Deutsch, Türkisch)</li>
+            </ul>
+            <p>Die auf der Website dargestellten Informationen stellen kein verbindliches Angebot dar, sondern dienen der allgemeinen Information über unser Leistungsspektrum.</p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-user-edit"></i> 4. Bewerbungsverfahren</h2>
+            <h3>4.1 Bewerbungsvoraussetzungen</h3>
+            <p>Für eine Bewerbung bei Bee Life Consulting gelten folgende Voraussetzungen:</p>
+            <ul>
+                <li>Mindestalter von 18 Jahren</li>
+                <li>Deutschkenntnisse auf Niveau C1-C2 oder Muttersprache</li>
+                <li>Wahrheitsgemäße Angaben in der Bewerbung</li>
+                <li>Einwilligung in die Verarbeitung personenbezogener Daten</li>
+            </ul>
+            
+            <h3>4.2 Bewerbungsprozess</h3>
+            <p>Der Bewerbungsprozess umfasst:</p>
+            <ol>
+                <li>Online-Bewerbung über das Bewerbungsformular</li>
+                <li>Prüfung der Bewerbungsunterlagen</li>
+                <li>Telefonisches oder persönliches Vorstellungsgespräch</li>
+                <li>Sprachtest zur Überprüfung der Deutschkenntnisse</li>
+                <li>Entscheidung über die Einstellung</li>
+            </ol>
+            
+            <div class="warning-box">
+                <p><i class="fas fa-exclamation-triangle"></i> <strong>Wichtig:</strong> Falsche Angaben im Bewerbungsverfahren können zum Ausschluss aus dem Bewerbungsprozess oder zur Kündigung eines bereits geschlossenen Arbeitsverhältnisses führen.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-copyright"></i> 5. Urheberrecht und Markenrecht</h2>
+            <p>Alle auf dieser Website veröffentlichten Inhalte (Texte, Bilder, Grafiken, Logos, etc.) sind urheberrechtlich geschützt. Eine Vervielfältigung, Bearbeitung, Verbreitung oder sonstige Nutzung bedarf der vorherigen schriftlichen Zustimmung von Bee Life Consulting.</p>
+            <ul>
+                <li>Das Logo und der Name "Bee Life Consulting" sind geschützte Marken</li>
+                <li>Das Design und Layout der Website sind urheberrechtlich geschützt</li>
+                <li>Alle Texte und Inhalte dürfen nicht ohne Genehmigung verwendet werden</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-ban"></i> 6. Unzulässige Nutzung</h2>
+            <p>Folgende Nutzungen der Website sind untersagt:</p>
+            <ul>
+                <li>Automatisierte Datenerfassung (Scraping, Crawling)</li>
+                <li>Verbreitung von Malware oder schädlicher Software</li>
+                <li>Überlastung der Server durch übermäßige Anfragen</li>
+                <li>Manipulation oder Umgehung von Sicherheitsmaßnahmen</li>
+                <li>Nutzung für illegale oder betrügerische Zwecke</li>
+                <li>Belästigung anderer Nutzer</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-exclamation-circle"></i> 7. Haftungsausschluss</h2>
+            <h3>7.1 Inhalte der Website</h3>
+            <p>Wir bemühen uns, die Inhalte unserer Website aktuell und korrekt zu halten. Dennoch können wir keine Gewähr für die Vollständigkeit, Richtigkeit und Aktualität der bereitgestellten Informationen übernehmen.</p>
+            
+            <h3>7.2 Externe Links</h3>
+            <p>Unsere Website kann Links zu externen Websites enthalten. Für die Inhalte dieser verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. Wir übernehmen keine Haftung für deren Inhalte.</p>
+            
+            <h3>7.3 Verfügbarkeit</h3>
+            <p>Wir sind bestrebt, eine hohe Verfügbarkeit der Website zu gewährleisten, können jedoch keine ununterbrochene Erreichbarkeit garantieren.</p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-euro-sign"></i> 8. Vergütung und Provisionen</h2>
+            <p>Die auf der Website genannten Vergütungen und Provisionen sind beispielhafte Angaben und können je nach Qualifikation, Erfahrung und Leistung variieren. Die verbindlichen Konditionen werden im Arbeitsvertrag festgelegt.</p>
+            <div class="warning-box">
+                <p><i class="fas fa-info-circle"></i> Alle Gehaltsangaben sind Bruttobeträge. Die tatsächliche Vergütung hängt von verschiedenen Faktoren ab und wird individuell vereinbart.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-user-secret"></i> 9. Vertraulichkeit</h2>
+            <p>Als Bewerber und potentieller Mitarbeiter verpflichten Sie sich zur Vertraulichkeit bezüglich:</p>
+            <ul>
+                <li>Aller im Bewerbungsprozess erhaltenen Informationen über das Unternehmen</li>
+                <li>Geschäftsgeheimnisse und interne Prozesse</li>
+                <li>Kundeninformationen und Geschäftsbeziehungen</li>
+                <li>Technische und organisatorische Maßnahmen</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-edit"></i> 10. Änderungen der Nutzungsbedingungen</h2>
+            <p>Wir behalten uns das Recht vor, diese Nutzungsbedingungen jederzeit zu ändern. Änderungen werden auf dieser Seite veröffentlicht. Die fortgesetzte Nutzung der Website nach einer Änderung gilt als Zustimmung zu den geänderten Bedingungen.</p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-gavel"></i> 11. Anwendbares Recht und Gerichtsstand</h2>
+            <p>Für diese Nutzungsbedingungen und alle sich daraus ergebenden Rechtsstreitigkeiten gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist, soweit gesetzlich zulässig, der Sitz des Unternehmens.</p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-puzzle-piece"></i> 12. Salvatorische Klausel</h2>
+            <p>Sollten einzelne Bestimmungen dieser Nutzungsbedingungen unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt eine wirksame Bestimmung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.</p>
+        </div>
+        
+        <div class="contact-box">
+            <h3><i class="fas fa-question-circle"></i> Fragen zu den Nutzungsbedingungen?</h3>
+            <p>Bei Fragen zu diesen Nutzungsbedingungen kontaktieren Sie uns bitte:</p>
+            <p><strong>E-Mail:</strong> <a href="mailto:info@beelife-consulting.com">info@beelife-consulting.com</a></p>
+            <p><strong>Telefon:</strong> +90 531 765 41 66</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="simple-footer">
+        <p>&copy; 2024 Bee Life Consulting. Alle Rechte vorbehalten. | 
+        <a href="datenschutz.html">Datenschutz</a> | 
+        <a href="nutzungsbedingungen.html">Nutzungsbedingungen</a></p>
+    </footer>
+
+</body>
+</html>
+

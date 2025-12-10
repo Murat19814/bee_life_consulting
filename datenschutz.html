@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Bee Life Consulting - Datenschutzrichtlinie">
+    <title>Datenschutzrichtlinie | Bee Life Consulting</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0d2b2a">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #0d2b2a;
+            --primary-green: #0f3332;
+            --accent-green: #40916c;
+            --gold: #FFB800;
+            --white: #FFFFFF;
+            --off-white: #f8faf9;
+            --text-dark: #0d2b2a;
+            --text-light: #5a7a78;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--off-white);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+        
+        /* Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            padding: 120px 20px 60px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" d="M20 0L0 0 0 20"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .back-btn:hover {
+            opacity: 1;
+        }
+        
+        .page-header h1 {
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .page-header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            position: relative;
+        }
+        
+        /* Content */
+        .content-container {
+            max-width: 900px;
+            margin: -30px auto 50px;
+            padding: 40px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        
+        .last-updated {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(64, 145, 108, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section h2 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--off-white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h2 i {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+        }
+        
+        .section h3 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin: 20px 0 10px;
+        }
+        
+        .section p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        
+        .section ul {
+            margin: 15px 0 15px 25px;
+            color: var(--text-light);
+        }
+        
+        .section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(64, 145, 108, 0.08) 0%, rgba(45, 106, 79, 0.05) 100%);
+            border-left: 4px solid var(--accent-green);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 20px 0;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            color: var(--text-dark);
+        }
+        
+        .contact-box {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .contact-box h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .contact-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 10px;
+        }
+        
+        .contact-box a {
+            color: var(--gold);
+        }
+        
+        /* Footer */
+        .simple-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--primary-dark);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+        
+        .simple-footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 100px 15px 50px;
+            }
+            
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .content-container {
+                margin: -20px 15px 30px;
+                padding: 25px 20px;
+            }
+            
+            .section h2 {
+                font-size: 1.2rem;
+            }
+            
+            .back-btn {
+                top: 20px;
+                left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Zurück zur Startseite
+        </a>
+        <h1><i class="fas fa-shield-alt"></i> Datenschutzrichtlinie</h1>
+        <p>Schutz Ihrer persönlichen Daten</p>
+    </header>
+
+    <!-- Content -->
+    <main class="content-container">
+        <span class="last-updated"><i class="fas fa-calendar-alt"></i> Stand: Dezember 2024</span>
+        
+        <div class="section">
+            <h2><i class="fas fa-building"></i> 1. Verantwortlicher</h2>
+            <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+            <div class="highlight-box">
+                <p><strong>Bee Life Consulting</strong><br>
+                Professionelle Call Center Dienstleistungen<br>
+                E-Mail: info@beelife-consulting.com<br>
+                Telefon: +90 531 765 41 66</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-database"></i> 2. Erhebung und Speicherung personenbezogener Daten</h2>
+            <h3>2.1 Beim Besuch der Website</h3>
+            <p>Bei der Nutzung unserer Website werden automatisch folgende Daten erhoben:</p>
+            <ul>
+                <li>IP-Adresse des anfragenden Rechners</li>
+                <li>Datum und Uhrzeit des Zugriffs</li>
+                <li>Name und URL der abgerufenen Datei</li>
+                <li>Website, von der aus der Zugriff erfolgt (Referrer-URL)</li>
+                <li>Verwendeter Browser und ggf. das Betriebssystem</li>
+            </ul>
+            
+            <h3>2.2 Bei der Bewerbung</h3>
+            <p>Im Rahmen des Bewerbungsverfahrens erheben wir folgende personenbezogene Daten:</p>
+            <ul>
+                <li>Vor- und Nachname</li>
+                <li>E-Mail-Adresse</li>
+                <li>Telefonnummer</li>
+                <li>Geburtsdatum</li>
+                <li>Wohnort / Stadt</li>
+                <li>Sprachkenntnisse</li>
+                <li>Berufserfahrung</li>
+                <li>Lebenslauf (sofern hochgeladen)</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-bullseye"></i> 3. Zweck der Datenverarbeitung</h2>
+            <p>Ihre personenbezogenen Daten werden zu folgenden Zwecken verarbeitet:</p>
+            <ul>
+                <li>Bearbeitung Ihrer Bewerbung und Durchführung des Bewerbungsverfahrens</li>
+                <li>Kontaktaufnahme bezüglich Ihrer Bewerbung</li>
+                <li>Sicherstellung der technischen Funktionsfähigkeit der Website</li>
+                <li>Optimierung unseres Internetauftritts</li>
+                <li>Erfüllung gesetzlicher Aufbewahrungspflichten</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-balance-scale"></i> 4. Rechtsgrundlage</h2>
+            <p>Die Verarbeitung Ihrer Daten erfolgt auf Grundlage folgender Rechtsgrundlagen:</p>
+            <ul>
+                <li><strong>Art. 6 Abs. 1 lit. a DSGVO:</strong> Ihre Einwilligung</li>
+                <li><strong>Art. 6 Abs. 1 lit. b DSGVO:</strong> Durchführung vorvertraglicher Maßnahmen (Bewerbungsverfahren)</li>
+                <li><strong>Art. 6 Abs. 1 lit. f DSGVO:</strong> Berechtigte Interessen (Website-Funktionalität)</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-clock"></i> 5. Speicherdauer</h2>
+            <p>Ihre Bewerbungsdaten werden für die Dauer des Bewerbungsverfahrens gespeichert. Nach Abschluss des Verfahrens werden die Daten spätestens nach 6 Monaten gelöscht, sofern Sie nicht einer längeren Speicherung zugestimmt haben oder ein Beschäftigungsverhältnis zustande kommt.</p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-user-shield"></i> 6. Ihre Rechte</h2>
+            <p>Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
+            <ul>
+                <li><strong>Auskunftsrecht (Art. 15 DSGVO):</strong> Sie können Auskunft über Ihre verarbeiteten Daten verlangen.</li>
+                <li><strong>Berichtigungsrecht (Art. 16 DSGVO):</strong> Sie können die Berichtigung unrichtiger Daten verlangen.</li>
+                <li><strong>Löschungsrecht (Art. 17 DSGVO):</strong> Sie können die Löschung Ihrer Daten verlangen.</li>
+                <li><strong>Einschränkung der Verarbeitung (Art. 18 DSGVO):</strong> Sie können die Einschränkung der Verarbeitung verlangen.</li>
+                <li><strong>Datenübertragbarkeit (Art. 20 DSGVO):</strong> Sie können Ihre Daten in einem gängigen Format erhalten.</li>
+                <li><strong>Widerspruchsrecht (Art. 21 DSGVO):</strong> Sie können der Verarbeitung widersprechen.</li>
+                <li><strong>Widerruf der Einwilligung:</strong> Sie können Ihre Einwilligung jederzeit widerrufen.</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-lock"></i> 7. Datensicherheit</h2>
+            <p>Wir verwenden innerhalb des Website-Besuchs das verbreitete SSL-Verfahren (Secure Socket Layer) in Verbindung mit der jeweils höchsten Verschlüsselungsstufe, die von Ihrem Browser unterstützt wird. Alle personenbezogenen Daten werden verschlüsselt übertragen.</p>
+            <div class="highlight-box">
+                <p><i class="fas fa-shield-alt"></i> Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre Daten gegen Manipulation, Verlust, Zerstörung oder Zugriff unberechtigter Personen zu schützen.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-cookie"></i> 8. Cookies</h2>
+            <p>Unsere Website verwendet Cookies. Dies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden. Einige Cookies sind technisch notwendig, andere dienen der Analyse des Nutzerverhaltens. Sie können die Cookie-Einstellungen in Ihrem Browser anpassen.</p>
+        </div>
+        
+        <div class="section">
+            <h2><i class="fas fa-share-alt"></i> 9. Weitergabe von Daten</h2>
+            <p>Eine Übermittlung Ihrer persönlichen Daten an Dritte findet grundsätzlich nicht statt, es sei denn:</p>
+            <ul>
+                <li>Sie haben Ihre ausdrückliche Einwilligung erteilt</li>
+                <li>Die Weitergabe ist zur Vertragserfüllung erforderlich</li>
+                <li>Es besteht eine gesetzliche Verpflichtung</li>
+            </ul>
+        </div>
+        
+        <div class="contact-box">
+            <h3><i class="fas fa-envelope"></i> Kontakt für Datenschutzanfragen</h3>
+            <p>Bei Fragen zum Datenschutz können Sie uns jederzeit kontaktieren:</p>
+            <p><strong>E-Mail:</strong> <a href="mailto:datenschutz@beelife-consulting.com">datenschutz@beelife-consulting.com</a></p>
+            <p><strong>Telefon:</strong> +90 531 765 41 66</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="simple-footer">
+        <p>&copy; 2024 Bee Life Consulting. Alle Rechte vorbehalten. | 
+        <a href="datenschutz.html">Datenschutz</a> | 
+        <a href="nutzungsbedingungen.html">Nutzungsbedingungen</a></p>
+    </footer>
+
+</body>
+</html>
+
