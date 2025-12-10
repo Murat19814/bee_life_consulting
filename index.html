@@ -1093,7 +1093,7 @@
         /* 3D Flip Card System */
         .reward-card-wrapper {
             perspective: 2000px;
-            height: 480px;
+            height: 550px;
         }
         
         .reward-card {
@@ -1118,13 +1118,13 @@
             height: 100%;
             backface-visibility: hidden;
             -webkit-backface-visibility: hidden;
-            padding: 50px 40px;
+            padding: 40px 35px 80px;
             text-align: center;
             background: rgba(255,255,255,0.03);
             border: 1px solid rgba(255,255,255,0.1);
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
         }
         
@@ -1199,12 +1199,12 @@
         }
         
         .reward-benefits li {
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px solid rgba(255,215,0,0.15);
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: rgba(255,255,255,0.9);
         }
         
@@ -1214,7 +1214,11 @@
         
         .reward-benefits li i {
             color: #FFD700;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+        }
+        
+        .reward-benefits {
+            margin-bottom: 20px;
         }
         
         /* Back side - Prize Gallery */
@@ -1267,30 +1271,35 @@
         
         .flip-hint {
             position: absolute;
-            bottom: 20px;
+            bottom: -60px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #FFD700;
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 25px;
-            background: rgba(255,215,0,0.15);
-            border: 1px solid rgba(255,215,0,0.4);
-            border-radius: 25px;
+            gap: 10px;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(13,43,42,0.95) 100%);
+            border: 2px solid rgba(255,215,0,0.5);
+            border-radius: 30px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            transition: all 0.4s ease;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 10;
         }
         
         .flip-hint:hover {
-            background: rgba(255,215,0,0.25);
-            transform: translateX(-50%) scale(1.05);
+            background: linear-gradient(135deg, rgba(255,215,0,0.3) 0%, rgba(13,43,42,0.98) 100%);
+            border-color: #FFD700;
+            transform: translateX(-50%) scale(1.08);
+            box-shadow: 0 8px 30px rgba(255,215,0,0.3);
         }
         
         .flip-hint i {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #FFD700;
             animation: rotateHint 2s ease-in-out infinite;
         }
@@ -1302,26 +1311,31 @@
         
         .flip-back-btn {
             position: absolute;
-            bottom: 20px;
+            bottom: -60px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #FFD700;
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 25px;
-            background: rgba(255,215,0,0.15);
-            border: 1px solid rgba(255,215,0,0.4);
-            border-radius: 25px;
+            gap: 10px;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.2) 0%, rgba(13,43,42,0.95) 100%);
+            border: 2px solid rgba(255,215,0,0.5);
+            border-radius: 30px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
+            transition: all 0.4s ease;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 10;
         }
         
         .flip-back-btn:hover {
-            background: rgba(255,215,0,0.25);
-            transform: translateX(-50%) scale(1.05);
+            background: linear-gradient(135deg, rgba(255,215,0,0.3) 0%, rgba(13,43,42,0.98) 100%);
+            border-color: #FFD700;
+            transform: translateX(-50%) scale(1.08);
+            box-shadow: 0 8px 30px rgba(255,215,0,0.3);
         }
         
         /* Jobs */
