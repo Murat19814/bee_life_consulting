@@ -2,9 +2,15 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Bee Life Consulting - İş Başvurusu. Kariyerinize bizimle başlayın!">
     <title>İş Başvurusu | Bee Life Consulting</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0d2b2a">
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -304,15 +310,76 @@
         
         @media (max-width: 768px) {
             .page-header h1 {
-                font-size: 2rem;
+                font-size: 1.6rem;
+            }
+            
+            .page-header {
+                padding: 120px 0 60px;
             }
             
             .application-form-container {
-                padding: 30px;
+                padding: 20px 15px;
+                margin: 0 10px;
             }
             
             .form-row {
                 grid-template-columns: 1fr;
+            }
+            
+            /* Mobile Navigation Menu */
+            .nav-links.mobile-active {
+                display: flex !important;
+                flex-direction: column;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(7, 29, 28, 0.98);
+                padding: 20px;
+                gap: 0;
+                z-index: 999;
+                border-top: 1px solid rgba(64, 145, 108, 0.3);
+            }
+            
+            .nav-links.mobile-active a {
+                padding: 15px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                font-size: 1.1rem;
+            }
+            
+            .nav-buttons.mobile-active {
+                display: flex !important;
+                flex-direction: column;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(7, 29, 28, 0.98);
+                padding: 15px 20px;
+                gap: 10px;
+                z-index: 999;
+                border-top: 1px solid rgba(64, 145, 108, 0.3);
+            }
+            
+            .nav-buttons.mobile-active .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+            
+            body.menu-open {
+                overflow: hidden;
             }
         }
     </style>
@@ -792,6 +859,39 @@
                 navbar.classList.add('scrolled');
             }
         });
+        
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navButtons = document.querySelector('.nav-buttons');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                navLinks.classList.toggle('mobile-active');
+                navButtons.classList.toggle('mobile-active');
+                document.body.classList.toggle('menu-open');
+            });
+            
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('mobile-active');
+                    navButtons.classList.remove('mobile-active');
+                    document.body.classList.remove('menu-open');
+                });
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && !navButtons.contains(e.target)) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('mobile-active');
+                    navButtons.classList.remove('mobile-active');
+                    document.body.classList.remove('menu-open');
+                }
+            });
+        }
     </script>
 
 </body>
