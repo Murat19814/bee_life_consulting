@@ -793,8 +793,8 @@
             </li>
             <li>
                 <a href="#" data-page="settings">
-                    <i class="fas fa-cog"></i>
-                    Ayarlar
+                    <i class="fas fa-bell"></i>
+                    Bildirimler
                 </a>
             </li>
             <li>
@@ -1994,13 +1994,45 @@
         </div>
 
         <div class="page-content" id="page-settings">
+            <!-- Bildirim Gönder -->
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="card-header">
+                    <h3><i class="fas fa-bell"></i> Bildirim Gönder</h3>
+                    <span style="color: var(--accent-mint); font-size: 0.9rem;">Tüm çalışanlara duyuru yap</span>
+                </div>
+                <div style="padding: 25px;">
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">Bildirim Başlığı</label>
+                        <input type="text" class="form-control" id="notificationTitle" placeholder="Örn: Önemli Duyuru" style="width: 100%;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 8px; font-weight: 500;">Bildirim Mesajı</label>
+                        <textarea class="form-control" id="notificationMessage" rows="4" placeholder="Duyuru içeriğini yazın..." style="width: 100%;"></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="sendNotification()" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Bildirim Gönder
+                    </button>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 8px;">
+                        <strong><i class="fas fa-info-circle" style="color: #1976d2;"></i> Bilgi:</strong>
+                        <p style="margin-top: 5px; color: #1565c0; font-size: 0.9rem;">
+                            Gönderilen bildirimler tüm çalışanların panelinde görünecektir.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gönderilen Bildirimler -->
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-cog"></i> Sistem Ayarları</h3>
+                    <h3><i class="fas fa-history"></i> Gönderilen Bildirimler</h3>
+                    <button class="btn btn-outline" onclick="clearAllNotifications()" style="font-size: 0.8rem;">
+                        <i class="fas fa-trash"></i> Tümünü Sil
+                    </button>
                 </div>
-                <p style="padding: 40px; text-align: center; color: var(--text-light);">
-                    Sistem ayarları burada yapılacak.
-                </p>
+                <div id="sentNotificationsList" style="padding: 20px;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
             </div>
         </div>
     </main>
@@ -2080,7 +2112,7 @@
             'performance': { title: 'Performans', subtitle: 'Çalışan performanslarını takip et.' },
             'rewards': { title: 'Ödül Yönetimi', subtitle: 'Ödülleri yönet ve dağıt.' },
             'branches': { title: 'Şubeler', subtitle: 'Şube bilgilerini yönet.' },
-            'settings': { title: 'Ayarlar', subtitle: 'Sistem ayarlarını yapılandır.' }
+            'settings': { title: 'Bildirimler', subtitle: 'Çalışanlara duyuru gönder.' }
         };
         
         menuLinks.forEach(link => {
@@ -2243,6 +2275,93 @@
             // 5. Select the best overall
             console.log('Yıl birincisi hesaplanıyor: Satış + RLS/WR + Disiplin + Devamsızlık');
         }
+        
+        // ═══════════════════════════════════════════════════════════════
+        // BİLDİRİM SİSTEMİ
+        // ═══════════════════════════════════════════════════════════════
+        function sendNotification() {
+            const title = document.getElementById('notificationTitle').value.trim();
+            const message = document.getElementById('notificationMessage').value.trim();
+            
+            if (!title || !message) {
+                alert('❌ Lütfen başlık ve mesaj alanlarını doldurun!');
+                return;
+            }
+            
+            // Get existing notifications
+            const notifications = JSON.parse(localStorage.getItem('blc_notifications') || '[]');
+            
+            // Create new notification
+            const newNotification = {
+                id: 'notif_' + Date.now(),
+                title: title,
+                message: message,
+                date: new Date().toLocaleString('tr-TR'),
+                sentBy: 'Admin'
+            };
+            
+            // Add to list
+            notifications.push(newNotification);
+            localStorage.setItem('blc_notifications', JSON.stringify(notifications));
+            
+            // Clear form
+            document.getElementById('notificationTitle').value = '';
+            document.getElementById('notificationMessage').value = '';
+            
+            // Refresh list
+            loadSentNotifications();
+            
+            alert('✅ Bildirim başarıyla gönderildi!\\n\\nTüm çalışanlar bu bildirimi görecek.');
+        }
+        
+        function loadSentNotifications() {
+            const notifications = JSON.parse(localStorage.getItem('blc_notifications') || '[]');
+            const container = document.getElementById('sentNotificationsList');
+            
+            if (notifications.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; color: var(--text-light); padding: 40px;">
+                        <i class="fas fa-bell-slash" style="font-size: 2rem; display: block; margin-bottom: 10px; opacity: 0.5;"></i>
+                        Henüz bildirim gönderilmedi.
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = notifications.slice().reverse().map(n => `
+                <div style="padding: 15px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                        <h4 style="margin-bottom: 5px;">${n.title}</h4>
+                        <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 5px;">${n.message}</p>
+                        <span style="font-size: 0.75rem; color: #999;"><i class="fas fa-clock"></i> ${n.date}</span>
+                    </div>
+                    <button onclick="deleteNotification('${n.id}')" style="background: #fee; border: none; color: #e74c3c; padding: 8px 12px; border-radius: 5px; cursor: pointer;">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+        
+        function deleteNotification(id) {
+            let notifications = JSON.parse(localStorage.getItem('blc_notifications') || '[]');
+            notifications = notifications.filter(n => n.id !== id);
+            localStorage.setItem('blc_notifications', JSON.stringify(notifications));
+            loadSentNotifications();
+        }
+        
+        function clearAllNotifications() {
+            if (confirm('Tüm bildirimleri silmek istediğinize emin misiniz?')) {
+                localStorage.removeItem('blc_notifications');
+                localStorage.removeItem('blc_read_notifications');
+                loadSentNotifications();
+                alert('✅ Tüm bildirimler silindi.');
+            }
+        }
+        
+        // Load notifications on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSentNotifications();
+        });
     </script>
 
 </body>

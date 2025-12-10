@@ -448,29 +448,41 @@
     <!-- ========== JAVASCRIPT ========== -->
     <script>
         // ═══════════════════════════════════════════════════════════════
-        // ÇALIŞAN VERİTABANI (Demo)
+        // ÇALIŞAN VERİTABANI (32 Çalışan)
         // ═══════════════════════════════════════════════════════════════
         const employees = [
             { id: 1, name: 'Abdulcelil Arslan', username: 'aarslan', password: 'arslan2024', branch: 'Yozgat', role: 'agent' },
-            { id: 2, name: 'Aslı Akdoğan', username: 'aakdogan', password: 'akdogan2024', branch: 'Yozgat', role: 'agent' },
-            { id: 3, name: 'Deniz Beyazkoç', username: 'dbeyazkoc', password: 'beyazkoc2024', branch: 'İzmit', role: 'agent' },
-            { id: 4, name: 'Eda Nur Bağır Hatipoğlu', username: 'ehatipoglu', password: 'hatipoglu2024', branch: 'İzmit', role: 'agent' },
-            { id: 5, name: 'Erdoğan Çuvoğlu', username: 'ecuvoglu', password: 'cuvoglu2024', branch: 'Eskişehir', role: 'agent' },
-            { id: 6, name: 'Gönül Dağ', username: 'gdag', password: 'dag2024', branch: 'Eskişehir', role: 'agent' },
-            { id: 7, name: 'Gülay Dikmen', username: 'gdikmen', password: 'dikmen2024', branch: 'Yozgat', role: 'agent' },
-            { id: 8, name: 'Hilal Coşkun', username: 'hcoskun', password: 'coskun2024', branch: 'Yozgat', role: 'agent' },
-            { id: 9, name: 'Leyla Doğan', username: 'ldogan', password: 'dogan2024', branch: 'İzmit', role: 'agent' },
-            { id: 10, name: 'Meral Taşdoğan', username: 'mtasdogan', password: 'tasdogan2024', branch: 'İzmit', role: 'agent' },
-            { id: 11, name: 'Nihat Kedi', username: 'nkedi', password: 'kedi2024', branch: 'Eskişehir', role: 'agent' },
-            { id: 12, name: 'Selma Delioğlu', username: 'sdelioglu', password: 'delioglu2024', branch: 'Eskişehir', role: 'agent' },
-            { id: 13, name: 'Şeyda Uludağ', username: 'suludag', password: 'uludag2024', branch: 'Yozgat', role: 'agent' },
-            { id: 14, name: 'Taner Turan', username: 'tturan', password: 'turan2024', branch: 'Balıkesir', role: 'agent' },
-            { id: 15, name: 'Tuncay Karaca', username: 'tkaraca', password: 'karaca2024', branch: 'Balıkesir', role: 'agent' },
-            { id: 16, name: 'Turgay Yumrukaya', username: 'tyumrukaya', password: 'yumrukaya2024', branch: 'Balıkesir', role: 'agent' },
-            { id: 17, name: 'Yücel Gökçe', username: 'ygokce', password: 'gokce2024', branch: 'Yozgat', role: 'agent' },
-            { id: 18, name: 'Yüksel Taşkın', username: 'ytaskin', password: 'taskin2024', branch: 'İzmit', role: 'agent' },
-            // Demo/Test kullanıcıları
-            { id: 99, name: 'Ahmet Kaya (Demo)', username: 'ahmet', password: 'ahmet123', branch: 'Eskişehir', role: 'agent' }
+            { id: 2, name: 'Ahmet Kömür', username: 'akomur', password: 'komur2024', branch: 'İzmit', role: 'agent' },
+            { id: 3, name: 'Ahsen Saliha Arslan', username: 'aharslan', password: 'aharslan2024', branch: 'İzmit', role: 'agent' },
+            { id: 4, name: 'Aslı Akdoğan', username: 'aakdogan', password: 'akdogan2024', branch: 'Yozgat', role: 'agent' },
+            { id: 5, name: 'Ayhan Yıldızdoğan', username: 'ayildizdogan', password: 'yildizdogan2024', branch: 'İzmit', role: 'agent' },
+            { id: 6, name: 'Burak Balkaya', username: 'bbalkaya', password: 'balkaya2024', branch: 'İzmit', role: 'agent' },
+            { id: 7, name: 'Deniz Beyazkoç', username: 'dbeyazkoc', password: 'beyazkoc2024', branch: 'Eskişehir', role: 'agent' },
+            { id: 8, name: 'Duygu Çeliköz', username: 'dcelikoz', password: 'celikoz2024', branch: 'İzmit', role: 'agent' },
+            { id: 9, name: 'Eda Nur Bağır Hatipoğlu', username: 'ehatipoglu', password: 'hatipoglu2024', branch: 'Yozgat', role: 'agent' },
+            { id: 10, name: 'Erdoğan Çuvoğlu', username: 'ecuvoglu', password: 'cuvoglu2024', branch: 'Eskişehir', role: 'agent' },
+            { id: 11, name: 'Fatma Karipçin', username: 'fkaripcin', password: 'karipcin2024', branch: 'İzmit', role: 'agent' },
+            { id: 12, name: 'Fidan Açıkgöz', username: 'facikgoz', password: 'acikgoz2024', branch: 'Yozgat', role: 'agent' },
+            { id: 13, name: 'Gönül Dağ', username: 'gdag', password: 'dag2024', branch: 'Eskişehir', role: 'agent' },
+            { id: 14, name: 'Gülay Dikmen', username: 'gdikmen', password: 'dikmen2024', branch: 'Eskişehir', role: 'agent' },
+            { id: 15, name: 'Gülayfer Altuntaş', username: 'galtuntas', password: 'altuntas2024', branch: 'İzmit', role: 'agent' },
+            { id: 16, name: 'Hatice Yıldız', username: 'hyildiz', password: 'yildiz2024', branch: 'Yozgat', role: 'agent' },
+            { id: 17, name: 'Hilal Coşkun', username: 'hcoskun', password: 'coskun2024', branch: 'İzmit', role: 'agent' },
+            { id: 18, name: 'Kader Taşpınar', username: 'ktaspinar', password: 'taspinar2024', branch: 'Eskişehir', role: 'agent' },
+            { id: 19, name: 'Leyla Doğan', username: 'ldogan', password: 'dogan2024', branch: 'İzmit', role: 'agent' },
+            { id: 20, name: 'Meral Taşdoğan', username: 'mtasdogan', password: 'tasdogan2024', branch: 'Antep', role: 'agent' },
+            { id: 21, name: 'Murat Atalay', username: 'matalay', password: 'atalay2024', branch: 'İzmit', role: 'agent' },
+            { id: 22, name: 'Nihat Kedi', username: 'nkedi', password: 'kedi2024', branch: 'Home Office', role: 'agent' },
+            { id: 23, name: 'Saliha Arslan Atalay', username: 'satalay', password: 'satalay2024', branch: 'Home Office', role: 'agent' },
+            { id: 24, name: 'Selma Delioğlu', username: 'sdelioglu', password: 'delioglu2024', branch: 'İzmir', role: 'agent' },
+            { id: 25, name: 'Seval Çeliköz', username: 'scelikoz', password: 'scelikoz2024', branch: 'Home Office', role: 'agent' },
+            { id: 26, name: 'Şeyda Uludağ', username: 'suludag', password: 'uludag2024', branch: 'İzmir', role: 'agent' },
+            { id: 27, name: 'Taner Turan', username: 'tturan', password: 'turan2024', branch: 'Balıkesir', role: 'agent' },
+            { id: 28, name: 'Tuncay Karaca', username: 'tkaraca', password: 'karaca2024', branch: 'İzmit', role: 'agent' },
+            { id: 29, name: 'Turgay Yumrukaya', username: 'tyumrukaya', password: 'yumrukaya2024', branch: 'Eskişehir', role: 'agent' },
+            { id: 30, name: 'Yeter Uzun', username: 'yuzun', password: 'uzun2024', branch: 'Yozgat', role: 'agent' },
+            { id: 31, name: 'Yücel Gökçe', username: 'ygokce', password: 'gokce2024', branch: 'Home Office', role: 'agent' },
+            { id: 32, name: 'Yüksel Taşkın', username: 'ytaskin', password: 'taskin2024', branch: 'İzmit', role: 'agent' }
         ];
         
         // Login Form Handler
