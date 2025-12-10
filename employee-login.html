@@ -36,6 +36,43 @@
             overflow: hidden;
         }
         
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+        }
+        
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 15px;
+            background: rgba(26,26,26,0.9);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 8px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(212,175,55,0.1);
+            border-color: rgba(212,175,55,0.5);
+            color: #fff;
+        }
+        
+        .lang-btn.active {
+            background: rgba(212,175,55,0.2);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
         /* Animated Background */
         .bg-animation {
             position: fixed;
@@ -433,6 +470,12 @@
 </head>
 <body>
 
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
+        <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
+    </div>
+
     <div class="bg-animation"></div>
     
     <!-- Left Side -->
@@ -445,8 +488,8 @@
             </div>
         </div>
         
-        <h1>Hoş Geldin<br><span>Ekibimize!</span></h1>
-        <p>Performansını takip et, satışlarını görüntüle ve ödüllerini kazan. Başarılı çalışanları ödüllendiriyoruz!</p>
+        <h1><span data-tr="Hoş Geldin" data-de="Willkommen">Hoş Geldin</span><br><span data-tr="Ekibimize!" data-de="in unserem Team!">Ekibimize!</span></h1>
+        <p data-tr="Performansını takip et, satışlarını görüntüle ve ödüllerini kazan. Başarılı çalışanları ödüllendiriyoruz!" data-de="Verfolgen Sie Ihre Leistung, sehen Sie Ihre Verkäufe ein und gewinnen Sie Ihre Prämien. Wir belohnen erfolgreiche Mitarbeiter!">Performansını takip et, satışlarını görüntüle ve ödüllerini kazan. Başarılı çalışanları ödüllendiriyoruz!</p>
         
         <div class="login-features">
             <div class="login-feature">
@@ -454,8 +497,8 @@
                     <i class="fas fa-chart-line"></i>
                 </div>
                 <div class="login-feature-text">
-                    <h4>Satış Takibi</h4>
-                    <p>Günlük ve aylık performansını izle</p>
+                    <h4 data-tr="Satış Takibi" data-de="Verkaufsverfolgung">Satış Takibi</h4>
+                    <p data-tr="Günlük ve aylık performansını izle" data-de="Tägliche und monatliche Leistung verfolgen">Günlük ve aylık performansını izle</p>
                 </div>
             </div>
             
@@ -464,8 +507,8 @@
                     <i class="fas fa-trophy"></i>
                 </div>
                 <div class="login-feature-text">
-                    <h4>Sıralama</h4>
-                    <p>Liderlik tablosunda yerinizi görün</p>
+                    <h4 data-tr="Sıralama" data-de="Rangliste">Sıralama</h4>
+                    <p data-tr="Liderlik tablosunda yerinizi görün" data-de="Sehen Sie Ihren Platz in der Bestenliste">Liderlik tablosunda yerinizi görün</p>
                 </div>
             </div>
             
@@ -474,8 +517,8 @@
                     <i class="fas fa-gift"></i>
                 </div>
                 <div class="login-feature-text">
-                    <h4>Hazine Sandığı</h4>
-                    <p>Birinci ol, ödüllerini aç!</p>
+                    <h4 data-tr="Hazine Sandığı" data-de="Schatztruhe">Hazine Sandığı</h4>
+                    <p data-tr="Birinci ol, ödüllerini aç!" data-de="Werde Erster, öffne deine Prämien!">Birinci ol, ödüllerini aç!</p>
                 </div>
             </div>
         </div>
@@ -491,23 +534,23 @@
                 <div class="icon">
                     <i class="fas fa-user-tie"></i>
                 </div>
-                <h2>Çalışan Girişi</h2>
-                <p>Hesabınıza giriş yapın</p>
+                <h2 data-tr="Çalışan Girişi" data-de="Mitarbeiter-Login">Çalışan Girişi</h2>
+                <p data-tr="Hesabınıza giriş yapın" data-de="Melden Sie sich bei Ihrem Konto an">Hesabınıza giriş yapın</p>
             </div>
             
             <form class="login-form" id="employeeLoginForm">
                 <div class="form-group">
-                    <label>Kullanıcı Adı</label>
+                    <label data-tr="Kullanıcı Adı" data-de="Benutzername">Kullanıcı Adı</label>
                     <div class="input-wrapper">
                         <div class="input-icon">
                             <i class="fas fa-user"></i>
                         </div>
-                        <input type="text" class="form-input" id="email" name="username" required placeholder="Kullanıcı adınız">
+                        <input type="text" class="form-input" id="email" name="username" required data-tr-placeholder="Kullanıcı adınız" data-de-placeholder="Ihr Benutzername" placeholder="Kullanıcı adınız">
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label>Şifre</label>
+                    <label data-tr="Şifre" data-de="Passwort">Şifre</label>
                     <div class="input-wrapper">
                         <div class="input-icon">
                             <i class="fas fa-lock"></i>
@@ -518,18 +561,18 @@
                 
                 <button type="submit" class="submit-btn">
                     <i class="fas fa-sign-in-alt"></i>
-                    Giriş Yap
+                    <span data-tr="Giriş Yap" data-de="Anmelden">Giriş Yap</span>
                 </button>
             </form>
             
             <div class="login-divider">
-                <span>veya</span>
+                <span data-tr="veya" data-de="oder">veya</span>
             </div>
             
             <div class="back-link">
                 <a href="index.html">
                     <i class="fas fa-arrow-left"></i>
-                    Ana Sayfaya Dön
+                    <span data-tr="Ana Sayfaya Dön" data-de="Zurück zur Startseite">Ana Sayfaya Dön</span>
                 </a>
             </div>
         </div>
@@ -537,6 +580,32 @@
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
+        // ═══════════════════════════════════════════════════════════════
+        // LANGUAGE SYSTEM
+        // ═══════════════════════════════════════════════════════════════
+        let currentLang = localStorage.getItem('blc_lang') || 'tr';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('blc_lang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            document.querySelectorAll('[data-tr]').forEach(el => {
+                el.textContent = lang === 'tr' ? el.dataset.tr : el.dataset.de;
+            });
+            
+            document.querySelectorAll('[data-tr-placeholder]').forEach(el => {
+                el.placeholder = lang === 'tr' ? el.dataset.trPlaceholder : el.dataset.dePlaceholder;
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+        });
+        
         // ═══════════════════════════════════════════════════════════════
         // ÇALIŞAN VERİTABANI (32 Çalışan)
         // ═══════════════════════════════════════════════════════════════
@@ -602,8 +671,12 @@
                         // Redirect to employee dashboard
                         window.location.href = 'employee-dashboard.html';
                     } else {
-                        alert('❌ Hatalı kullanıcı adı veya şifre!\n\nLütfen bilgilerinizi kontrol edin.');
-                        submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Giriş Yap';
+                        const msg = currentLang === 'tr' 
+                            ? '❌ Hatalı kullanıcı adı veya şifre!\n\nLütfen bilgilerinizi kontrol edin.'
+                            : '❌ Falscher Benutzername oder Passwort!\n\nBitte überprüfen Sie Ihre Daten.';
+                        alert(msg);
+                        const btnText = currentLang === 'tr' ? 'Giriş Yap' : 'Anmelden';
+                        submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> <span>' + btnText + '</span>';
                         submitBtn.disabled = false;
                     }
                 }, 1000);

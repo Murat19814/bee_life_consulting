@@ -337,11 +337,15 @@
             </ul>
             
             <div class="nav-buttons">
+                <div class="lang-switcher" style="display:flex;gap:8px;margin-right:15px;padding-right:15px;border-right:1px solid rgba(255,255,255,0.2);">
+                    <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr" style="display:flex;align-items:center;gap:6px;padding:8px 12px;background:transparent;border:1px solid rgba(255,255,255,0.3);border-radius:6px;color:rgba(255,255,255,0.7);font-size:0.75rem;font-weight:600;cursor:pointer;">🇹🇷 TR</button>
+                    <button class="lang-btn" onclick="setLanguage('de')" data-lang="de" style="display:flex;align-items:center;gap:6px;padding:8px 12px;background:transparent;border:1px solid rgba(255,255,255,0.3);border-radius:6px;color:rgba(255,255,255,0.7);font-size:0.75rem;font-weight:600;cursor:pointer;">🇩🇪 DE</button>
+                </div>
                 <a href="employee-login.html" class="btn btn-outline">
-                    <i class="fas fa-user"></i> Çalışan Girişi
+                    <i class="fas fa-user"></i> <span data-tr="Çalışan Girişi" data-de="Mitarbeiter-Login">Çalışan Girişi</span>
                 </a>
                 <a href="basvuru.html" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i> Başvur
+                    <i class="fas fa-paper-plane"></i> <span data-tr="Başvur" data-de="Bewerben">Başvur</span>
                 </a>
             </div>
             
@@ -709,6 +713,41 @@
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
+        // ═══════════════════════════════════════════════════════════════
+        // LANGUAGE SYSTEM
+        // ═══════════════════════════════════════════════════════════════
+        let currentLang = localStorage.getItem('blc_lang') || 'tr';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('blc_lang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+                if (btn.dataset.lang === lang) {
+                    btn.style.background = 'rgba(255,215,0,0.2)';
+                    btn.style.borderColor = '#FFD700';
+                    btn.style.color = '#FFD700';
+                } else {
+                    btn.style.background = 'transparent';
+                    btn.style.borderColor = 'rgba(255,255,255,0.3)';
+                    btn.style.color = 'rgba(255,255,255,0.7)';
+                }
+            });
+            
+            document.querySelectorAll('[data-tr]').forEach(el => {
+                el.textContent = lang === 'tr' ? el.dataset.tr : el.dataset.de;
+            });
+            
+            document.querySelectorAll('[data-tr-placeholder]').forEach(el => {
+                el.placeholder = lang === 'tr' ? el.dataset.trPlaceholder : el.dataset.dePlaceholder;
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+        });
+        
         // File Upload Display
         const cvFile = document.getElementById('cvFile');
         const fileName = document.getElementById('fileName');

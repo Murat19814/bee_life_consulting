@@ -185,6 +185,50 @@
         .nav-buttons {
             display: flex;
             gap: 15px;
+            align-items: center;
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            margin-right: 15px;
+            padding-right: 15px;
+            border-right: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.5);
+            color: #fff;
+        }
+        
+        .lang-btn.active {
+            background: rgba(255,215,0,0.2);
+            border-color: #FFD700;
+            color: #FFD700;
+        }
+        
+        .lang-btn img {
+            width: 20px;
+            height: 14px;
+            border-radius: 2px;
+            object-fit: cover;
         }
         
         .btn {
@@ -2722,16 +2766,24 @@
             </a>
             
             <ul class="nav-links">
-                <li><a href="#home">Ana Sayfa</a></li>
-                <li><a href="#about">Hakkımızda</a></li>
-                <li><a href="#services">Hizmetler</a></li>
-                <li><a href="#rewards">Kariyer</a></li>
-                <li><a href="#contact">İletişim</a></li>
+                <li><a href="#home" data-tr="Ana Sayfa" data-de="Startseite">Ana Sayfa</a></li>
+                <li><a href="#about" data-tr="Hakkımızda" data-de="Über Uns">Hakkımızda</a></li>
+                <li><a href="#services" data-tr="Hizmetler" data-de="Leistungen">Hizmetler</a></li>
+                <li><a href="#rewards" data-tr="Kariyer" data-de="Karriere">Kariyer</a></li>
+                <li><a href="#contact" data-tr="İletişim" data-de="Kontakt">İletişim</a></li>
             </ul>
             
             <div class="nav-buttons">
-                <a href="employee-login.html" class="btn btn-outline">Giriş</a>
-                <a href="basvuru.html" class="btn btn-primary">Başvuru</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">
+                        🇹🇷 TR
+                    </button>
+                    <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">
+                        🇩🇪 DE
+                    </button>
+                </div>
+                <a href="employee-login.html" class="btn btn-outline" data-tr="Giriş" data-de="Login">Giriş</a>
+                <a href="basvuru.html" class="btn btn-primary" data-tr="Başvuru" data-de="Bewerbung">Başvuru</a>
             </div>
             
             <div class="menu-toggle" id="menuToggle">
@@ -2748,8 +2800,8 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <div class="hero-badge">Bee Life Consulting</div>
-                    <h1>Profesyonel Çağrı Merkezi Çözümleri</h1>
-                    <p class="hero-tagline">
+                    <h1 data-tr="Profesyonel Çağrı Merkezi Çözümleri" data-de="Professionelle Callcenter-Lösungen">Profesyonel Çağrı Merkezi Çözümleri</h1>
+                    <p class="hero-tagline" data-tr="Türkiye ve Avrupa'da 5 yılı aşkın deneyimimizle, yenilikçi çağrı merkezi hizmetleri sunuyor ve çalışanlarımıza benzersiz kariyer fırsatları sağlıyoruz." data-de="Mit über 5 Jahren Erfahrung in der Türkei und Europa bieten wir innovative Callcenter-Dienstleistungen und einzigartige Karrieremöglichkeiten für unsere Mitarbeiter.">
                         Türkiye ve Avrupa'da 5 yılı aşkın deneyimimizle, yenilikçi çağrı merkezi 
                         hizmetleri sunuyor ve çalışanlarımıza benzersiz kariyer fırsatları sağlıyoruz.
                     </p>
@@ -2757,21 +2809,21 @@
                     <div class="hero-stats">
                         <div class="stat-item">
                             <div class="stat-number">5+</div>
-                            <div class="stat-label">Yıllık Deneyim</div>
+                            <div class="stat-label" data-tr="Yıllık Deneyim" data-de="Jahre Erfahrung">Yıllık Deneyim</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">40+</div>
-                            <div class="stat-label">Uzman Kadro</div>
+                            <div class="stat-label" data-tr="Uzman Kadro" data-de="Experten Team">Uzman Kadro</div>
                         </div>
                         <div class="stat-item">
                             <div class="stat-number">4</div>
-                            <div class="stat-label">Şube</div>
+                            <div class="stat-label" data-tr="Şube" data-de="Standorte">Şube</div>
                         </div>
                     </div>
                     
                     <div class="hero-buttons">
-                        <a href="basvuru.html" class="btn btn-primary">Kariyer Fırsatları</a>
-                        <a href="#services" class="btn btn-outline">Hizmetlerimiz</a>
+                        <a href="basvuru.html" class="btn btn-primary" data-tr="Kariyer Fırsatları" data-de="Karrieremöglichkeiten">Kariyer Fırsatları</a>
+                        <a href="#services" class="btn btn-outline" data-tr="Hizmetlerimiz" data-de="Unsere Leistungen">Hizmetlerimiz</a>
                     </div>
                 </div>
                 
@@ -2794,13 +2846,13 @@
                         <div class="floating-card card-1">
                             <div class="card-icon"><i class="fas fa-crown"></i></div>
                             <div class="card-value">Premium</div>
-                            <div class="card-label">Ödül Sistemi</div>
+                            <div class="card-label" data-tr="Ödül Sistemi" data-de="Belohnungssystem">Ödül Sistemi</div>
                         </div>
                         
                         <div class="floating-card card-2">
                             <div class="card-icon"><i class="fas fa-coins"></i></div>
-                            <div class="card-value">Yüksek</div>
-                            <div class="card-label">Kazanç İmkanı</div>
+                            <div class="card-value" data-tr="Yüksek" data-de="Hoch">Yüksek</div>
+                            <div class="card-label" data-tr="Kazanç İmkanı" data-de="Verdienstmöglichkeit">Kazanç İmkanı</div>
                         </div>
                     </div>
                 </div>
@@ -2808,7 +2860,7 @@
         </div>
         
         <div class="scroll-indicator">
-            <span>Keşfet</span>
+            <span data-tr="Keşfet" data-de="Entdecken">Keşfet</span>
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
@@ -2906,37 +2958,37 @@
     <section class="section section-dark">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Lokasyonlar</span>
-                <h2 class="section-title">Şubelerimiz</h2>
-                <p class="section-subtitle">Türkiye genelinde yaygın şube ağımızla size en yakın lokasyonda hizmet veriyoruz.</p>
+                <span class="section-badge" data-tr="Lokasyonlar" data-de="Standorte">Lokasyonlar</span>
+                <h2 class="section-title" data-tr="Şubelerimiz" data-de="Unsere Niederlassungen">Şubelerimiz</h2>
+                <p class="section-subtitle" data-tr="Türkiye genelinde yaygın şube ağımızla size en yakın lokasyonda hizmet veriyoruz." data-de="Mit unserem umfangreichen Filialnetz in der ganzen Türkei sind wir immer in Ihrer Nähe.">Türkiye genelinde yaygın şube ağımızla size en yakın lokasyonda hizmet veriyoruz.</p>
             </div>
             
             <div class="branches-grid">
                 <div class="branch-card">
                     <div class="branch-icon"><i class="fas fa-building"></i></div>
                     <h4>Yozgat</h4>
-                    <p>Merkez Ofis</p>
+                    <p data-tr="Merkez Ofis" data-de="Hauptbüro">Merkez Ofis</p>
                 </div>
                 <div class="branch-card">
                     <div class="branch-icon"><i class="fas fa-building"></i></div>
                     <h4>İzmit</h4>
-                    <p>Kocaeli Şubesi</p>
+                    <p data-tr="Kocaeli Şubesi" data-de="Niederlassung Kocaeli">Kocaeli Şubesi</p>
                 </div>
                 <div class="branch-card">
                     <div class="branch-icon"><i class="fas fa-building"></i></div>
                     <h4>Eskişehir</h4>
-                    <p>Eskişehir Şubesi</p>
+                    <p data-tr="Eskişehir Şubesi" data-de="Niederlassung Eskişehir">Eskişehir Şubesi</p>
                 </div>
                 <div class="branch-card coming-soon">
                     <div class="branch-icon"><i class="fas fa-rocket"></i></div>
                     <h4>Balıkesir</h4>
-                    <p>Yeni Lokasyon</p>
-                    <span class="coming-badge">Yakında</span>
+                    <p data-tr="Yeni Lokasyon" data-de="Neuer Standort">Yeni Lokasyon</p>
+                    <span class="coming-badge" data-tr="Yakında" data-de="Demnächst">Yakında</span>
                 </div>
                 <div class="branch-card">
                     <div class="branch-icon"><i class="fas fa-globe-europe"></i></div>
-                    <h4>Almanya</h4>
-                    <p>Avrupa Operasyonları</p>
+                    <h4 data-tr="Almanya" data-de="Deutschland">Almanya</h4>
+                    <p data-tr="Avrupa Operasyonları" data-de="Europa-Operationen">Avrupa Operasyonları</p>
                 </div>
             </div>
         </div>
@@ -2946,45 +2998,45 @@
     <section class="section section-dark" id="services">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge">Hizmetler</span>
-                <h2 class="section-title">Çözümlerimiz</h2>
-                <p class="section-subtitle">Profesyonel ekibimizle kapsamlı çağrı merkezi hizmetleri sunuyoruz.</p>
+                <span class="section-badge" data-tr="Hizmetler" data-de="Leistungen">Hizmetler</span>
+                <h2 class="section-title" data-tr="Çözümlerimiz" data-de="Unsere Lösungen">Çözümlerimiz</h2>
+                <p class="section-subtitle" data-tr="Profesyonel ekibimizle kapsamlı çağrı merkezi hizmetleri sunuyoruz." data-de="Mit unserem professionellen Team bieten wir umfassende Callcenter-Dienste.">Profesyonel ekibimizle kapsamlı çağrı merkezi hizmetleri sunuyoruz.</p>
             </div>
             
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-phone-volume"></i></div>
-                    <h3>Outbound Satış</h3>
-                    <p>Aktif satış ekibimizle potansiyel müşterilere ulaşıyor, işletmenizin büyümesine katkı sağlıyoruz.</p>
+                    <h3 data-tr="Outbound Satış" data-de="Outbound-Verkauf">Outbound Satış</h3>
+                    <p data-tr="Aktif satış ekibimizle potansiyel müşterilere ulaşıyor, işletmenizin büyümesine katkı sağlıyoruz." data-de="Mit unserem aktiven Verkaufsteam erreichen wir potenzielle Kunden und tragen zum Wachstum Ihres Unternehmens bei.">Aktif satış ekibimizle potansiyel müşterilere ulaşıyor, işletmenizin büyümesine katkı sağlıyoruz.</p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Performansa Dayalı Kazanç</li>
-                        <li><i class="fas fa-check"></i> Profesyonel Eğitim</li>
-                        <li><i class="fas fa-check"></i> Kariyer Fırsatları</li>
-                        <li><i class="fas fa-check"></i> Motivasyon Programları</li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Performansa Dayalı Kazanç" data-de="Leistungsbasiertes Einkommen">Performansa Dayalı Kazanç</span></li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Profesyonel Eğitim" data-de="Professionelle Schulung">Profesyonel Eğitim</span></li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Kariyer Fırsatları" data-de="Karrieremöglichkeiten">Kariyer Fırsatları</span></li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Motivasyon Programları" data-de="Motivationsprogramme">Motivasyon Programları</span></li>
                     </ul>
                 </div>
                 
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-headset"></i></div>
-                    <h3>Inbound Hotline</h3>
-                    <p>Müşteri çağrılarını profesyonelce karşılıyor, yüksek memnuniyet oranları sağlıyoruz.</p>
+                    <h3 data-tr="Inbound Hotline" data-de="Inbound-Hotline">Inbound Hotline</h3>
+                    <p data-tr="Müşteri çağrılarını profesyonelce karşılıyor, yüksek memnuniyet oranları sağlıyoruz." data-de="Wir nehmen Kundenanrufe professionell entgegen und sorgen für hohe Zufriedenheitsraten.">Müşteri çağrılarını profesyonelce karşılıyor, yüksek memnuniyet oranları sağlıyoruz.</p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Sabit Gelir Garantisi</li>
-                        <li><i class="fas fa-check"></i> Uzman Destek Ekibi</li>
-                        <li><i class="fas fa-check"></i> Esnek Çalışma</li>
-                        <li><i class="fas fa-check"></i> Sürekli Gelişim</li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Sabit Gelir Garantisi" data-de="Garantiertes Festgehalt">Sabit Gelir Garantisi</span></li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Uzman Destek Ekibi" data-de="Experten-Support-Team">Uzman Destek Ekibi</span></li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Esnek Çalışma" data-de="Flexible Arbeitszeiten">Esnek Çalışma</span></li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Sürekli Gelişim" data-de="Kontinuierliche Entwicklung">Sürekli Gelişim</span></li>
                     </ul>
                 </div>
                 
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Kalite Yönetimi</h3>
-                    <p>Tüm süreçleri kalite standartlarına göre yönetiyor, sürekli iyileştirme sağlıyoruz.</p>
+                    <h3 data-tr="Kalite Yönetimi" data-de="Qualitätsmanagement">Kalite Yönetimi</h3>
+                    <p data-tr="Tüm süreçleri kalite standartlarına göre yönetiyor, sürekli iyileştirme sağlıyoruz." data-de="Wir managen alle Prozesse nach Qualitätsstandards und sorgen für kontinuierliche Verbesserung.">Tüm süreçleri kalite standartlarına göre yönetiyor, sürekli iyileştirme sağlıyoruz.</p>
                     <ul class="service-features">
-                        <li><i class="fas fa-check"></i> Detaylı Analiz</li>
-                        <li><i class="fas fa-check"></i> Performans Takibi</li>
-                        <li><i class="fas fa-check"></i> Geri Bildirim</li>
-                        <li><i class="fas fa-check"></i> Süreç Optimizasyonu</li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Detaylı Analiz" data-de="Detaillierte Analyse">Detaylı Analiz</span></li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Performans Takibi" data-de="Leistungsverfolgung">Performans Takibi</span></li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Geri Bildirim" data-de="Feedback">Geri Bildirim</span></li>
+                        <li><i class="fas fa-check"></i> <span data-tr="Süreç Optimizasyonu" data-de="Prozessoptimierung">Süreç Optimizasyonu</span></li>
                     </ul>
                 </div>
             </div>
@@ -2999,15 +3051,15 @@
                 <div class="cta-content">
                     <div class="cta-badge">
                         <i class="fas fa-home"></i>
-                        Home Office İmkanı
+                        <span data-tr="Home Office İmkanı" data-de="Home Office Möglichkeit">Home Office İmkanı</span>
                     </div>
                     
                     <h2 class="cta-title">
-                        Evinden Çalış,
-                        <span>Kazancını Katla!</span>
+                        <span data-tr="Evinden Çalış," data-de="Von zu Hause arbeiten,">Evinden Çalış,</span>
+                        <span data-tr="Kazancını Katla!" data-de="Verdienst verdoppeln!">Kazancını Katla!</span>
                     </h2>
                     
-                    <p class="cta-description">
+                    <p class="cta-description" data-tr="Outbound satış ekibimize katıl, Türkiye'nin her yerinden evinden çalışarak yüksek kazanç elde et. Tüm başvurular pozitif değerlendirilmektedir!" data-de="Treten Sie unserem Outbound-Verkaufsteam bei, arbeiten Sie von zu Hause aus überall in der Türkei und erzielen Sie hohe Einnahmen. Alle Bewerbungen werden positiv bewertet!">
                         Outbound satış ekibimize katıl, Türkiye'nin her yerinden evinden çalışarak 
                         yüksek kazanç elde et. Tüm başvurular pozitif değerlendirilmektedir!
                     </p>
@@ -3017,36 +3069,36 @@
                             <div class="cta-feature-icon">
                                 <i class="fas fa-laptop-house"></i>
                             </div>
-                            <span class="cta-feature-text">Home Office ile esnek çalışma imkanı</span>
+                            <span class="cta-feature-text" data-tr="Home Office ile esnek çalışma imkanı" data-de="Flexible Arbeit mit Home Office">Home Office ile esnek çalışma imkanı</span>
                         </div>
                         <div class="cta-feature">
                             <div class="cta-feature-icon">
                                 <i class="fas fa-map-marked-alt"></i>
                             </div>
-                            <span class="cta-feature-text">Tüm Türkiye'den başvuru kabul edilir</span>
+                            <span class="cta-feature-text" data-tr="Tüm Türkiye'den başvuru kabul edilir" data-de="Bewerbungen aus der ganzen Türkei werden akzeptiert">Tüm Türkiye'den başvuru kabul edilir</span>
                         </div>
                         <div class="cta-feature">
                             <div class="cta-feature-icon">
                                 <i class="fas fa-euro-sign"></i>
                             </div>
-                            <span class="cta-feature-text">Her QC OK satışta 35€ prim kazanç</span>
+                            <span class="cta-feature-text" data-tr="Her QC OK satışta 35€ prim kazanç" data-de="35€ Prämie pro QC OK Verkauf">Her QC OK satışta 35€ prim kazanç</span>
                         </div>
                         <div class="cta-feature">
                             <div class="cta-feature-icon">
                                 <i class="fas fa-gift"></i>
                             </div>
-                            <span class="cta-feature-text">Zengin ödül ve hediye programı</span>
+                            <span class="cta-feature-text" data-tr="Zengin ödül ve hediye programı" data-de="Umfangreiches Prämien- und Geschenkprogramm">Zengin ödül ve hediye programı</span>
                         </div>
                     </div>
                     
                     <div class="cta-buttons">
                         <a href="basvuru.html" class="cta-btn-primary">
                             <i class="fas fa-paper-plane"></i>
-                            Hemen Başvur
+                            <span data-tr="Hemen Başvur" data-de="Jetzt Bewerben">Hemen Başvur</span>
                         </a>
                         <a href="#contact" class="cta-btn-secondary">
                             <i class="fas fa-info-circle"></i>
-                            Detaylı Bilgi
+                            <span data-tr="Detaylı Bilgi" data-de="Mehr Info">Detaylı Bilgi</span>
                         </a>
                     </div>
                 </div>
@@ -3058,34 +3110,34 @@
                             <div class="cta-card-icon">
                                 <i class="fas fa-rocket"></i>
                             </div>
-                            <h3 class="cta-card-title">Kariyerine Hız Kat!</h3>
-                            <p class="cta-card-subtitle">Bee Life ailesine katıl, geleceğini şekillendir</p>
+                            <h3 class="cta-card-title" data-tr="Kariyerine Hız Kat!" data-de="Beschleunige deine Karriere!">Kariyerine Hız Kat!</h3>
+                            <p class="cta-card-subtitle" data-tr="Bee Life ailesine katıl, geleceğini şekillendir" data-de="Werde Teil der Bee Life Familie, gestalte deine Zukunft">Bee Life ailesine katıl, geleceğini şekillendir</p>
                         </div>
                         
                         <div class="cta-stats">
                             <div class="cta-stat">
                                 <div class="cta-stat-number">35€</div>
-                                <div class="cta-stat-label">Satış Başı</div>
+                                <div class="cta-stat-label" data-tr="Satış Başı" data-de="Pro Verkauf">Satış Başı</div>
                             </div>
                             <div class="cta-stat">
                                 <div class="cta-stat-number">40+</div>
-                                <div class="cta-stat-label">Mutlu Ekip</div>
+                                <div class="cta-stat-label" data-tr="Mutlu Ekip" data-de="Zufriedenes Team">Mutlu Ekip</div>
                             </div>
                             <div class="cta-stat">
                                 <div class="cta-stat-number">5+</div>
-                                <div class="cta-stat-label">Yıl Deneyim</div>
+                                <div class="cta-stat-label" data-tr="Yıl Deneyim" data-de="Jahre Erfahrung">Yıl Deneyim</div>
                             </div>
                         </div>
                         
                         <div class="cta-quote">
-                            <p>"Şimdiden başvurunu yap, yerini Bee Life'da ayırt ve kazancını katla!"</p>
+                            <p data-tr="&quot;Şimdiden başvurunu yap, yerini Bee Life'da ayırt ve kazancını katla!&quot;" data-de="&quot;Bewirb dich jetzt, sichere deinen Platz bei Bee Life und verdopple dein Einkommen!&quot;">"Şimdiden başvurunu yap, yerini Bee Life'da ayırt ve kazancını katla!"</p>
                             <span>— Bee Life Consulting</span>
                         </div>
                         
                         <div style="text-align: center;">
                             <div class="turkey-badge">
                                 <i class="fas fa-map-marker-alt"></i>
-                                Tüm Türkiye'den Başvuru Kabul
+                                <span data-tr="Tüm Türkiye'den Başvuru Kabul" data-de="Bewerbungen aus der ganzen Türkei">Tüm Türkiye'den Başvuru Kabul</span>
                             </div>
                         </div>
                     </div>
@@ -3530,7 +3582,7 @@
             </div>
             
             <div class="qc-ok-content">
-                <span class="qc-ok-label">Her Satışta</span>
+                <span class="qc-ok-label" data-tr="Her Satışta" data-de="Pro Verkauf">Her Satışta</span>
                 <div class="qc-ok-price">
                     <span class="qc-ok-amount">35</span>
                     <span class="qc-ok-currency">€</span>
@@ -3541,7 +3593,7 @@
             
             <div class="qc-ok-badge">
                 <span class="qc-ok-text">QC OK</span>
-                <span class="qc-ok-subtitle">Satış Primi</span>
+                <span class="qc-ok-subtitle" data-tr="Satış Primi" data-de="Verkaufsprämie">Satış Primi</span>
             </div>
         </div>
     </div>
@@ -3558,7 +3610,7 @@
             </div>
             
             <div class="qc-ok-content">
-                <span class="qc-ok-label">Her Satışta</span>
+                <span class="qc-ok-label" data-tr="Her Satışta" data-de="Pro Verkauf">Her Satışta</span>
                 <div class="qc-ok-price">
                     <span class="qc-ok-amount">35</span>
                     <span class="qc-ok-currency">€</span>
@@ -3569,7 +3621,7 @@
             
             <div class="qc-ok-badge">
                 <span class="qc-ok-text">QC OK</span>
-                <span class="qc-ok-subtitle">Satış Primi</span>
+                <span class="qc-ok-subtitle" data-tr="Satış Primi" data-de="Verkaufsprämie">Satış Primi</span>
             </div>
         </div>
     </div>
@@ -3650,6 +3702,257 @@
     </footer>
 
     <script>
+        // ═══════════════════════════════════════════════════════════════
+        // LANGUAGE SYSTEM - TR / DE
+        // ═══════════════════════════════════════════════════════════════
+        const translations = {
+            // Navigation
+            'Ana Sayfa': 'Startseite',
+            'Hakkımızda': 'Über Uns',
+            'Hizmetler': 'Leistungen',
+            'Kariyer': 'Karriere',
+            'İletişim': 'Kontakt',
+            'Giriş': 'Login',
+            'Başvuru': 'Bewerbung',
+            
+            // Hero Section
+            'Bee Life Consulting': 'Bee Life Consulting',
+            'Profesyonel Çağrı Merkezi Çözümleri': 'Professionelle Callcenter-Lösungen',
+            'Türkiye ve Avrupa\'da 5 yılı aşkın deneyimimizle, yenilikçi çağrı merkezi hizmetleri sunuyor ve çalışanlarımıza benzersiz kariyer fırsatları sağlıyoruz.': 'Mit über 5 Jahren Erfahrung in der Türkei und Europa bieten wir innovative Callcenter-Dienstleistungen und einzigartige Karrieremöglichkeiten für unsere Mitarbeiter.',
+            'Yıllık Deneyim': 'Jahre Erfahrung',
+            'Uzman Kadro': 'Experten Team',
+            'Şube': 'Standorte',
+            'Kariyer Fırsatları': 'Karrieremöglichkeiten',
+            'Hizmetlerimiz': 'Unsere Leistungen',
+            'Premium': 'Premium',
+            'Ödül Sistemi': 'Belohnungssystem',
+            'Yüksek': 'Hoch',
+            'Kazanç İmkanı': 'Verdienstmöglichkeit',
+            'Her Satışta': 'Pro Verkauf',
+            'QC OK': 'QC OK',
+            'Satış Primi': 'Verkaufsprämie',
+            'Keşfet': 'Entdecken',
+            
+            // About Section
+            '2019 yılından bu yana Türkiye ve Avrupa\'da profesyonel çağrı merkezi hizmetleri sunmaktayız. Yozgat, İzmit, Eskişehir ve yakında Balıkesir şubelerimizle sürekli büyüyen bir yapıya sahibiz.': 'Seit 2019 bieten wir professionelle Callcenter-Dienstleistungen in der Türkei und Europa an. Mit unseren Standorten in Yozgat, İzmit, Eskişehir und bald Balıkesir wachsen wir stetig.',
+            '40\'ın üzerinde deneyimli personelimizle inbound ve outbound hizmetleri sunuyor, çalışan memnuniyetini ön planda tutarak sektörde fark yaratıyoruz.': 'Mit über 40 erfahrenen Mitarbeitern bieten wir Inbound- und Outbound-Dienste an und setzen uns durch Mitarbeiterzufriedenheit in der Branche ab.',
+            'Uluslararası Projeler': 'Internationale Projekte',
+            'Rekabetçi Kazanç': 'Wettbewerbsfähiges Einkommen',
+            'Kariyer Gelişimi': 'Karriereentwicklung',
+            'Ödül Programı': 'Belohnungsprogramm',
+            'Yıllık Tecrübe': 'Jahre Erfahrung',
+            
+            // Branches
+            'Lokasyonlar': 'Standorte',
+            'Şubelerimiz': 'Unsere Niederlassungen',
+            'Türkiye genelinde yaygın şube ağımızla size en yakın lokasyonda hizmet veriyoruz.': 'Mit unserem umfangreichen Filialnetz in der ganzen Türkei sind wir immer in Ihrer Nähe.',
+            'Merkez Ofis': 'Hauptbüro',
+            'Kocaeli Şubesi': 'Niederlassung Kocaeli',
+            'Eskişehir Şubesi': 'Niederlassung Eskişehir',
+            'Yeni Lokasyon': 'Neuer Standort',
+            'Yakında': 'Demnächst',
+            'Avrupa Operasyonları': 'Europa-Operationen',
+            'Almanya': 'Deutschland',
+            
+            // Services
+            'Çözümlerimiz': 'Unsere Lösungen',
+            'Profesyonel ekibimizle kapsamlı çağrı merkezi hizmetleri sunuyoruz.': 'Mit unserem professionellen Team bieten wir umfassende Callcenter-Dienste.',
+            'Outbound Satış': 'Outbound-Verkauf',
+            'Aktif satış ekibimizle potansiyel müşterilere ulaşıyor, işletmenizin büyümesine katkı sağlıyoruz.': 'Mit unserem aktiven Verkaufsteam erreichen wir potenzielle Kunden und tragen zum Wachstum Ihres Unternehmens bei.',
+            'Performansa Dayalı Kazanç': 'Leistungsbasiertes Einkommen',
+            'Profesyonel Eğitim': 'Professionelle Schulung',
+            'Kariyer Fırsatları': 'Karrieremöglichkeiten',
+            'Motivasyon Programları': 'Motivationsprogramme',
+            'Inbound Hotline': 'Inbound-Hotline',
+            'Müşteri çağrılarını profesyonelce karşılıyor, yüksek memnuniyet oranları sağlıyoruz.': 'Wir nehmen Kundenanrufe professionell entgegen und sorgen für hohe Zufriedenheitsraten.',
+            'Sabit Gelir Garantisi': 'Garantiertes Festgehalt',
+            'Uzman Destek Ekibi': 'Experten-Support-Team',
+            'Esnek Çalışma': 'Flexible Arbeitszeiten',
+            'Sürekli Gelişim': 'Kontinuierliche Entwicklung',
+            'Kalite Yönetimi': 'Qualitätsmanagement',
+            'Tüm süreçleri kalite standartlarına göre yönetiyor, sürekli iyileştirme sağlıyoruz.': 'Wir managen alle Prozesse nach Qualitätsstandards und sorgen für kontinuierliche Verbesserung.',
+            'Detaylı Analiz': 'Detaillierte Analyse',
+            'Performans Takibi': 'Leistungsverfolgung',
+            'Geri Bildirim': 'Feedback',
+            'Süreç Optimizasyonu': 'Prozessoptimierung',
+            
+            // Home Office CTA
+            'Home Office İmkanı': 'Home Office Möglichkeit',
+            'Evinden Çalış,': 'Von zu Hause arbeiten,',
+            'Kazancını Katla!': 'Verdienst verdoppeln!',
+            'Outbound satış ekibimize katıl, Türkiye\'nin her yerinden evinden çalışarak yüksek kazanç elde et. Tüm başvurular pozitif değerlendirilmektedir!': 'Treten Sie unserem Outbound-Verkaufsteam bei, arbeiten Sie von zu Hause aus überall in der Türkei und erzielen Sie hohe Einnahmen. Alle Bewerbungen werden positiv bewertet!',
+            'Home Office ile esnek çalışma imkanı': 'Flexible Arbeit mit Home Office',
+            'Tüm Türkiye\'den başvuru kabul edilir': 'Bewerbungen aus der ganzen Türkei werden akzeptiert',
+            'Her QC OK satışta 35€ prim kazanç': '35€ Prämie pro QC OK Verkauf',
+            'Zengin ödül ve hediye programı': 'Umfangreiches Prämien- und Geschenkprogramm',
+            'Hemen Başvur': 'Jetzt Bewerben',
+            'Detaylı Bilgi': 'Mehr Info',
+            'Kariyerine Hız Kat!': 'Beschleunige deine Karriere!',
+            'Bee Life ailesine katıl, geleceğini şekillendir': 'Werde Teil der Bee Life Familie, gestalte deine Zukunft',
+            'Satış Başı': 'Pro Verkauf',
+            'Mutlu Ekip': 'Zufriedenes Team',
+            'Yıl Deneyim': 'Jahre Erfahrung',
+            '"Şimdiden başvurunu yap, yerini Bee Life\'da ayırt ve kazancını katla!"': '"Bewirb dich jetzt, sichere deinen Platz bei Bee Life und verdopple dein Einkommen!"',
+            '— Bee Life Consulting': '— Bee Life Consulting',
+            'Tüm Türkiye\'den Başvuru Kabul': 'Bewerbungen aus der ganzen Türkei',
+            
+            // Rewards Section
+            'Başarıyı Ödüllendiriyoruz': 'Wir belohnen Erfolg',
+            'Çalışanlarımızın başarılarını takdir ediyor ve ödüllendiriyoruz. Performansa dayalı kapsamlı ödül programımız ile motivasyonu en üst seviyede tutuyoruz.': 'Wir schätzen und belohnen die Erfolge unserer Mitarbeiter. Mit unserem umfassenden leistungsbasierten Belohnungsprogramm halten wir die Motivation auf höchstem Niveau.',
+            'Aylık': 'Monatlich',
+            'Ay Yıldızı': 'Stern des Monats',
+            'Aylık Performans Ödülü': 'Monatliche Leistungsprämie',
+            'Nakit Ödül': 'Bargeldprämie',
+            'Hediye Çeki': 'Geschenkgutschein',
+            'Özel Sürprizler': 'Besondere Überraschungen',
+            'Takdir Belgesi': 'Anerkennungsurkunde',
+            'Hediyeleri Gör': 'Geschenke ansehen',
+            '🎁 Aylık Ödüller': '🎁 Monatliche Prämien',
+            'Seni bekleyen hediyeler': 'Geschenke, die auf dich warten',
+            'Kulaklık': 'Kopfhörer',
+            'Sürpriz Hediye': 'Überraschungsgeschenk',
+            'Geri Dön': 'Zurück',
+            'Çeyreklik': 'Vierteljährlich',
+            'Çeyrek Şampiyonu': 'Quartalschampion',
+            '3 Aylık Performans Ödülü': '3-Monats-Leistungsprämie',
+            'Yüksek Nakit Ödül': 'Hohe Bargeldprämie',
+            'Teknoloji Ürünleri': 'Technologieprodukte',
+            'Alışveriş Çekleri': 'Einkaufsgutscheine',
+            'VIP Deneyimler': 'VIP-Erlebnisse',
+            '🏆 Çeyreklik Ödüller': '🏆 Vierteljährliche Prämien',
+            'Premium hediye seçenekleri': 'Premium Geschenkoptionen',
+            'Tablet': 'Tablet',
+            'Laptop': 'Laptop',
+            'Akıllı Telefon': 'Smartphone',
+            'Yıllık': 'Jährlich',
+            'Yılın Yıldızı': 'Stern des Jahres',
+            'Yıllık Büyük Ödül': 'Jährlicher Hauptpreis',
+            'Büyük Nakit Ödül': 'Große Bargeldprämie',
+            'Tatil Paketi': 'Urlaubspaket',
+            'Premium Hediyeler': 'Premium-Geschenke',
+            'Özel Ayrıcalıklar': 'Exklusive Vorteile',
+            '👑 Yıllık Büyük Ödüller': '👑 Jährliche Hauptpreise',
+            'Hayallerini gerçekleştir': 'Verwirkliche deine Träume',
+            'PS5 / Xbox': 'PS5 / Xbox',
+            'Spa & Wellness': 'Spa & Wellness',
+            'Bungalov Tatili': 'Bungalow-Urlaub',
+            
+            // Careers Section
+            'Açık Pozisyonlar': 'Offene Stellen',
+            'Dinamik ekibimize katılın, kariyerinizi bizimle şekillendirin.': 'Treten Sie unserem dynamischen Team bei und gestalten Sie Ihre Karriere mit uns.',
+            'Tam Zamanlı': 'Vollzeit',
+            'Outbound Satış Temsilcisi': 'Outbound-Verkaufsberater',
+            'Uluslararası projelerimizde aktif satış yapacak, dinamik ve iletişim becerileri yüksek ekip arkadaşları arıyoruz.': 'Wir suchen dynamische Teammitglieder mit starken Kommunikationsfähigkeiten für aktiven Verkauf in unseren internationalen Projekten.',
+            'Tüm Şubeler': 'Alle Standorte',
+            'Performansa Dayalı Yüksek Kazanç': 'Leistungsbasiertes hohes Einkommen',
+            'Başvur': 'Bewerben',
+            'Inbound Müşteri Temsilcisi': 'Inbound-Kundenberater',
+            'Müşteri çağrılarını profesyonelce karşılayacak, çözüm odaklı ekip arkadaşları arıyoruz.': 'Wir suchen lösungsorientierte Teammitglieder, die Kundenanrufe professionell bearbeiten.',
+            'Sabit Maaş + Prim': 'Festgehalt + Provision',
+            
+            // Partner Section
+            'İş Ortaklığı Fırsatı': 'Partnerschaftsmöglichkeit',
+            'Tüm': 'Für alle',
+            'Çağrı Merkezlerine': 'Callcenter',
+            'Özel Fırsat!': 'Sonderangebot!',
+            'Kendi işinizin sahibi olun! Payment çözümlerimizle aracılık yaparak sözleşmenizi sağlıyoruz, projeniz hazır. Kimseye bağlı olmadan çalışın, daha yüksek kazançlar elde edin.': 'Werden Sie Ihr eigener Chef! Mit unseren Payment-Lösungen vermitteln wir Ihren Vertrag, Ihr Projekt ist fertig. Arbeiten Sie unabhängig und erzielen Sie höhere Einnahmen.',
+            'Payment Çözümleri': 'Payment-Lösungen',
+            'Profesyonel ödeme altyapısı ile güvenli ve hızlı payment sistemleri sunuyoruz.': 'Wir bieten sichere und schnelle Payment-Systeme mit professioneller Zahlungsinfrastruktur.',
+            'Hazır Sözleşme': 'Fertiger Vertrag',
+            'Direkt payment aracılığıyla sözleşmenizi sağlıyor, projenizi hazır teslim ediyoruz.': 'Wir stellen Ihren Vertrag über direkte Zahlung bereit und liefern Ihr Projekt schlüsselfertig.',
+            'Bağımsız Çalışma': 'Unabhängiges Arbeiten',
+            'Kimseye bağlı olmadan kendi işinizi yapın, kararlarınızı kendiniz verin.': 'Führen Sie Ihr eigenes Geschäft ohne Abhängigkeit, treffen Sie Ihre eigenen Entscheidungen.',
+            'Yüksek Kazanç': 'Hoher Verdienst',
+            'Aracısız çalışarak daha yüksek kar marjları ve sürdürülebilir gelir elde edin.': 'Erzielen Sie höhere Gewinnmargen und nachhaltiges Einkommen durch Arbeit ohne Zwischenhändler.',
+            'Kendi İşinizin Sahibi Olun!': 'Werden Sie Ihr eigener Chef!',
+            '5 yıllık deneyimimiz ve uzman kadromuzla yanınızdayız. Çağrı merkezinizi bir üst seviyeye taşıyın, payment altyapımızla bağımsız çalışın ve kazancınızı katlayın.': 'Mit 5 Jahren Erfahrung und unserem Expertenteam sind wir an Ihrer Seite. Bringen Sie Ihr Callcenter auf die nächste Stufe, arbeiten Sie unabhängig mit unserer Payment-Infrastruktur.',
+            'Hazır Proje Desteği': 'Fertige Projektunterstützung',
+            'Payment Entegrasyonu': 'Payment-Integration',
+            'Uzman Teknik Destek': 'Technischer Expertensupport',
+            'Eğitim & Danışmanlık': 'Schulung & Beratung',
+            'Aracısız Kazanç': 'Verdienst ohne Zwischenhändler',
+            '7/24 Destek Hattı': '24/7 Support-Hotline',
+            'Hemen İletişime Geçin': 'Kontaktieren Sie uns jetzt',
+            'Şirket / Çağrı Merkezi Adı': 'Firma / Callcenter Name',
+            'Yetkili Ad Soyad': 'Name des Verantwortlichen',
+            'E-posta Adresi': 'E-Mail-Adresse',
+            'Telefon Numarası': 'Telefonnummer',
+            'Çalışan Sayısı': 'Mitarbeiteranzahl',
+            '1-10 Kişi': '1-10 Personen',
+            '11-25 Kişi': '11-25 Personen',
+            '26-50 Kişi': '26-50 Personen',
+            '50+ Kişi': '50+ Personen',
+            'Başvuru Gönder': 'Bewerbung senden',
+            'Bilgileriniz güvende, 24 saat içinde dönüş yapılır': 'Ihre Daten sind sicher, Rückmeldung innerhalb von 24 Stunden',
+            
+            // Contact Section
+            'Bize Ulaşın': 'Kontaktieren Sie uns',
+            'Sorularınız veya iş birliği talepleriniz için bizimle iletişime geçin.': 'Kontaktieren Sie uns für Fragen oder Kooperationsanfragen.',
+            'E-Posta': 'E-Mail',
+            'Telefon': 'Telefon',
+            'WhatsApp': 'WhatsApp',
+            'Çalışma Saatleri': 'Arbeitszeiten',
+            'Pazartesi - Cuma: 10:30 - 19:30': 'Montag - Freitag: 10:30 - 19:30',
+            'Tatil Günleri:': 'Feiertage:',
+            'Hafta sonları, Ramazan Bayramı, Kurban Bayramı ve Almanya resmi tatilleri': 'Wochenenden, Ramadan-Fest, Opferfest und deutsche Feiertage',
+            'Mesaj Gönderin': 'Nachricht senden',
+            'Ad Soyad': 'Vollständiger Name',
+            'Adınız Soyadınız': 'Ihr Name',
+            'ornek@email.com': 'beispiel@email.com',
+            'Konu': 'Betreff',
+            'Seçiniz': 'Auswählen',
+            'Kariyer Başvurusu': 'Karrierebewerbung',
+            'İş Ortaklığı': 'Geschäftspartnerschaft',
+            'Bilgi Talebi': 'Informationsanfrage',
+            'Diğer': 'Sonstiges',
+            'Mesaj': 'Nachricht',
+            'Mesajınız...': 'Ihre Nachricht...',
+            'Gönder': 'Senden',
+            
+            // Footer
+            'Hızlı Linkler': 'Schnelllinks',
+            '5 yılı aşkın deneyimimizle profesyonel çağrı merkezi hizmetleri sunuyoruz. Çalışan memnuniyeti ve müşteri başarısı önceliğimizdir.': 'Mit über 5 Jahren Erfahrung bieten wir professionelle Callcenter-Dienste. Mitarbeiterzufriedenheit und Kundenerfolg haben für uns Priorität.',
+            'Outbound Satış': 'Outbound-Verkauf',
+            'Inbound Hotline': 'Inbound-Hotline',
+            'Kalite Kontrol': 'Qualitätskontrolle',
+            'Müşteri Hizmetleri': 'Kundenservice',
+            'Pzt - Cuma: 10:30 - 19:30': 'Mo - Fr: 10:30 - 19:30',
+            'Hafta Sonu: Kapalı': 'Wochenende: Geschlossen',
+            'Ramazan & Kurban Bayramı': 'Ramadan & Opferfest',
+            'Almanya Resmi Tatilleri': 'Deutsche Feiertage',
+            '© 2024 Bee Life Consulting. Tüm hakları saklıdır.': '© 2024 Bee Life Consulting. Alle Rechte vorbehalten.',
+            'Gizlilik Politikası': 'Datenschutzrichtlinie',
+            'Kullanım Koşulları': 'Nutzungsbedingungen'
+        };
+        
+        let currentLang = localStorage.getItem('blc_lang') || 'tr';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('blc_lang', lang);
+            
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Update all elements with data-tr and data-de
+            document.querySelectorAll('[data-tr]').forEach(el => {
+                el.textContent = lang === 'tr' ? el.dataset.tr : el.dataset.de;
+            });
+            
+            // Update placeholders
+            document.querySelectorAll('[data-tr-placeholder]').forEach(el => {
+                el.placeholder = lang === 'tr' ? el.dataset.trPlaceholder : el.dataset.dePlaceholder;
+            });
+        }
+        
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+        });
+        
+        // ═══════════════════════════════════════════════════════════════
         // Honeycomb Animation - Visible on dark sections
         const canvas = document.getElementById('honeycombCanvas');
         const ctx = canvas.getContext('2d');

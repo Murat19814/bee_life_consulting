@@ -52,6 +52,40 @@
             min-height: 100vh;
         }
         
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            margin-right: 20px;
+        }
+        
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            background: rgba(26,26,26,0.8);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 6px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(212,175,55,0.1);
+            border-color: rgba(212,175,55,0.5);
+            color: #fff;
+        }
+        
+        .lang-btn.active {
+            background: rgba(212,175,55,0.2);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Cormorant Garamond', serif;
         }
@@ -1238,10 +1272,14 @@
         <!-- Top Bar -->
         <div class="top-bar">
             <div>
-                <h1 id="welcomeMessage">Hoş Geldin! 👋</h1>
-                <p id="welcomeSubtitle">Bugünkü performansını takip et</p>
+                <h1 id="welcomeMessage" data-tr="Hoş Geldin! 👋" data-de="Willkommen! 👋">Hoş Geldin! 👋</h1>
+                <p id="welcomeSubtitle" data-tr="Bugünkü performansını takip et" data-de="Verfolge deine heutige Leistung">Bugünkü performansını takip et</p>
             </div>
             <div class="top-bar-right">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
+                    <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
+                </div>
                 <div class="notification-wrapper">
                     <button class="notification-btn" id="notificationBtn" onclick="toggleNotifications()">
                         <i class="fas fa-bell"></i>
@@ -1699,6 +1737,32 @@
     </div>
 
     <script>
+        // ═══════════════════════════════════════════════════════════════
+        // LANGUAGE SYSTEM
+        // ═══════════════════════════════════════════════════════════════
+        let currentLang = localStorage.getItem('blc_lang') || 'tr';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('blc_lang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            document.querySelectorAll('[data-tr]').forEach(el => {
+                el.textContent = lang === 'tr' ? el.dataset.tr : el.dataset.de;
+            });
+            
+            document.querySelectorAll('[data-tr-placeholder]').forEach(el => {
+                el.placeholder = lang === 'tr' ? el.dataset.trPlaceholder : el.dataset.dePlaceholder;
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+        });
+        
         // ═══════════════════════════════════════════════════════════════
         // KULLANICI BİLGİLERİNİ YÜKLE
         // ═══════════════════════════════════════════════════════════════

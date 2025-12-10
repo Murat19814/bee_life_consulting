@@ -38,6 +38,43 @@
             overflow: hidden;
         }
         
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+        }
+        
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 15px;
+            background: rgba(26,26,26,0.9);
+            border: 1px solid rgba(212,175,55,0.3);
+            border-radius: 8px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(212,175,55,0.1);
+            border-color: rgba(212,175,55,0.5);
+            color: #fff;
+        }
+        
+        .lang-btn.active {
+            background: rgba(212,175,55,0.2);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
         /* Animated Background */
         .bg-animation {
             position: fixed;
@@ -334,6 +371,12 @@
 </head>
 <body>
 
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
+        <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
+    </div>
+
     <div class="bg-animation"></div>
     
     <div class="login-container">
@@ -352,26 +395,26 @@
                 
                 <div class="admin-badge">
                     <i class="fas fa-shield-alt"></i>
-                    Yönetici Paneli
+                    <span data-tr="Yönetici Paneli" data-de="Admin-Panel">Yönetici Paneli</span>
                 </div>
                 
-                <h2>Admin Girişi</h2>
-                <p>Yönetim paneline erişim için giriş yapın</p>
+                <h2 data-tr="Admin Girişi" data-de="Admin-Login">Admin Girişi</h2>
+                <p data-tr="Yönetim paneline erişim için giriş yapın" data-de="Melden Sie sich an, um auf das Admin-Panel zuzugreifen">Yönetim paneline erişim için giriş yapın</p>
             </div>
             
             <form class="login-form" id="adminLoginForm">
                 <div class="form-group">
-                    <label>Kullanıcı Adı</label>
+                    <label data-tr="Kullanıcı Adı" data-de="Benutzername">Kullanıcı Adı</label>
                     <div class="input-wrapper">
                         <div class="input-icon">
                             <i class="fas fa-user-shield"></i>
                         </div>
-                        <input type="text" class="form-input" id="username" name="username" required placeholder="Admin kullanıcı adı">
+                        <input type="text" class="form-input" id="username" name="username" required data-tr-placeholder="Admin kullanıcı adı" data-de-placeholder="Admin-Benutzername" placeholder="Admin kullanıcı adı">
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label>Şifre</label>
+                    <label data-tr="Şifre" data-de="Passwort">Şifre</label>
                     <div class="input-wrapper">
                         <div class="input-icon">
                             <i class="fas fa-lock"></i>
@@ -382,25 +425,48 @@
                 
                 <button type="submit" class="submit-btn">
                     <i class="fas fa-sign-in-alt"></i>
-                    Giriş Yap
+                    <span data-tr="Giriş Yap" data-de="Anmelden">Giriş Yap</span>
                 </button>
             </form>
             
             <div class="security-notice">
                 <i class="fas fa-exclamation-triangle"></i>
-                <p>Bu alan sadece yetkili personel içindir. Tüm giriş denemeleri kayıt altına alınmaktadır.</p>
+                <p data-tr="Bu alan sadece yetkili personel içindir. Tüm giriş denemeleri kayıt altına alınmaktadır." data-de="Dieser Bereich ist nur für autorisiertes Personal. Alle Anmeldeversuche werden protokolliert.">Bu alan sadece yetkili personel içindir. Tüm giriş denemeleri kayıt altına alınmaktadır.</p>
             </div>
             
             <div class="back-link">
                 <a href="index.html">
                     <i class="fas fa-arrow-left"></i>
-                    Ana Sayfaya Dön
+                    <span data-tr="Ana Sayfaya Dön" data-de="Zurück zur Startseite">Ana Sayfaya Dön</span>
                 </a>
             </div>
         </div>
     </div>
 
     <script>
+        let currentLang = localStorage.getItem('blc_lang') || 'tr';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('blc_lang', lang);
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            document.querySelectorAll('[data-tr]').forEach(el => {
+                el.textContent = lang === 'tr' ? el.dataset.tr : el.dataset.de;
+            });
+            
+            document.querySelectorAll('[data-tr-placeholder]').forEach(el => {
+                el.placeholder = lang === 'tr' ? el.dataset.trPlaceholder : el.dataset.dePlaceholder;
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+        });
+        
         const adminForm = document.getElementById('adminLoginForm');
         
         if (adminForm) {
@@ -410,19 +476,22 @@
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
                 const submitBtn = this.querySelector('button[type="submit"]');
+                const btnText = submitBtn.querySelector('span');
                 
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Doğrulanıyor...';
+                btnText.textContent = currentLang === 'tr' ? 'Doğrulanıyor...' : 'Überprüfung...';
                 submitBtn.disabled = true;
                 
-                // Demo login check
                 if (username === 'admin' && password === 'admin123') {
                     setTimeout(() => {
                         window.location.href = 'admin-panel.html';
                     }, 1500);
                 } else {
                     setTimeout(() => {
-                        alert('❌ Hatalı kullanıcı adı veya şifre!\n\nDemo: admin / admin123');
-                        submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Giriş Yap';
+                        const msg = currentLang === 'tr' 
+                            ? '❌ Hatalı kullanıcı adı veya şifre!\n\nDemo: admin / admin123'
+                            : '❌ Falscher Benutzername oder Passwort!\n\nDemo: admin / admin123';
+                        alert(msg);
+                        btnText.textContent = currentLang === 'tr' ? 'Giriş Yap' : 'Anmelden';
                         submitBtn.disabled = false;
                     }, 1500);
                 }
