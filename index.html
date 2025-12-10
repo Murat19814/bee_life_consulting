@@ -998,6 +998,360 @@
             }
         }
         
+        /* ═══════════════════════════════════════════════════════════════ */
+        /* B2B Partner Section - Çağrı Merkezleri İçin */
+        /* ═══════════════════════════════════════════════════════════════ */
+        .partner-section {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #0a2322 0%, #071d1c 50%, #050f0f 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .partner-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(255,215,0,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(255,215,0,0.05) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(255,215,0,0.05) 0%, transparent 30%);
+            pointer-events: none;
+        }
+        
+        .partner-header {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 70px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .partner-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 30px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(184,134,11,0.1) 100%);
+            border: 2px solid rgba(255,215,0,0.4);
+            border-radius: 50px;
+            color: #FFD700;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+            animation: badgeGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes badgeGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.2); }
+            50% { box-shadow: 0 0 40px rgba(255,215,0,0.4); }
+        }
+        
+        .partner-badge i {
+            font-size: 1.2rem;
+        }
+        
+        .partner-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+        
+        .partner-title span {
+            color: #FFD700;
+        }
+        
+        .partner-subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.2rem;
+            line-height: 1.9;
+        }
+        
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 70px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .partner-card {
+            background: linear-gradient(145deg, rgba(13,43,42,0.8) 0%, rgba(7,29,28,0.9) 100%);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .partner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255,215,0,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 40px rgba(255,215,0,0.1);
+        }
+        
+        .partner-card:hover::before {
+            opacity: 1;
+        }
+        
+        .partner-card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(184,134,11,0.1) 100%);
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            transition: all 0.4s ease;
+        }
+        
+        .partner-card:hover .partner-card-icon {
+            border-color: #FFD700;
+            box-shadow: 0 0 30px rgba(255,215,0,0.3);
+            transform: scale(1.1);
+        }
+        
+        .partner-card-icon i {
+            font-size: 1.8rem;
+            color: #FFD700;
+        }
+        
+        .partner-card-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: rgba(255,215,0,0.5);
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+        
+        .partner-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .partner-card p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* Partner CTA Box */
+        .partner-cta {
+            background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(13,43,42,0.95) 50%, rgba(255,215,0,0.05) 100%);
+            border: 2px solid rgba(255,215,0,0.3);
+            border-radius: 24px;
+            padding: 60px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        .partner-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .partner-cta-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .partner-cta-content p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+        
+        .partner-benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .partner-benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255,215,0,0.08);
+            border-radius: 10px;
+            border: 1px solid rgba(255,215,0,0.15);
+        }
+        
+        .partner-benefit i {
+            color: #FFD700;
+            font-size: 1rem;
+        }
+        
+        .partner-benefit span {
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Partner Form */
+        .partner-form-box {
+            background: rgba(7,29,28,0.8);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 20px;
+            padding: 40px;
+        }
+        
+        .partner-form-box h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            color: #FFD700;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .partner-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .partner-form .form-group input,
+        .partner-form .form-group select {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(13,43,42,0.8);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .partner-form .form-group input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .partner-form .form-group input:focus,
+        .partner-form .form-group select:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 20px rgba(255,215,0,0.15);
+        }
+        
+        .partner-form .form-group select {
+            cursor: pointer;
+        }
+        
+        .partner-form .form-group select option {
+            background: #0d2b2a;
+            color: #fff;
+        }
+        
+        .partner-submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            color: #000;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .partner-submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,215,0,0.4);
+        }
+        
+        .partner-trust {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            color: rgba(255,215,0,0.7);
+            font-size: 0.8rem;
+        }
+        
+        .partner-trust i {
+            font-size: 1rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .partner-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .partner-cta {
+                grid-template-columns: 1fr;
+                padding: 40px 30px;
+            }
+            
+            .partner-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .partner-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .partner-benefits {
+                grid-template-columns: 1fr;
+            }
+            
+            .partner-cta-content h3 {
+                font-size: 2rem;
+            }
+        }
+        
         .floating-card .card-icon {
             font-size: 1.5rem;
             color: #FFD700;
@@ -2938,6 +3292,137 @@
         </div>
     </section>
 
+    <!-- B2B Partner Section - Çağrı Merkezleri İçin -->
+    <section class="partner-section" id="partner">
+        <div class="container">
+            <div class="partner-header">
+                <div class="partner-badge">
+                    <i class="fas fa-handshake"></i>
+                    İş Ortaklığı Fırsatı
+                </div>
+                <h2 class="partner-title">
+                    Tüm <span>Çağrı Merkezlerine</span> Özel Fırsat!
+                </h2>
+                <p class="partner-subtitle">
+                    Kendi işinizin sahibi olun! Payment çözümlerimizle aracılık yaparak 
+                    sözleşmenizi sağlıyoruz, projeniz hazır. Kimseye bağlı olmadan çalışın, 
+                    daha yüksek kazançlar elde edin.
+                </p>
+            </div>
+            
+            <div class="partner-grid">
+                <div class="partner-card">
+                    <div class="partner-card-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="partner-card-number">01</div>
+                    <h4>Payment Çözümleri</h4>
+                    <p>Profesyonel ödeme altyapısı ile güvenli ve hızlı payment sistemleri sunuyoruz.</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-card-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <div class="partner-card-number">02</div>
+                    <h4>Hazır Sözleşme</h4>
+                    <p>Direkt payment aracılığıyla sözleşmenizi sağlıyor, projenizi hazır teslim ediyoruz.</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="partner-card-number">03</div>
+                    <h4>Bağımsız Çalışma</h4>
+                    <p>Kimseye bağlı olmadan kendi işinizi yapın, kararlarınızı kendiniz verin.</p>
+                </div>
+                
+                <div class="partner-card">
+                    <div class="partner-card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="partner-card-number">04</div>
+                    <h4>Yüksek Kazanç</h4>
+                    <p>Aracısız çalışarak daha yüksek kar marjları ve sürdürülebilir gelir elde edin.</p>
+                </div>
+            </div>
+            
+            <div class="partner-cta">
+                <div class="partner-cta-content">
+                    <h3>Kendi İşinizin Sahibi Olun!</h3>
+                    <p>
+                        5 yıllık deneyimimiz ve uzman kadromuzla yanınızdayız. 
+                        Çağrı merkezinizi bir üst seviyeye taşıyın, payment altyapımızla 
+                        bağımsız çalışın ve kazancınızı katlayın.
+                    </p>
+                    
+                    <div class="partner-benefits">
+                        <div class="partner-benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Hazır Proje Desteği</span>
+                        </div>
+                        <div class="partner-benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Payment Entegrasyonu</span>
+                        </div>
+                        <div class="partner-benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Uzman Teknik Destek</span>
+                        </div>
+                        <div class="partner-benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Eğitim & Danışmanlık</span>
+                        </div>
+                        <div class="partner-benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Aracısız Kazanç</span>
+                        </div>
+                        <div class="partner-benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>7/24 Destek Hattı</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="partner-form-box">
+                    <h4>Hemen İletişime Geçin</h4>
+                    <form class="partner-form" id="partnerForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Şirket / Çağrı Merkezi Adı" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Yetkili Ad Soyad" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="E-posta Adresi" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Telefon Numarası" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Çalışan Sayısı</option>
+                                <option value="1-10">1-10 Kişi</option>
+                                <option value="11-25">11-25 Kişi</option>
+                                <option value="26-50">26-50 Kişi</option>
+                                <option value="50+">50+ Kişi</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="partner-submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Başvuru Gönder
+                        </button>
+                        <div class="partner-trust">
+                            <i class="fas fa-shield-alt"></i>
+                            Bilgileriniz güvende, 24 saat içinde dönüş yapılır
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section (Dark - with honeycomb) -->
     <section class="section section-dark" id="contact">
         <div class="container">
@@ -3406,10 +3891,17 @@
             });
         });
         
-        // Form
+        // Contact Form
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Mesajınız başarıyla gönderildi!');
+            this.reset();
+        });
+        
+        // Partner Form
+        document.getElementById('partnerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('🎉 Başvurunuz alındı!\n\nEn kısa sürede sizinle iletişime geçeceğiz.\n\nBee Life Consulting');
             this.reset();
         });
         
