@@ -857,85 +857,85 @@
         </div>
         
         <ul class="sidebar-menu">
-            <li class="menu-section">Ana Menü</li>
+            <li class="menu-section" data-tr="Ana Menü" data-de="Hauptmenü">Ana Menü</li>
             <li>
                 <a href="#" class="active" data-page="dashboard">
                     <i class="fas fa-home"></i>
-                    Dashboard
+                    <span data-tr="Dashboard" data-de="Dashboard">Dashboard</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="employees">
                     <i class="fas fa-users"></i>
-                    Çalışanlar
+                    <span data-tr="Çalışanlar" data-de="Mitarbeiter">Çalışanlar</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="applications">
                     <i class="fas fa-file-alt"></i>
-                    Başvurular
+                    <span data-tr="Başvurular" data-de="Bewerbungen">Başvurular</span>
                     <span class="menu-badge">12</span>
                 </a>
             </li>
             
-            <li class="menu-section">Satış Takibi</li>
+            <li class="menu-section" data-tr="Satış Takibi" data-de="Verkaufsverfolgung">Satış Takibi</li>
             <li>
                 <a href="#" data-page="daily-sales">
                     <i class="fas fa-plus-circle"></i>
-                    Günlük Satış Girişi
+                    <span data-tr="Günlük Satış Girişi" data-de="Tägliche Verkaufseingabe">Günlük Satış Girişi</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="rls-wr">
                     <i class="fas fa-undo-alt"></i>
-                    RLS & WR Girişi
+                    <span data-tr="RLS & WR Girişi" data-de="RLS & WR Eingabe">RLS & WR Girişi</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="winners">
                     <i class="fas fa-crown"></i>
-                    Birinciler
+                    <span data-tr="Birinciler" data-de="Gewinner">Birinciler</span>
                     <span class="menu-badge" style="background: #FFD700; color: #000;">🏆</span>
                 </a>
             </li>
             
-            <li class="menu-section">Raporlar</li>
+            <li class="menu-section" data-tr="Raporlar" data-de="Berichte">Raporlar</li>
             <li>
                 <a href="#" data-page="sales">
                     <i class="fas fa-chart-line"></i>
-                    Satış Raporları
+                    <span data-tr="Satış Raporları" data-de="Verkaufsberichte">Satış Raporları</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="performance">
                     <i class="fas fa-trophy"></i>
-                    Performans
+                    <span data-tr="Performans" data-de="Leistung">Performans</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="rewards">
                     <i class="fas fa-gift"></i>
-                    Ödül Yönetimi
+                    <span data-tr="Ödül Yönetimi" data-de="Prämienverwaltung">Ödül Yönetimi</span>
                 </a>
             </li>
             
-            <li class="menu-section">Sistem</li>
+            <li class="menu-section" data-tr="Sistem" data-de="System">Sistem</li>
             <li>
                 <a href="#" data-page="branches">
                     <i class="fas fa-building"></i>
-                    Şubeler
+                    <span data-tr="Şubeler" data-de="Filialen">Şubeler</span>
                 </a>
             </li>
             <li>
                 <a href="#" data-page="settings">
                     <i class="fas fa-bell"></i>
-                    Bildirimler
+                    <span data-tr="Bildirimler" data-de="Benachrichtigungen">Bildirimler</span>
                 </a>
             </li>
             <li>
                 <a href="admin-login.html">
                     <i class="fas fa-sign-out-alt"></i>
-                    Çıkış Yap
+                    <span data-tr="Çıkış Yap" data-de="Abmelden">Çıkış Yap</span>
                 </a>
             </li>
         </ul>
@@ -955,13 +955,13 @@
                     <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
                 </div>
                 <button class="btn btn-primary" id="addEmployeeBtn">
-                    <i class="fas fa-plus"></i> Yeni Çalışan
+                    <i class="fas fa-plus"></i> <span data-tr="Yeni Çalışan" data-de="Neuer Mitarbeiter">Yeni Çalışan</span>
                 </button>
                 <div class="admin-user">
                     <div class="admin-avatar">AD</div>
                     <div class="admin-info">
                         <h4>Admin</h4>
-                        <p>Süper Yönetici</p>
+                        <p data-tr="Süper Yönetici" data-de="Super-Administrator">Süper Yönetici</p>
                     </div>
                 </div>
             </div>
@@ -974,22 +974,22 @@
                 <div class="stat-card">
                     <div class="icon blue"><i class="fas fa-users"></i></div>
                     <h3>32</h3>
-                    <p>Toplam Çalışan</p>
+                    <p data-tr="Toplam Çalışan" data-de="Gesamtmitarbeiter">Toplam Çalışan</p>
                 </div>
                 <div class="stat-card">
                     <div class="icon green"><i class="fas fa-check-circle"></i></div>
                     <h3 id="dashboardTotalSales">0</h3>
-                    <p>Bu Ay QC OK</p>
+                    <p data-tr="Bu Ay QC OK" data-de="QC OK diesen Monat">Bu Ay QC OK</p>
                 </div>
                 <div class="stat-card">
                     <div class="icon gold"><i class="fas fa-euro-sign"></i></div>
                     <h3 id="dashboardTotalEarnings">0€</h3>
-                    <p>Bu Ay Toplam Kazanç</p>
+                    <p data-tr="Bu Ay Toplam Kazanç" data-de="Gesamtverdienst diesen Monat">Bu Ay Toplam Kazanç</p>
                 </div>
                 <div class="stat-card">
                     <div class="icon red"><i class="fas fa-building"></i></div>
                     <h3>7</h3>
-                    <p>Aktif Şube</p>
+                    <p data-tr="Aktif Şube" data-de="Aktive Filialen">Aktif Şube</p>
                 </div>
             </div>
             
@@ -999,18 +999,18 @@
                     <!-- Employee Performance -->
                     <div class="card">
                         <div class="card-header">
-                            <h3><i class="fas fa-users"></i> Çalışan Performansı</h3>
-                            <a href="#" class="btn btn-outline" data-page="employees">Tümünü Gör</a>
+                            <h3><i class="fas fa-users"></i> <span data-tr="Çalışan Performansı" data-de="Mitarbeiterleistung">Çalışan Performansı</span></h3>
+                            <a href="#" class="btn btn-outline" data-page="employees" data-tr="Tümünü Gör" data-de="Alle anzeigen">Tümünü Gör</a>
                         </div>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Çalışan</th>
-                                    <th>Şube</th>
+                                    <th data-tr="Çalışan" data-de="Mitarbeiter">Çalışan</th>
+                                    <th data-tr="Şube" data-de="Filiale">Şube</th>
                                     <th>QC OK</th>
-                                    <th>Kazanç</th>
-                                    <th>Durum</th>
-                                    <th>İşlem</th>
+                                    <th data-tr="Kazanç" data-de="Verdienst">Kazanç</th>
+                                    <th data-tr="Durum" data-de="Status">Durum</th>
+                                    <th data-tr="İşlem" data-de="Aktion">İşlem</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1020,14 +1020,14 @@
                                             <div class="employee-avatar">MK</div>
                                             <div class="employee-info">
                                                 <h4>Mehmet Koç</h4>
-                                                <p>Satış Temsilcisi</p>
+                                                <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>Yozgat</td>
                                     <td><strong>45</strong></td>
                                     <td><span class="euro-amount">1.575€</span></td>
-                                    <td><span class="status-badge active">Aktif</span></td>
+                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
                                     <td>
                                         <button class="action-btn view"><i class="fas fa-eye"></i></button>
                                         <button class="action-btn edit"><i class="fas fa-edit"></i></button>
@@ -1039,14 +1039,14 @@
                                             <div class="employee-avatar">AY</div>
                                             <div class="employee-info">
                                                 <h4>Ayşe Yılmaz</h4>
-                                                <p>Satış Temsilcisi</p>
+                                                <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>İzmit</td>
                                     <td><strong>38</strong></td>
                                     <td><span class="euro-amount">1.330€</span></td>
-                                    <td><span class="status-badge active">Aktif</span></td>
+                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
                                     <td>
                                         <button class="action-btn view"><i class="fas fa-eye"></i></button>
                                         <button class="action-btn edit"><i class="fas fa-edit"></i></button>
@@ -1058,14 +1058,14 @@
                                             <div class="employee-avatar">AK</div>
                                             <div class="employee-info">
                                                 <h4>Ahmet Kaya</h4>
-                                                <p>Satış Temsilcisi</p>
+                                                <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>Eskişehir</td>
                                     <td><strong>23</strong></td>
                                     <td><span class="euro-amount">805€</span></td>
-                                    <td><span class="status-badge active">Aktif</span></td>
+                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
                                     <td>
                                         <button class="action-btn view"><i class="fas fa-eye"></i></button>
                                         <button class="action-btn edit"><i class="fas fa-edit"></i></button>
@@ -1077,14 +1077,14 @@
                                             <div class="employee-avatar">FD</div>
                                             <div class="employee-info">
                                                 <h4>Fatma Demir</h4>
-                                                <p>Inbound Uzmanı</p>
+                                                <p data-tr="Inbound Uzmanı" data-de="Inbound-Experte">Inbound Uzmanı</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>Yozgat</td>
                                     <td>-</td>
                                     <td><span class="euro-amount">Sabit</span></td>
-                                    <td><span class="status-badge active">Aktif</span></td>
+                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
                                     <td>
                                         <button class="action-btn view"><i class="fas fa-eye"></i></button>
                                         <button class="action-btn edit"><i class="fas fa-edit"></i></button>
@@ -1096,14 +1096,14 @@
                                             <div class="employee-avatar">EC</div>
                                             <div class="employee-info">
                                                 <h4>Emre Can</h4>
-                                                <p>Satış Temsilcisi</p>
+                                                <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>İzmit</td>
                                     <td><strong>19</strong></td>
                                     <td><span class="euro-amount">665€</span></td>
-                                    <td><span class="status-badge pending">İzinli</span></td>
+                                    <td><span class="status-badge pending" data-tr="İzinli" data-de="Beurlaubt">İzinli</span></td>
                                     <td>
                                         <button class="action-btn view"><i class="fas fa-eye"></i></button>
                                         <button class="action-btn edit"><i class="fas fa-edit"></i></button>
@@ -1116,22 +1116,22 @@
                     <!-- Reward Management -->
                     <div class="card">
                         <div class="card-header">
-                            <h3><i class="fas fa-gift"></i> Ödül Yönetimi</h3>
-                            <button class="btn btn-primary"><i class="fas fa-plus"></i> Ödül Ekle</button>
+                            <h3><i class="fas fa-gift"></i> <span data-tr="Ödül Yönetimi" data-de="Prämienverwaltung">Ödül Yönetimi</span></h3>
+                            <button class="btn btn-primary"><i class="fas fa-plus"></i> <span data-tr="Ödül Ekle" data-de="Prämie hinzufügen">Ödül Ekle</span></button>
                         </div>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Dönem</th>
-                                    <th>Kazanan</th>
-                                    <th>Ödül</th>
-                                    <th>Değer</th>
-                                    <th>Durum</th>
+                                    <th data-tr="Dönem" data-de="Zeitraum">Dönem</th>
+                                    <th data-tr="Kazanan" data-de="Gewinner">Kazanan</th>
+                                    <th data-tr="Ödül" data-de="Prämie">Ödül</th>
+                                    <th data-tr="Değer" data-de="Wert">Değer</th>
+                                    <th data-tr="Durum" data-de="Status">Durum</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Aralık 2024 (Ay)</td>
+                                    <td data-tr="Aralık 2024 (Ay)" data-de="Dezember 2024 (Monat)">Aralık 2024 (Ay)</td>
                                     <td>
                                         <div class="employee-cell">
                                             <div class="employee-avatar">MK</div>
@@ -1140,12 +1140,12 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>75€ Nakit</td>
+                                    <td data-tr="75€ Nakit" data-de="75€ Bargeld">75€ Nakit</td>
                                     <td><span class="euro-amount">75€</span></td>
-                                    <td><span class="status-badge pending">Bekliyor</span></td>
+                                    <td><span class="status-badge pending" data-tr="Bekliyor" data-de="Ausstehend">Bekliyor</span></td>
                                 </tr>
                                 <tr>
-                                    <td>Q4 2024 (3 Ay)</td>
+                                    <td data-tr="Q4 2024 (3 Ay)" data-de="Q4 2024 (3 Monate)">Q4 2024 (3 Ay)</td>
                                     <td>
                                         <div class="employee-cell">
                                             <div class="employee-avatar">AY</div>
@@ -1154,9 +1154,9 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>200€ Alışveriş Çeki</td>
+                                    <td data-tr="200€ Alışveriş Çeki" data-de="200€ Einkaufsgutschein">200€ Alışveriş Çeki</td>
                                     <td><span class="euro-amount">200€</span></td>
-                                    <td><span class="status-badge delivered">Teslim Edildi</span></td>
+                                    <td><span class="status-badge delivered" data-tr="Teslim Edildi" data-de="Geliefert">Teslim Edildi</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1167,7 +1167,7 @@
                     <!-- Recent Applications -->
                     <div class="card">
                         <div class="card-header">
-                            <h3><i class="fas fa-file-alt"></i> Son Başvurular</h3>
+                            <h3><i class="fas fa-file-alt"></i> <span data-tr="Son Başvurular" data-de="Letzte Bewerbungen">Son Başvurular</span></h3>
                         </div>
                         <div class="application-item">
                             <div class="application-avatar">SK</div>
@@ -1175,7 +1175,7 @@
                                 <h4>Selin Kara</h4>
                                 <p>Outbound Satış • Yozgat</p>
                             </div>
-                            <span class="application-time">2 saat önce</span>
+                            <span class="application-time" data-tr="2 saat önce" data-de="vor 2 Stunden">2 saat önce</span>
                         </div>
                         <div class="application-item">
                             <div class="application-avatar">BT</div>
@@ -1183,7 +1183,7 @@
                                 <h4>Burak Tunç</h4>
                                 <p>Inbound Hotline • İzmit</p>
                             </div>
-                            <span class="application-time">5 saat önce</span>
+                            <span class="application-time" data-tr="5 saat önce" data-de="vor 5 Stunden">5 saat önce</span>
                         </div>
                         <div class="application-item">
                             <div class="application-avatar">ZA</div>
@@ -1191,17 +1191,17 @@
                                 <h4>Zeynep Arslan</h4>
                                 <p>Outbound Satış • Eskişehir</p>
                             </div>
-                            <span class="application-time">1 gün önce</span>
+                            <span class="application-time" data-tr="1 gün önce" data-de="vor 1 Tag">1 gün önce</span>
                         </div>
                         <div class="application-item">
                             <div class="application-avatar">OD</div>
                             <div class="application-info">
                                 <h4>Onur Demir</h4>
-                                <p>Her İkisi • Balıkesir</p>
+                                <p data-tr="Her İkisi • Balıkesir" data-de="Beide • Balıkesir">Her İkisi • Balıkesir</p>
                             </div>
-                            <span class="application-time">2 gün önce</span>
+                            <span class="application-time" data-tr="2 gün önce" data-de="vor 2 Tagen">2 gün önce</span>
                         </div>
-                        <button class="btn btn-outline" style="width: 100%; margin-top: 15px;" data-page="applications">
+                        <button class="btn btn-outline" style="width: 100%; margin-top: 15px;" data-page="applications" data-tr="Tüm Başvuruları Gör" data-de="Alle Bewerbungen anzeigen">
                             Tüm Başvuruları Gör
                         </button>
                     </div>
@@ -1209,24 +1209,24 @@
                     <!-- Quick Actions -->
                     <div class="card">
                         <div class="card-header">
-                            <h3><i class="fas fa-bolt"></i> Hızlı İşlemler</h3>
+                            <h3><i class="fas fa-bolt"></i> <span data-tr="Hızlı İşlemler" data-de="Schnellaktionen">Hızlı İşlemler</span></h3>
                         </div>
                         <div class="quick-actions">
                             <button class="quick-action-btn" id="addEmployeeBtn2">
                                 <i class="fas fa-user-plus"></i>
-                                <span>Çalışan Ekle</span>
+                                <span data-tr="Çalışan Ekle" data-de="Mitarbeiter hinzufügen">Çalışan Ekle</span>
                             </button>
                             <button class="quick-action-btn">
                                 <i class="fas fa-chart-bar"></i>
-                                <span>Rapor Oluştur</span>
+                                <span data-tr="Rapor Oluştur" data-de="Bericht erstellen">Rapor Oluştur</span>
                             </button>
                             <button class="quick-action-btn">
                                 <i class="fas fa-gift"></i>
-                                <span>Ödül Dağıt</span>
+                                <span data-tr="Ödül Dağıt" data-de="Prämie verteilen">Ödül Dağıt</span>
                             </button>
                             <button class="quick-action-btn">
                                 <i class="fas fa-bell"></i>
-                                <span>Duyuru Yap</span>
+                                <span data-tr="Duyuru Yap" data-de="Ankündigung machen">Duyuru Yap</span>
                             </button>
                         </div>
                     </div>
@@ -1234,7 +1234,7 @@
                     <!-- Branch Performance -->
                     <div class="card">
                         <div class="card-header">
-                            <h3><i class="fas fa-building"></i> Şube Performansı</h3>
+                            <h3><i class="fas fa-building"></i> <span data-tr="Şube Performansı" data-de="Filialleistung">Şube Performansı</span></h3>
                         </div>
                         <div class="branch-stat">
                             <div class="branch-stat-header">
@@ -1306,49 +1306,49 @@
                 <table class="table" id="employeesTable">
                     <thead>
                         <tr>
-                            <th>Çalışan</th>
-                            <th>Şube</th>
-                            <th>Pozisyon</th>
-                            <th>Bu Ay QC OK</th>
-                            <th>Kazanç (€)</th>
-                            <th>Durum</th>
-                            <th>İşlem</th>
+                            <th data-tr="Çalışan" data-de="Mitarbeiter">Çalışan</th>
+                            <th data-tr="Şube" data-de="Filiale">Şube</th>
+                            <th data-tr="Pozisyon" data-de="Position">Pozisyon</th>
+                            <th data-tr="Bu Ay QC OK" data-de="QC OK diesen Monat">Bu Ay QC OK</th>
+                            <th data-tr="Kazanç (€)" data-de="Verdienst (€)">Kazanç (€)</th>
+                            <th data-tr="Durum" data-de="Status">Durum</th>
+                            <th data-tr="İşlem" data-de="Aktion">İşlem</th>
                         </tr>
                     </thead>
                     <tbody id="employeesTableBody">
                         <!-- 32 Çalışan -->
-                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">AA</div><div class="employee-info"><h4>Abdulcelil Arslan</h4><p>aarslan</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">AK</div><div class="employee-info"><h4>Ahmet Kömür</h4><p>akomur</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">AS</div><div class="employee-info"><h4>Ahsen Saliha Arslan</h4><p>aharslan</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">AA</div><div class="employee-info"><h4>Aslı Akdoğan</h4><p>aakdogan</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">AY</div><div class="employee-info"><h4>Ayhan Yıldızdoğan</h4><p>ayildizdogan</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">BB</div><div class="employee-info"><h4>Burak Balkaya</h4><p>bbalkaya</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">DB</div><div class="employee-info"><h4>Deniz Beyazkoç</h4><p>dbeyazkoc</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">DÇ</div><div class="employee-info"><h4>Duygu Çeliköz</h4><p>dcelikoz</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">EH</div><div class="employee-info"><h4>Eda Nur B. Hatipoğlu</h4><p>ehatipoglu</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">EÇ</div><div class="employee-info"><h4>Erdoğan Çuvoğlu</h4><p>ecuvoglu</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">FK</div><div class="employee-info"><h4>Fatma Karipçin</h4><p>fkaripcin</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">FA</div><div class="employee-info"><h4>Fidan Açıkgöz</h4><p>facikgoz</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">GD</div><div class="employee-info"><h4>Gönül Dağ</h4><p>gdag</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">GD</div><div class="employee-info"><h4>Gülay Dikmen</h4><p>gdikmen</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">GA</div><div class="employee-info"><h4>Gülayfer Altuntaş</h4><p>galtuntas</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">HY</div><div class="employee-info"><h4>Hatice Yıldız</h4><p>hyildiz</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">HC</div><div class="employee-info"><h4>Hilal Coşkun</h4><p>hcoskun</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">KT</div><div class="employee-info"><h4>Kader Taşpınar</h4><p>ktaspinar</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">LD</div><div class="employee-info"><h4>Leyla Doğan</h4><p>ldogan</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Antep"><td><div class="employee-cell"><div class="employee-avatar">MT</div><div class="employee-info"><h4>Meral Taşdoğan</h4><p>mtasdogan</p></div></div></td><td>Antep</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">MA</div><div class="employee-info"><h4>Murat Atalay</h4><p>matalay</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Home Office"><td><div class="employee-cell"><div class="employee-avatar">NK</div><div class="employee-info"><h4>Nihat Kedi</h4><p>nkedi</p></div></div></td><td>Home Office</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Home Office"><td><div class="employee-cell"><div class="employee-avatar">SA</div><div class="employee-info"><h4>Saliha Arslan Atalay</h4><p>satalay</p></div></div></td><td>Home Office</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmir"><td><div class="employee-cell"><div class="employee-avatar">SD</div><div class="employee-info"><h4>Selma Delioğlu</h4><p>sdelioglu</p></div></div></td><td>İzmir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Home Office"><td><div class="employee-cell"><div class="employee-avatar">SÇ</div><div class="employee-info"><h4>Seval Çeliköz</h4><p>scelikoz</p></div></div></td><td>Home Office</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmir"><td><div class="employee-cell"><div class="employee-avatar">ŞU</div><div class="employee-info"><h4>Şeyda Uludağ</h4><p>suludag</p></div></div></td><td>İzmir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Balıkesir"><td><div class="employee-cell"><div class="employee-avatar">TT</div><div class="employee-info"><h4>Taner Turan</h4><p>tturan</p></div></div></td><td>Balıkesir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">TK</div><div class="employee-info"><h4>Tuncay Karaca</h4><p>tkaraca</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">TY</div><div class="employee-info"><h4>Turgay Yumrukaya</h4><p>tyumrukaya</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">YU</div><div class="employee-info"><h4>Yeter Uzun</h4><p>yuzun</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="Home Office"><td><div class="employee-cell"><div class="employee-avatar">YG</div><div class="employee-info"><h4>Yücel Gökçe</h4><p>ygokce</p></div></div></td><td>Home Office</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">YT</div><div class="employee-info"><h4>Yüksel Taşkın</h4><p>ytaskin</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">AA</div><div class="employee-info"><h4>Abdulcelil Arslan</h4><p>aarslan</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">AK</div><div class="employee-info"><h4>Ahmet Kömür</h4><p>akomur</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">AS</div><div class="employee-info"><h4>Ahsen Saliha Arslan</h4><p>aharslan</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">AA</div><div class="employee-info"><h4>Aslı Akdoğan</h4><p>aakdogan</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">AY</div><div class="employee-info"><h4>Ayhan Yıldızdoğan</h4><p>ayildizdogan</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">BB</div><div class="employee-info"><h4>Burak Balkaya</h4><p>bbalkaya</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">DB</div><div class="employee-info"><h4>Deniz Beyazkoç</h4><p>dbeyazkoc</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">DÇ</div><div class="employee-info"><h4>Duygu Çeliköz</h4><p>dcelikoz</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">EH</div><div class="employee-info"><h4>Eda Nur B. Hatipoğlu</h4><p>ehatipoglu</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">EÇ</div><div class="employee-info"><h4>Erdoğan Çuvoğlu</h4><p>ecuvoglu</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">FK</div><div class="employee-info"><h4>Fatma Karipçin</h4><p>fkaripcin</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">FA</div><div class="employee-info"><h4>Fidan Açıkgöz</h4><p>facikgoz</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">GD</div><div class="employee-info"><h4>Gönül Dağ</h4><p>gdag</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">GD</div><div class="employee-info"><h4>Gülay Dikmen</h4><p>gdikmen</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">GA</div><div class="employee-info"><h4>Gülayfer Altuntaş</h4><p>galtuntas</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">HY</div><div class="employee-info"><h4>Hatice Yıldız</h4><p>hyildiz</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">HC</div><div class="employee-info"><h4>Hilal Coşkun</h4><p>hcoskun</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">KT</div><div class="employee-info"><h4>Kader Taşpınar</h4><p>ktaspinar</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">LD</div><div class="employee-info"><h4>Leyla Doğan</h4><p>ldogan</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Antep"><td><div class="employee-cell"><div class="employee-avatar">MT</div><div class="employee-info"><h4>Meral Taşdoğan</h4><p>mtasdogan</p></div></div></td><td>Antep</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">MA</div><div class="employee-info"><h4>Murat Atalay</h4><p>matalay</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Home Office"><td><div class="employee-cell"><div class="employee-avatar">NK</div><div class="employee-info"><h4>Nihat Kedi</h4><p>nkedi</p></div></div></td><td>Home Office</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Home Office"><td><div class="employee-cell"><div class="employee-avatar">SA</div><div class="employee-info"><h4>Saliha Arslan Atalay</h4><p>satalay</p></div></div></td><td>Home Office</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmir"><td><div class="employee-cell"><div class="employee-avatar">SD</div><div class="employee-info"><h4>Selma Delioğlu</h4><p>sdelioglu</p></div></div></td><td>İzmir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Home Office"><td><div class="employee-cell"><div class="employee-avatar">SÇ</div><div class="employee-info"><h4>Seval Çeliköz</h4><p>scelikoz</p></div></div></td><td>Home Office</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmir"><td><div class="employee-cell"><div class="employee-avatar">ŞU</div><div class="employee-info"><h4>Şeyda Uludağ</h4><p>suludag</p></div></div></td><td>İzmir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Balıkesir"><td><div class="employee-cell"><div class="employee-avatar">TT</div><div class="employee-info"><h4>Taner Turan</h4><p>tturan</p></div></div></td><td>Balıkesir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">TK</div><div class="employee-info"><h4>Tuncay Karaca</h4><p>tkaraca</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Eskişehir"><td><div class="employee-cell"><div class="employee-avatar">TY</div><div class="employee-info"><h4>Turgay Yumrukaya</h4><p>tyumrukaya</p></div></div></td><td>Eskişehir</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">YU</div><div class="employee-info"><h4>Yeter Uzun</h4><p>yuzun</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Home Office"><td><div class="employee-cell"><div class="employee-avatar">YG</div><div class="employee-info"><h4>Yücel Gökçe</h4><p>ygokce</p></div></div></td><td>Home Office</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">YT</div><div class="employee-info"><h4>Yüksel Taşkın</h4><p>ytaskin</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -1358,23 +1358,23 @@
         <div class="page-content" id="page-applications">
             <div class="card">
                 <div class="card-header">
-                    <h3>Tüm Başvurular (12)</h3>
+                    <h3 data-tr="Tüm Başvurular (12)" data-de="Alle Bewerbungen (12)">Tüm Başvurular (12)</h3>
                     <select style="padding: 8px 15px; border: 1px solid var(--light-gray);">
-                        <option>Tümü</option>
-                        <option>Bekleyen</option>
-                        <option>Onaylanan</option>
-                        <option>Reddedilen</option>
+                        <option data-tr="Tümü" data-de="Alle">Tümü</option>
+                        <option data-tr="Bekleyen" data-de="Ausstehend">Bekleyen</option>
+                        <option data-tr="Onaylanan" data-de="Genehmigt">Onaylanan</option>
+                        <option data-tr="Reddedilen" data-de="Abgelehnt">Reddedilen</option>
                     </select>
                 </div>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Başvuran</th>
-                            <th>Pozisyon</th>
-                            <th>Şube</th>
-                            <th>Tarih</th>
-                            <th>Durum</th>
-                            <th>İşlem</th>
+                            <th data-tr="Başvuran" data-de="Bewerber">Başvuran</th>
+                            <th data-tr="Pozisyon" data-de="Position">Pozisyon</th>
+                            <th data-tr="Şube" data-de="Filiale">Şube</th>
+                            <th data-tr="Tarih" data-de="Datum">Tarih</th>
+                            <th data-tr="Durum" data-de="Status">Durum</th>
+                            <th data-tr="İşlem" data-de="Aktion">İşlem</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1391,7 +1391,7 @@
                             <td>Outbound Satış</td>
                             <td>Yozgat</td>
                             <td>09.12.2024</td>
-                            <td><span class="status-badge pending">Bekliyor</span></td>
+                            <td><span class="status-badge pending" data-tr="Bekliyor" data-de="Ausstehend">Bekliyor</span></td>
                             <td>
                                 <button class="action-btn view"><i class="fas fa-eye"></i></button>
                                 <button class="action-btn edit" style="background: rgba(64,145,108,0.1); color: var(--accent-mint);"><i class="fas fa-check"></i></button>
@@ -1411,7 +1411,7 @@
                             <td>Inbound Hotline</td>
                             <td>İzmit</td>
                             <td>09.12.2024</td>
-                            <td><span class="status-badge pending">Bekliyor</span></td>
+                            <td><span class="status-badge pending" data-tr="Bekliyor" data-de="Ausstehend">Bekliyor</span></td>
                             <td>
                                 <button class="action-btn view"><i class="fas fa-eye"></i></button>
                                 <button class="action-btn edit" style="background: rgba(64,145,108,0.1); color: var(--accent-mint);"><i class="fas fa-check"></i></button>
@@ -1431,7 +1431,7 @@
                             <td>Outbound Satış</td>
                             <td>Eskişehir</td>
                             <td>08.12.2024</td>
-                            <td><span class="status-badge pending">Bekliyor</span></td>
+                            <td><span class="status-badge pending" data-tr="Bekliyor" data-de="Ausstehend">Bekliyor</span></td>
                             <td>
                                 <button class="action-btn view"><i class="fas fa-eye"></i></button>
                                 <button class="action-btn edit" style="background: rgba(64,145,108,0.1); color: var(--accent-mint);"><i class="fas fa-check"></i></button>
@@ -1449,7 +1449,7 @@
         <div class="page-content" id="page-daily-sales">
             <div class="card">
                 <div class="card-header">
-                    <h3><i class="fas fa-plus-circle"></i> Günlük Satış Girişi</h3>
+                    <h3><i class="fas fa-plus-circle"></i> <span data-tr="Günlük Satış Girişi" data-de="Tägliche Verkaufseingabe">Günlük Satış Girişi</span></h3>
                     <span style="color: var(--accent-mint); font-size: 0.9rem;">
                         <i class="fas fa-calendar"></i> <span id="todayDate"></span>
                     </span>
@@ -1459,9 +1459,9 @@
                     <!-- Employee Selection -->
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 25px;">
                         <div class="form-group">
-                            <label>Çalışan Seç</label>
+                            <label data-tr="Çalışan Seç" data-de="Mitarbeiter wählen">Çalışan Seç</label>
                             <select class="form-control" id="salesEmployee">
-                                <option value="">-- Çalışan Seç --</option>
+                                <option value="" data-tr="-- Çalışan Seç --" data-de="-- Mitarbeiter wählen --">-- Çalışan Seç --</option>
                                 <option value="1">Abdulcelil Arslan - Yozgat</option>
                                 <option value="2">Ahmet Kömür - İzmit</option>
                                 <option value="3">Ahsen Saliha Arslan - İzmit</option>
@@ -1497,13 +1497,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Tarih</label>
+                            <label data-tr="Tarih" data-de="Datum">Tarih</label>
                             <input type="date" class="form-control" id="salesDate">
                         </div>
                         <div class="form-group">
-                            <label>Şube</label>
+                            <label data-tr="Şube" data-de="Filiale">Şube</label>
                             <select class="form-control" id="salesBranch">
-                                <option value="">-- Şube Seç --</option>
+                                <option value="" data-tr="-- Şube Seç --" data-de="-- Filiale wählen --">-- Şube Seç --</option>
                                 <option value="yozgat">Yozgat</option>
                                 <option value="izmit">İzmit</option>
                                 <option value="eskisehir">Eskişehir</option>
@@ -1518,27 +1518,27 @@
                     <!-- Sales Input -->
                     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 25px;">
                         <div class="form-group">
-                            <label><i class="fas fa-check-circle" style="color: #2ecc71;"></i> QC OK Satış</label>
+                            <label><i class="fas fa-check-circle" style="color: #2ecc71;"></i> <span data-tr="QC OK Satış" data-de="QC OK Verkauf">QC OK Satış</span></label>
                             <input type="number" class="form-control" id="qcOkCount" placeholder="0" min="0" style="font-size: 1.5rem; text-align: center; font-weight: 600;">
                         </div>
                         <div class="form-group">
-                            <label><i class="fas fa-phone" style="color: #3498db;"></i> Toplam Arama</label>
+                            <label><i class="fas fa-phone" style="color: #3498db;"></i> <span data-tr="Toplam Arama" data-de="Gesamtanrufe">Toplam Arama</span></label>
                             <input type="number" class="form-control" id="totalCalls" placeholder="0" min="0" style="font-size: 1.5rem; text-align: center; font-weight: 600;">
                         </div>
                         <div class="form-group">
-                            <label><i class="fas fa-clock" style="color: #f39c12;"></i> Çalışma Saati</label>
+                            <label><i class="fas fa-clock" style="color: #f39c12;"></i> <span data-tr="Çalışma Saati" data-de="Arbeitszeit">Çalışma Saati</span></label>
                             <input type="number" class="form-control" id="workHours" placeholder="8" min="0" max="12" step="0.5" style="font-size: 1.5rem; text-align: center; font-weight: 600;">
                         </div>
                         <div class="form-group">
-                            <label><i class="fas fa-euro-sign" style="color: #27ae60;"></i> Kazanç (€)</label>
+                            <label><i class="fas fa-euro-sign" style="color: #27ae60;"></i> <span data-tr="Kazanç (€)" data-de="Verdienst (€)">Kazanç (€)</span></label>
                             <input type="text" class="form-control" id="dailyEarning" readonly style="font-size: 1.5rem; text-align: center; font-weight: 600; background: #e8f5e9; color: #27ae60;">
                         </div>
                     </div>
                     
                     <!-- Notes -->
                     <div class="form-group" style="margin-bottom: 25px;">
-                        <label><i class="fas fa-sticky-note"></i> Notlar (Opsiyonel)</label>
-                        <textarea class="form-control" id="salesNotes" rows="2" placeholder="Özel notlar..."></textarea>
+                        <label><i class="fas fa-sticky-note"></i> <span data-tr="Notlar (Opsiyonel)" data-de="Notizen (Optional)">Notlar (Opsiyonel)</span></label>
+                        <textarea class="form-control" id="salesNotes" rows="2" data-tr-placeholder="Özel notlar..." data-de-placeholder="Besondere Notizen..." placeholder="Özel notlar..."></textarea>
                     </div>
                     
                     <button class="btn btn-primary" onclick="saveDailySales()" style="width: 100%; padding: 15px; font-size: 1.1rem;">
@@ -2354,6 +2354,22 @@
             document.querySelectorAll('[data-tr-placeholder]').forEach(el => {
                 el.placeholder = lang === 'tr' ? el.dataset.trPlaceholder : el.dataset.dePlaceholder;
             });
+            
+            // Update page titles based on current active page
+            updatePageTitle();
+        }
+        
+        function updatePageTitle() {
+            const activePage = document.querySelector('.sidebar-menu a.active');
+            if (activePage) {
+                const page = activePage.getAttribute('data-page');
+                if (pageTitles && pageTitles[page]) {
+                    const pageTitle = document.getElementById('pageTitle');
+                    const pageSubtitle = document.getElementById('pageSubtitle');
+                    if (pageTitle) pageTitle.textContent = pageTitles[page].title[currentLang];
+                    if (pageSubtitle) pageSubtitle.textContent = pageTitles[page].subtitle[currentLang];
+                }
+            }
         }
         
         document.addEventListener('DOMContentLoaded', function() {
@@ -2367,17 +2383,50 @@
         const pageSubtitle = document.getElementById('pageSubtitle');
         
         const pageTitles = {
-            'dashboard': { title: 'Admin Dashboard', subtitle: 'Hoş geldiniz! İşte bugünkü özet.' },
-            'employees': { title: 'Çalışanlar', subtitle: 'Tüm çalışanları görüntüle ve yönet.' },
-            'applications': { title: 'Başvurular', subtitle: 'İş başvurularını incele ve değerlendir.' },
-            'daily-sales': { title: 'Günlük Satış Girişi', subtitle: 'Çalışanların günlük satışlarını kaydet.' },
-            'rls-wr': { title: 'RLS & WR Girişi', subtitle: 'Aylık RLS ve WR verilerini gir (1 ay geriden).' },
-            'winners': { title: 'Birinciler', subtitle: 'Ay, 3 Ay ve Yıl birincilerini görüntüle.' },
-            'sales': { title: 'Satış Raporları', subtitle: 'Detaylı satış verilerini görüntüle.' },
-            'performance': { title: 'Performans', subtitle: 'Çalışan performanslarını takip et.' },
-            'rewards': { title: 'Ödül Yönetimi', subtitle: 'Ödülleri yönet ve dağıt.' },
-            'branches': { title: 'Şubeler', subtitle: 'Şube bilgilerini yönet.' },
-            'settings': { title: 'Bildirimler', subtitle: 'Çalışanlara duyuru gönder.' }
+            'dashboard': { 
+                title: { tr: 'Admin Dashboard', de: 'Admin Dashboard' }, 
+                subtitle: { tr: 'Hoş geldiniz! İşte bugünkü özet.', de: 'Willkommen! Hier ist die heutige Übersicht.' } 
+            },
+            'employees': { 
+                title: { tr: 'Çalışanlar', de: 'Mitarbeiter' }, 
+                subtitle: { tr: 'Tüm çalışanları görüntüle ve yönet.', de: 'Alle Mitarbeiter anzeigen und verwalten.' } 
+            },
+            'applications': { 
+                title: { tr: 'Başvurular', de: 'Bewerbungen' }, 
+                subtitle: { tr: 'İş başvurularını incele ve değerlendir.', de: 'Bewerbungen prüfen und bewerten.' } 
+            },
+            'daily-sales': { 
+                title: { tr: 'Günlük Satış Girişi', de: 'Tägliche Verkaufseingabe' }, 
+                subtitle: { tr: 'Çalışanların günlük satışlarını kaydet.', de: 'Tägliche Verkäufe der Mitarbeiter erfassen.' } 
+            },
+            'rls-wr': { 
+                title: { tr: 'RLS & WR Girişi', de: 'RLS & WR Eingabe' }, 
+                subtitle: { tr: 'Aylık RLS ve WR verilerini gir (1 ay geriden).', de: 'Monatliche RLS und WR Daten eingeben (1 Monat verzögert).' } 
+            },
+            'winners': { 
+                title: { tr: 'Birinciler', de: 'Gewinner' }, 
+                subtitle: { tr: 'Ay, 3 Ay ve Yıl birincilerini görüntüle.', de: 'Monats-, Quartals- und Jahresgewinner anzeigen.' } 
+            },
+            'sales': { 
+                title: { tr: 'Satış Raporları', de: 'Verkaufsberichte' }, 
+                subtitle: { tr: 'Detaylı satış verilerini görüntüle.', de: 'Detaillierte Verkaufsdaten anzeigen.' } 
+            },
+            'performance': { 
+                title: { tr: 'Performans', de: 'Leistung' }, 
+                subtitle: { tr: 'Çalışan performanslarını takip et.', de: 'Mitarbeiterleistung verfolgen.' } 
+            },
+            'rewards': { 
+                title: { tr: 'Ödül Yönetimi', de: 'Prämienverwaltung' }, 
+                subtitle: { tr: 'Ödülleri yönet ve dağıt.', de: 'Prämien verwalten und verteilen.' } 
+            },
+            'branches': { 
+                title: { tr: 'Şubeler', de: 'Filialen' }, 
+                subtitle: { tr: 'Şube bilgilerini yönet.', de: 'Filialinformationen verwalten.' } 
+            },
+            'settings': { 
+                title: { tr: 'Bildirimler', de: 'Benachrichtigungen' }, 
+                subtitle: { tr: 'Çalışanlara duyuru gönder.', de: 'Ankündigungen an Mitarbeiter senden.' } 
+            }
         };
         
         menuLinks.forEach(link => {
@@ -2395,8 +2444,8 @@
                 
                 // Update title
                 if (pageTitles[page]) {
-                    pageTitle.textContent = pageTitles[page].title;
-                    pageSubtitle.textContent = pageTitles[page].subtitle;
+                    pageTitle.textContent = pageTitles[page].title[currentLang];
+                    pageSubtitle.textContent = pageTitles[page].subtitle[currentLang];
                 }
             });
         });
