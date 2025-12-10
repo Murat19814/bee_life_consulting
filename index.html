@@ -2132,6 +2132,36 @@
             font-size: 0.8rem;
         }
         
+        /* Service German Requirement */
+        .service-german-req {
+            margin-top: 20px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,165,0,0.1));
+            border: 1px solid rgba(255,215,0,0.4);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .service-german-req i {
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+        
+        .service-german-req span {
+            color: #FFD700;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255,215,0,0.2); }
+            50% { box-shadow: 0 0 15px rgba(255,215,0,0.4); }
+        }
+        
         /* Rewards Section */
         .rewards-intro {
             text-align: center;
@@ -2921,12 +2951,6 @@
                         hizmetleri sunuyor ve çalışanlarımıza benzersiz kariyer fırsatları sağlıyoruz.
                     </p>
                     
-                    <!-- German Language Requirement Badge -->
-                    <div class="german-badge">
-                        <i class="fas fa-language"></i>
-                        <span data-tr="🇩🇪 Almanca Biliyorsan, İşin Hazır!" data-de="🇩🇪 Du sprichst Deutsch? Dein Job wartet!">🇩🇪 Almanca Biliyorsan, İşin Hazır!</span>
-                    </div>
-                    
                     <div class="hero-stats">
                         <div class="stat-item">
                             <div class="stat-number">5+</div>
@@ -3135,6 +3159,10 @@
                         <li><i class="fas fa-check"></i> <span data-tr="Kariyer Fırsatları" data-de="Karrieremöglichkeiten">Kariyer Fırsatları</span></li>
                         <li><i class="fas fa-check"></i> <span data-tr="Motivasyon Programları" data-de="Motivationsprogramme">Motivasyon Programları</span></li>
                     </ul>
+                    <div class="service-german-req">
+                        <i class="fas fa-language"></i>
+                        <span data-tr="Almanca Bilgisi Şart" data-de="Deutschkenntnisse erforderlich">Almanca Bilgisi Şart</span>
+                    </div>
                 </div>
                 
                 <div class="service-card">
@@ -3147,6 +3175,10 @@
                         <li><i class="fas fa-check"></i> <span data-tr="Esnek Çalışma" data-de="Flexible Arbeitszeiten">Esnek Çalışma</span></li>
                         <li><i class="fas fa-check"></i> <span data-tr="Sürekli Gelişim" data-de="Kontinuierliche Entwicklung">Sürekli Gelişim</span></li>
                     </ul>
+                    <div class="service-german-req">
+                        <i class="fas fa-language"></i>
+                        <span data-tr="Almanca Bilgisi Şart" data-de="Deutschkenntnisse erforderlich">Almanca Bilgisi Şart</span>
+                    </div>
                 </div>
                 
                 <div class="service-card">
@@ -3159,6 +3191,10 @@
                         <li><i class="fas fa-check"></i> <span data-tr="Geri Bildirim" data-de="Feedback">Geri Bildirim</span></li>
                         <li><i class="fas fa-check"></i> <span data-tr="Süreç Optimizasyonu" data-de="Prozessoptimierung">Süreç Optimizasyonu</span></li>
                     </ul>
+                    <div class="service-german-req">
+                        <i class="fas fa-language"></i>
+                        <span data-tr="Almanca Bilgisi Şart" data-de="Deutschkenntnisse erforderlich">Almanca Bilgisi Şart</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3433,7 +3469,7 @@
                     <div class="german-banner-icon">🇩🇪</div>
                     <div class="german-banner-text">
                         <h3 data-tr="Almanca Diline Hakimsen? Başvur!" data-de="Du beherrschst Deutsch? Bewirb dich!">Almanca Diline Hakimsen? Başvur!</h3>
-                        <p data-tr="İş başvurularında <span class='highlight'>Almanca dil şartı</span> bulunmaktadır. Anadili seviyesinde veya akıcı Almanca konuşabiliyorsan, yüksek kazanç fırsatı seni bekliyor!" data-de="Für Bewerbungen ist <span class='highlight'>Deutschkenntnisse erforderlich</span>. Wenn du Deutsch auf Muttersprachenniveau oder fließend sprichst, wartet eine hohe Verdienstmöglichkeit auf dich!">İş başvurularında <span class="highlight">Almanca dil şartı</span> bulunmaktadır. Anadili seviyesinde veya akıcı Almanca konuşabiliyorsan, yüksek kazanç fırsatı seni bekliyor!</p>
+                        <p><span data-tr="İş başvurularında" data-de="Für Bewerbungen ist">İş başvurularında</span> <span class="highlight" data-tr="Almanca dil şartı" data-de="Deutschkenntnisse erforderlich">Almanca dil şartı</span> <span data-tr="bulunmaktadır. Anadili seviyesinde veya akıcı Almanca konuşabiliyorsan, yüksek kazanç fırsatı seni bekliyor!" data-de="erforderlich. Wenn du Deutsch auf Muttersprachenniveau oder fließend sprichst, wartet eine hohe Verdienstmöglichkeit auf dich!">bulunmaktadır. Anadili seviyesinde veya akıcı Almanca konuşabiliyorsan, yüksek kazanç fırsatı seni bekliyor!</span></p>
                         <div class="german-banner-flag">
                             <i class="fas fa-language"></i>
                             <span data-tr="Almanca C1-C2 Seviye veya Anadil" data-de="Deutsch C1-C2 Niveau oder Muttersprache">Almanca C1-C2 Seviye veya Anadil</span>
@@ -3872,6 +3908,7 @@
             'Almanca C1-C2 Seviye veya Anadil': 'Deutsch C1-C2 Niveau oder Muttersprache',
             'Almanca Şart': 'Deutsch erforderlich',
             '🇩🇪 Almanca Bilgisi Şart (Anadil/C1-C2)': '🇩🇪 Deutschkenntnisse erforderlich (Muttersprache/C1-C2)',
+            'Almanca Bilgisi Şart': 'Deutschkenntnisse erforderlich',
             
             // Hero Section
             'Bee Life Consulting': 'Bee Life Consulting',
