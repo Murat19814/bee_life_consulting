@@ -1020,13 +1020,13 @@
         
         <div class="sidebar-user">
             <div class="sidebar-user-info">
-                <div class="sidebar-user-avatar">AK</div>
+                <div class="sidebar-user-avatar" id="userAvatar">--</div>
                 <div class="sidebar-user-details">
-                    <h4>Ahmet Kaya</h4>
-                    <p>Satış Temsilcisi</p>
+                    <h4 id="userName">Çalışan</h4>
+                    <p id="userBranch">Şube</p>
                 </div>
             </div>
-            <button class="logout-btn" onclick="window.location.href='employee-login.html'">
+            <button class="logout-btn" onclick="logout()">
                 <i class="fas fa-sign-out-alt"></i> Çıkış Yap
             </button>
         </div>
@@ -1037,8 +1037,8 @@
         <!-- Top Bar -->
         <div class="top-bar">
             <div>
-                <h1>Hoş Geldin, Ahmet! 👋</h1>
-                <p>Bugünkü performansını takip et</p>
+                <h1 id="welcomeMessage">Hoş Geldin! 👋</h1>
+                <p id="welcomeSubtitle">Bugünkü performansını takip et</p>
             </div>
             <div class="top-bar-right">
                 <button class="notification-btn">
@@ -1259,6 +1259,41 @@
     </div>
 
     <script>
+        // ═══════════════════════════════════════════════════════════════
+        // KULLANICI BİLGİLERİNİ YÜKLE
+        // ═══════════════════════════════════════════════════════════════
+        function loadUserData() {
+            const employeeData = localStorage.getItem('currentEmployee');
+            
+            if (employeeData) {
+                const employee = JSON.parse(employeeData);
+                
+                // Update welcome message
+                const firstName = employee.name.split(' ')[0];
+                document.getElementById('welcomeMessage').textContent = `Hoş Geldin, ${firstName}! 👋`;
+                document.getElementById('welcomeSubtitle').textContent = `${employee.branch} Şubesi - Bugünkü performansını takip et`;
+                
+                // Update sidebar
+                const initials = employee.name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
+                document.getElementById('userAvatar').textContent = initials;
+                document.getElementById('userName').textContent = employee.name;
+                document.getElementById('userBranch').textContent = employee.branch + ' Şubesi';
+                
+            } else {
+                // No login data, redirect to login
+                window.location.href = 'employee-login.html';
+            }
+        }
+        
+        // Logout function
+        function logout() {
+            localStorage.removeItem('currentEmployee');
+            window.location.href = 'employee-login.html';
+        }
+        
+        // Load user data on page load
+        document.addEventListener('DOMContentLoaded', loadUserData);
+        
         // Treasure Box Game
         const treasureGameOverlay = document.getElementById('treasureGameOverlay');
         const treasureGrid = document.getElementById('treasureGrid');

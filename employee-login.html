@@ -447,6 +447,32 @@
 
     <!-- ========== JAVASCRIPT ========== -->
     <script>
+        // ═══════════════════════════════════════════════════════════════
+        // ÇALIŞAN VERİTABANI (Demo)
+        // ═══════════════════════════════════════════════════════════════
+        const employees = [
+            { id: 1, name: 'Abdulcelil Arslan', username: 'aarslan', password: 'arslan2024', branch: 'Yozgat', role: 'agent' },
+            { id: 2, name: 'Aslı Akdoğan', username: 'aakdogan', password: 'akdogan2024', branch: 'Yozgat', role: 'agent' },
+            { id: 3, name: 'Deniz Beyazkoç', username: 'dbeyazkoc', password: 'beyazkoc2024', branch: 'İzmit', role: 'agent' },
+            { id: 4, name: 'Eda Nur Bağır Hatipoğlu', username: 'ehatipoglu', password: 'hatipoglu2024', branch: 'İzmit', role: 'agent' },
+            { id: 5, name: 'Erdoğan Çuvoğlu', username: 'ecuvoglu', password: 'cuvoglu2024', branch: 'Eskişehir', role: 'agent' },
+            { id: 6, name: 'Gönül Dağ', username: 'gdag', password: 'dag2024', branch: 'Eskişehir', role: 'agent' },
+            { id: 7, name: 'Gülay Dikmen', username: 'gdikmen', password: 'dikmen2024', branch: 'Yozgat', role: 'agent' },
+            { id: 8, name: 'Hilal Coşkun', username: 'hcoskun', password: 'coskun2024', branch: 'Yozgat', role: 'agent' },
+            { id: 9, name: 'Leyla Doğan', username: 'ldogan', password: 'dogan2024', branch: 'İzmit', role: 'agent' },
+            { id: 10, name: 'Meral Taşdoğan', username: 'mtasdogan', password: 'tasdogan2024', branch: 'İzmit', role: 'agent' },
+            { id: 11, name: 'Nihat Kedi', username: 'nkedi', password: 'kedi2024', branch: 'Eskişehir', role: 'agent' },
+            { id: 12, name: 'Selma Delioğlu', username: 'sdelioglu', password: 'delioglu2024', branch: 'Eskişehir', role: 'agent' },
+            { id: 13, name: 'Şeyda Uludağ', username: 'suludag', password: 'uludag2024', branch: 'Yozgat', role: 'agent' },
+            { id: 14, name: 'Taner Turan', username: 'tturan', password: 'turan2024', branch: 'Balıkesir', role: 'agent' },
+            { id: 15, name: 'Tuncay Karaca', username: 'tkaraca', password: 'karaca2024', branch: 'Balıkesir', role: 'agent' },
+            { id: 16, name: 'Turgay Yumrukaya', username: 'tyumrukaya', password: 'yumrukaya2024', branch: 'Balıkesir', role: 'agent' },
+            { id: 17, name: 'Yücel Gökçe', username: 'ygokce', password: 'gokce2024', branch: 'Yozgat', role: 'agent' },
+            { id: 18, name: 'Yüksel Taşkın', username: 'ytaskin', password: 'taskin2024', branch: 'İzmit', role: 'agent' },
+            // Demo/Test kullanıcıları
+            { id: 99, name: 'Ahmet Kaya (Demo)', username: 'ahmet', password: 'ahmet123', branch: 'Eskişehir', role: 'agent' }
+        ];
+        
         // Login Form Handler
         const loginForm = document.getElementById('employeeLoginForm');
         
@@ -454,15 +480,31 @@
             loginForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
+                const username = document.getElementById('email').value.toLowerCase().trim();
+                const password = document.getElementById('password').value;
                 const submitBtn = this.querySelector('button[type="submit"]');
+                
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Giriş Yapılıyor...';
                 submitBtn.disabled = true;
                 
-                // Simulate login - In production, this would be an API call
+                // Find employee
+                const employee = employees.find(emp => 
+                    emp.username.toLowerCase() === username && emp.password === password
+                );
+                
                 setTimeout(() => {
-                    // Redirect to employee dashboard
-                    window.location.href = 'employee-dashboard.html';
-                }, 1500);
+                    if (employee) {
+                        // Save to localStorage for dashboard
+                        localStorage.setItem('currentEmployee', JSON.stringify(employee));
+                        
+                        // Redirect to employee dashboard
+                        window.location.href = 'employee-dashboard.html';
+                    } else {
+                        alert('❌ Hatalı kullanıcı adı veya şifre!\n\nLütfen bilgilerinizi kontrol edin.');
+                        submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Giriş Yap';
+                        submitBtn.disabled = false;
+                    }
+                }, 1000);
             });
         }
     </script>
