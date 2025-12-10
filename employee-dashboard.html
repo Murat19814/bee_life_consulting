@@ -588,40 +588,39 @@
             margin-top: 5px;
         }
         
-        /* Balloon Game */
-        .balloon-game-overlay {
+        /* Treasure Box Game */
+        .treasure-game-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(7, 29, 28, 0.95);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
             z-index: 9999;
             display: none;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            padding: 40px;
+            overflow-y: auto;
         }
         
-        .balloon-game-overlay.active {
+        .treasure-game-overlay.active {
             display: flex;
         }
         
-        .balloon-game-header {
-            position: absolute;
-            top: 40px;
-            left: 50%;
-            transform: translateX(-50%);
+        .treasure-game-header {
             text-align: center;
-            z-index: 10;
+            margin-bottom: 40px;
         }
         
-        .balloon-game-header h2 {
+        .treasure-game-header h2 {
             font-size: 2.5rem;
-            color: var(--white);
+            color: #FFD700;
             margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255,215,0,0.5);
         }
         
-        .balloon-game-header p {
+        .treasure-game-header p {
             color: rgba(255,255,255,0.7);
             font-size: 1.1rem;
         }
@@ -633,48 +632,126 @@
             width: 50px;
             height: 50px;
             background: rgba(255,255,255,0.1);
-            border: none;
-            color: white;
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 50%;
+            color: #FFD700;
             font-size: 1.5rem;
             cursor: pointer;
             z-index: 10;
+            transition: all 0.3s ease;
         }
         
         .close-game:hover {
-            background: rgba(230, 57, 70, 0.5);
+            background: rgba(255,215,0,0.2);
+            transform: rotate(90deg);
         }
         
-        .balloon {
-            position: absolute;
-            width: 100px;
-            height: 120px;
+        /* Treasure Grid */
+        .treasure-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 8px;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        .treasure-box {
+            aspect-ratio: 1;
+            background: linear-gradient(145deg, #2a2a3a 0%, #1a1a2a 100%);
+            border: 2px solid #3a3a4a;
+            border-radius: 12px;
             cursor: pointer;
-            animation: floatBalloon 4s ease-in-out infinite;
-            transition: transform 0.1s ease;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .balloon:hover {
-            transform: scale(1.15);
-        }
-        
-        .balloon svg {
+        .treasure-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
         }
         
-        .balloon-1 { top: 20%; left: 10%; animation-delay: 0s; }
-        .balloon-2 { top: 30%; left: 30%; animation-delay: 0.5s; }
-        .balloon-3 { top: 25%; left: 50%; animation-delay: 1s; }
-        .balloon-4 { top: 35%; left: 70%; animation-delay: 1.5s; }
-        .balloon-5 { top: 20%; left: 85%; animation-delay: 2s; }
-        .balloon-6 { top: 50%; left: 20%; animation-delay: 2.5s; }
-        .balloon-7 { top: 55%; left: 45%; animation-delay: 3s; }
-        .balloon-8 { top: 45%; left: 75%; animation-delay: 3.5s; }
+        .treasure-box:hover::before {
+            left: 100%;
+        }
         
-        @keyframes floatBalloon {
-            0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-25px) rotate(5deg); }
+        .treasure-box:hover {
+            transform: scale(1.1) translateY(-5px);
+            border-color: #FFD700;
+            box-shadow: 0 10px 30px rgba(255,215,0,0.3);
+        }
+        
+        /* Box Types */
+        .treasure-box.silver {
+            background: linear-gradient(145deg, #4a4a5a 0%, #3a3a4a 100%);
+            border-color: #C0C0C0;
+        }
+        .treasure-box.silver:hover {
+            border-color: #E8E8E8;
+            box-shadow: 0 10px 30px rgba(192,192,192,0.4);
+        }
+        
+        .treasure-box.gold {
+            background: linear-gradient(145deg, #4a4a2a 0%, #3a3a1a 100%);
+            border-color: #FFD700;
+        }
+        .treasure-box.gold:hover {
+            box-shadow: 0 10px 30px rgba(255,215,0,0.5);
+        }
+        
+        .treasure-box.diamond {
+            background: linear-gradient(145deg, #2a4a5a 0%, #1a3a4a 100%);
+            border-color: #00CED1;
+        }
+        .treasure-box.diamond:hover {
+            border-color: #40E0D0;
+            box-shadow: 0 10px 30px rgba(0,206,209,0.5);
+        }
+        
+        .treasure-box.opened {
+            background: linear-gradient(145deg, #1a3a1a 0%, #0a2a0a 100%);
+            border-color: #2ecc71;
+            pointer-events: none;
+        }
+        
+        .treasure-box.opened .box-icon {
+            color: #2ecc71;
+        }
+        
+        .box-icon {
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        .treasure-box:hover .box-icon {
+            transform: scale(1.2);
+        }
+        
+        /* Shimmer Animation */
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        .treasure-box.gold .box-icon,
+        .treasure-box.diamond .box-icon {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
         }
         
         /* Prize Reveal */
@@ -904,7 +981,7 @@
                 <!-- Prize Banner -->
                 <div class="prize-banner">
                     <h3>🎉 Tebrikler! Ay Birincisisin!</h3>
-                    <p>Balon patlatarak muhteşem hediyeni seç!</p>
+                    <p>Hazine kutusunu açarak muhteşem hediyeni kazan!</p>
                     <button class="btn" id="claimPrizeBtn">
                         <i class="fas fa-gift"></i> Hediyemi Al
                     </button>
@@ -1037,93 +1114,17 @@
         </div>
     </main>
 
-    <!-- Balloon Game -->
-    <div class="balloon-game-overlay" id="balloonGameOverlay">
+    <!-- Treasure Box Game -->
+    <div class="treasure-game-overlay" id="treasureGameOverlay">
         <button class="close-game" id="closeGame"><i class="fas fa-times"></i></button>
         
-        <div class="balloon-game-header">
-            <h2>🎈 Balon Patlatma Oyunu</h2>
-            <p>Bir balon seç ve hediyeni kazan!</p>
+        <div class="treasure-game-header">
+            <h2>💎 Hazine Kutusu Oyunu</h2>
+            <p>Bir kutu seç ve muhteşem hediyeni kazan!</p>
         </div>
         
-        <div class="balloon balloon-1" data-prize="25€ Değerinde Hediye">
-            <svg viewBox="0 0 100 130">
-                <defs><radialGradient id="b1" cx="30%" cy="30%"><stop offset="0%" style="stop-color:#40916c"/><stop offset="100%" style="stop-color:#2d6a4f"/></radialGradient></defs>
-                <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#b1)"/>
-                <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
-                <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
-                <polygon points="45,105 55,105 50,115" fill="#2d6a4f"/>
-            </svg>
-        </div>
-        
-        <div class="balloon balloon-2" data-prize="50€ Değerinde Hediye">
-            <svg viewBox="0 0 100 130">
-                <defs><radialGradient id="b2" cx="30%" cy="30%"><stop offset="0%" style="stop-color:#1a4a48"/><stop offset="100%" style="stop-color:#0d2b2a"/></radialGradient></defs>
-                <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#b2)"/>
-                <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
-                <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
-                <polygon points="45,105 55,105 50,115" fill="#0d2b2a"/>
-            </svg>
-        </div>
-        
-        <div class="balloon balloon-3" data-prize="🎁 Sürpriz Hediye">
-            <svg viewBox="0 0 100 130">
-                <defs><radialGradient id="b3" cx="30%" cy="30%"><stop offset="0%" style="stop-color:#52b788"/><stop offset="100%" style="stop-color:#40916c"/></radialGradient></defs>
-                <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#b3)"/>
-                <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
-                <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
-                <polygon points="45,105 55,105 50,115" fill="#40916c"/>
-            </svg>
-        </div>
-        
-        <div class="balloon balloon-4" data-prize="10€ Değerinde Hediye">
-            <svg viewBox="0 0 100 130">
-                <defs><radialGradient id="b4" cx="30%" cy="30%"><stop offset="0%" style="stop-color:#74c69d"/><stop offset="100%" style="stop-color:#52b788"/></radialGradient></defs>
-                <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#b4)"/>
-                <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
-                <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
-                <polygon points="45,105 55,105 50,115" fill="#52b788"/>
-            </svg>
-        </div>
-        
-        <div class="balloon balloon-5" data-prize="💝 Bağış Yap">
-            <svg viewBox="0 0 100 130">
-                <defs><radialGradient id="b5" cx="30%" cy="30%"><stop offset="0%" style="stop-color:#95d5b2"/><stop offset="100%" style="stop-color:#74c69d"/></radialGradient></defs>
-                <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#b5)"/>
-                <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
-                <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
-                <polygon points="45,105 55,105 50,115" fill="#74c69d"/>
-            </svg>
-        </div>
-        
-        <div class="balloon balloon-6" data-prize="75€ Değerinde Hediye">
-            <svg viewBox="0 0 100 130">
-                <defs><radialGradient id="b6" cx="30%" cy="30%"><stop offset="0%" style="stop-color:#2d6a4f"/><stop offset="100%" style="stop-color:#1b4332"/></radialGradient></defs>
-                <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#b6)"/>
-                <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
-                <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
-                <polygon points="45,105 55,105 50,115" fill="#1b4332"/>
-            </svg>
-        </div>
-        
-        <div class="balloon balloon-7" data-prize="100€ Değerinde Hediye 🎉">
-            <svg viewBox="0 0 100 130">
-                <defs><radialGradient id="b7" cx="30%" cy="30%"><stop offset="0%" style="stop-color:#081c15"/><stop offset="100%" style="stop-color:#071d1c"/></radialGradient></defs>
-                <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#b7)"/>
-                <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
-                <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
-                <polygon points="45,105 55,105 50,115" fill="#071d1c"/>
-            </svg>
-        </div>
-        
-        <div class="balloon balloon-8" data-prize="🍬 Küçük Sürpriz">
-            <svg viewBox="0 0 100 130">
-                <defs><radialGradient id="b8" cx="30%" cy="30%"><stop offset="0%" style="stop-color:#b7e4c7"/><stop offset="100%" style="stop-color:#95d5b2"/></radialGradient></defs>
-                <ellipse cx="50" cy="50" rx="45" ry="55" fill="url(#b8)"/>
-                <ellipse cx="35" cy="35" rx="8" ry="12" fill="rgba(255,255,255,0.3)"/>
-                <path d="M50 105 L50 130" stroke="#999" stroke-width="2"/>
-                <polygon points="45,105 55,105 50,115" fill="#95d5b2"/>
-            </svg>
+        <div class="treasure-grid" id="treasureGrid">
+            <!-- Grid will be populated by JavaScript -->
         </div>
         
         <!-- Prize Reveal -->
@@ -1143,97 +1144,147 @@
     </div>
 
     <script>
-        // Balloon Game
-        const balloonGameOverlay = document.getElementById('balloonGameOverlay');
+        // Treasure Box Game
+        const treasureGameOverlay = document.getElementById('treasureGameOverlay');
+        const treasureGrid = document.getElementById('treasureGrid');
         const prizeReveal = document.getElementById('prizeReveal');
         const prizeValue = document.getElementById('prizeValue');
         const prizeIcon = document.getElementById('prizeIcon');
         const confettiCanvas = document.getElementById('confettiCanvas');
         const ctx = confettiCanvas.getContext('2d');
         
-        document.getElementById('openBalloonGame').addEventListener('click', (e) => {
-            e.preventDefault();
-            openBalloonGame();
-        });
+        // Prizes list with icons
+        const prizes = [
+            { name: 'Sürpriz Hediye', icon: '🎁', type: 'normal' },
+            { name: 'Premium Hediye', icon: '💎', type: 'diamond' },
+            { name: 'Altın Ödül', icon: '🥇', type: 'gold' },
+            { name: 'Gümüş Ödül', icon: '🥈', type: 'silver' },
+            { name: 'Nakit Ödül', icon: '💰', type: 'gold' },
+            { name: 'Teknoloji Hediyesi', icon: '📱', type: 'diamond' },
+            { name: 'Tatil Ödülü', icon: '🏖️', type: 'diamond' },
+            { name: 'Spa Wellness', icon: '💆', type: 'gold' },
+            { name: 'Özel Hediye', icon: '🎀', type: 'normal' },
+            { name: 'Bonus Ödül', icon: '⭐', type: 'silver' },
+            { name: 'VIP Hediye', icon: '👑', type: 'diamond' },
+            { name: 'Gaming Paketi', icon: '🎮', type: 'gold' },
+            { name: 'Hayır Bağışı', icon: '💝', type: 'normal' },
+            { name: 'Sürpriz Kutu', icon: '📦', type: 'normal' },
+            { name: 'Lüks Hediye', icon: '✨', type: 'gold' }
+        ];
         
-        document.getElementById('openBalloonGameBtn').addEventListener('click', openBalloonGame);
-        document.getElementById('claimPrizeBtn').addEventListener('click', openBalloonGame);
+        // Box icons
+        const boxIcons = ['💎', '🪙', '💰', '🏆', '👑', '⭐', '🎁', '💫', '🔮', '💍'];
         
-        function openBalloonGame() {
-            balloonGameOverlay.classList.add('active');
+        // Create treasure boxes
+        function createTreasureBoxes() {
+            treasureGrid.innerHTML = '';
+            const totalBoxes = 100;
+            
+            for (let i = 0; i < totalBoxes; i++) {
+                const box = document.createElement('div');
+                box.className = 'treasure-box';
+                
+                // Assign random type
+                const rand = Math.random();
+                if (rand < 0.05) {
+                    box.classList.add('diamond');
+                } else if (rand < 0.15) {
+                    box.classList.add('gold');
+                } else if (rand < 0.35) {
+                    box.classList.add('silver');
+                }
+                
+                // Random icon
+                const icon = boxIcons[Math.floor(Math.random() * boxIcons.length)];
+                box.innerHTML = `<span class="box-icon">${icon}</span>`;
+                
+                // Assign random prize
+                const prize = prizes[Math.floor(Math.random() * prizes.length)];
+                box.setAttribute('data-prize', prize.name);
+                box.setAttribute('data-icon', prize.icon);
+                
+                // Click handler
+                box.addEventListener('click', function() {
+                    if (this.classList.contains('opened')) return;
+                    openTreasureBox(this);
+                });
+                
+                // Random animation delay
+                box.style.animationDelay = `${Math.random() * 2}s`;
+                
+                treasureGrid.appendChild(box);
+            }
+        }
+        
+        function openTreasureBox(box) {
+            const prizeName = box.getAttribute('data-prize');
+            const prizeIconAttr = box.getAttribute('data-icon');
+            
+            // Animate box opening
+            box.classList.add('opened');
+            box.innerHTML = '<span class="box-icon">✓</span>';
+            
+            // Show prize with delay
+            setTimeout(() => {
+                prizeValue.textContent = prizeName;
+                prizeIcon.textContent = prizeIconAttr;
+                prizeReveal.classList.add('active');
+                launchConfetti();
+            }, 300);
+        }
+        
+        // Event listeners
+        const openBalloonGameEl = document.getElementById('openBalloonGame');
+        if (openBalloonGameEl) {
+            openBalloonGameEl.addEventListener('click', (e) => {
+                e.preventDefault();
+                openTreasureGame();
+            });
+        }
+        
+        const openBalloonGameBtn = document.getElementById('openBalloonGameBtn');
+        if (openBalloonGameBtn) {
+            openBalloonGameBtn.addEventListener('click', openTreasureGame);
+        }
+        
+        document.getElementById('claimPrizeBtn').addEventListener('click', openTreasureGame);
+        
+        function openTreasureGame() {
+            createTreasureBoxes();
+            treasureGameOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
         
-        document.getElementById('closeGame').addEventListener('click', closeBalloonGame);
+        document.getElementById('closeGame').addEventListener('click', closeTreasureGame);
         document.getElementById('closePrizeReveal').addEventListener('click', () => {
             prizeReveal.classList.remove('active');
-            closeBalloonGame();
         });
         
-        function closeBalloonGame() {
-            balloonGameOverlay.classList.remove('active');
+        function closeTreasureGame() {
+            treasureGameOverlay.classList.remove('active');
             document.body.style.overflow = 'auto';
-            document.querySelectorAll('.balloon').forEach(balloon => {
-                balloon.style.display = 'block';
-                balloon.style.opacity = '1';
-                balloon.style.transform = '';
-            });
+            prizeReveal.classList.remove('active');
         }
         
-        document.querySelectorAll('.balloon').forEach(balloon => {
-            balloon.addEventListener('click', function() {
-                const prize = this.getAttribute('data-prize');
-                
-                this.style.transform = 'scale(1.5)';
-                this.style.opacity = '0';
-                
-                setTimeout(() => {
-                    this.style.display = 'none';
-                    
-                    document.querySelectorAll('.balloon').forEach(b => {
-                        if (b !== this) {
-                            b.style.transition = 'all 0.5s ease';
-                            b.style.opacity = '0';
-                        }
-                    });
-                    
-                    setTimeout(() => {
-                        prizeValue.textContent = prize;
-                        
-                        if (prize.includes('€')) {
-                            prizeIcon.textContent = '💰';
-                        } else if (prize.includes('Bağış')) {
-                            prizeIcon.textContent = '💝';
-                        } else if (prize.includes('Küçük')) {
-                            prizeIcon.textContent = '🍬';
-                        } else {
-                            prizeIcon.textContent = '🎁';
-                        }
-                        
-                        prizeReveal.classList.add('active');
-                        launchConfetti();
-                    }, 500);
-                }, 200);
-            });
-        });
-        
+        // Confetti Animation
         function launchConfetti() {
             confettiCanvas.width = window.innerWidth;
             confettiCanvas.height = window.innerHeight;
             
             const confettiPieces = [];
-            const colors = ['#40916c', '#2d6a4f', '#52b788', '#74c69d', '#95d5b2', '#0d2b2a', '#1a4a48'];
+            const colors = ['#FFD700', '#C0C0C0', '#00CED1', '#FF6B6B', '#4ECDC4', '#FFE66D', '#95E1D3', '#F38181'];
             
-            for (let i = 0; i < 150; i++) {
+            for (let i = 0; i < 200; i++) {
                 confettiPieces.push({
                     x: Math.random() * confettiCanvas.width,
                     y: Math.random() * confettiCanvas.height - confettiCanvas.height,
-                    r: Math.random() * 6 + 4,
+                    r: Math.random() * 8 + 3,
                     d: Math.random() * 150,
                     color: colors[Math.floor(Math.random() * colors.length)],
                     tilt: Math.floor(Math.random() * 10) - 10,
                     tiltAngle: 0,
-                    tiltAngleIncrement: Math.random() * 0.07 + 0.05
+                    tiltAngleIncrement: Math.random() * 0.07 + 0.05,
+                    shape: Math.random() > 0.5 ? 'circle' : 'rect'
                 });
             }
             
@@ -1242,14 +1293,22 @@
                 
                 confettiPieces.forEach((p, index) => {
                     ctx.beginPath();
-                    ctx.lineWidth = p.r / 2;
-                    ctx.strokeStyle = p.color;
-                    ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
-                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
-                    ctx.stroke();
+                    ctx.fillStyle = p.color;
+                    
+                    if (p.shape === 'circle') {
+                        ctx.arc(p.x, p.y, p.r / 2, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else {
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate(p.tiltAngle);
+                        ctx.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2);
+                        ctx.restore();
+                    }
                     
                     p.tiltAngle += p.tiltAngleIncrement;
                     p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+                    p.x += Math.sin(p.tiltAngle) * 2;
                     p.tilt = Math.sin(p.tiltAngle) * 15;
                     
                     if (p.y > confettiCanvas.height) {
@@ -1262,7 +1321,7 @@
             function animate() {
                 draw();
                 frames++;
-                if (frames < 300) {
+                if (frames < 350) {
                     requestAnimationFrame(animate);
                 } else {
                     ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
