@@ -980,9 +980,20 @@
             <div>
                 <!-- Prize Banner -->
                 <div class="prize-banner">
-                    <h3>🎉 Tebrikler! Ay Birincisisin!</h3>
+                    <h3>🎉 Tebrikler! Birinci Oldun!</h3>
                     <p>Hazine kutusunu açarak muhteşem hediyeni kazan!</p>
-                    <button class="btn" id="claimPrizeBtn">
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 15px;">
+                        <button class="btn" onclick="setWinnerType('monthly')" style="background: linear-gradient(135deg, #2d6a4f, #40916c);">
+                            <i class="fas fa-calendar"></i> Ay Birincisi
+                        </button>
+                        <button class="btn" onclick="setWinnerType('quarterly')" style="background: linear-gradient(135deg, #FFD700, #FFA500);">
+                            <i class="fas fa-trophy"></i> 3 Ay Birincisi
+                        </button>
+                        <button class="btn" onclick="setWinnerType('yearly')" style="background: linear-gradient(135deg, #00CED1, #4169E1);">
+                            <i class="fas fa-crown"></i> Yıl Birincisi
+                        </button>
+                    </div>
+                    <button class="btn" id="claimPrizeBtn" style="background: linear-gradient(135deg, #e63946, #ff6b6b); font-size: 1.1rem; padding: 15px 30px;">
                         <i class="fas fa-gift"></i> Hediyemi Al
                     </button>
                 </div>
@@ -1153,53 +1164,226 @@
         const confettiCanvas = document.getElementById('confettiCanvas');
         const ctx = confettiCanvas.getContext('2d');
         
-        // Prizes list with icons
-        const prizes = [
-            { name: 'Sürpriz Hediye', icon: '🎁', type: 'normal' },
-            { name: 'Premium Hediye', icon: '💎', type: 'diamond' },
-            { name: 'Altın Ödül', icon: '🥇', type: 'gold' },
-            { name: 'Gümüş Ödül', icon: '🥈', type: 'silver' },
-            { name: 'Nakit Ödül', icon: '💰', type: 'gold' },
-            { name: 'Teknoloji Hediyesi', icon: '📱', type: 'diamond' },
-            { name: 'Tatil Ödülü', icon: '🏖️', type: 'diamond' },
-            { name: 'Spa Wellness', icon: '💆', type: 'gold' },
-            { name: 'Özel Hediye', icon: '🎀', type: 'normal' },
-            { name: 'Bonus Ödül', icon: '⭐', type: 'silver' },
-            { name: 'VIP Hediye', icon: '👑', type: 'diamond' },
-            { name: 'Gaming Paketi', icon: '🎮', type: 'gold' },
-            { name: 'Hayır Bağışı', icon: '💝', type: 'normal' },
-            { name: 'Sürpriz Kutu', icon: '📦', type: 'normal' },
-            { name: 'Lüks Hediye', icon: '✨', type: 'gold' }
+        // ═══════════════════════════════════════════════════════════
+        // AY BİRİNCİSİ HEDİYELERİ (10€ - 100€)
+        // ═══════════════════════════════════════════════════════════
+        const monthlyPrizes = [
+            // Nakit Paralar
+            { name: '10€ Nakit Para', icon: '💵' },
+            { name: '15€ Nakit Para', icon: '💵' },
+            { name: '20€ Nakit Para', icon: '💶' },
+            { name: '25€ Nakit Para', icon: '💶' },
+            { name: '30€ Nakit Para', icon: '💰' },
+            { name: '40€ Nakit Para', icon: '💰' },
+            { name: '50€ Nakit Para', icon: '💰' },
+            { name: '75€ Nakit Para', icon: '💸' },
+            { name: '100€ Nakit Para', icon: '💸' },
+            // Hediyeler
+            { name: 'Bluetooth Kulaklık', icon: '🎧' },
+            { name: 'Akıllı Saat', icon: '⌚' },
+            { name: 'Powerbank 20000mAh', icon: '🔋' },
+            { name: 'Kablosuz Mouse', icon: '🖱️' },
+            { name: 'Mekanik Klavye', icon: '⌨️' },
+            { name: 'Güneş Gözlüğü', icon: '🕶️' },
+            { name: 'Parfüm Seti', icon: '🧴' },
+            { name: 'Spor Çanta', icon: '👜' },
+            { name: 'Fitness Bilekliği', icon: '📿' },
+            { name: 'Kindle E-Kitap', icon: '📱' },
+            { name: 'JBL Hoparlör', icon: '🔊' },
+            { name: 'Gaming Mouse Pad', icon: '🎮' },
+            { name: 'LED Masa Lambası', icon: '💡' },
+            { name: 'Termos Bardak Seti', icon: '☕' },
+            { name: 'Webcam HD', icon: '📷' },
+            { name: 'USB Hub', icon: '🔌' },
+            { name: 'Tablet Standı', icon: '📲' },
+            { name: 'Masaj Aleti', icon: '💆' },
+            { name: 'Şarj İstasyonu', icon: '🔋' },
+            // Espirili Hediyeler
+            { name: 'Falım Sakız Paketi 😄', icon: '🍬' },
+            { name: 'Hayır Kurumuna Bağış 💝', icon: '🙏' },
+            { name: 'Bir Bardak Çay ☕', icon: '🍵' },
+            { name: 'Alkış ve Tebrikler! 👏', icon: '🎉' },
+            { name: 'Patrondan Sarılma 🤗', icon: '🫂' },
+            { name: '1 Gün Geç Gelme Hakkı', icon: '😴' },
+            { name: 'Ofiste DJ Olma Hakkı 🎵', icon: '🎤' },
+            { name: 'Şeker Kutusu', icon: '🍭' }
         ];
         
-        // Box icons
-        const boxIcons = ['💎', '🪙', '💰', '🏆', '👑', '⭐', '🎁', '💫', '🔮', '💍'];
+        // ═══════════════════════════════════════════════════════════
+        // 3 AY BİRİNCİSİ HEDİYELERİ (100€ - 250€)
+        // ═══════════════════════════════════════════════════════════
+        const quarterlyPrizes = [
+            // Nakit Paralar
+            { name: '100€ Nakit Para', icon: '💰' },
+            { name: '125€ Nakit Para', icon: '💰' },
+            { name: '150€ Nakit Para', icon: '💸' },
+            { name: '175€ Nakit Para', icon: '💸' },
+            { name: '200€ Nakit Para', icon: '🤑' },
+            { name: '225€ Nakit Para', icon: '🤑' },
+            { name: '250€ Nakit Para', icon: '🤑' },
+            // Premium Hediyeler
+            { name: 'AirPods Pro', icon: '🎧' },
+            { name: 'Samsung Galaxy Watch', icon: '⌚' },
+            { name: 'Nintendo Switch Lite', icon: '🎮' },
+            { name: 'Drone Mini', icon: '🚁' },
+            { name: 'GoPro Hero', icon: '📹' },
+            { name: 'Ray-Ban Güneş Gözlüğü', icon: '🕶️' },
+            { name: 'Apple Watch SE', icon: '⌚' },
+            { name: 'Bose Hoparlör', icon: '🔊' },
+            { name: 'Dyson Saç Kurutma', icon: '💇' },
+            { name: 'Spa Günü Paketi', icon: '💆' },
+            { name: 'Lüks Akşam Yemeği (2 Kişi)', icon: '🍽️' },
+            { name: 'Hafta Sonu Otel Konaklama', icon: '🏨' },
+            { name: 'Uçak Bileti (Yurtiçi)', icon: '✈️' },
+            { name: 'Gaming Headset Pro', icon: '🎧' },
+            { name: 'Tablet Samsung', icon: '📱' },
+            { name: 'Elektrikli Scooter', icon: '🛴' },
+            { name: 'Marka Cüzdan', icon: '👛' },
+            { name: 'Designer Parfüm', icon: '🧴' },
+            { name: 'Fitness Üyeliği (6 Ay)', icon: '💪' }
+        ];
         
-        // Create treasure boxes
+        // ═══════════════════════════════════════════════════════════
+        // YIL BİRİNCİSİ HEDİYELERİ (100€ - 500€)
+        // ═══════════════════════════════════════════════════════════
+        const yearlyPrizes = [
+            // Büyük Nakit Paralar
+            { name: '200€ Nakit Para', icon: '💰' },
+            { name: '250€ Nakit Para', icon: '💸' },
+            { name: '300€ Nakit Para', icon: '💸' },
+            { name: '350€ Nakit Para', icon: '🤑' },
+            { name: '400€ Nakit Para', icon: '🤑' },
+            { name: '450€ Nakit Para', icon: '🤑' },
+            { name: '500€ Nakit Para', icon: '💎' },
+            // Premium Teknoloji
+            { name: 'PlayStation 5', icon: '🎮' },
+            { name: 'Xbox Series X', icon: '🎮' },
+            { name: 'Nintendo Switch OLED', icon: '🕹️' },
+            { name: 'iPad Air', icon: '📱' },
+            { name: 'MacBook Air M2', icon: '💻' },
+            { name: 'Samsung Galaxy S24', icon: '📱' },
+            { name: 'iPhone 15', icon: '📱' },
+            { name: 'Sony WH-1000XM5', icon: '🎧' },
+            { name: '4K Smart TV 55"', icon: '📺' },
+            { name: 'DJI Drone', icon: '🚁' },
+            // Lüks Deneyimler
+            { name: '2 Gece Bungalov Tatili', icon: '🏕️' },
+            { name: 'Spa & Wellness Paketi', icon: '💆' },
+            { name: 'Lüks Restoran (4 Kişi)', icon: '🍽️' },
+            { name: 'Konser VIP Bilet', icon: '🎤' },
+            { name: '3 Gün Otel Tatili', icon: '🏖️' },
+            { name: 'Avrupa Uçak Bileti', icon: '✈️' },
+            { name: 'Rolex Saat (Replika Değil!)', icon: '⌚' },
+            { name: 'Designer Çanta', icon: '👜' },
+            { name: 'Yıllık Netflix + Spotify', icon: '🎬' },
+            { name: 'Gaming PC Upgrade Paketi', icon: '🖥️' },
+            { name: 'E-Bisiklet', icon: '🚲' },
+            { name: 'Apple AirPods Max', icon: '🎧' }
+        ];
+        
+        // Box icons by type
+        const normalIcons = ['🎁', '📦', '🎀', '✨', '⭐'];
+        const silverIcons = ['🥈', '🪙', '💫', '✨', '⚪'];
+        const goldIcons = ['🥇', '💰', '🏆', '👑', '🌟'];
+        const diamondIcons = ['💎', '💍', '👑', '🔮', '🌟'];
+        
+        // Get current winner type from user data (demo: monthly winner)
+        let currentWinnerType = 'monthly'; // 'monthly', 'quarterly', 'yearly'
+        
+        // Function to set winner type (for demo/testing)
+        function setWinnerType(type) {
+            currentWinnerType = type;
+            const typeNames = {
+                'monthly': 'Ay Birincisi (10€-100€)',
+                'quarterly': '3 Ay Birincisi (100€-250€)',
+                'yearly': 'Yıl Birincisi (100€-500€)'
+            };
+            alert('✅ Seçilen Kategori: ' + typeNames[type] + '\n\nŞimdi "Hediyemi Al" butonuna tıkla!');
+        }
+        window.setWinnerType = setWinnerType;
+        
+        // Create treasure boxes based on winner type
         function createTreasureBoxes() {
             treasureGrid.innerHTML = '';
             const totalBoxes = 100;
+            
+            // Select prizes based on winner type
+            let availablePrizes;
+            let gridTitle;
+            
+            switch(currentWinnerType) {
+                case 'yearly':
+                    availablePrizes = yearlyPrizes;
+                    gridTitle = '🏆 YIL BİRİNCİSİ - MEGA ÖDÜLLER (100€-500€)';
+                    break;
+                case 'quarterly':
+                    availablePrizes = quarterlyPrizes;
+                    gridTitle = '🥇 3 AY BİRİNCİSİ - PREMIUM ÖDÜLLER (100€-250€)';
+                    break;
+                default:
+                    availablePrizes = monthlyPrizes;
+                    gridTitle = '🎉 AY BİRİNCİSİ - HEDİYELER (10€-100€)';
+            }
+            
+            // Update header
+            document.querySelector('.treasure-game-header h2').innerHTML = gridTitle;
             
             for (let i = 0; i < totalBoxes; i++) {
                 const box = document.createElement('div');
                 box.className = 'treasure-box';
                 
-                // Assign random type
+                // Assign random type based on winner category
                 const rand = Math.random();
-                if (rand < 0.05) {
-                    box.classList.add('diamond');
-                } else if (rand < 0.15) {
-                    box.classList.add('gold');
-                } else if (rand < 0.35) {
-                    box.classList.add('silver');
+                let boxType = 'normal';
+                let icons = normalIcons;
+                
+                if (currentWinnerType === 'yearly') {
+                    if (rand < 0.20) {
+                        box.classList.add('diamond');
+                        boxType = 'diamond';
+                        icons = diamondIcons;
+                    } else if (rand < 0.50) {
+                        box.classList.add('gold');
+                        boxType = 'gold';
+                        icons = goldIcons;
+                    } else {
+                        box.classList.add('silver');
+                        boxType = 'silver';
+                        icons = silverIcons;
+                    }
+                } else if (currentWinnerType === 'quarterly') {
+                    if (rand < 0.10) {
+                        box.classList.add('diamond');
+                        boxType = 'diamond';
+                        icons = diamondIcons;
+                    } else if (rand < 0.35) {
+                        box.classList.add('gold');
+                        boxType = 'gold';
+                        icons = goldIcons;
+                    } else if (rand < 0.70) {
+                        box.classList.add('silver');
+                        boxType = 'silver';
+                        icons = silverIcons;
+                    }
+                } else {
+                    // Monthly - more normal boxes, some silver/gold for excitement
+                    if (rand < 0.05) {
+                        box.classList.add('gold');
+                        boxType = 'gold';
+                        icons = goldIcons;
+                    } else if (rand < 0.25) {
+                        box.classList.add('silver');
+                        boxType = 'silver';
+                        icons = silverIcons;
+                    }
                 }
                 
-                // Random icon
-                const icon = boxIcons[Math.floor(Math.random() * boxIcons.length)];
+                // Random icon based on box type
+                const icon = icons[Math.floor(Math.random() * icons.length)];
                 box.innerHTML = `<span class="box-icon">${icon}</span>`;
                 
-                // Assign random prize
-                const prize = prizes[Math.floor(Math.random() * prizes.length)];
+                // Assign random prize from available prizes
+                const prize = availablePrizes[Math.floor(Math.random() * availablePrizes.length)];
                 box.setAttribute('data-prize', prize.name);
                 box.setAttribute('data-icon', prize.icon);
                 
@@ -1209,7 +1393,7 @@
                     openTreasureBox(this);
                 });
                 
-                // Random animation delay
+                // Random animation delay for shimmer effect
                 box.style.animationDelay = `${Math.random() * 2}s`;
                 
                 treasureGrid.appendChild(box);
