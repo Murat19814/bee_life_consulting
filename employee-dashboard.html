@@ -649,16 +649,17 @@
         /* Treasure Grid */
         .treasure-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            max-width: 800px;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            max-width: 700px;
             width: 100%;
             padding: 20px;
         }
         
         /* Golden Chest Design */
         .treasure-box {
-            aspect-ratio: 1;
+            width: 80px;
+            height: 70px;
             background: linear-gradient(180deg, #8B6914 0%, #654B0F 30%, #3D2D09 100%);
             border: 3px solid #B8860B;
             border-radius: 8px 8px 4px 4px;
@@ -666,7 +667,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: visible;
@@ -674,6 +675,23 @@
                 0 8px 20px rgba(0,0,0,0.4),
                 inset 0 2px 4px rgba(255,215,0,0.3),
                 inset 0 -5px 15px rgba(0,0,0,0.4);
+            animation: floatChest 3s ease-in-out infinite;
+        }
+        
+        /* Floating Animation */
+        @keyframes floatChest {
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+        
+        .treasure-box:nth-child(odd) {
+            animation-delay: 0.5s;
+        }
+        .treasure-box:nth-child(3n) {
+            animation-delay: 1s;
+        }
+        .treasure-box:nth-child(4n) {
+            animation-delay: 1.5s;
         }
         
         /* Chest Lid Effect */
@@ -1308,25 +1326,25 @@
             { name: '225€ Nakit Para', icon: '🤑' },
             { name: '250€ Nakit Para', icon: '🤑' },
             // Premium Hediyeler
-            { name: 'AirPods Pro', icon: '🎧' },
-            { name: 'Samsung Galaxy Watch', icon: '⌚' },
-            { name: 'Nintendo Switch Lite', icon: '🎮' },
-            { name: 'Drone Mini', icon: '🚁' },
-            { name: 'GoPro Hero', icon: '📹' },
-            { name: 'Ray-Ban Güneş Gözlüğü', icon: '🕶️' },
-            { name: 'Apple Watch SE', icon: '⌚' },
-            { name: 'Bose Hoparlör', icon: '🔊' },
-            { name: 'Dyson Saç Kurutma', icon: '💇' },
+            { name: 'Kablosuz Kulaklık', icon: '🎧' },
+            { name: 'Akıllı Saat', icon: '⌚' },
+            { name: 'Gaming Konsol', icon: '🎮' },
+            { name: 'Mini Drone', icon: '🚁' },
+            { name: 'Aksiyon Kamera', icon: '📹' },
+            { name: 'Güneş Gözlüğü', icon: '🕶️' },
+            { name: 'Bluetooth Hoparlör', icon: '🔊' },
+            { name: 'Saç Bakım Seti', icon: '💇' },
             { name: 'Spa Günü Paketi', icon: '💆' },
-            { name: 'Lüks Akşam Yemeği (2 Kişi)', icon: '🍽️' },
-            { name: 'Hafta Sonu Otel Konaklama', icon: '🏨' },
-            { name: 'Uçak Bileti (Yurtiçi)', icon: '✈️' },
-            { name: 'Gaming Headset Pro', icon: '🎧' },
-            { name: 'Tablet Samsung', icon: '📱' },
+            { name: 'Akşam Yemeği (2 Kişi)', icon: '🍽️' },
+            { name: 'Otel Konaklama', icon: '🏨' },
+            { name: 'Gaming Kulaklık', icon: '🎧' },
+            { name: 'Tablet', icon: '📱' },
             { name: 'Elektrikli Scooter', icon: '🛴' },
-            { name: 'Marka Cüzdan', icon: '👛' },
-            { name: 'Designer Parfüm', icon: '🧴' },
-            { name: 'Fitness Üyeliği (6 Ay)', icon: '💪' }
+            { name: 'Deri Cüzdan', icon: '👛' },
+            { name: 'Parfüm Seti', icon: '🧴' },
+            { name: 'Fitness Üyeliği (3 Ay)', icon: '💪' },
+            { name: 'Alışveriş Çeki', icon: '🛍️' },
+            { name: 'Restoran Kuponu', icon: '🍕' }
         ];
         
         // ═══════════════════════════════════════════════════════════
@@ -1345,26 +1363,24 @@
             { name: 'PlayStation 5', icon: '🎮' },
             { name: 'Xbox Series X', icon: '🎮' },
             { name: 'Nintendo Switch OLED', icon: '🕹️' },
-            { name: 'iPad Air', icon: '📱' },
-            { name: 'MacBook Air M2', icon: '💻' },
-            { name: 'Samsung Galaxy S24', icon: '📱' },
-            { name: 'iPhone 15', icon: '📱' },
-            { name: 'Sony WH-1000XM5', icon: '🎧' },
-            { name: '4K Smart TV 55"', icon: '📺' },
-            { name: 'DJI Drone', icon: '🚁' },
-            // Lüks Deneyimler
+            { name: 'Tablet', icon: '📱' },
+            { name: 'Akıllı Telefon', icon: '📱' },
+            { name: 'Kablosuz Kulaklık Pro', icon: '🎧' },
+            { name: '4K Smart TV', icon: '📺' },
+            { name: 'Gaming Monitor', icon: '🖥️' },
+            // Deneyimler
             { name: '2 Gece Bungalov Tatili', icon: '🏕️' },
             { name: 'Spa & Wellness Paketi', icon: '💆' },
             { name: 'Lüks Restoran (4 Kişi)', icon: '🍽️' },
             { name: 'Konser VIP Bilet', icon: '🎤' },
             { name: '3 Gün Otel Tatili', icon: '🏖️' },
-            { name: 'Avrupa Uçak Bileti', icon: '✈️' },
-            { name: 'Rolex Saat (Replika Değil!)', icon: '⌚' },
-            { name: 'Designer Çanta', icon: '👜' },
+            { name: 'Uçak Bileti', icon: '✈️' },
+            { name: 'Marka Saat', icon: '⌚' },
+            { name: 'Marka Çanta', icon: '👜' },
             { name: 'Yıllık Netflix + Spotify', icon: '🎬' },
-            { name: 'Gaming PC Upgrade Paketi', icon: '🖥️' },
-            { name: 'E-Bisiklet', icon: '🚲' },
-            { name: 'Apple AirPods Max', icon: '🎧' }
+            { name: 'Gaming Ekipman Paketi', icon: '🖥️' },
+            { name: 'Elektrikli Scooter', icon: '🛴' },
+            { name: 'Premium Kulaklık', icon: '🎧' }
         ];
         
         // Box icons by type (chest themed)
@@ -1391,7 +1407,7 @@
         // Create treasure boxes based on winner type
         function createTreasureBoxes() {
             treasureGrid.innerHTML = '';
-            const totalBoxes = 50;
+            const totalBoxes = 30;
             
             // Select prizes based on winner type
             let availablePrizes;
