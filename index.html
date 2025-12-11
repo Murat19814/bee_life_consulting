@@ -2893,13 +2893,64 @@
                 padding: 30px 20px;
             }
             
+            /* Rewards Grid Mobile */
+            .rewards-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
             .reward-card-wrapper {
-                height: 380px;
+                height: auto !important;
+                min-height: 320px;
+                perspective: none;
+            }
+            
+            .reward-card-wrapper.featured {
+                order: -1; /* Featured card first */
+            }
+            
+            .reward-card {
+                transform-style: flat;
+                position: relative;
+                height: auto;
             }
             
             .reward-card-front,
             .reward-card-back {
-                padding: 30px 20px;
+                position: relative !important;
+                transform: none !important;
+                backface-visibility: visible;
+                padding: 25px 20px;
+            }
+            
+            .reward-card-back {
+                display: none;
+            }
+            
+            .reward-card.flipped .reward-card-front {
+                display: none;
+            }
+            
+            .reward-card.flipped .reward-card-back {
+                display: block;
+            }
+            
+            .reward-card-front h3 {
+                font-size: 1.3rem;
+            }
+            
+            .reward-card-front p {
+                font-size: 0.9rem;
+            }
+            
+            .reward-list li {
+                font-size: 0.85rem;
+                padding: 8px 0;
+            }
+            
+            .flip-hint {
+                margin-top: 15px;
             }
             
             .prize-gallery {
@@ -2907,11 +2958,11 @@
             }
             
             .prize-item {
-                padding: 12px 8px;
+                padding: 10px 8px;
             }
             
             .prize-item i {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
             
             /* German Banner Mobile */
