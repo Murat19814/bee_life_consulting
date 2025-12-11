@@ -200,6 +200,14 @@
             z-index: 2;
         }
         
+        /* Mobile: Hide or reduce canvas animation */
+        @media (max-width: 768px) {
+            #honeycombCanvas {
+                opacity: 0.3; /* Çok daha şeffaf */
+                display: none; /* Tamamen gizle - istersen bunu aç */
+            }
+        }
+        
         /* Ensure dark sections show the canvas */
         .hero, .contact-section, .footer {
             position: relative;
