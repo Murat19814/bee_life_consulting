@@ -3172,6 +3172,21 @@
                 color: #4ade80;
             }
             
+            .mobile-nav-bar a.nav-lang {
+                background: rgba(255, 255, 255, 0.1);
+                min-width: 50px;
+                flex: 0.6;
+            }
+            
+            .mobile-nav-bar a.nav-lang .lang-flag {
+                font-size: 1.2rem;
+                margin-bottom: 2px;
+            }
+            
+            .mobile-nav-bar a.nav-lang:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+            
             /* Adjust body padding for fixed nav */
             .hero {
                 padding-top: 130px !important;
@@ -3539,7 +3554,7 @@
     <div class="mobile-nav-bar" id="mobileNavBar">
         <a href="#home">
             <i class="fas fa-home"></i>
-            <span data-tr="Ana Sayfa" data-de="Startseite">Ana Sayfa</span>
+            <span data-tr="Ana Sayfa" data-de="Start">Ana Sayfa</span>
         </a>
         <a href="#about">
             <i class="fas fa-building"></i>
@@ -3549,10 +3564,6 @@
             <i class="fas fa-concierge-bell"></i>
             <span data-tr="Hizmetler" data-de="Dienste">Hizmetler</span>
         </a>
-        <a href="#rewards">
-            <i class="fas fa-gift"></i>
-            <span data-tr="Ödüller" data-de="Prämien">Ödüller</span>
-        </a>
         <a href="#" onclick="openLoginModal(); return false;" class="nav-login">
             <i class="fas fa-user-circle"></i>
             <span data-tr="Giriş" data-de="Login">Giriş</span>
@@ -3560,6 +3571,10 @@
         <a href="basvuru.html" class="nav-apply">
             <i class="fas fa-paper-plane"></i>
             <span data-tr="Başvur" data-de="Bewerben">Başvur</span>
+        </a>
+        <a href="#" onclick="toggleMobileLang(); return false;" class="nav-lang" id="mobileLangBtn">
+            <span class="lang-flag">🇹🇷</span>
+            <span id="mobileLangText">TR</span>
         </a>
     </div>
 
@@ -4791,9 +4806,27 @@
             });
         }
         
+        // Toggle mobile language
+        function toggleMobileLang() {
+            const newLang = currentLang === 'tr' ? 'de' : 'tr';
+            setLanguage(newLang);
+            updateMobileLangBtn(newLang);
+        }
+        
+        // Update mobile language button
+        function updateMobileLangBtn(lang) {
+            const langText = document.getElementById('mobileLangText');
+            const langBtn = document.getElementById('mobileLangBtn');
+            if (langText && langBtn) {
+                langText.textContent = lang.toUpperCase();
+                langBtn.querySelector('.lang-flag').textContent = lang === 'tr' ? '🇹🇷' : '🇩🇪';
+            }
+        }
+        
         // Initialize language on page load
         document.addEventListener('DOMContentLoaded', function() {
             setLanguage(currentLang);
+            updateMobileLangBtn(currentLang);
         });
         
         // ═══════════════════════════════════════════════════════════════
