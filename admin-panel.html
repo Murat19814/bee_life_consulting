@@ -911,6 +911,27 @@
             background: rgba(255, 255, 255, 0.15);
         }
         
+        /* Toast Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        
         .modal input::placeholder,
         .modal select::placeholder {
             color: rgba(255, 255, 255, 0.4);
@@ -3154,6 +3175,15 @@
             firebaseLoaded = typeof BeeLifeDB !== 'undefined';
             console.log('🐝 Firebase yüklendi mi?', firebaseLoaded);
             
+            // Tarihi bugüne ayarla
+            const dateInput = document.getElementById('salesDate');
+            if (dateInput && !dateInput.value) {
+                dateInput.value = new Date().toISOString().split('T')[0];
+            }
+            
+            // Satış tablosunu yükle
+            loadDailySalesTable();
+            
             if (firebaseLoaded) {
                 initFirebaseListeners();
             } else {
@@ -3269,21 +3299,32 @@
         async function saveDailySales() {
             const employeeSelect = document.getElementById('salesEmployee');
             const employee = employeeSelect.value;
-            const employeeName = employeeSelect.options[employeeSelect.selectedIndex]?.text || employee;
-            const date = document.getElementById('salesDate').value;
-            const branch = document.getElementById('salesBranch').value;
+            const employeeName = employeeSelect.options[employeeSelect.selectedIndex]?.text || employee || 'Belirtilmedi';
+            
+            // Tarih - boşsa bugünün tarihini kullan
+            let date = document.getElementById('salesDate').value;
+            if (!date) {
+                date = new Date().toISOString().split('T')[0];
+                document.getElementById('salesDate').value = date;
+            }
+            
+            const branchSelect = document.getElementById('salesBranch');
+            const branch = branchSelect?.value || '';
             const qcOk = parseInt(document.getElementById('qcOkCount').value) || 0;
             const calls = parseInt(document.getElementById('totalCalls').value) || 0;
             const hours = parseFloat(document.getElementById('workHours').value) || 8;
             const earnings = qcOk * 35;
             
-            if (!employee || !date) {
-                alert('❌ Lütfen çalışan ve tarih seçin!');
-                return;
+            // QC OK 0 ise uyar (opsiyonel)
+            if (qcOk === 0 && calls === 0) {
+                if (!confirm('QC OK ve Arama sayısı 0. Yine de kaydetmek istiyor musunuz?')) {
+                    return;
+                }
             }
             
             const saleData = {
-                employee: employee,
+                id: Date.now(),
+                employee: employee || 'unknown',
                 employeeName: employeeName,
                 date: date,
                 branch: branch,
@@ -3291,77 +3332,170 @@
                 calls: calls,
                 hours: hours,
                 earnings: earnings,
-                amount: earnings
+                amount: earnings,
+                timestamp: new Date().toISOString()
             };
             
-            // Firebase'e kaydet
+            console.log('💾 Satış kaydediliyor:', saleData);
+            
+            // Önce localStorage'a kaydet (her zaman)
+            const salesData = JSON.parse(localStorage.getItem('blc_daily_sales') || '[]');
+            salesData.push(saleData);
+            localStorage.setItem('blc_daily_sales', JSON.stringify(salesData));
+            
+            // Firebase'e de kaydet
             if (firebaseLoaded && typeof BeeLifeDB !== 'undefined') {
                 try {
-                    // Çalışan ID'sini oluştur
-                    const employeeId = employee.replace(/[^a-zA-Z0-9]/g, '_');
-                    
-                    const result = await BeeLifeDB.saveSale(employeeId, saleData);
-                    
-                    if (result.success) {
-                        alert('✅ Satış Firebase\'e kaydedildi!\\n\\nÇalışan: ' + employeeName + '\\nQC OK: ' + qcOk + '\\nKazanç: ' + earnings + '€');
-                        
-                        // Bildirim gönder
-                        await BeeLifeDB.sendNotification({
-                            type: 'sale_added',
-                            title: 'Yeni Satış Kaydı',
-                            message: employeeName + ' - ' + qcOk + ' QC OK (' + earnings + '€)',
-                            read: false
-                        });
-                    } else {
-                        throw new Error(result.error);
-                    }
+                    const employeeId = (employee || 'unknown').replace(/[^a-zA-Z0-9]/g, '_');
+                    await BeeLifeDB.saveSale(employeeId, saleData);
+                    console.log('✅ Firebase\'e kaydedildi');
                 } catch (error) {
-                    console.error('Firebase satış hatası:', error);
-                    // Fallback - localStorage'a kaydet
-                    saveToLocalStorage();
+                    console.error('Firebase hatası:', error);
                 }
-            } else {
-                // localStorage'a kaydet
-                saveToLocalStorage();
             }
             
-            function saveToLocalStorage() {
-                const salesData = JSON.parse(localStorage.getItem('blc_daily_sales') || '[]');
-                salesData.push({
-                    id: Date.now(),
-                    ...saleData
-                });
-                localStorage.setItem('blc_daily_sales', JSON.stringify(salesData));
-                alert('✅ Satış kaydedildi (yerel)!\\n\\nÇalışan: ' + employeeName + '\\nQC OK: ' + qcOk + '\\nKazanç: ' + earnings + '€');
-                loadDailySalesTable();
-            }
+            // Tabloyu güncelle
+            loadDailySalesTable();
+            updateDashboardStats();
             
-            // Clear form
+            // Form temizle
             document.getElementById('qcOkCount').value = '';
             document.getElementById('totalCalls').value = '';
+            
+            // Başarı göstergesi (alert yerine)
+            showSuccessToast('Satış kaydedildi: ' + employeeName + ' - ' + qcOk + ' QC OK (' + earnings + '€)');
+        }
+        
+        // Başarı mesajı toast
+        function showSuccessToast(message) {
+            // Varsa eski toast'ı kaldır
+            const oldToast = document.getElementById('successToast');
+            if (oldToast) oldToast.remove();
+            
+            const toast = document.createElement('div');
+            toast.id = 'successToast';
+            toast.innerHTML = '<i class="fas fa-check-circle"></i> ' + message;
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, #27ae60, #2ecc71);
+                color: white;
+                padding: 15px 30px;
+                border-radius: 10px;
+                font-weight: 600;
+                box-shadow: 0 5px 20px rgba(39, 174, 96, 0.4);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                animation: slideUp 0.3s ease;
+            `;
+            document.body.appendChild(toast);
+            
+            // 3 saniye sonra kaldır
+            setTimeout(() => {
+                toast.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
+        // Dashboard istatistiklerini güncelle
+        function updateDashboardStats() {
+            const salesData = JSON.parse(localStorage.getItem('blc_daily_sales') || '[]');
+            const today = new Date().toISOString().split('T')[0];
+            
+            // Bugünkü satışlar
+            const todaySales = salesData.filter(s => s.date === today);
+            const totalQcOk = todaySales.reduce((sum, s) => sum + (s.qcOk || 0), 0);
+            const totalEarnings = todaySales.reduce((sum, s) => sum + (s.earnings || 0), 0);
+            
+            // Dashboard'daki kartları güncelle
+            const qcOkEl = document.querySelector('[data-stat="qc-ok"]');
+            const earningsEl = document.querySelector('[data-stat="earnings"]');
+            
+            if (qcOkEl) qcOkEl.textContent = totalQcOk;
+            if (earningsEl) earningsEl.textContent = totalEarnings + '€';
+            
+            // Toplam satış göstergesi
+            const todayTotal = document.getElementById('todaySalesTotal');
+            if (todayTotal) todayTotal.textContent = totalQcOk;
         }
         
         // Günlük satış tablosunu yükle
         function loadDailySalesTable() {
             const salesData = JSON.parse(localStorage.getItem('blc_daily_sales') || '[]');
-            const tbody = document.getElementById('dailySalesTableBody');
-            if (!tbody) return;
             
-            if (salesData.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--silver); padding: 40px;">Henüz satış verisi girilmedi.</td></tr>';
-                return;
+            // Bugünkü satışlar tablosu
+            const tbody = document.getElementById('todaySalesTable');
+            // Tüm satışlar tablosu
+            const allTbody = document.getElementById('dailySalesTableBody');
+            
+            // Bugünün tarihi
+            const today = new Date().toISOString().split('T')[0];
+            const todaySales = salesData.filter(s => s.date === today);
+            
+            // Toplam QC OK güncelle
+            const totalQcOk = todaySales.reduce((sum, s) => sum + (s.qcOk || 0), 0);
+            const todayTotal = document.getElementById('todaySalesTotal');
+            if (todayTotal) todayTotal.textContent = totalQcOk;
+            
+            // Bugünkü satışlar tablosu
+            if (tbody) {
+                if (todaySales.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: var(--text-light); padding: 40px;">
+                                <i class="fas fa-inbox" style="font-size: 2rem; display: block; margin-bottom: 10px; opacity: 0.5;"></i>
+                                Henüz bugün için satış girişi yapılmadı.
+                            </td>
+                        </tr>`;
+                } else {
+                    tbody.innerHTML = todaySales.map(s => `
+                        <tr>
+                            <td><strong>${s.employeeName || s.employee || '-'}</strong></td>
+                            <td>${s.branch || '-'}</td>
+                            <td style="color: var(--gold); font-weight: 600;">${s.qcOk || 0}</td>
+                            <td>${s.calls || 0}</td>
+                            <td>${s.hours || 8}s</td>
+                            <td><span style="color: #2ecc71; font-weight: 600;">${s.earnings || 0}€</span></td>
+                            <td><button onclick="deleteSale(${s.id})" class="action-btn delete" title="Sil"><i class="fas fa-trash"></i></button></td>
+                        </tr>
+                    `).join('');
+                }
             }
             
-            tbody.innerHTML = salesData.slice(-10).reverse().map(s => `
-                <tr>
-                    <td>${s.employee}</td>
-                    <td>${s.branch || '-'}</td>
-                    <td>${s.date}</td>
-                    <td><strong>${s.qcOk}</strong></td>
-                    <td><span class="euro-amount">${s.earnings}€</span></td>
-                    <td><button onclick="deleteSale(${s.id})" class="action-btn delete"><i class="fas fa-trash"></i></button></td>
-                </tr>
-            `).join('');
+            // Tüm satışlar tablosu (son 20 kayıt, tarihe göre sıralı)
+            if (allTbody) {
+                if (salesData.length === 0) {
+                    allTbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--silver); padding: 40px;">Henüz satış verisi girilmedi.</td></tr>';
+                } else {
+                    // Tarihe göre sırala (en yeni üstte)
+                    const sortedSales = [...salesData].sort((a, b) => {
+                        const dateA = new Date(a.date + 'T' + (a.timestamp?.split('T')[1] || '00:00:00'));
+                        const dateB = new Date(b.date + 'T' + (b.timestamp?.split('T')[1] || '00:00:00'));
+                        return dateB - dateA;
+                    });
+                    
+                    allTbody.innerHTML = sortedSales.slice(0, 20).map(s => {
+                        const formattedDate = new Date(s.date).toLocaleDateString('tr-TR');
+                        return `
+                            <tr>
+                                <td><strong>${s.employeeName || s.employee || '-'}</strong></td>
+                                <td>${s.branch || '-'}</td>
+                                <td>${formattedDate}</td>
+                                <td style="color: var(--gold); font-weight: 600;">${s.qcOk || 0}</td>
+                                <td><span style="color: #2ecc71; font-weight: 600;">${s.earnings || 0}€</span></td>
+                                <td><button onclick="deleteSale(${s.id})" class="action-btn delete"><i class="fas fa-trash"></i></button></td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            }
+            
+            // Dashboard istatistiklerini güncelle
+            updateDashboardStats();
         }
         
         // Satış sil
