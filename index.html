@@ -2893,76 +2893,120 @@
                 padding: 30px 20px;
             }
             
-            /* Rewards Grid Mobile */
+            /* Rewards Grid Mobile - Complete Override */
             .rewards-grid {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 25px !important;
+                padding: 0 10px;
             }
             
             .reward-card-wrapper {
                 height: auto !important;
-                min-height: 320px;
-                perspective: none;
+                min-height: auto !important;
+                perspective: none !important;
+                transform: none !important;
+                margin-bottom: 0 !important;
             }
             
             .reward-card-wrapper.featured {
-                order: -1; /* Featured card first */
+                order: -1 !important;
+                transform: none !important;
             }
             
             .reward-card {
-                transform-style: flat;
-                position: relative;
-                height: auto;
+                transform-style: flat !important;
+                position: relative !important;
+                height: auto !important;
+                transform: none !important;
             }
             
-            .reward-card-front,
-            .reward-card-back {
+            .reward-card.flipped {
+                transform: none !important;
+            }
+            
+            .reward-card-front {
                 position: relative !important;
                 transform: none !important;
-                backface-visibility: visible;
-                padding: 25px 20px;
+                backface-visibility: visible !important;
+                -webkit-backface-visibility: visible !important;
+                padding: 30px 25px !important;
+                display: flex !important;
+                height: auto !important;
+                border-radius: 20px !important;
+                margin: 0 !important;
             }
             
             .reward-card-back {
-                display: none;
+                display: none !important;
+                position: relative !important;
+                transform: none !important;
+                backface-visibility: visible !important;
+                -webkit-backface-visibility: visible !important;
+                padding: 30px 25px !important;
+                height: auto !important;
+                border-radius: 20px !important;
             }
             
             .reward-card.flipped .reward-card-front {
-                display: none;
+                display: none !important;
             }
             
             .reward-card.flipped .reward-card-back {
-                display: block;
+                display: flex !important;
+            }
+            
+            .reward-tier {
+                font-size: 0.65rem !important;
+                padding: 6px 18px !important;
+                margin-bottom: 15px !important;
+            }
+            
+            .reward-icon {
+                font-size: 2.5rem !important;
+                margin-bottom: 15px !important;
             }
             
             .reward-card-front h3 {
-                font-size: 1.3rem;
+                font-size: 1.4rem !important;
+                margin-bottom: 8px !important;
             }
             
-            .reward-card-front p {
-                font-size: 0.9rem;
+            .reward-card-front > p {
+                font-size: 0.9rem !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .reward-list {
+                width: 100% !important;
             }
             
             .reward-list li {
-                font-size: 0.85rem;
-                padding: 8px 0;
+                font-size: 0.9rem !important;
+                padding: 10px 0 !important;
             }
             
             .flip-hint {
-                margin-top: 15px;
+                margin-top: 20px !important;
+                padding: 10px 20px !important;
             }
             
             .prize-gallery {
-                gap: 8px;
+                gap: 10px !important;
+                flex-wrap: wrap !important;
             }
             
             .prize-item {
-                padding: 10px 8px;
+                padding: 12px 10px !important;
+                flex: 1 1 45% !important;
             }
             
             .prize-item i {
-                font-size: 1.2rem;
+                font-size: 1.3rem !important;
+            }
+            
+            .prize-item span {
+                font-size: 0.75rem !important;
             }
             
             /* German Banner Mobile */

@@ -306,6 +306,45 @@
             .form-grid-3 {
                 grid-template-columns: 1fr;
             }
+            
+            /* Hide nav-links and show hamburger */
+            .nav-links {
+                display: none !important;
+            }
+            
+            .nav-buttons {
+                display: none !important;
+            }
+            
+            .menu-toggle {
+                display: flex !important;
+                flex-direction: column;
+                gap: 5px;
+                cursor: pointer;
+                padding: 10px;
+                z-index: 1001;
+            }
+            
+            .menu-toggle span {
+                width: 25px;
+                height: 3px;
+                background: #fff;
+                border-radius: 3px;
+                transition: all 0.3s ease;
+            }
+            
+            /* Navbar compact */
+            .navbar {
+                padding: 12px 20px;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+            
+            .logo-icon {
+                font-size: 1.5rem;
+            }
         }
         
         @media (max-width: 768px) {
