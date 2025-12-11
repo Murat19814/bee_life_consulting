@@ -18,405 +18,846 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="static/css/style.css">
-    
     <style>
-        .page-header {
-            background: linear-gradient(135deg, #0d2b2a 0%, #0f3332 50%, #1a4a48 100%);
-            padding: 150px 0 80px;
-            text-align: center;
+        :root {
+            --primary-dark: #0d2b2a;
+            --primary-green: #0f3332;
+            --accent-green: #1a4a48;
+            --gold: #D4AF37;
+            --gold-light: #E8C547;
+            --white: #FFFFFF;
+            --off-white: #f8f9fa;
+            --cream: #fdfcf8;
+            --text-dark: #1a1a1a;
+            --text-light: #6b7280;
+            --border-light: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(180deg, #f8f9fa 0%, #f0f2f5 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           PREMIUM NAVBAR
+        ═══════════════════════════════════════════════════════════════ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.98) 0%, rgba(15, 51, 50, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        
+        .logo-text span {
+            color: var(--gold);
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .btn-nav {
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-outline-nav {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            background: transparent;
+        }
+        
+        .btn-outline-nav:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--primary-dark);
+            border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           VIP HERO HEADER
+        ═══════════════════════════════════════════════════════════════ */
+        .hero-header {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, #0d2b2a 0%, #0f3332 40%, #1a4a48 100%);
             position: relative;
             overflow: hidden;
         }
         
-        .page-header::before {
+        .hero-header::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5" d="M20 0L0 0 0 20"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            opacity: 0.8;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse"><path fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5" d="M25 0L0 0 0 25"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
         }
         
-        .page-header::after {
+        .hero-header::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -2px;
             left: 0;
             right: 0;
-            height: 100px;
-            background: linear-gradient(to top, rgba(248, 250, 249, 0.1), transparent);
+            height: 150px;
+            background: linear-gradient(to top, #f8f9fa, transparent);
         }
         
-        .page-header h1 {
-            font-size: 2.8rem;
-            color: var(--white);
-            margin-bottom: 15px;
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
             position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 25px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            animation: fadeInUp 0.6s ease;
+        }
+        
+        .hero-badge i {
+            font-size: 1rem;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
             font-weight: 700;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            animation: fadeInUp 0.6s ease 0.1s both;
         }
         
-        .page-header h1::before {
-            content: '📋';
-            display: inline-block;
-            margin-right: 15px;
-            font-size: 2.4rem;
+        .hero-title span {
+            color: var(--gold);
         }
         
-        .page-header p {
-            color: rgba(255,255,255,0.85);
-            font-size: 1.15rem;
-            position: relative;
-            font-weight: 500;
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.6s ease 0.2s both;
         }
         
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+        
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+        
+        .hero-feature i {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           APPLICATION SECTION
+        ═══════════════════════════════════════════════════════════════ */
         .application-section {
-            padding: 80px 0;
-            background: var(--light-gray);
+            padding: 0 0 80px;
+            position: relative;
+            z-index: 10;
+            margin-top: -50px;
         }
         
-        .application-container {
+        .app-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 50px;
+            grid-template-columns: 380px 1fr;
+            gap: 40px;
             align-items: start;
         }
         
-        .application-info {
-            background: linear-gradient(180deg, #ffffff 0%, #f8faf9 100%);
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(13, 43, 42, 0.12);
+        /* ═══════════════════════════════════════════════════════════════
+           SIDEBAR - VIP BENEFITS
+        ═══════════════════════════════════════════════════════════════ */
+        .benefits-sidebar {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 100px;
-            border: 1px solid rgba(13, 43, 42, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
         
-        .application-info h3 {
+        .sidebar-header {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
             font-size: 1.6rem;
-            margin-bottom: 20px;
-            color: #0d2b2a;
             font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .sidebar-title::before {
+            content: '';
+            width: 5px;
+            height: 30px;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--primary-dark) 100%);
+            border-radius: 3px;
+        }
+        
+        .sidebar-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .benefit-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 22px;
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.04) 0%, rgba(212, 175, 55, 0.02) 100%);
+            border-radius: 16px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(13, 43, 42, 0.08);
+            transition: all 0.4s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateX(8px);
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.08) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .benefit-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(13, 43, 42, 0.3);
+        }
+        
+        .benefit-icon i {
+            color: var(--gold);
+            font-size: 1.4rem;
+        }
+        
+        .benefit-content h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .benefit-content p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+        
+        .sidebar-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(13, 43, 42, 0.15), transparent);
+            margin: 30px 0;
+        }
+        
+        .contact-section h5 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .application-info h3::before {
-            content: '';
-            width: 5px;
-            height: 28px;
-            background: linear-gradient(180deg, #0d2b2a 0%, #40916c 100%);
-            border-radius: 3px;
-        }
-        
-        .application-info p {
-            color: #5a7a78;
-            margin-bottom: 25px;
-            line-height: 1.8;
-            font-size: 0.95rem;
-        }
-        
-        .info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding: 18px;
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.06) 0%, rgba(15, 51, 50, 0.04) 100%);
-            border-radius: 14px;
-            border: 1px solid rgba(13, 43, 42, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .info-item:hover {
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.1) 0%, rgba(15, 51, 50, 0.08) 100%);
-            border-color: rgba(64, 145, 108, 0.3);
-            transform: translateX(5px);
-        }
-        
-        .info-item-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #0d2b2a 0%, #0f3332 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #FFB800;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-            box-shadow: 0 4px 12px rgba(13, 43, 42, 0.3);
-        }
-        
-        .info-item-text h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            margin-bottom: 5px;
-            color: #0d2b2a;
-            font-weight: 700;
-        }
-        
-        .info-item-text p {
-            font-size: 0.88rem;
-            margin: 0;
-            color: #5a7a78;
-            line-height: 1.5;
-        }
-        
-        /* Contact Section Styling */
-        .contact-section-title {
-            color: #0d2b2a;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .contact-section-title::before {
+        .contact-section h5::before {
             content: '';
             width: 4px;
             height: 20px;
-            background: linear-gradient(180deg, #0d2b2a 0%, #40916c 100%);
+            background: linear-gradient(180deg, var(--gold) 0%, var(--primary-dark) 100%);
             border-radius: 2px;
         }
         
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 15px;
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.05) 0%, rgba(64, 145, 108, 0.03) 100%);
-            border-radius: 10px;
+            gap: 14px;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.04) 0%, rgba(212, 175, 55, 0.02) 100%);
+            border-radius: 12px;
             margin-bottom: 10px;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
         
         .contact-item:hover {
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.08) 0%, rgba(64, 145, 108, 0.06) 100%);
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.08) 0%, rgba(212, 175, 55, 0.05) 100%);
+            transform: translateX(5px);
         }
         
-        .contact-item i {
-            width: 35px;
-            height: 35px;
-            background: linear-gradient(135deg, #0d2b2a 0%, #0f3332 100%);
-            border-radius: 8px;
+        .contact-item .icon-wrap {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #FFB800;
-            font-size: 0.95rem;
+        }
+        
+        .contact-item .icon-wrap i {
+            color: var(--gold);
+            font-size: 1rem;
         }
         
         .contact-item span {
-            color: #0d2b2a;
+            color: var(--primary-dark);
             font-size: 0.9rem;
             font-weight: 500;
         }
         
-        .application-form-container {
-            background: linear-gradient(180deg, #ffffff 0%, #fafcfb 100%);
-            border-radius: 25px;
+        /* ═══════════════════════════════════════════════════════════════
+           MAIN FORM CONTAINER
+        ═══════════════════════════════════════════════════════════════ */
+        .form-container {
+            background: var(--white);
+            border-radius: 24px;
             padding: 50px;
-            box-shadow: 0 10px 40px rgba(13, 43, 42, 0.1);
-            border: 1px solid rgba(13, 43, 42, 0.06);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
         
         .form-header {
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 2px solid rgba(13, 43, 42, 0.08);
+            text-align: center;
+            margin-bottom: 45px;
+            padding-bottom: 35px;
+            border-bottom: 1px solid var(--border-light);
         }
         
-        .form-header h2 {
-            font-size: 2rem;
-            color: #0d2b2a;
-            margin-bottom: 12px;
+        .form-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
         }
         
-        .form-header h2::before {
-            content: '';
-            width: 6px;
-            height: 35px;
-            background: linear-gradient(180deg, #0d2b2a 0%, #40916c 100%);
-            border-radius: 3px;
-        }
-        
-        .form-header p {
-            color: #5a7a78;
+        .form-subtitle {
+            color: var(--text-light);
             font-size: 1rem;
-            padding-left: 18px;
         }
         
-        .form-section-title {
-            font-size: 1.15rem;
-            color: #0d2b2a;
-            margin: 40px 0 25px;
-            padding: 15px 20px;
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.06) 0%, rgba(15, 51, 50, 0.03) 100%);
-            border-radius: 12px;
-            border-left: 4px solid #0d2b2a;
+        .form-progress {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        
+        .progress-step {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border-light);
+            transition: all 0.3s ease;
+        }
+        
+        .progress-step.active {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* Form Section */
+        .form-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 600;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 18px 25px;
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%);
+            border-radius: 14px;
+            border-left: 4px solid var(--primary-dark);
         }
         
-        .form-section-title i {
-            color: #0d2b2a;
-            font-size: 1.1rem;
+        .section-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(13, 43, 42, 0.25);
         }
         
-        .form-grid-3 {
+        .section-icon i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        
+        .section-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        
+        /* Form Grid */
+        .form-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
         
-        .checkbox-group {
+        .form-grid.single {
+            grid-template-columns: 1fr;
+        }
+        
+        /* Form Group */
+        .form-group {
+            margin-bottom: 5px;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+        
+        .form-label .required {
+            color: var(--gold);
+            margin-left: 3px;
+        }
+        
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            background: var(--off-white);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-dark);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(13, 43, 42, 0.1);
+        }
+        
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #9ca3af;
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Checkbox/Radio Group */
+        .options-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
         }
         
-        .checkbox-item {
+        .option-item {
+            position: relative;
+        }
+        
+        .option-item input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .option-label {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 14px 22px;
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.04) 0%, rgba(15, 51, 50, 0.02) 100%);
-            border: 2px solid rgba(13, 43, 42, 0.1);
+            gap: 12px;
+            padding: 16px 24px;
+            background: var(--off-white);
+            border: 2px solid var(--border-light);
             border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
             font-weight: 500;
-            color: #0d2b2a;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
         }
         
-        .checkbox-item:hover {
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.08) 0%, rgba(64, 145, 108, 0.05) 100%);
-            border-color: rgba(13, 43, 42, 0.25);
+        .option-label:hover {
+            border-color: rgba(13, 43, 42, 0.3);
+            background: rgba(13, 43, 42, 0.03);
         }
         
-        .checkbox-item:has(input:checked) {
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.12) 0%, rgba(64, 145, 108, 0.08) 100%);
-            border-color: #0d2b2a;
+        .option-item input:checked + .option-label {
+            border-color: var(--primary-dark);
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.08) 0%, rgba(212, 175, 55, 0.05) 100%);
+            color: var(--primary-dark);
         }
         
-        .checkbox-item input[type="checkbox"],
-        .checkbox-item input[type="radio"] {
-            width: 20px;
-            height: 20px;
-            accent-color: #0d2b2a;
+        .option-check {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--border-light);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
         }
         
-        .file-upload {
+        .option-item input[type="radio"] + .option-label .option-check {
+            border-radius: 50%;
+        }
+        
+        .option-item input:checked + .option-label .option-check {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+        
+        .option-check i {
+            color: var(--white);
+            font-size: 0.7rem;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.2s ease;
+        }
+        
+        .option-item input:checked + .option-label .option-check i {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* File Upload */
+        .file-upload-area {
             border: 2px dashed rgba(13, 43, 42, 0.25);
             border-radius: 16px;
             padding: 45px;
             text-align: center;
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.02) 0%, rgba(212, 175, 55, 0.01) 100%);
             cursor: pointer;
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.03) 0%, rgba(64, 145, 108, 0.02) 100%);
+            transition: all 0.3s ease;
         }
         
-        .file-upload:hover {
-            border-color: #0d2b2a;
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.06) 0%, rgba(64, 145, 108, 0.04) 100%);
+        .file-upload-area:hover {
+            border-color: var(--primary-dark);
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.05) 0%, rgba(212, 175, 55, 0.03) 100%);
         }
         
-        .file-upload i {
-            font-size: 3rem;
-            color: #0d2b2a;
-            margin-bottom: 15px;
+        .upload-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 25px rgba(13, 43, 42, 0.3);
         }
         
-        .file-upload p {
-            color: #0d2b2a;
-            margin-bottom: 10px;
+        .upload-icon i {
+            color: var(--gold);
+            font-size: 1.8rem;
+        }
+        
+        .upload-text {
+            font-size: 1rem;
             font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
         }
         
-        .file-upload span {
+        .upload-hint {
             font-size: 0.85rem;
-            color: #5a7a78;
+            color: var(--text-light);
         }
         
-        .file-upload input[type="file"] {
+        .file-upload-area input[type="file"] {
             display: none;
         }
         
-        .form-agreement {
+        #fileNameDisplay {
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: rgba(13, 43, 42, 0.05);
+            border-radius: 8px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            display: none;
+        }
+        
+        #fileNameDisplay.show {
+            display: inline-block;
+        }
+        
+        /* Agreement */
+        .agreement-box {
             display: flex;
             align-items: flex-start;
             gap: 15px;
-            margin: 35px 0;
-            padding: 22px;
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.04) 0%, rgba(15, 51, 50, 0.02) 100%);
-            border-radius: 14px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.04) 0%, rgba(212, 175, 55, 0.02) 100%);
+            border-radius: 16px;
             border: 1px solid rgba(13, 43, 42, 0.1);
+            margin: 35px 0;
         }
         
-        .form-agreement input[type="checkbox"] {
-            width: 22px;
-            height: 22px;
-            margin-top: 3px;
-            accent-color: #0d2b2a;
+        .agreement-box input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            margin-top: 2px;
+            accent-color: var(--primary-dark);
+            cursor: pointer;
         }
         
-        .form-agreement label {
+        .agreement-box label {
             font-size: 0.95rem;
-            color: #0d2b2a;
+            color: var(--text-dark);
             line-height: 1.7;
+            cursor: pointer;
         }
         
-        .form-agreement a {
-            color: #0d2b2a;
-            text-decoration: underline;
+        .agreement-box a {
+            color: var(--primary-dark);
             font-weight: 600;
+            text-decoration: underline;
         }
         
-        .form-agreement a:hover {
-            color: #40916c;
+        .agreement-box a:hover {
+            color: var(--gold);
         }
         
+        /* Submit Button */
         .submit-btn {
             width: 100%;
-            padding: 20px;
+            padding: 22px;
             font-size: 1.15rem;
-            background: linear-gradient(135deg, #0d2b2a 0%, #0f3332 100%);
-            border: none;
-            color: white;
-            border-radius: 14px;
             font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 14px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            box-shadow: 0 6px 25px rgba(13, 43, 42, 0.35);
+            box-shadow: 0 8px 30px rgba(13, 43, 42, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
         }
         
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 35px rgba(13, 43, 42, 0.45);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(13, 43, 42, 0.45);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(-1px);
         }
         
         .submit-btn i {
             font-size: 1.2rem;
         }
         
+        /* Success Message */
         .success-message {
             display: none;
             text-align: center;
@@ -425,538 +866,372 @@
         
         .success-message.show {
             display: block;
+            animation: fadeInUp 0.6s ease;
         }
         
-        .success-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.1) 0%, rgba(64, 145, 108, 0.15) 100%);
+        .success-icon-wrap {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 3rem;
-            color: #0d2b2a;
+            margin: 0 auto 30px;
             border: 3px solid rgba(13, 43, 42, 0.2);
         }
         
+        .success-icon-wrap i {
+            font-size: 3.5rem;
+            color: var(--primary-dark);
+        }
+        
         .success-message h2 {
-            color: #0d2b2a;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-dark);
             margin-bottom: 15px;
-            font-weight: 700;
         }
         
         .success-message p {
-            color: #5a7a78;
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.8;
             margin-bottom: 30px;
-            line-height: 1.7;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .success-message .btn-primary {
-            background: linear-gradient(135deg, #0d2b2a 0%, #0f3332 100%);
-            padding: 15px 30px;
-            border-radius: 12px;
-            font-weight: 600;
+        .success-message .btn-home {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 4px 15px rgba(13, 43, 42, 0.3);
+            padding: 16px 35px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(13, 43, 42, 0.3);
+            transition: all 0.3s ease;
         }
         
-        @media (max-width: 992px) {
-            .application-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .application-info {
-                position: static;
-            }
-            
-            .form-grid-3 {
-                grid-template-columns: 1fr;
-            }
-            
-            /* Hide nav-links and show hamburger */
-            .nav-links {
-                display: none !important;
-            }
-            
-            .nav-buttons {
-                display: none !important;
-            }
-            
-            .menu-toggle {
-                display: flex !important;
-                flex-direction: column;
-                gap: 5px;
-                cursor: pointer;
-                padding: 10px;
-                z-index: 1001;
-            }
-            
-            .menu-toggle span {
-                width: 25px;
-                height: 3px;
-                background: #fff;
-                border-radius: 3px;
-                transition: all 0.3s ease;
-            }
-            
-            /* Navbar compact */
-            .navbar {
-                padding: 12px 20px;
-            }
-            
-            .logo-text {
-                font-size: 1rem;
-            }
-            
-            .logo-icon {
-                font-size: 1.5rem;
-            }
+        .success-message .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(13, 43, 42, 0.4);
         }
         
-        /* WhatsApp Floating Button */
+        /* ═══════════════════════════════════════════════════════════════
+           VIP FOOTER
+        ═══════════════════════════════════════════════════════════════ */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+        
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-brand .logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+        
+        .footer-column h4 {
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+        
+        .footer-column ul li a i {
+            font-size: 0.8rem;
+            color: var(--gold);
+        }
+        
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* ═══════════════════════════════════════════════════════════════
+           WHATSAPP BUTTON
+        ═══════════════════════════════════════════════════════════════ */
         .whatsapp-float {
             position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 55px;
-            height: 55px;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             text-decoration: none;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
             z-index: 99;
             transition: all 0.3s ease;
-            animation: whatsappPulse 2s infinite;
         }
         
         .whatsapp-float:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.5);
         }
         
-        @keyframes whatsappPulse {
-            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7); }
+        /* ═══════════════════════════════════════════════════════════════
+           RESPONSIVE DESIGN
+        ═══════════════════════════════════════════════════════════════ */
+        @media (max-width: 1100px) {
+            .app-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-sidebar {
+                position: static;
+                order: 2;
+            }
+            
+            .form-container {
+                order: 1;
+            }
         }
         
-        /* Mobile Nav Bar - Hidden by default on desktop */
-        .mobile-nav-bar {
-            display: none;
-        }
-        
-        @media (max-width: 768px) {
-            /* Hide old mobile menu elements */
-            .nav-links, .nav-buttons, .menu-toggle {
-                display: none !important;
-            }
-            
-            /* Mobile Top Navigation Bar - VIP Style */
-            .mobile-nav-bar {
-                display: flex !important;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: linear-gradient(135deg, rgba(7, 29, 28, 0.98) 0%, rgba(13, 43, 42, 0.98) 100%);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                padding: 0;
-                z-index: 998;
-                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            }
-            
-            .mobile-nav-bar a {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                padding: 12px 5px;
-                text-decoration: none;
-                color: rgba(255, 255, 255, 0.7);
-                font-size: 0.65rem;
-                font-weight: 500;
-                transition: all 0.3s ease;
-                border-right: 1px solid rgba(255, 255, 255, 0.05);
-            }
-            
-            .mobile-nav-bar a:last-child {
-                border-right: none;
-            }
-            
-            .mobile-nav-bar a i {
-                font-size: 1.1rem;
-                margin-bottom: 4px;
-            }
-            
-            .mobile-nav-bar a:hover,
-            .mobile-nav-bar a.active {
-                color: #D4AF37;
-                background: rgba(212, 175, 55, 0.1);
-            }
-            
-            .mobile-nav-bar a.nav-apply {
-                background: linear-gradient(135deg, rgba(64, 145, 108, 0.3) 0%, rgba(45, 106, 79, 0.3) 100%);
-                color: #4ade80;
-            }
-            
-            .mobile-nav-bar a.nav-lang {
-                background: rgba(255, 255, 255, 0.1);
-                min-width: 50px;
-                flex: 0.6;
-            }
-            
-            .mobile-nav-bar a.nav-lang .lang-flag {
-                font-size: 1.2rem;
-                margin-bottom: 2px;
-            }
-            
-            /* Mobile App-Like Header */
-            .page-header {
-                padding: 140px 20px 40px;
-                background: linear-gradient(135deg, #0d2b2a 0%, #1a4a48 50%, #0f3332 100%);
-            }
-            
-            .page-header::before {
-                opacity: 0.3;
-            }
-            
-            .page-header h1 {
-                font-size: 1.8rem;
-                font-weight: 700;
-                margin-bottom: 10px;
-                text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            }
-            
-            .page-header p {
-                font-size: 1rem;
-                opacity: 0.9;
-            }
-            
-            /* Application Section Mobile */
-            .application-section {
-                padding: 0;
-                background: linear-gradient(180deg, #f8faf9 0%, #e8f0ef 100%);
-                min-height: 100vh;
-            }
-            
-            .application-container {
-                gap: 0;
-            }
-            
-            /* Hide info panel on mobile */
-            .application-info {
+        @media (max-width: 992px) {
+            .nav-links, .nav-buttons {
                 display: none;
             }
             
-            /* Mobile Form Container - App Style */
-            .application-form-container {
-                padding: 25px 20px 100px;
-                margin: -30px 15px 0;
-                border-radius: 25px 25px 0 0;
-                background: #ffffff;
-                box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
-                position: relative;
-                z-index: 10;
+            .menu-toggle {
+                display: flex;
             }
             
-            /* Form Header Mobile */
-            .form-header {
-                text-align: center;
-                margin-bottom: 30px;
-                padding-bottom: 20px;
-                border-bottom: 1px solid #e8f0ef;
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            .form-header h2 {
-                font-size: 1.4rem;
-                color: #0d2b2a;
-                margin-bottom: 8px;
-            }
-            
-            .form-header p {
-                font-size: 0.9rem;
-                color: #5a7a78;
-            }
-            
-            /* Form Section Title Mobile */
-            .form-section-title {
-                font-size: 1rem;
-                margin: 25px 0 15px;
-                padding: 12px 15px;
-                background: linear-gradient(135deg, rgba(13, 43, 42, 0.05) 0%, rgba(26, 74, 72, 0.08) 100%);
-                border-radius: 12px;
-                border: none;
-                border-left: 4px solid #0d2b2a;
-            }
-            
-            .form-section-title i {
-                font-size: 1.1rem;
-                color: #0d2b2a;
-            }
-            
-            /* Form Row Mobile */
-            .form-row {
-                grid-template-columns: 1fr;
+            .hero-features {
+                flex-direction: column;
                 gap: 15px;
             }
             
-            /* Form Group Mobile */
-            .form-group {
-                margin-bottom: 15px;
-            }
-            
-            .form-group label {
-                font-size: 0.85rem;
-                font-weight: 600;
-                color: #0d2b2a;
-                margin-bottom: 8px;
-                display: block;
-            }
-            
-            .form-group input,
-            .form-group select,
-            .form-group textarea {
-                width: 100%;
-                padding: 14px 16px;
-                font-size: 16px; /* Prevents zoom on iOS */
-                border: 2px solid #e8f0ef;
-                border-radius: 12px;
-                background: #f8faf9;
-                color: #0d2b2a;
-                transition: all 0.3s ease;
-            }
-            
-            .form-group input:focus,
-            .form-group select:focus,
-            .form-group textarea:focus {
-                border-color: #0d2b2a;
-                background: #ffffff;
-                box-shadow: 0 0 0 4px rgba(13, 43, 42, 0.1);
-                outline: none;
-            }
-            
-            .form-group textarea {
-                min-height: 120px;
-                resize: vertical;
-            }
-            
-            /* Checkbox Group Mobile */
-            .checkbox-group {
-                display: grid;
+            .footer-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                gap: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-header {
+                padding: 130px 0 80px;
             }
             
-            .checkbox-item {
-                padding: 14px 12px;
-                background: #f8faf9;
-                border: 2px solid #e8f0ef;
-                border-radius: 12px;
-                font-size: 0.85rem;
-                justify-content: center;
-                text-align: center;
-                flex-direction: column;
-                gap: 8px;
+            .hero-title {
+                font-size: 2rem;
             }
             
-            .checkbox-item:has(input:checked) {
-                background: rgba(13, 43, 42, 0.1);
-                border-color: #0d2b2a;
-            }
-            
-            .checkbox-item input {
-                width: 20px;
-                height: 20px;
-            }
-            
-            /* File Upload Mobile */
-            .file-upload {
-                padding: 30px 20px;
-                border-radius: 16px;
-                background: linear-gradient(135deg, rgba(13, 43, 42, 0.05) 0%, rgba(15, 51, 50, 0.08) 100%);
-                border: 2px dashed #0d2b2a;
-            }
-            
-            .file-upload i {
-                font-size: 2.5rem;
-                margin-bottom: 12px;
-            }
-            
-            .file-upload p {
-                font-size: 0.95rem;
-                color: #0d2b2a;
-                font-weight: 500;
-            }
-            
-            .file-upload span {
-                font-size: 0.8rem;
-            }
-            
-            /* Form Agreement Mobile */
-            .form-agreement {
-                padding: 16px;
-                border-radius: 12px;
-                background: #f8faf9;
-                margin: 20px 0;
-            }
-            
-            .form-agreement label {
-                font-size: 0.85rem;
-                line-height: 1.5;
-            }
-            
-            /* Submit Button Mobile - Fixed Bottom */
-            .submit-btn {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                margin: 0;
-                padding: 18px;
-                border-radius: 0;
-                font-size: 1.1rem;
-                font-weight: 600;
-                background: linear-gradient(135deg, #0d2b2a 0%, #0f3332 100%);
-                color: white;
-                border: none;
-                z-index: 100;
-                box-shadow: 0 -4px 20px rgba(13, 43, 42, 0.25);
-            }
-            
-            .submit-btn:active {
-                transform: scale(0.98);
-            }
-            
-            /* Success Message Mobile */
-            .success-message {
-                padding: 40px 20px;
-            }
-            
-            .success-icon {
-                width: 80px;
-                height: 80px;
-                font-size: 2.5rem;
-            }
-            
-            .success-message h2 {
-                font-size: 1.4rem;
-            }
-            
-            .success-message p {
-                font-size: 0.95rem;
-            }
-            
-            /* Mobile Navigation Menu */
-            .nav-links.mobile-active {
-                display: flex !important;
-                flex-direction: column;
-                position: fixed;
-                top: 70px;
-                left: 0;
-                right: 0;
-                background: rgba(7, 29, 28, 0.98);
-                padding: 20px;
-                gap: 0;
-                z-index: 999;
-                border-top: 1px solid rgba(64, 145, 108, 0.3);
-                max-height: 60vh;
-                overflow-y: auto;
-            }
-            
-            .nav-links.mobile-active a {
-                padding: 15px 20px;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
+            .hero-subtitle {
                 font-size: 1rem;
             }
             
-            .nav-buttons.mobile-active {
-                display: flex !important;
+            .form-container {
+                padding: 30px 20px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-header {
+                padding: 15px 18px;
+            }
+            
+            .section-icon {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .options-grid {
                 flex-direction: column;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: rgba(7, 29, 28, 0.98);
-                padding: 15px 20px;
-                gap: 10px;
-                z-index: 999;
-                border-top: 1px solid rgba(64, 145, 108, 0.3);
             }
             
-            .nav-buttons.mobile-active .btn {
+            .option-label {
                 width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .footer-brand p {
+                max-width: 100%;
+            }
+            
+            .footer-column ul li a {
                 justify-content: center;
-                padding: 12px;
-            }
-            
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(6px, 6px);
-            }
-            
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(6px, -6px);
-            }
-            
-            body.menu-open {
-                overflow: hidden;
-            }
-            
-            /* Footer hide on mobile form */
-            footer {
-                display: none;
             }
         }
         
         @media (max-width: 480px) {
-            .page-header {
-                padding: 90px 15px 35px;
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 8px 18px;
             }
             
-            .page-header h1 {
-                font-size: 1.5rem;
+            .hero-title {
+                font-size: 1.7rem;
             }
             
-            .application-form-container {
-                padding: 20px 15px 100px;
-                margin: -25px 10px 0;
+            .benefits-sidebar {
+                padding: 25px 20px;
             }
             
-            .form-header h2 {
-                font-size: 1.2rem;
+            .benefit-card {
+                padding: 18px;
             }
             
-            .checkbox-group {
-                grid-template-columns: 1fr;
+            .benefit-icon {
+                width: 48px;
+                height: 48px;
             }
             
-            .checkbox-item {
-                flex-direction: row;
-                justify-content: flex-start;
-                text-align: left;
+            .form-input,
+            .form-select,
+            .form-textarea {
+                padding: 14px 16px;
             }
+            
+            .submit-btn {
+                padding: 18px;
+                font-size: 1rem;
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.98) 0%, rgba(15, 51, 50, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            z-index: 999;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .mobile-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--gold);
+            padding-left: 25px;
+        }
+        
+        .mobile-menu .btn-mobile {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--primary-dark);
+            border-radius: 10px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <!-- ========== NAVIGATION ========== -->
-    <nav class="navbar scrolled" id="navbar">
-        <div class="container">
+    <!-- ═══════════════════════════════════════════════════════════════
+         PREMIUM NAVBAR
+    ═══════════════════════════════════════════════════════════════ -->
+    <nav class="navbar">
+        <div class="nav-container">
             <a href="index.html" class="logo">
                 <div class="logo-icon">🐝</div>
                 <div class="logo-text">Bee Life <span>Consulting</span></div>
@@ -972,168 +1247,182 @@
             </ul>
             
             <div class="nav-buttons">
-                <div class="lang-switcher" style="display:flex;gap:8px;margin-right:15px;padding-right:15px;border-right:1px solid rgba(255,255,255,0.2);">
-                    <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr" style="display:flex;align-items:center;gap:6px;padding:8px 12px;background:transparent;border:1px solid rgba(255,255,255,0.3);border-radius:6px;color:rgba(255,255,255,0.7);font-size:0.75rem;font-weight:600;cursor:pointer;">🇹🇷 TR</button>
-                    <button class="lang-btn" onclick="setLanguage('de')" data-lang="de" style="display:flex;align-items:center;gap:6px;padding:8px 12px;background:transparent;border:1px solid rgba(255,255,255,0.3);border-radius:6px;color:rgba(255,255,255,0.7);font-size:0.75rem;font-weight:600;cursor:pointer;">🇩🇪 DE</button>
-                </div>
-                <a href="employee-login.html" class="btn btn-outline">
-                    <i class="fas fa-user"></i> <span data-tr="Çalışan Girişi" data-de="Mitarbeiter-Login">Çalışan Girişi</span>
+                <a href="employee-login.html" class="btn-nav btn-outline-nav">
+                    <i class="fas fa-user"></i> Çalışan Girişi
                 </a>
-                <a href="basvuru.html" class="btn btn-primary">
-                    <i class="fas fa-paper-plane"></i> <span data-tr="Başvur" data-de="Bewerben">Başvur</span>
+                <a href="basvuru.html" class="btn-nav btn-gold">
+                    <i class="fas fa-paper-plane"></i> Başvur
                 </a>
             </div>
             
-            <div class="menu-toggle" id="menuToggle">
+            <div class="menu-toggle" onclick="toggleMobileMenu()">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </div>
     </nav>
-
-    <!-- Mobile Navigation Bar (VIP Style) -->
-    <div class="mobile-nav-bar" id="mobileNavBar">
-        <a href="index.html">
-            <i class="fas fa-home"></i>
-            <span data-tr="Ana Sayfa" data-de="Start">Ana Sayfa</span>
-        </a>
-        <a href="index.html#about">
-            <i class="fas fa-building"></i>
-            <span data-tr="Hakkımızda" data-de="Über uns">Hakkımızda</span>
-        </a>
-        <a href="index.html#services">
-            <i class="fas fa-concierge-bell"></i>
-            <span data-tr="Hizmetler" data-de="Dienste">Hizmetler</span>
-        </a>
-        <a href="basvuru.html" class="nav-apply active">
-            <i class="fas fa-paper-plane"></i>
-            <span data-tr="Başvur" data-de="Bewerben">Başvur</span>
-        </a>
-        <a href="#" onclick="toggleMobileLang(); return false;" class="nav-lang" id="mobileLangBtn">
-            <span class="lang-flag">🇹🇷</span>
-            <span id="mobileLangText">TR</span>
-        </a>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="index.html#about">Hakkımızda</a>
+        <a href="index.html#services">Hizmetler</a>
+        <a href="index.html#rewards">Ödüller</a>
+        <a href="index.html#careers">Kariyer</a>
+        <a href="index.html#contact">İletişim</a>
+        <a href="employee-login.html">Çalışan Girişi</a>
+        <a href="basvuru.html" class="btn-mobile">Başvur</a>
     </div>
 
-    <!-- ========== PAGE HEADER ========== -->
-    <header class="page-header">
-        <div class="container">
-            <h1>İş Başvurusu</h1>
-            <p>Bee Life ailesine katılın, kariyerinizi şekillendirin!</p>
+    <!-- ═══════════════════════════════════════════════════════════════
+         VIP HERO HEADER
+    ═══════════════════════════════════════════════════════════════ -->
+    <header class="hero-header">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-star"></i>
+                Kariyer Fırsatı
+            </div>
+            <h1 class="hero-title">İş <span>Başvurusu</span></h1>
+            <p class="hero-subtitle">
+                Bee Life ailesine katılın, Almanya merkezli projelerimizde kariyer yapın ve yüksek kazançlı bir geleceğe adım atın.
+            </p>
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>35€ QC OK Komisyon</span>
+                </div>
+                <div class="hero-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>500€'ya Kadar Ödüller</span>
+                </div>
+                <div class="hero-feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Esnek Çalışma</span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- ========== APPLICATION SECTION ========== -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         APPLICATION SECTION
+    ═══════════════════════════════════════════════════════════════ -->
     <section class="application-section">
-        <div class="container">
-            <div class="application-container">
-                <!-- Sidebar Info -->
-                <div class="application-info">
-                    <h3>Neden Bee Life?</h3>
-                    <p>Türkiye ve Almanya'da 5 yılı aşkın deneyimimizle, çalışanlarımıza eşsiz fırsatlar sunuyoruz.</p>
-                    
-                    <div class="info-item">
-                        <div class="info-item-icon">
-                            <i class="fas fa-euro-sign"></i>
-                        </div>
-                        <div class="info-item-text">
-                            <h4>Yüksek Kazanç</h4>
-                            <p>QC OK: 35€ komisyon + sabit maaş</p>
-                        </div>
+        <div class="app-container">
+            
+            <!-- ═══ SIDEBAR ═══ -->
+            <aside class="benefits-sidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title">Neden Bee Life?</h3>
+                    <p class="sidebar-desc">Türkiye ve Almanya'da 5 yılı aşkın deneyimimizle, çalışanlarımıza eşsiz fırsatlar sunuyoruz.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-euro-sign"></i>
                     </div>
-                    
-                    <div class="info-item">
-                        <div class="info-item-icon">
-                            <i class="fas fa-gift"></i>
-                        </div>
-                        <div class="info-item-text">
-                            <h4>Ödül Sistemi</h4>
-                            <p>500€'ya kadar hediyeler, PS5, tatil...</p>
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="info-item-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="info-item-text">
-                            <h4>Kariyer Fırsatı</h4>
-                            <p>Hızlı yükselme imkanları</p>
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <div class="info-item-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="info-item-text">
-                            <h4>Uluslararası Proje</h4>
-                            <p>Almanya merkezli projeler</p>
-                        </div>
-                    </div>
-                    
-                    <div style="margin-top: 30px; padding-top: 25px; border-top: 2px solid rgba(13, 43, 42, 0.08);">
-                        <h4 class="contact-section-title">İletişim</h4>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>info@beelife-consulting.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+90 531 765 41 66</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>+90 535 663 41 66</span>
-                        </div>
+                    <div class="benefit-content">
+                        <h4>Yüksek Kazanç</h4>
+                        <p>QC OK: 35€ komisyon + sabit maaş ile sınırsız kazanç potansiyeli</p>
                     </div>
                 </div>
                 
-                <!-- Application Form -->
-                <div class="application-form-container">
-                    <div id="applicationForm">
-                        <div class="form-header">
-                            <h2>Başvuru Formu</h2>
-                            <p>Lütfen aşağıdaki formu eksiksiz doldurun. Başvurunuz en kısa sürede değerlendirilecektir.</p>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Ödül Sistemi</h4>
+                        <p>500€'ya kadar hediyeler, PS5, tatil paketleri ve daha fazlası</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Kariyer Fırsatı</h4>
+                        <p>Hızlı yükselme imkanları ile Team Leader pozisyonlarına ulaşın</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-globe-europe"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Uluslararası Proje</h4>
+                        <p>Almanya merkezli prestijli projeler ile global deneyim kazanın</p>
+                    </div>
+                </div>
+                
+                <div class="sidebar-divider"></div>
+                
+                <div class="contact-section">
+                    <h5>İletişim</h5>
+                    <a href="mailto:info@beelife-consulting.com" class="contact-item">
+                        <div class="icon-wrap"><i class="fas fa-envelope"></i></div>
+                        <span>info@beelife-consulting.com</span>
+                    </a>
+                    <a href="tel:+905317654166" class="contact-item">
+                        <div class="icon-wrap"><i class="fas fa-phone"></i></div>
+                        <span>+90 531 765 41 66</span>
+                    </a>
+                    <a href="https://wa.me/905356634166" class="contact-item" target="_blank">
+                        <div class="icon-wrap"><i class="fab fa-whatsapp"></i></div>
+                        <span>+90 535 663 41 66</span>
+                    </a>
+                </div>
+            </aside>
+            
+            <!-- ═══ MAIN FORM ═══ -->
+            <div class="form-container">
+                <div id="applicationFormWrapper">
+                    <div class="form-header">
+                        <h2 class="form-title">Başvuru Formu</h2>
+                        <p class="form-subtitle">Lütfen aşağıdaki formu eksiksiz doldurun. Başvurunuz en kısa sürede değerlendirilecektir.</p>
+                        <div class="form-progress">
+                            <div class="progress-step active"></div>
+                            <div class="progress-step active"></div>
+                            <div class="progress-step active"></div>
+                            <div class="progress-step active"></div>
                         </div>
-                        
-                        <form id="jobApplicationForm">
-                            <!-- Personal Information -->
-                            <h3 class="form-section-title">
-                                <i class="fas fa-user"></i> Kişisel Bilgiler
-                            </h3>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="firstName">Adınız *</label>
-                                    <input type="text" id="firstName" name="firstName" required placeholder="Adınız">
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName">Soyadınız *</label>
-                                    <input type="text" id="lastName" name="lastName" required placeholder="Soyadınız">
-                                </div>
+                    </div>
+                    
+                    <form id="jobApplicationForm">
+                        <!-- Personal Information -->
+                        <div class="form-section">
+                            <div class="section-header">
+                                <div class="section-icon"><i class="fas fa-user"></i></div>
+                                <span class="section-title">Kişisel Bilgiler</span>
                             </div>
                             
-                            <div class="form-row">
+                            <div class="form-grid">
                                 <div class="form-group">
-                                    <label for="email">E-Posta *</label>
-                                    <input type="email" id="email" name="email" required placeholder="ornek@email.com">
+                                    <label class="form-label">Adınız <span class="required">*</span></label>
+                                    <input type="text" class="form-input" id="firstName" name="firstName" placeholder="Adınızı girin" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Telefon *</label>
-                                    <input type="tel" id="phone" name="phone" required placeholder="+90 5XX XXX XX XX">
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="birthDate">Doğum Tarihi *</label>
-                                    <input type="date" id="birthDate" name="birthDate" required>
+                                    <label class="form-label">Soyadınız <span class="required">*</span></label>
+                                    <input type="text" class="form-input" id="lastName" name="lastName" placeholder="Soyadınızı girin" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="city">Şehir *</label>
-                                    <select id="city" name="city" required>
+                                    <label class="form-label">E-Posta <span class="required">*</span></label>
+                                    <input type="email" class="form-input" id="email" name="email" placeholder="ornek@email.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Telefon <span class="required">*</span></label>
+                                    <input type="tel" class="form-input" id="phone" name="phone" placeholder="+90 5XX XXX XX XX" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Doğum Tarihi <span class="required">*</span></label>
+                                    <input type="date" class="form-input" id="birthDate" name="birthDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Şehir <span class="required">*</span></label>
+                                    <select class="form-select" id="city" name="city" required>
                                         <option value="">Şehir Seçin</option>
                                         <option value="yozgat">Yozgat</option>
                                         <option value="izmit">İzmit</option>
@@ -1142,22 +1431,24 @@
                                         <option value="other">Diğer</option>
                                     </select>
                                 </div>
+                                <div class="form-group full-width">
+                                    <label class="form-label">Adres</label>
+                                    <textarea class="form-textarea" id="address" name="address" rows="2" placeholder="Açık adresinizi yazın..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Education & Experience -->
+                        <div class="form-section">
+                            <div class="section-header">
+                                <div class="section-icon"><i class="fas fa-graduation-cap"></i></div>
+                                <span class="section-title">Eğitim ve Deneyim</span>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="address">Adres</label>
-                                <textarea id="address" name="address" rows="2" placeholder="Açık adresiniz..."></textarea>
-                            </div>
-                            
-                            <!-- Education & Experience -->
-                            <h3 class="form-section-title">
-                                <i class="fas fa-graduation-cap"></i> Eğitim ve Deneyim
-                            </h3>
-                            
-                            <div class="form-row">
+                            <div class="form-grid">
                                 <div class="form-group">
-                                    <label for="education">Eğitim Durumu *</label>
-                                    <select id="education" name="education" required>
+                                    <label class="form-label">Eğitim Durumu <span class="required">*</span></label>
+                                    <select class="form-select" id="education" name="education" required>
                                         <option value="">Seçin</option>
                                         <option value="ilkokul">İlkokul</option>
                                         <option value="ortaokul">Ortaokul</option>
@@ -1169,8 +1460,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="experience">Çağrı Merkezi Deneyimi</label>
-                                    <select id="experience" name="experience">
+                                    <label class="form-label">Çağrı Merkezi Deneyimi</label>
+                                    <select class="form-select" id="experience" name="experience">
                                         <option value="">Seçin</option>
                                         <option value="yok">Deneyimim Yok</option>
                                         <option value="0-1">0-1 Yıl</option>
@@ -1181,268 +1472,261 @@
                                 </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label>Dil Bilgisi *</label>
-                                <div class="checkbox-group">
-                                    <label class="checkbox-item">
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label class="form-label">Dil Bilgisi <span class="required">*</span></label>
+                                <div class="options-grid">
+                                    <label class="option-item">
                                         <input type="checkbox" name="languages" value="turkce" checked>
-                                        <span>Türkçe</span>
+                                        <span class="option-label">
+                                            <span class="option-check"><i class="fas fa-check"></i></span>
+                                            Türkçe
+                                        </span>
                                     </label>
-                                    <label class="checkbox-item">
+                                    <label class="option-item">
                                         <input type="checkbox" name="languages" value="almanca">
-                                        <span>Almanca</span>
+                                        <span class="option-label">
+                                            <span class="option-check"><i class="fas fa-check"></i></span>
+                                            Almanca
+                                        </span>
                                     </label>
-                                    <label class="checkbox-item">
+                                    <label class="option-item">
                                         <input type="checkbox" name="languages" value="ingilizce">
-                                        <span>İngilizce</span>
+                                        <span class="option-label">
+                                            <span class="option-check"><i class="fas fa-check"></i></span>
+                                            İngilizce
+                                        </span>
                                     </label>
-                                    <label class="checkbox-item">
+                                    <label class="option-item">
                                         <input type="checkbox" name="languages" value="diger">
-                                        <span>Diğer</span>
+                                        <span class="option-label">
+                                            <span class="option-check"><i class="fas fa-check"></i></span>
+                                            Diğer
+                                        </span>
                                     </label>
                                 </div>
                             </div>
-                            
-                            <!-- Position & Availability -->
-                            <h3 class="form-section-title">
-                                <i class="fas fa-briefcase"></i> Pozisyon ve Çalışma Tercihi
-                            </h3>
+                        </div>
+                        
+                        <!-- Position -->
+                        <div class="form-section">
+                            <div class="section-header">
+                                <div class="section-icon"><i class="fas fa-briefcase"></i></div>
+                                <span class="section-title">Pozisyon ve Çalışma Tercihi</span>
+                            </div>
                             
                             <div class="form-group">
-                                <label>Başvurmak İstediğiniz Pozisyon *</label>
-                                <div class="checkbox-group">
-                                    <label class="checkbox-item">
+                                <label class="form-label">Başvurmak İstediğiniz Pozisyon <span class="required">*</span></label>
+                                <div class="options-grid">
+                                    <label class="option-item">
                                         <input type="radio" name="position" value="outbound" required>
-                                        <span>Outbound Satış (35€/QC OK)</span>
+                                        <span class="option-label">
+                                            <span class="option-check"><i class="fas fa-check"></i></span>
+                                            Outbound Satış (35€/QC OK)
+                                        </span>
                                     </label>
-                                    <label class="checkbox-item">
+                                    <label class="option-item">
                                         <input type="radio" name="position" value="inbound">
-                                        <span>Inbound Hotline (Sabit Maaş)</span>
+                                        <span class="option-label">
+                                            <span class="option-check"><i class="fas fa-check"></i></span>
+                                            Inbound Hotline (Sabit Maaş)
+                                        </span>
                                     </label>
-                                    <label class="checkbox-item">
+                                    <label class="option-item">
                                         <input type="radio" name="position" value="both">
-                                        <span>Her İkisi</span>
+                                        <span class="option-label">
+                                            <span class="option-check"><i class="fas fa-check"></i></span>
+                                            Her İkisi
+                                        </span>
                                     </label>
                                 </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label>Çalışma Şekli *</label>
-                                <div class="checkbox-group">
-                                    <label class="checkbox-item">
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label class="form-label">Çalışma Şekli <span class="required">*</span></label>
+                                <div class="options-grid">
+                                    <label class="option-item">
                                         <input type="radio" name="workType" value="fulltime" required>
-                                        <span>Tam Zamanlı</span>
+                                        <span class="option-label">
+                                            <span class="option-check"><i class="fas fa-check"></i></span>
+                                            Tam Zamanlı
+                                        </span>
                                     </label>
-                                    <label class="checkbox-item">
+                                    <label class="option-item">
                                         <input type="radio" name="workType" value="parttime">
-                                        <span>Yarı Zamanlı</span>
+                                        <span class="option-label">
+                                            <span class="option-check"><i class="fas fa-check"></i></span>
+                                            Yarı Zamanlı
+                                        </span>
                                     </label>
                                 </div>
                             </div>
                             
-                            <div class="form-row">
+                            <div class="form-grid" style="margin-top: 20px;">
                                 <div class="form-group">
-                                    <label for="startDate">Ne Zaman Başlayabilirsiniz?</label>
-                                    <select id="startDate" name="startDate">
+                                    <label class="form-label">Ne Zaman Başlayabilirsiniz?</label>
+                                    <select class="form-select" id="startDate" name="startDate">
                                         <option value="">Seçin</option>
                                         <option value="hemen">Hemen</option>
                                         <option value="1hafta">1 Hafta İçinde</option>
                                         <option value="2hafta">2 Hafta İçinde</option>
                                         <option value="1ay">1 Ay İçinde</option>
-                                        <option value="diger">Diğer</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="reference">Referans (Varsa)</label>
-                                    <input type="text" id="reference" name="reference" placeholder="Sizi yönlendiren kişi">
+                                    <label class="form-label">Referans (Varsa)</label>
+                                    <input type="text" class="form-input" id="reference" name="reference" placeholder="Sizi yönlendiren kişi">
                                 </div>
                             </div>
-                            
-                            <!-- CV Upload -->
-                            <h3 class="form-section-title">
-                                <i class="fas fa-file-alt"></i> CV Yükleme
-                            </h3>
-                            
-                            <div class="form-group">
-                                <label class="file-upload" for="cvFile">
-                                    <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>CV'nizi buraya sürükleyin veya tıklayın</p>
-                                    <span>PDF, DOC, DOCX (Maks. 5MB)</span>
-                                    <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx">
-                                </label>
-                                <p id="fileName" style="text-align: center; margin-top: 10px; color: var(--primary-gold);"></p>
-                            </div>
-                            
-                            <!-- Additional Information -->
-                            <h3 class="form-section-title">
-                                <i class="fas fa-comment-alt"></i> Ek Bilgiler
-                            </h3>
-                            
-                            <div class="form-group">
-                                <label for="about">Kendinizi Tanıtın</label>
-                                <textarea id="about" name="about" rows="4" placeholder="Kendiniz, deneyimleriniz ve hedefleriniz hakkında kısa bilgi..."></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="motivation">Neden Bee Life'da Çalışmak İstiyorsunuz?</label>
-                                <textarea id="motivation" name="motivation" rows="3" placeholder="Motivasyonunuzu paylaşın..."></textarea>
-                            </div>
-                            
-                            <!-- Agreement -->
-                            <div class="form-agreement">
-                                <input type="checkbox" id="agreement" name="agreement" required>
-                                <label for="agreement">
-                                    <span data-tr="Kişisel verilerimin" data-de="Ich akzeptiere die Verarbeitung meiner persönlichen Daten gemäß der">Kişisel verilerimin</span> 
-                                    <a href="datenschutz.html" target="_blank" data-tr="Gizlilik Politikası" data-de="Datenschutzrichtlinie">Gizlilik Politikası</a> 
-                                    <span data-tr="kapsamında işlenmesini ve" data-de="und die">kapsamında işlenmesini ve</span> 
-                                    <a href="nutzungsbedingungen.html" target="_blank" data-tr="Kullanım Koşullarını" data-de="Nutzungsbedingungen">Kullanım Koşullarını</a> 
-                                    <span data-tr="kabul ediyorum. *" data-de="*">kabul ediyorum. *</span>
-                                </label>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary submit-btn">
-                                <i class="fas fa-paper-plane"></i> Başvuruyu Gönder
-                            </button>
-                        </form>
-                    </div>
-                    
-                    <!-- Success Message -->
-                    <div class="success-message" id="successMessage">
-                        <div class="success-icon">
-                            <i class="fas fa-check"></i>
                         </div>
-                        <h2>Başvurunuz Alındı!</h2>
-                        <p>
-                            Başvurunuz başarıyla gönderildi. İnsan kaynakları ekibimiz en kısa sürede 
-                            sizinle iletişime geçecektir. Başvurunuzu takip etmek için e-postanızı kontrol edin.
-                        </p>
-                        <a href="index.html" class="btn btn-primary">
-                            <i class="fas fa-home"></i> Ana Sayfaya Dön
-                        </a>
+                        
+                        <!-- CV Upload -->
+                        <div class="form-section">
+                            <div class="section-header">
+                                <div class="section-icon"><i class="fas fa-file-alt"></i></div>
+                                <span class="section-title">CV Yükleme</span>
+                            </div>
+                            
+                            <label class="file-upload-area" for="cvFile">
+                                <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <p class="upload-text">CV'nizi buraya sürükleyin veya tıklayın</p>
+                                <span class="upload-hint">PDF, DOC, DOCX (Maks. 5MB)</span>
+                                <input type="file" id="cvFile" name="cvFile" accept=".pdf,.doc,.docx">
+                            </label>
+                            <div id="fileNameDisplay"></div>
+                        </div>
+                        
+                        <!-- Additional Info -->
+                        <div class="form-section">
+                            <div class="section-header">
+                                <div class="section-icon"><i class="fas fa-comment-alt"></i></div>
+                                <span class="section-title">Ek Bilgiler</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Kendinizi Tanıtın</label>
+                                <textarea class="form-textarea" id="about" name="about" placeholder="Kendiniz, deneyimleriniz ve hedefleriniz hakkında kısa bilgi..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Neden Bee Life'da Çalışmak İstiyorsunuz?</label>
+                                <textarea class="form-textarea" id="motivation" name="motivation" placeholder="Motivasyonunuzu paylaşın..."></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Agreement -->
+                        <div class="agreement-box">
+                            <input type="checkbox" id="agreement" name="agreement" required>
+                            <label for="agreement">
+                                Kişisel verilerimin <a href="datenschutz.html" target="_blank">Gizlilik Politikası</a> 
+                                kapsamında işlenmesini ve <a href="nutzungsbedingungen.html" target="_blank">Kullanım Koşullarını</a> 
+                                kabul ediyorum. <span class="required">*</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Başvuruyu Gönder
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon-wrap">
+                        <i class="fas fa-check"></i>
                     </div>
+                    <h2>Başvurunuz Alındı!</h2>
+                    <p>
+                        Başvurunuz başarıyla gönderildi. İnsan kaynakları ekibimiz en kısa sürede 
+                        sizinle iletişime geçecektir. Başvurunuzu takip etmek için e-postanızı kontrol edin.
+                    </p>
+                    <a href="index.html" class="btn-home">
+                        <i class="fas fa-home"></i> Ana Sayfaya Dön
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         VIP FOOTER
+    ═══════════════════════════════════════════════════════════════ -->
     <footer class="footer">
-        <div class="container">
+        <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="index.html" class="logo">
                         <div class="logo-icon">🐝</div>
                         <div class="logo-text">Bee Life <span>Consulting</span></div>
                     </a>
-                    <p>
-                        5 yılı aşkın deneyimimizle Türkiye ve Almanya'da profesyonel çağrı merkezi 
-                        hizmetleri sunuyoruz.
-                    </p>
+                    <p>5 yılı aşkın deneyimimizle Türkiye ve Almanya'da profesyonel çağrı merkezi hizmetleri sunuyoruz.</p>
                 </div>
                 
                 <div class="footer-column">
                     <h4>Hızlı Linkler</h4>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Ana Sayfa</a></li>
-                        <li><a href="index.html#about">Hakkımızda</a></li>
-                        <li><a href="index.html#services">Hizmetler</a></li>
-                        <li><a href="index.html#careers">Kariyer</a></li>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Ana Sayfa</a></li>
+                        <li><a href="index.html#about"><i class="fas fa-chevron-right"></i> Hakkımızda</a></li>
+                        <li><a href="index.html#services"><i class="fas fa-chevron-right"></i> Hizmetler</a></li>
+                        <li><a href="index.html#careers"><i class="fas fa-chevron-right"></i> Kariyer</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h4>Giriş</h4>
-                    <ul class="footer-links">
-                        <li><a href="employee-login.html">Çalışan Girişi</a></li>
-                        <li><a href="admin-login.html">Admin Girişi</a></li>
+                    <ul>
+                        <li><a href="employee-login.html"><i class="fas fa-chevron-right"></i> Çalışan Girişi</a></li>
+                        <li><a href="admin-login.html"><i class="fas fa-chevron-right"></i> Admin Girişi</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h4>İletişim</h4>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope" style="margin-right: 10px; color: #FFB800;"></i> info@beelife-consulting.com</li>
-                        <li><i class="fas fa-phone" style="margin-right: 10px; color: #FFB800;"></i> +90 531 765 41 66</li>
+                    <ul>
+                        <li><a href="mailto:info@beelife-consulting.com"><i class="fas fa-envelope"></i> info@beelife-consulting.com</a></li>
+                        <li><a href="tel:+905317654166"><i class="fas fa-phone"></i> +90 531 765 41 66</a></li>
+                        <li><a href="https://wa.me/905356634166"><i class="fab fa-whatsapp"></i> +90 535 663 41 66</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Bee Life Consulting. Tüm hakları saklıdır.</p>
+                <p>&copy; 2024 Bee Life Consulting. Tüm hakları saklıdır. | 
+                <a href="datenschutz.html">Gizlilik</a> | 
+                <a href="nutzungsbedingungen.html">Kullanım Koşulları</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- ========== JAVASCRIPT ========== -->
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/905356634166" class="whatsapp-float" target="_blank" rel="noopener" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- JavaScript -->
     <script>
-        // ═══════════════════════════════════════════════════════════════
-        // LANGUAGE SYSTEM
-        // ═══════════════════════════════════════════════════════════════
-        let currentLang = localStorage.getItem('blc_lang') || 'tr';
-        
-        function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('blc_lang', lang);
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-                if (btn.dataset.lang === lang) {
-                    btn.style.background = 'rgba(255,215,0,0.2)';
-                    btn.style.borderColor = '#FFD700';
-                    btn.style.color = '#FFD700';
-                } else {
-                    btn.style.background = 'transparent';
-                    btn.style.borderColor = 'rgba(255,255,255,0.3)';
-                    btn.style.color = 'rgba(255,255,255,0.7)';
-                }
-            });
-            
-            document.querySelectorAll('[data-tr]').forEach(el => {
-                el.textContent = lang === 'tr' ? el.dataset.tr : el.dataset.de;
-            });
-            
-            document.querySelectorAll('[data-tr-placeholder]').forEach(el => {
-                el.placeholder = lang === 'tr' ? el.dataset.trPlaceholder : el.dataset.dePlaceholder;
-            });
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
         }
-        
-        // Toggle mobile language
-        function toggleMobileLang() {
-            const newLang = currentLang === 'tr' ? 'de' : 'tr';
-            setLanguage(newLang);
-            updateMobileLangBtn(newLang);
-        }
-        
-        // Update mobile language button
-        function updateMobileLangBtn(lang) {
-            const langText = document.getElementById('mobileLangText');
-            const langBtn = document.getElementById('mobileLangBtn');
-            if (langText && langBtn) {
-                langText.textContent = lang.toUpperCase();
-                langBtn.querySelector('.lang-flag').textContent = lang === 'tr' ? '🇹🇷' : '🇩🇪';
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            setLanguage(currentLang);
-            updateMobileLangBtn(currentLang);
-        });
         
         // File Upload Display
         const cvFile = document.getElementById('cvFile');
-        const fileName = document.getElementById('fileName');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
         
         if (cvFile) {
             cvFile.addEventListener('change', function() {
                 if (this.files && this.files[0]) {
-                    fileName.textContent = '📎 ' + this.files[0].name;
+                    fileNameDisplay.textContent = '📎 ' + this.files[0].name;
+                    fileNameDisplay.classList.add('show');
                 }
             });
         }
         
         // Form Submit Handler
         const applicationForm = document.getElementById('jobApplicationForm');
-        const formContainer = document.getElementById('applicationForm');
+        const formWrapper = document.getElementById('applicationFormWrapper');
         const successMessage = document.getElementById('successMessage');
         
         if (applicationForm) {
@@ -1450,6 +1734,7 @@
                 e.preventDefault();
                 
                 const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
                 submitBtn.disabled = true;
                 
@@ -1463,8 +1748,6 @@
                     birthDate: document.getElementById('birthDate')?.value || '',
                     city: document.getElementById('city')?.value || '',
                     position: document.querySelector('input[name="position"]:checked')?.value || 'outbound',
-                    branch: document.getElementById('preferredBranch')?.value || '',
-                    germanLevel: document.getElementById('germanLevel')?.value || '',
                     experience: document.getElementById('experience')?.value || '',
                     motivation: document.getElementById('motivation')?.value || '',
                     status: 'pending',
@@ -1474,67 +1757,26 @@
                 
                 // Save to localStorage
                 const applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
-                applications.unshift(formData); // Add to beginning
+                applications.unshift(formData);
                 localStorage.setItem('blc_applications', JSON.stringify(applications));
                 
                 setTimeout(() => {
-                    formContainer.querySelector('form').style.display = 'none';
-                    formContainer.querySelector('.form-header').style.display = 'none';
+                    formWrapper.style.display = 'none';
                     successMessage.classList.add('show');
-                    
-                    // Scroll to top
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }, 1500);
             });
         }
         
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('mobileMenu');
+            const toggle = document.querySelector('.menu-toggle');
+            if (menu.classList.contains('active') && !menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.classList.remove('active');
             }
         });
-        
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.querySelector('.nav-links');
-        const navButtons = document.querySelector('.nav-buttons');
-        
-        if (menuToggle) {
-            menuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                this.classList.toggle('active');
-                navLinks.classList.toggle('mobile-active');
-                navButtons.classList.toggle('mobile-active');
-                document.body.classList.toggle('menu-open');
-            });
-            
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function() {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('mobile-active');
-                    navButtons.classList.remove('mobile-active');
-                    document.body.classList.remove('menu-open');
-                });
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && !navButtons.contains(e.target)) {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('mobile-active');
-                    navButtons.classList.remove('mobile-active');
-                    document.body.classList.remove('menu-open');
-                }
-            });
-        }
     </script>
-
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/905356634166" class="whatsapp-float" target="_blank" rel="noopener" title="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
 </body>
 </html>
-
