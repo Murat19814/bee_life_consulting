@@ -2886,17 +2886,33 @@
                 padding: 60px 0;
             }
             
+            .hero-text {
+                text-align: center;
+                padding: 0 15px;
+            }
+            
             .hero-text h1 {
-                font-size: 1.6rem;
-                line-height: 1.35;
-                padding: 0 10px;
+                font-size: 1.5rem;
+                line-height: 1.4;
+                padding: 0;
+                word-wrap: break-word;
+                hyphens: auto;
             }
             
             .hero-text p,
             .hero-tagline {
                 font-size: 0.9rem;
-                line-height: 1.6;
-                padding: 0 10px;
+                line-height: 1.7;
+                padding: 0;
+                text-align: center;
+            }
+            
+            .hero-badge {
+                margin: 0 auto 20px;
+            }
+            
+            .hero-content {
+                text-align: center;
             }
             
             .section-title {
@@ -2910,6 +2926,12 @@
             .hero-stats {
                 flex-direction: column;
                 gap: 20px;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .stat-item {
+                text-align: center;
             }
             
             .stat-number {
@@ -3244,7 +3266,18 @@
         
         @media (max-width: 480px) {
             .hero-text h1 {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
+                line-height: 1.4;
+            }
+            
+            .hero-tagline {
+                font-size: 0.85rem;
+                line-height: 1.6;
+            }
+            
+            .hero-badge {
+                font-size: 0.7rem;
+                padding: 8px 15px;
             }
             
             .section-title {
@@ -3252,7 +3285,16 @@
             }
             
             .stat-number {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+            }
+            
+            .stat-label {
+                font-size: 0.7rem;
+            }
+            
+            .hero-stats {
+                gap: 15px;
+                padding-top: 25px;
             }
             
             .navbar {
