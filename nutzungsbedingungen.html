@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Bee Life Consulting - Nutzungsbedingungen">
-    <title>Nutzungsbedingungen | Bee Life Consulting</title>
+    <meta name="description" content="Bee Life Consulting - Kullanım Koşulları / Nutzungsbedingungen">
+    <title id="pageTitle">Kullanım Koşulları | Bee Life Consulting</title>
     
     <!-- PWA Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -40,6 +40,42 @@
             background: var(--off-white);
             color: var(--text-dark);
             line-height: 1.8;
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+        
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+        }
+        
+        .lang-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--primary-dark);
         }
         
         /* Header */
@@ -238,6 +274,16 @@
                 top: 20px;
                 left: 15px;
             }
+            
+            .lang-switcher {
+                top: 20px;
+                right: 15px;
+            }
+            
+            .lang-btn {
+                padding: 6px 10px;
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
@@ -246,157 +292,193 @@
     <!-- Header -->
     <header class="page-header">
         <a href="index.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i> Zurück zur Startseite
+            <i class="fas fa-arrow-left"></i> <span data-tr="Ana Sayfaya Dön" data-de="Zurück zur Startseite">Ana Sayfaya Dön</span>
         </a>
-        <h1><i class="fas fa-file-contract"></i> Nutzungsbedingungen</h1>
-        <p>Allgemeine Geschäftsbedingungen</p>
+        
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
+            <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
+        </div>
+        
+        <h1><i class="fas fa-file-contract"></i> <span data-tr="Kullanım Koşulları" data-de="Nutzungsbedingungen">Kullanım Koşulları</span></h1>
+        <p data-tr="Genel Şartlar ve Koşullar" data-de="Allgemeine Geschäftsbedingungen">Genel Şartlar ve Koşullar</p>
     </header>
 
     <!-- Content -->
     <main class="content-container">
-        <span class="last-updated"><i class="fas fa-calendar-alt"></i> Stand: Dezember 2024</span>
+        <span class="last-updated"><i class="fas fa-calendar-alt"></i> <span data-tr="Güncelleme: Aralık 2024" data-de="Stand: Dezember 2024">Güncelleme: Aralık 2024</span></span>
         
         <div class="section">
-            <h2><i class="fas fa-info-circle"></i> 1. Geltungsbereich</h2>
-            <p>Diese Nutzungsbedingungen gelten für die Nutzung der Website beelife-consulting.com und aller damit verbundenen Dienste der Bee Life Consulting. Mit der Nutzung unserer Website erklären Sie sich mit diesen Bedingungen einverstanden.</p>
+            <h2><i class="fas fa-info-circle"></i> <span data-tr="1. Kapsam" data-de="1. Geltungsbereich">1. Kapsam</span></h2>
+            <p data-tr="Bu kullanım koşulları, beelife-consulting.com web sitesinin ve Bee Life Consulting'in sunduğu tüm hizmetlerin kullanımı için geçerlidir. Web sitemizi kullanarak bu koşulları kabul etmiş sayılırsınız." data-de="Diese Nutzungsbedingungen gelten für die Nutzung der Website beelife-consulting.com und aller damit verbundenen Dienste der Bee Life Consulting. Mit der Nutzung unserer Website erklären Sie sich mit diesen Bedingungen einverstanden.">Bu kullanım koşulları, beelife-consulting.com web sitesinin ve Bee Life Consulting'in sunduğu tüm hizmetlerin kullanımı için geçerlidir. Web sitemizi kullanarak bu koşulları kabul etmiş sayılırsınız.</p>
             <div class="highlight-box">
-                <p><i class="fas fa-check-circle"></i> Durch die Nutzung dieser Website akzeptieren Sie diese Nutzungsbedingungen in ihrer jeweils gültigen Fassung.</p>
+                <p><i class="fas fa-check-circle"></i> <span data-tr="Bu web sitesini kullanarak, yürürlükteki kullanım koşullarını kabul etmiş olursunuz." data-de="Durch die Nutzung dieser Website akzeptieren Sie diese Nutzungsbedingungen in ihrer jeweils gültigen Fassung.">Bu web sitesini kullanarak, yürürlükteki kullanım koşullarını kabul etmiş olursunuz.</span></p>
             </div>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-building"></i> 2. Anbieter</h2>
-            <p>Anbieter dieser Website und der angebotenen Dienstleistungen ist:</p>
+            <h2><i class="fas fa-building"></i> <span data-tr="2. Sağlayıcı" data-de="2. Anbieter">2. Sağlayıcı</span></h2>
+            <p data-tr="Bu web sitesinin ve sunulan hizmetlerin sağlayıcısı:" data-de="Anbieter dieser Website und der angebotenen Dienstleistungen ist:">Bu web sitesinin ve sunulan hizmetlerin sağlayıcısı:</p>
             <div class="highlight-box">
                 <p><strong>Bee Life Consulting</strong><br>
-                Professionelle Call Center Dienstleistungen<br>
+                <span data-tr="Profesyonel Çağrı Merkezi Hizmetleri" data-de="Professionelle Call Center Dienstleistungen">Profesyonel Çağrı Merkezi Hizmetleri</span><br>
                 E-Mail: info@beelife-consulting.com<br>
-                Telefon: +90 531 765 41 66</p>
+                <span data-tr="Telefon" data-de="Telefon">Telefon</span>: +90 531 765 41 66</p>
             </div>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-laptop"></i> 3. Leistungsbeschreibung</h2>
-            <p>Bee Life Consulting bietet folgende Dienstleistungen an:</p>
+            <h2><i class="fas fa-laptop"></i> <span data-tr="3. Hizmet Tanımı" data-de="3. Leistungsbeschreibung">3. Hizmet Tanımı</span></h2>
+            <p data-tr="Bee Life Consulting aşağıdaki hizmetleri sunmaktadır:" data-de="Bee Life Consulting bietet folgende Dienstleistungen an:">Bee Life Consulting aşağıdaki hizmetleri sunmaktadır:</p>
             <ul>
-                <li>Professionelle Call Center Dienstleistungen (Inbound & Outbound)</li>
-                <li>Kundenservice und Support</li>
-                <li>Telemarketing und Vertriebsunterstützung</li>
-                <li>Mehrsprachige Kommunikationslösungen (Deutsch, Türkisch)</li>
+                <li data-tr="Profesyonel Çağrı Merkezi Hizmetleri (Inbound & Outbound)" data-de="Professionelle Call Center Dienstleistungen (Inbound & Outbound)">Profesyonel Çağrı Merkezi Hizmetleri (Inbound & Outbound)</li>
+                <li data-tr="Müşteri Hizmetleri ve Destek" data-de="Kundenservice und Support">Müşteri Hizmetleri ve Destek</li>
+                <li data-tr="Telemarketing ve Satış Desteği" data-de="Telemarketing und Vertriebsunterstützung">Telemarketing ve Satış Desteği</li>
+                <li data-tr="Çok Dilli İletişim Çözümleri (Almanca, Türkçe)" data-de="Mehrsprachige Kommunikationslösungen (Deutsch, Türkisch)">Çok Dilli İletişim Çözümleri (Almanca, Türkçe)</li>
             </ul>
-            <p>Die auf der Website dargestellten Informationen stellen kein verbindliches Angebot dar, sondern dienen der allgemeinen Information über unser Leistungsspektrum.</p>
+            <p data-tr="Web sitesinde sunulan bilgiler bağlayıcı bir teklif niteliğinde değildir, hizmet yelpazemiz hakkında genel bilgi vermek amacıyla sunulmaktadır." data-de="Die auf der Website dargestellten Informationen stellen kein verbindliches Angebot dar, sondern dienen der allgemeinen Information über unser Leistungsspektrum.">Web sitesinde sunulan bilgiler bağlayıcı bir teklif niteliğinde değildir, hizmet yelpazemiz hakkında genel bilgi vermek amacıyla sunulmaktadır.</p>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-user-edit"></i> 4. Bewerbungsverfahren</h2>
-            <h3>4.1 Bewerbungsvoraussetzungen</h3>
-            <p>Für eine Bewerbung bei Bee Life Consulting gelten folgende Voraussetzungen:</p>
+            <h2><i class="fas fa-user-edit"></i> <span data-tr="4. Başvuru Süreci" data-de="4. Bewerbungsverfahren">4. Başvuru Süreci</span></h2>
+            <h3 data-tr="4.1 Başvuru Gereksinimleri" data-de="4.1 Bewerbungsvoraussetzungen">4.1 Başvuru Gereksinimleri</h3>
+            <p data-tr="Bee Life Consulting'e başvuru için aşağıdaki gereksinimler geçerlidir:" data-de="Für eine Bewerbung bei Bee Life Consulting gelten folgende Voraussetzungen:">Bee Life Consulting'e başvuru için aşağıdaki gereksinimler geçerlidir:</p>
             <ul>
-                <li>Mindestalter von 18 Jahren</li>
-                <li>Deutschkenntnisse auf Niveau C1-C2 oder Muttersprache</li>
-                <li>Wahrheitsgemäße Angaben in der Bewerbung</li>
-                <li>Einwilligung in die Verarbeitung personenbezogener Daten</li>
+                <li data-tr="Minimum 18 yaş" data-de="Mindestalter von 18 Jahren">Minimum 18 yaş</li>
+                <li data-tr="C1-C2 düzeyinde veya anadil seviyesinde Almanca" data-de="Deutschkenntnisse auf Niveau C1-C2 oder Muttersprache">C1-C2 düzeyinde veya anadil seviyesinde Almanca</li>
+                <li data-tr="Başvuruda doğru bilgi verilmesi" data-de="Wahrheitsgemäße Angaben in der Bewerbung">Başvuruda doğru bilgi verilmesi</li>
+                <li data-tr="Kişisel verilerin işlenmesine onay" data-de="Einwilligung in die Verarbeitung personenbezogener Daten">Kişisel verilerin işlenmesine onay</li>
             </ul>
             
-            <h3>4.2 Bewerbungsprozess</h3>
-            <p>Der Bewerbungsprozess umfasst:</p>
+            <h3 data-tr="4.2 Başvuru Aşamaları" data-de="4.2 Bewerbungsprozess">4.2 Başvuru Aşamaları</h3>
+            <p data-tr="Başvuru süreci aşağıdaki aşamaları içerir:" data-de="Der Bewerbungsprozess umfasst:">Başvuru süreci aşağıdaki aşamaları içerir:</p>
             <ol>
-                <li>Online-Bewerbung über das Bewerbungsformular</li>
-                <li>Prüfung der Bewerbungsunterlagen</li>
-                <li>Telefonisches oder persönliches Vorstellungsgespräch</li>
-                <li>Sprachtest zur Überprüfung der Deutschkenntnisse</li>
-                <li>Entscheidung über die Einstellung</li>
+                <li data-tr="Başvuru formu üzerinden online başvuru" data-de="Online-Bewerbung über das Bewerbungsformular">Başvuru formu üzerinden online başvuru</li>
+                <li data-tr="Başvuru belgelerinin incelenmesi" data-de="Prüfung der Bewerbungsunterlagen">Başvuru belgelerinin incelenmesi</li>
+                <li data-tr="Telefon veya yüz yüze görüşme" data-de="Telefonisches oder persönliches Vorstellungsgespräch">Telefon veya yüz yüze görüşme</li>
+                <li data-tr="Almanca seviye testi" data-de="Sprachtest zur Überprüfung der Deutschkenntnisse">Almanca seviye testi</li>
+                <li data-tr="İşe alım kararı" data-de="Entscheidung über die Einstellung">İşe alım kararı</li>
             </ol>
             
             <div class="warning-box">
-                <p><i class="fas fa-exclamation-triangle"></i> <strong>Wichtig:</strong> Falsche Angaben im Bewerbungsverfahren können zum Ausschluss aus dem Bewerbungsprozess oder zur Kündigung eines bereits geschlossenen Arbeitsverhältnisses führen.</p>
+                <p><i class="fas fa-exclamation-triangle"></i> <strong data-tr="Önemli:" data-de="Wichtig:">Önemli:</strong> <span data-tr="Başvuru sürecinde yanlış bilgi vermek, başvuru sürecinden çıkarılmaya veya mevcut iş sözleşmesinin feshine yol açabilir." data-de="Falsche Angaben im Bewerbungsverfahren können zum Ausschluss aus dem Bewerbungsprozess oder zur Kündigung eines bereits geschlossenen Arbeitsverhältnisses führen.">Başvuru sürecinde yanlış bilgi vermek, başvuru sürecinden çıkarılmaya veya mevcut iş sözleşmesinin feshine yol açabilir.</span></p>
             </div>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-copyright"></i> 5. Urheberrecht und Markenrecht</h2>
-            <p>Alle auf dieser Website veröffentlichten Inhalte (Texte, Bilder, Grafiken, Logos, etc.) sind urheberrechtlich geschützt. Eine Vervielfältigung, Bearbeitung, Verbreitung oder sonstige Nutzung bedarf der vorherigen schriftlichen Zustimmung von Bee Life Consulting.</p>
+            <h2><i class="fas fa-copyright"></i> <span data-tr="5. Telif Hakkı ve Marka Hakkı" data-de="5. Urheberrecht und Markenrecht">5. Telif Hakkı ve Marka Hakkı</span></h2>
+            <p data-tr="Bu web sitesinde yayınlanan tüm içerikler (metinler, görseller, grafikler, logolar vb.) telif hakkı ile korunmaktadır. Çoğaltma, düzenleme, dağıtım veya başka türlü kullanım için Bee Life Consulting'in önceden yazılı onayı gereklidir." data-de="Alle auf dieser Website veröffentlichten Inhalte (Texte, Bilder, Grafiken, Logos, etc.) sind urheberrechtlich geschützt. Eine Vervielfältigung, Bearbeitung, Verbreitung oder sonstige Nutzung bedarf der vorherigen schriftlichen Zustimmung von Bee Life Consulting.">Bu web sitesinde yayınlanan tüm içerikler (metinler, görseller, grafikler, logolar vb.) telif hakkı ile korunmaktadır. Çoğaltma, düzenleme, dağıtım veya başka türlü kullanım için Bee Life Consulting'in önceden yazılı onayı gereklidir.</p>
             <ul>
-                <li>Das Logo und der Name "Bee Life Consulting" sind geschützte Marken</li>
-                <li>Das Design und Layout der Website sind urheberrechtlich geschützt</li>
-                <li>Alle Texte und Inhalte dürfen nicht ohne Genehmigung verwendet werden</li>
+                <li data-tr="Logo ve 'Bee Life Consulting' ismi tescilli markalardır" data-de="Das Logo und der Name 'Bee Life Consulting' sind geschützte Marken">Logo ve "Bee Life Consulting" ismi tescilli markalardır</li>
+                <li data-tr="Web sitesinin tasarımı ve düzeni telif hakkı ile korunmaktadır" data-de="Das Design und Layout der Website sind urheberrechtlich geschützt">Web sitesinin tasarımı ve düzeni telif hakkı ile korunmaktadır</li>
+                <li data-tr="Tüm metinler ve içerikler izinsiz kullanılamaz" data-de="Alle Texte und Inhalte dürfen nicht ohne Genehmigung verwendet werden">Tüm metinler ve içerikler izinsiz kullanılamaz</li>
             </ul>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-ban"></i> 6. Unzulässige Nutzung</h2>
-            <p>Folgende Nutzungen der Website sind untersagt:</p>
+            <h2><i class="fas fa-ban"></i> <span data-tr="6. Yasaklı Kullanımlar" data-de="6. Unzulässige Nutzung">6. Yasaklı Kullanımlar</span></h2>
+            <p data-tr="Aşağıdaki web sitesi kullanımları yasaktır:" data-de="Folgende Nutzungen der Website sind untersagt:">Aşağıdaki web sitesi kullanımları yasaktır:</p>
             <ul>
-                <li>Automatisierte Datenerfassung (Scraping, Crawling)</li>
-                <li>Verbreitung von Malware oder schädlicher Software</li>
-                <li>Überlastung der Server durch übermäßige Anfragen</li>
-                <li>Manipulation oder Umgehung von Sicherheitsmaßnahmen</li>
-                <li>Nutzung für illegale oder betrügerische Zwecke</li>
-                <li>Belästigung anderer Nutzer</li>
+                <li data-tr="Otomatik veri toplama (Scraping, Crawling)" data-de="Automatisierte Datenerfassung (Scraping, Crawling)">Otomatik veri toplama (Scraping, Crawling)</li>
+                <li data-tr="Zararlı yazılım veya kötü amaçlı yazılım yayma" data-de="Verbreitung von Malware oder schädlicher Software">Zararlı yazılım veya kötü amaçlı yazılım yayma</li>
+                <li data-tr="Aşırı isteklerle sunucuları aşırı yükleme" data-de="Überlastung der Server durch übermäßige Anfragen">Aşırı isteklerle sunucuları aşırı yükleme</li>
+                <li data-tr="Güvenlik önlemlerini manipüle etme veya atlatma" data-de="Manipulation oder Umgehung von Sicherheitsmaßnahmen">Güvenlik önlemlerini manipüle etme veya atlatma</li>
+                <li data-tr="Yasadışı veya dolandırıcılık amaçlı kullanım" data-de="Nutzung für illegale oder betrügerische Zwecke">Yasadışı veya dolandırıcılık amaçlı kullanım</li>
+                <li data-tr="Diğer kullanıcıları rahatsız etme" data-de="Belästigung anderer Nutzer">Diğer kullanıcıları rahatsız etme</li>
             </ul>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-exclamation-circle"></i> 7. Haftungsausschluss</h2>
-            <h3>7.1 Inhalte der Website</h3>
-            <p>Wir bemühen uns, die Inhalte unserer Website aktuell und korrekt zu halten. Dennoch können wir keine Gewähr für die Vollständigkeit, Richtigkeit und Aktualität der bereitgestellten Informationen übernehmen.</p>
+            <h2><i class="fas fa-exclamation-circle"></i> <span data-tr="7. Sorumluluk Reddi" data-de="7. Haftungsausschluss">7. Sorumluluk Reddi</span></h2>
+            <h3 data-tr="7.1 Web Sitesi İçerikleri" data-de="7.1 Inhalte der Website">7.1 Web Sitesi İçerikleri</h3>
+            <p data-tr="Web sitemizin içeriğini güncel ve doğru tutmak için çaba gösteriyoruz. Ancak, sağlanan bilgilerin eksiksizliği, doğruluğu ve güncelliği konusunda garanti veremeyiz." data-de="Wir bemühen uns, die Inhalte unserer Website aktuell und korrekt zu halten. Dennoch können wir keine Gewähr für die Vollständigkeit, Richtigkeit und Aktualität der bereitgestellten Informationen übernehmen.">Web sitemizin içeriğini güncel ve doğru tutmak için çaba gösteriyoruz. Ancak, sağlanan bilgilerin eksiksizliği, doğruluğu ve güncelliği konusunda garanti veremeyiz.</p>
             
-            <h3>7.2 Externe Links</h3>
-            <p>Unsere Website kann Links zu externen Websites enthalten. Für die Inhalte dieser verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. Wir übernehmen keine Haftung für deren Inhalte.</p>
+            <h3 data-tr="7.2 Harici Bağlantılar" data-de="7.2 Externe Links">7.2 Harici Bağlantılar</h3>
+            <p data-tr="Web sitemiz harici web sitelerine bağlantılar içerebilir. Bu bağlantılı sayfaların içeriğinden yalnızca işletmecileri sorumludur. İçerikleri için sorumluluk kabul etmiyoruz." data-de="Unsere Website kann Links zu externen Websites enthalten. Für die Inhalte dieser verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich. Wir übernehmen keine Haftung für deren Inhalte.">Web sitemiz harici web sitelerine bağlantılar içerebilir. Bu bağlantılı sayfaların içeriğinden yalnızca işletmecileri sorumludur. İçerikleri için sorumluluk kabul etmiyoruz.</p>
             
-            <h3>7.3 Verfügbarkeit</h3>
-            <p>Wir sind bestrebt, eine hohe Verfügbarkeit der Website zu gewährleisten, können jedoch keine ununterbrochene Erreichbarkeit garantieren.</p>
+            <h3 data-tr="7.3 Erişilebilirlik" data-de="7.3 Verfügbarkeit">7.3 Erişilebilirlik</h3>
+            <p data-tr="Web sitesinin yüksek düzeyde erişilebilir olmasını sağlamak için çalışıyoruz, ancak kesintisiz erişim garantisi veremeyiz." data-de="Wir sind bestrebt, eine hohe Verfügbarkeit der Website zu gewährleisten, können jedoch keine ununterbrochene Erreichbarkeit garantieren.">Web sitesinin yüksek düzeyde erişilebilir olmasını sağlamak için çalışıyoruz, ancak kesintisiz erişim garantisi veremeyiz.</p>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-euro-sign"></i> 8. Vergütung und Provisionen</h2>
-            <p>Die auf der Website genannten Vergütungen und Provisionen sind beispielhafte Angaben und können je nach Qualifikation, Erfahrung und Leistung variieren. Die verbindlichen Konditionen werden im Arbeitsvertrag festgelegt.</p>
+            <h2><i class="fas fa-euro-sign"></i> <span data-tr="8. Ücretlendirme ve Komisyonlar" data-de="8. Vergütung und Provisionen">8. Ücretlendirme ve Komisyonlar</span></h2>
+            <p data-tr="Web sitesinde belirtilen ücretler ve komisyonlar örnek niteliğindedir ve nitelik, deneyim ve performansa göre değişebilir. Bağlayıcı koşullar iş sözleşmesinde belirlenir." data-de="Die auf der Website genannten Vergütungen und Provisionen sind beispielhafte Angaben und können je nach Qualifikation, Erfahrung und Leistung variieren. Die verbindlichen Konditionen werden im Arbeitsvertrag festgelegt.">Web sitesinde belirtilen ücretler ve komisyonlar örnek niteliğindedir ve nitelik, deneyim ve performansa göre değişebilir. Bağlayıcı koşullar iş sözleşmesinde belirlenir.</p>
             <div class="warning-box">
-                <p><i class="fas fa-info-circle"></i> Alle Gehaltsangaben sind Bruttobeträge. Die tatsächliche Vergütung hängt von verschiedenen Faktoren ab und wird individuell vereinbart.</p>
+                <p><i class="fas fa-info-circle"></i> <span data-tr="Tüm maaş bilgileri brüt tutarlardır. Gerçek ücret çeşitli faktörlere bağlıdır ve bireysel olarak belirlenir." data-de="Alle Gehaltsangaben sind Bruttobeträge. Die tatsächliche Vergütung hängt von verschiedenen Faktoren ab und wird individuell vereinbart.">Tüm maaş bilgileri brüt tutarlardır. Gerçek ücret çeşitli faktörlere bağlıdır ve bireysel olarak belirlenir.</span></p>
             </div>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-user-secret"></i> 9. Vertraulichkeit</h2>
-            <p>Als Bewerber und potentieller Mitarbeiter verpflichten Sie sich zur Vertraulichkeit bezüglich:</p>
+            <h2><i class="fas fa-user-secret"></i> <span data-tr="9. Gizlilik" data-de="9. Vertraulichkeit">9. Gizlilik</span></h2>
+            <p data-tr="Başvuru sahibi ve potansiyel çalışan olarak aşağıdaki konularda gizlilik yükümlülüğünüz bulunmaktadır:" data-de="Als Bewerber und potentieller Mitarbeiter verpflichten Sie sich zur Vertraulichkeit bezüglich:">Başvuru sahibi ve potansiyel çalışan olarak aşağıdaki konularda gizlilik yükümlülüğünüz bulunmaktadır:</p>
             <ul>
-                <li>Aller im Bewerbungsprozess erhaltenen Informationen über das Unternehmen</li>
-                <li>Geschäftsgeheimnisse und interne Prozesse</li>
-                <li>Kundeninformationen und Geschäftsbeziehungen</li>
-                <li>Technische und organisatorische Maßnahmen</li>
+                <li data-tr="Başvuru sürecinde şirket hakkında edinilen tüm bilgiler" data-de="Aller im Bewerbungsprozess erhaltenen Informationen über das Unternehmen">Başvuru sürecinde şirket hakkında edinilen tüm bilgiler</li>
+                <li data-tr="Ticari sırlar ve iç süreçler" data-de="Geschäftsgeheimnisse und interne Prozesse">Ticari sırlar ve iç süreçler</li>
+                <li data-tr="Müşteri bilgileri ve iş ilişkileri" data-de="Kundeninformationen und Geschäftsbeziehungen">Müşteri bilgileri ve iş ilişkileri</li>
+                <li data-tr="Teknik ve organizasyonel önlemler" data-de="Technische und organisatorische Maßnahmen">Teknik ve organizasyonel önlemler</li>
             </ul>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-edit"></i> 10. Änderungen der Nutzungsbedingungen</h2>
-            <p>Wir behalten uns das Recht vor, diese Nutzungsbedingungen jederzeit zu ändern. Änderungen werden auf dieser Seite veröffentlicht. Die fortgesetzte Nutzung der Website nach einer Änderung gilt als Zustimmung zu den geänderten Bedingungen.</p>
+            <h2><i class="fas fa-edit"></i> <span data-tr="10. Kullanım Koşullarında Değişiklikler" data-de="10. Änderungen der Nutzungsbedingungen">10. Kullanım Koşullarında Değişiklikler</span></h2>
+            <p data-tr="Bu kullanım koşullarını istediğimiz zaman değiştirme hakkını saklı tutuyoruz. Değişiklikler bu sayfada yayınlanacaktır. Bir değişiklikten sonra web sitesini kullanmaya devam etmeniz, değiştirilmiş koşulları kabul ettiğiniz anlamına gelir." data-de="Wir behalten uns das Recht vor, diese Nutzungsbedingungen jederzeit zu ändern. Änderungen werden auf dieser Seite veröffentlicht. Die fortgesetzte Nutzung der Website nach einer Änderung gilt als Zustimmung zu den geänderten Bedingungen.">Bu kullanım koşullarını istediğimiz zaman değiştirme hakkını saklı tutuyoruz. Değişiklikler bu sayfada yayınlanacaktır. Bir değişiklikten sonra web sitesini kullanmaya devam etmeniz, değiştirilmiş koşulları kabul ettiğiniz anlamına gelir.</p>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-gavel"></i> 11. Anwendbares Recht und Gerichtsstand</h2>
-            <p>Für diese Nutzungsbedingungen und alle sich daraus ergebenden Rechtsstreitigkeiten gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist, soweit gesetzlich zulässig, der Sitz des Unternehmens.</p>
+            <h2><i class="fas fa-gavel"></i> <span data-tr="11. Uygulanacak Hukuk ve Yargı Yetkisi" data-de="11. Anwendbares Recht und Gerichtsstand">11. Uygulanacak Hukuk ve Yargı Yetkisi</span></h2>
+            <p data-tr="Bu kullanım koşulları ve bunlardan doğan tüm uyuşmazlıklar için Türkiye Cumhuriyeti hukuku geçerlidir. Yasaların izin verdiği ölçüde, şirket merkezinin bulunduğu yer yargı yetkisine sahiptir." data-de="Für diese Nutzungsbedingungen und alle sich daraus ergebenden Rechtsstreitigkeiten gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist, soweit gesetzlich zulässig, der Sitz des Unternehmens.">Bu kullanım koşulları ve bunlardan doğan tüm uyuşmazlıklar için Türkiye Cumhuriyeti hukuku geçerlidir. Yasaların izin verdiği ölçüde, şirket merkezinin bulunduğu yer yargı yetkisine sahiptir.</p>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-puzzle-piece"></i> 12. Salvatorische Klausel</h2>
-            <p>Sollten einzelne Bestimmungen dieser Nutzungsbedingungen unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt eine wirksame Bestimmung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.</p>
+            <h2><i class="fas fa-puzzle-piece"></i> <span data-tr="12. Bölünebilirlik Maddesi" data-de="12. Salvatorische Klausel">12. Bölünebilirlik Maddesi</span></h2>
+            <p data-tr="Bu kullanım koşullarının herhangi bir hükmünün geçersiz olması veya olması durumunda, diğer hükümlerin geçerliliği etkilenmez. Geçersiz hükmün yerine, geçersiz hükmün ekonomik amacına en yakın olan geçerli bir hüküm geçer." data-de="Sollten einzelne Bestimmungen dieser Nutzungsbedingungen unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt eine wirksame Bestimmung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt.">Bu kullanım koşullarının herhangi bir hükmünün geçersiz olması veya olması durumunda, diğer hükümlerin geçerliliği etkilenmez. Geçersiz hükmün yerine, geçersiz hükmün ekonomik amacına en yakın olan geçerli bir hüküm geçer.</p>
         </div>
         
         <div class="contact-box">
-            <h3><i class="fas fa-question-circle"></i> Fragen zu den Nutzungsbedingungen?</h3>
-            <p>Bei Fragen zu diesen Nutzungsbedingungen kontaktieren Sie uns bitte:</p>
+            <h3><i class="fas fa-question-circle"></i> <span data-tr="Kullanım Koşulları Hakkında Sorular?" data-de="Fragen zu den Nutzungsbedingungen?">Kullanım Koşulları Hakkında Sorular?</span></h3>
+            <p data-tr="Bu kullanım koşulları hakkında sorularınız için lütfen bizimle iletişime geçin:" data-de="Bei Fragen zu diesen Nutzungsbedingungen kontaktieren Sie uns bitte:">Bu kullanım koşulları hakkında sorularınız için lütfen bizimle iletişime geçin:</p>
             <p><strong>E-Mail:</strong> <a href="mailto:info@beelife-consulting.com">info@beelife-consulting.com</a></p>
-            <p><strong>Telefon:</strong> +90 531 765 41 66</p>
+            <p><strong><span data-tr="Telefon" data-de="Telefon">Telefon</span>:</strong> +90 531 765 41 66</p>
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="simple-footer">
-        <p>&copy; 2024 Bee Life Consulting. Alle Rechte vorbehalten. | 
-        <a href="datenschutz.html">Datenschutz</a> | 
-        <a href="nutzungsbedingungen.html">Nutzungsbedingungen</a></p>
+        <p>&copy; 2024 Bee Life Consulting. <span data-tr="Tüm hakları saklıdır." data-de="Alle Rechte vorbehalten.">Tüm hakları saklıdır.</span> | 
+        <a href="datenschutz.html" data-tr="Gizlilik Politikası" data-de="Datenschutz">Gizlilik Politikası</a> | 
+        <a href="nutzungsbedingungen.html" data-tr="Kullanım Koşulları" data-de="Nutzungsbedingungen">Kullanım Koşulları</a></p>
     </footer>
+
+    <script>
+        // Language Switcher
+        let currentLang = localStorage.getItem('blc_language') || 'tr';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('blc_language', lang);
+            
+            // Update page title
+            document.getElementById('pageTitle').textContent = lang === 'tr' ? 'Kullanım Koşulları | Bee Life Consulting' : 'Nutzungsbedingungen | Bee Life Consulting';
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-tr][data-de]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + lang);
+            });
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+        });
+    </script>
 
 </body>
 </html>
-

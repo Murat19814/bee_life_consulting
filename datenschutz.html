@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Bee Life Consulting - Datenschutzrichtlinie">
-    <title>Datenschutzrichtlinie | Bee Life Consulting</title>
+    <meta name="description" content="Bee Life Consulting - Gizlilik Politikası / Datenschutzrichtlinie">
+    <title id="pageTitle">Gizlilik Politikası | Bee Life Consulting</title>
     
     <!-- PWA Meta Tags -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -40,6 +40,42 @@
             background: var(--off-white);
             color: var(--text-dark);
             line-height: 1.8;
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+        
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.5);
+        }
+        
+        .lang-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--primary-dark);
         }
         
         /* Header */
@@ -225,6 +261,16 @@
                 top: 20px;
                 left: 15px;
             }
+            
+            .lang-switcher {
+                top: 20px;
+                right: 15px;
+            }
+            
+            .lang-btn {
+                padding: 6px 10px;
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
@@ -233,132 +279,168 @@
     <!-- Header -->
     <header class="page-header">
         <a href="index.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i> Zurück zur Startseite
+            <i class="fas fa-arrow-left"></i> <span data-tr="Ana Sayfaya Dön" data-de="Zurück zur Startseite">Ana Sayfaya Dön</span>
         </a>
-        <h1><i class="fas fa-shield-alt"></i> Datenschutzrichtlinie</h1>
-        <p>Schutz Ihrer persönlichen Daten</p>
+        
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
+            <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
+        </div>
+        
+        <h1><i class="fas fa-shield-alt"></i> <span data-tr="Gizlilik Politikası" data-de="Datenschutzrichtlinie">Gizlilik Politikası</span></h1>
+        <p data-tr="Kişisel verilerinizin korunması" data-de="Schutz Ihrer persönlichen Daten">Kişisel verilerinizin korunması</p>
     </header>
 
     <!-- Content -->
     <main class="content-container">
-        <span class="last-updated"><i class="fas fa-calendar-alt"></i> Stand: Dezember 2024</span>
+        <span class="last-updated"><i class="fas fa-calendar-alt"></i> <span data-tr="Güncelleme: Aralık 2024" data-de="Stand: Dezember 2024">Güncelleme: Aralık 2024</span></span>
         
         <div class="section">
-            <h2><i class="fas fa-building"></i> 1. Verantwortlicher</h2>
-            <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+            <h2><i class="fas fa-building"></i> <span data-tr="1. Sorumlu Kuruluş" data-de="1. Verantwortlicher">1. Sorumlu Kuruluş</span></h2>
+            <p data-tr="Bu web sitesindeki veri işlemeden sorumlu kuruluş:" data-de="Verantwortlich für die Datenverarbeitung auf dieser Website ist:">Bu web sitesindeki veri işlemeden sorumlu kuruluş:</p>
             <div class="highlight-box">
                 <p><strong>Bee Life Consulting</strong><br>
-                Professionelle Call Center Dienstleistungen<br>
+                <span data-tr="Profesyonel Çağrı Merkezi Hizmetleri" data-de="Professionelle Call Center Dienstleistungen">Profesyonel Çağrı Merkezi Hizmetleri</span><br>
                 E-Mail: info@beelife-consulting.com<br>
-                Telefon: +90 531 765 41 66</p>
+                <span data-tr="Telefon" data-de="Telefon">Telefon</span>: +90 531 765 41 66</p>
             </div>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-database"></i> 2. Erhebung und Speicherung personenbezogener Daten</h2>
-            <h3>2.1 Beim Besuch der Website</h3>
-            <p>Bei der Nutzung unserer Website werden automatisch folgende Daten erhoben:</p>
+            <h2><i class="fas fa-database"></i> <span data-tr="2. Kişisel Verilerin Toplanması ve Saklanması" data-de="2. Erhebung und Speicherung personenbezogener Daten">2. Kişisel Verilerin Toplanması ve Saklanması</span></h2>
+            <h3 data-tr="2.1 Web Sitesi Ziyaretinde" data-de="2.1 Beim Besuch der Website">2.1 Web Sitesi Ziyaretinde</h3>
+            <p data-tr="Web sitemizi kullandığınızda aşağıdaki veriler otomatik olarak toplanır:" data-de="Bei der Nutzung unserer Website werden automatisch folgende Daten erhoben:">Web sitemizi kullandığınızda aşağıdaki veriler otomatik olarak toplanır:</p>
             <ul>
-                <li>IP-Adresse des anfragenden Rechners</li>
-                <li>Datum und Uhrzeit des Zugriffs</li>
-                <li>Name und URL der abgerufenen Datei</li>
-                <li>Website, von der aus der Zugriff erfolgt (Referrer-URL)</li>
-                <li>Verwendeter Browser und ggf. das Betriebssystem</li>
+                <li data-tr="İstek yapan bilgisayarın IP adresi" data-de="IP-Adresse des anfragenden Rechners">İstek yapan bilgisayarın IP adresi</li>
+                <li data-tr="Erişim tarihi ve saati" data-de="Datum und Uhrzeit des Zugriffs">Erişim tarihi ve saati</li>
+                <li data-tr="Erişilen dosyanın adı ve URL'si" data-de="Name und URL der abgerufenen Datei">Erişilen dosyanın adı ve URL'si</li>
+                <li data-tr="Erişimin yapıldığı kaynak web sitesi (Referrer URL)" data-de="Website, von der aus der Zugriff erfolgt (Referrer-URL)">Erişimin yapıldığı kaynak web sitesi (Referrer URL)</li>
+                <li data-tr="Kullanılan tarayıcı ve işletim sistemi" data-de="Verwendeter Browser und ggf. das Betriebssystem">Kullanılan tarayıcı ve işletim sistemi</li>
             </ul>
             
-            <h3>2.2 Bei der Bewerbung</h3>
-            <p>Im Rahmen des Bewerbungsverfahrens erheben wir folgende personenbezogene Daten:</p>
+            <h3 data-tr="2.2 Başvuru Sırasında" data-de="2.2 Bei der Bewerbung">2.2 Başvuru Sırasında</h3>
+            <p data-tr="Başvuru sürecinde aşağıdaki kişisel veriler toplanır:" data-de="Im Rahmen des Bewerbungsverfahrens erheben wir folgende personenbezogene Daten:">Başvuru sürecinde aşağıdaki kişisel veriler toplanır:</p>
             <ul>
-                <li>Vor- und Nachname</li>
-                <li>E-Mail-Adresse</li>
-                <li>Telefonnummer</li>
-                <li>Geburtsdatum</li>
-                <li>Wohnort / Stadt</li>
-                <li>Sprachkenntnisse</li>
-                <li>Berufserfahrung</li>
-                <li>Lebenslauf (sofern hochgeladen)</li>
+                <li data-tr="Ad ve Soyad" data-de="Vor- und Nachname">Ad ve Soyad</li>
+                <li data-tr="E-posta adresi" data-de="E-Mail-Adresse">E-posta adresi</li>
+                <li data-tr="Telefon numarası" data-de="Telefonnummer">Telefon numarası</li>
+                <li data-tr="Doğum tarihi" data-de="Geburtsdatum">Doğum tarihi</li>
+                <li data-tr="İkamet yeri / Şehir" data-de="Wohnort / Stadt">İkamet yeri / Şehir</li>
+                <li data-tr="Dil becerileri" data-de="Sprachkenntnisse">Dil becerileri</li>
+                <li data-tr="İş deneyimi" data-de="Berufserfahrung">İş deneyimi</li>
+                <li data-tr="Özgeçmiş (yüklendiyse)" data-de="Lebenslauf (sofern hochgeladen)">Özgeçmiş (yüklendiyse)</li>
             </ul>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-bullseye"></i> 3. Zweck der Datenverarbeitung</h2>
-            <p>Ihre personenbezogenen Daten werden zu folgenden Zwecken verarbeitet:</p>
+            <h2><i class="fas fa-bullseye"></i> <span data-tr="3. Veri İşleme Amacı" data-de="3. Zweck der Datenverarbeitung">3. Veri İşleme Amacı</span></h2>
+            <p data-tr="Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:" data-de="Ihre personenbezogenen Daten werden zu folgenden Zwecken verarbeitet:">Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:</p>
             <ul>
-                <li>Bearbeitung Ihrer Bewerbung und Durchführung des Bewerbungsverfahrens</li>
-                <li>Kontaktaufnahme bezüglich Ihrer Bewerbung</li>
-                <li>Sicherstellung der technischen Funktionsfähigkeit der Website</li>
-                <li>Optimierung unseres Internetauftritts</li>
-                <li>Erfüllung gesetzlicher Aufbewahrungspflichten</li>
+                <li data-tr="Başvurunuzun işlenmesi ve başvuru sürecinin yürütülmesi" data-de="Bearbeitung Ihrer Bewerbung und Durchführung des Bewerbungsverfahrens">Başvurunuzun işlenmesi ve başvuru sürecinin yürütülmesi</li>
+                <li data-tr="Başvurunuzla ilgili sizinle iletişime geçilmesi" data-de="Kontaktaufnahme bezüglich Ihrer Bewerbung">Başvurunuzla ilgili sizinle iletişime geçilmesi</li>
+                <li data-tr="Web sitesinin teknik işlevselliğinin sağlanması" data-de="Sicherstellung der technischen Funktionsfähigkeit der Website">Web sitesinin teknik işlevselliğinin sağlanması</li>
+                <li data-tr="İnternet sitemizin optimize edilmesi" data-de="Optimierung unseres Internetauftritts">İnternet sitemizin optimize edilmesi</li>
+                <li data-tr="Yasal saklama yükümlülüklerinin yerine getirilmesi" data-de="Erfüllung gesetzlicher Aufbewahrungspflichten">Yasal saklama yükümlülüklerinin yerine getirilmesi</li>
             </ul>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-balance-scale"></i> 4. Rechtsgrundlage</h2>
-            <p>Die Verarbeitung Ihrer Daten erfolgt auf Grundlage folgender Rechtsgrundlagen:</p>
+            <h2><i class="fas fa-balance-scale"></i> <span data-tr="4. Hukuki Dayanak" data-de="4. Rechtsgrundlage">4. Hukuki Dayanak</span></h2>
+            <p data-tr="Verilerinizin işlenmesi aşağıdaki hukuki dayanaklara göre yapılmaktadır:" data-de="Die Verarbeitung Ihrer Daten erfolgt auf Grundlage folgender Rechtsgrundlagen:">Verilerinizin işlenmesi aşağıdaki hukuki dayanaklara göre yapılmaktadır:</p>
             <ul>
-                <li><strong>Art. 6 Abs. 1 lit. a DSGVO:</strong> Ihre Einwilligung</li>
-                <li><strong>Art. 6 Abs. 1 lit. b DSGVO:</strong> Durchführung vorvertraglicher Maßnahmen (Bewerbungsverfahren)</li>
-                <li><strong>Art. 6 Abs. 1 lit. f DSGVO:</strong> Berechtigte Interessen (Website-Funktionalität)</li>
+                <li><strong data-tr="KVKK Madde 5/1:" data-de="Art. 6 Abs. 1 lit. a DSGVO:">KVKK Madde 5/1:</strong> <span data-tr="Açık rızanız" data-de="Ihre Einwilligung">Açık rızanız</span></li>
+                <li><strong data-tr="KVKK Madde 5/2:" data-de="Art. 6 Abs. 1 lit. b DSGVO:">KVKK Madde 5/2:</strong> <span data-tr="Sözleşme öncesi işlemlerin yürütülmesi (başvuru süreci)" data-de="Durchführung vorvertraglicher Maßnahmen (Bewerbungsverfahren)">Sözleşme öncesi işlemlerin yürütülmesi (başvuru süreci)</span></li>
+                <li><strong data-tr="KVKK Madde 5/2:" data-de="Art. 6 Abs. 1 lit. f DSGVO:">KVKK Madde 5/2:</strong> <span data-tr="Meşru menfaatler (web sitesi işlevselliği)" data-de="Berechtigte Interessen (Website-Funktionalität)">Meşru menfaatler (web sitesi işlevselliği)</span></li>
             </ul>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-clock"></i> 5. Speicherdauer</h2>
-            <p>Ihre Bewerbungsdaten werden für die Dauer des Bewerbungsverfahrens gespeichert. Nach Abschluss des Verfahrens werden die Daten spätestens nach 6 Monaten gelöscht, sofern Sie nicht einer längeren Speicherung zugestimmt haben oder ein Beschäftigungsverhältnis zustande kommt.</p>
+            <h2><i class="fas fa-clock"></i> <span data-tr="5. Saklama Süresi" data-de="5. Speicherdauer">5. Saklama Süresi</span></h2>
+            <p data-tr="Başvuru verileriniz, başvuru süreci boyunca saklanır. Süreç tamamlandıktan sonra, daha uzun süre saklanmasına onay vermediğiniz veya bir iş ilişkisi kurulmadığı sürece, veriler en geç 6 ay içinde silinir." data-de="Ihre Bewerbungsdaten werden für die Dauer des Bewerbungsverfahrens gespeichert. Nach Abschluss des Verfahrens werden die Daten spätestens nach 6 Monaten gelöscht, sofern Sie nicht einer längeren Speicherung zugestimmt haben oder ein Beschäftigungsverhältnis zustande kommt.">Başvuru verileriniz, başvuru süreci boyunca saklanır. Süreç tamamlandıktan sonra, daha uzun süre saklanmasına onay vermediğiniz veya bir iş ilişkisi kurulmadığı sürece, veriler en geç 6 ay içinde silinir.</p>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-user-shield"></i> 6. Ihre Rechte</h2>
-            <p>Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
+            <h2><i class="fas fa-user-shield"></i> <span data-tr="6. Haklarınız" data-de="6. Ihre Rechte">6. Haklarınız</span></h2>
+            <p data-tr="Kişisel verilerinizle ilgili aşağıdaki haklara sahipsiniz:" data-de="Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:">Kişisel verilerinizle ilgili aşağıdaki haklara sahipsiniz:</p>
             <ul>
-                <li><strong>Auskunftsrecht (Art. 15 DSGVO):</strong> Sie können Auskunft über Ihre verarbeiteten Daten verlangen.</li>
-                <li><strong>Berichtigungsrecht (Art. 16 DSGVO):</strong> Sie können die Berichtigung unrichtiger Daten verlangen.</li>
-                <li><strong>Löschungsrecht (Art. 17 DSGVO):</strong> Sie können die Löschung Ihrer Daten verlangen.</li>
-                <li><strong>Einschränkung der Verarbeitung (Art. 18 DSGVO):</strong> Sie können die Einschränkung der Verarbeitung verlangen.</li>
-                <li><strong>Datenübertragbarkeit (Art. 20 DSGVO):</strong> Sie können Ihre Daten in einem gängigen Format erhalten.</li>
-                <li><strong>Widerspruchsrecht (Art. 21 DSGVO):</strong> Sie können der Verarbeitung widersprechen.</li>
-                <li><strong>Widerruf der Einwilligung:</strong> Sie können Ihre Einwilligung jederzeit widerrufen.</li>
+                <li><strong data-tr="Bilgi Edinme Hakkı:" data-de="Auskunftsrecht (Art. 15 DSGVO):">Bilgi Edinme Hakkı:</strong> <span data-tr="İşlenen verileriniz hakkında bilgi talep edebilirsiniz." data-de="Sie können Auskunft über Ihre verarbeiteten Daten verlangen.">İşlenen verileriniz hakkında bilgi talep edebilirsiniz.</span></li>
+                <li><strong data-tr="Düzeltme Hakkı:" data-de="Berichtigungsrecht (Art. 16 DSGVO):">Düzeltme Hakkı:</strong> <span data-tr="Yanlış verilerin düzeltilmesini talep edebilirsiniz." data-de="Sie können die Berichtigung unrichtiger Daten verlangen.">Yanlış verilerin düzeltilmesini talep edebilirsiniz.</span></li>
+                <li><strong data-tr="Silme Hakkı:" data-de="Löschungsrecht (Art. 17 DSGVO):">Silme Hakkı:</strong> <span data-tr="Verilerinizin silinmesini talep edebilirsiniz." data-de="Sie können die Löschung Ihrer Daten verlangen.">Verilerinizin silinmesini talep edebilirsiniz.</span></li>
+                <li><strong data-tr="İşlemenin Kısıtlanması Hakkı:" data-de="Einschränkung der Verarbeitung (Art. 18 DSGVO):">İşlemenin Kısıtlanması Hakkı:</strong> <span data-tr="İşlemenin kısıtlanmasını talep edebilirsiniz." data-de="Sie können die Einschränkung der Verarbeitung verlangen.">İşlemenin kısıtlanmasını talep edebilirsiniz.</span></li>
+                <li><strong data-tr="Veri Taşınabilirliği Hakkı:" data-de="Datenübertragbarkeit (Art. 20 DSGVO):">Veri Taşınabilirliği Hakkı:</strong> <span data-tr="Verilerinizi yaygın bir formatta alabilirsiniz." data-de="Sie können Ihre Daten in einem gängigen Format erhalten.">Verilerinizi yaygın bir formatta alabilirsiniz.</span></li>
+                <li><strong data-tr="İtiraz Hakkı:" data-de="Widerspruchsrecht (Art. 21 DSGVO):">İtiraz Hakkı:</strong> <span data-tr="İşleme itiraz edebilirsiniz." data-de="Sie können der Verarbeitung widersprechen.">İşleme itiraz edebilirsiniz.</span></li>
+                <li><strong data-tr="Onay Geri Çekme:" data-de="Widerruf der Einwilligung:">Onay Geri Çekme:</strong> <span data-tr="Onayınızı istediğiniz zaman geri çekebilirsiniz." data-de="Sie können Ihre Einwilligung jederzeit widerrufen.">Onayınızı istediğiniz zaman geri çekebilirsiniz.</span></li>
             </ul>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-lock"></i> 7. Datensicherheit</h2>
-            <p>Wir verwenden innerhalb des Website-Besuchs das verbreitete SSL-Verfahren (Secure Socket Layer) in Verbindung mit der jeweils höchsten Verschlüsselungsstufe, die von Ihrem Browser unterstützt wird. Alle personenbezogenen Daten werden verschlüsselt übertragen.</p>
+            <h2><i class="fas fa-lock"></i> <span data-tr="7. Veri Güvenliği" data-de="7. Datensicherheit">7. Veri Güvenliği</span></h2>
+            <p data-tr="Web sitesi ziyaretinde, tarayıcınız tarafından desteklenen en yüksek şifreleme seviyesiyle birlikte yaygın SSL prosedürünü (Secure Socket Layer) kullanıyoruz. Tüm kişisel veriler şifreli olarak iletilir." data-de="Wir verwenden innerhalb des Website-Besuchs das verbreitete SSL-Verfahren (Secure Socket Layer) in Verbindung mit der jeweils höchsten Verschlüsselungsstufe, die von Ihrem Browser unterstützt wird. Alle personenbezogenen Daten werden verschlüsselt übertragen.">Web sitesi ziyaretinde, tarayıcınız tarafından desteklenen en yüksek şifreleme seviyesiyle birlikte yaygın SSL prosedürünü (Secure Socket Layer) kullanıyoruz. Tüm kişisel veriler şifreli olarak iletilir.</p>
             <div class="highlight-box">
-                <p><i class="fas fa-shield-alt"></i> Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre Daten gegen Manipulation, Verlust, Zerstörung oder Zugriff unberechtigter Personen zu schützen.</p>
+                <p><i class="fas fa-shield-alt"></i> <span data-tr="Verilerinizi manipülasyon, kayıp, imha veya yetkisiz kişilerin erişimine karşı korumak için teknik ve organizasyonel güvenlik önlemleri uyguluyoruz." data-de="Wir setzen technische und organisatorische Sicherheitsmaßnahmen ein, um Ihre Daten gegen Manipulation, Verlust, Zerstörung oder Zugriff unberechtigter Personen zu schützen.">Verilerinizi manipülasyon, kayıp, imha veya yetkisiz kişilerin erişimine karşı korumak için teknik ve organizasyonel güvenlik önlemleri uyguluyoruz.</span></p>
             </div>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-cookie"></i> 8. Cookies</h2>
-            <p>Unsere Website verwendet Cookies. Dies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden. Einige Cookies sind technisch notwendig, andere dienen der Analyse des Nutzerverhaltens. Sie können die Cookie-Einstellungen in Ihrem Browser anpassen.</p>
+            <h2><i class="fas fa-cookie"></i> <span data-tr="8. Çerezler" data-de="8. Cookies">8. Çerezler</span></h2>
+            <p data-tr="Web sitemiz çerezler kullanmaktadır. Bunlar cihazınızda saklanan küçük metin dosyalarıdır. Bazı çerezler teknik olarak gereklidir, diğerleri kullanıcı davranışını analiz etmeye yarar. Tarayıcınızda çerez ayarlarını değiştirebilirsiniz." data-de="Unsere Website verwendet Cookies. Dies sind kleine Textdateien, die auf Ihrem Endgerät gespeichert werden. Einige Cookies sind technisch notwendig, andere dienen der Analyse des Nutzerverhaltens. Sie können die Cookie-Einstellungen in Ihrem Browser anpassen.">Web sitemiz çerezler kullanmaktadır. Bunlar cihazınızda saklanan küçük metin dosyalarıdır. Bazı çerezler teknik olarak gereklidir, diğerleri kullanıcı davranışını analiz etmeye yarar. Tarayıcınızda çerez ayarlarını değiştirebilirsiniz.</p>
         </div>
         
         <div class="section">
-            <h2><i class="fas fa-share-alt"></i> 9. Weitergabe von Daten</h2>
-            <p>Eine Übermittlung Ihrer persönlichen Daten an Dritte findet grundsätzlich nicht statt, es sei denn:</p>
+            <h2><i class="fas fa-share-alt"></i> <span data-tr="9. Veri Aktarımı" data-de="9. Weitergabe von Daten">9. Veri Aktarımı</span></h2>
+            <p data-tr="Kişisel verileriniz prensip olarak üçüncü taraflara aktarılmaz, ancak:" data-de="Eine Übermittlung Ihrer persönlichen Daten an Dritte findet grundsätzlich nicht statt, es sei denn:">Kişisel verileriniz prensip olarak üçüncü taraflara aktarılmaz, ancak:</p>
             <ul>
-                <li>Sie haben Ihre ausdrückliche Einwilligung erteilt</li>
-                <li>Die Weitergabe ist zur Vertragserfüllung erforderlich</li>
-                <li>Es besteht eine gesetzliche Verpflichtung</li>
+                <li data-tr="Açık onayınızı vermiş olmanız" data-de="Sie haben Ihre ausdrückliche Einwilligung erteilt">Açık onayınızı vermiş olmanız</li>
+                <li data-tr="Aktarımın sözleşmenin ifası için gerekli olması" data-de="Die Weitergabe ist zur Vertragserfüllung erforderlich">Aktarımın sözleşmenin ifası için gerekli olması</li>
+                <li data-tr="Yasal bir yükümlülük bulunması" data-de="Es besteht eine gesetzliche Verpflichtung">Yasal bir yükümlülük bulunması</li>
             </ul>
         </div>
         
         <div class="contact-box">
-            <h3><i class="fas fa-envelope"></i> Kontakt für Datenschutzanfragen</h3>
-            <p>Bei Fragen zum Datenschutz können Sie uns jederzeit kontaktieren:</p>
+            <h3><i class="fas fa-envelope"></i> <span data-tr="Veri Koruma İletişim" data-de="Kontakt für Datenschutzanfragen">Veri Koruma İletişim</span></h3>
+            <p data-tr="Veri koruma ile ilgili sorularınız için bize her zaman ulaşabilirsiniz:" data-de="Bei Fragen zum Datenschutz können Sie uns jederzeit kontaktieren:">Veri koruma ile ilgili sorularınız için bize her zaman ulaşabilirsiniz:</p>
             <p><strong>E-Mail:</strong> <a href="mailto:datenschutz@beelife-consulting.com">datenschutz@beelife-consulting.com</a></p>
-            <p><strong>Telefon:</strong> +90 531 765 41 66</p>
+            <p><strong><span data-tr="Telefon" data-de="Telefon">Telefon</span>:</strong> +90 531 765 41 66</p>
         </div>
     </main>
 
     <!-- Footer -->
     <footer class="simple-footer">
-        <p>&copy; 2024 Bee Life Consulting. Alle Rechte vorbehalten. | 
-        <a href="datenschutz.html">Datenschutz</a> | 
-        <a href="nutzungsbedingungen.html">Nutzungsbedingungen</a></p>
+        <p>&copy; 2024 Bee Life Consulting. <span data-tr="Tüm hakları saklıdır." data-de="Alle Rechte vorbehalten.">Tüm hakları saklıdır.</span> | 
+        <a href="datenschutz.html" data-tr="Gizlilik Politikası" data-de="Datenschutz">Gizlilik Politikası</a> | 
+        <a href="nutzungsbedingungen.html" data-tr="Kullanım Koşulları" data-de="Nutzungsbedingungen">Kullanım Koşulları</a></p>
     </footer>
+
+    <script>
+        // Language Switcher
+        let currentLang = localStorage.getItem('blc_language') || 'tr';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('blc_language', lang);
+            
+            // Update page title
+            document.getElementById('pageTitle').textContent = lang === 'tr' ? 'Gizlilik Politikası | Bee Life Consulting' : 'Datenschutzrichtlinie | Bee Life Consulting';
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-tr][data-de]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + lang);
+            });
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+        });
+    </script>
 
 </body>
 </html>
-
