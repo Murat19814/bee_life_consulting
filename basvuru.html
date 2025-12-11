@@ -347,6 +347,37 @@
             }
         }
         
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 99;
+            transition: all 0.3s ease;
+            animation: whatsappPulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+        
+        @keyframes whatsappPulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7); }
+        }
+        
         @media (max-width: 768px) {
             /* Mobile App-Like Header */
             .page-header {
@@ -1190,6 +1221,11 @@
             });
         }
     </script>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/905356634166" class="whatsapp-float" target="_blank" rel="noopener" title="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
 </body>
 </html>
