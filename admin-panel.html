@@ -923,6 +923,7 @@
             .main-content {
                 padding: 15px;
                 padding-top: 70px;
+                overflow-x: hidden;
             }
             
             .page-title {
@@ -941,6 +942,38 @@
             .data-table td {
                 padding: 10px 8px;
             }
+            
+            /* Table scroll wrapper for mobile */
+            .card {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .table {
+                min-width: 600px;
+            }
+            
+            /* RLS/WR table fix */
+            #page-rls-wr .table {
+                min-width: 900px;
+            }
+            
+            #page-rls-wr .form-control {
+                width: 50px !important;
+                padding: 6px;
+                font-size: 0.85rem;
+            }
+            
+            /* Grid layouts for mobile */
+            .dashboard-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Info boxes in RLS page */
+            #page-rls-wr [style*="grid-template-columns: repeat(3"] {
+                grid-template-columns: 1fr !important;
+                gap: 10px !important;
+            }
         }
         
         @media (max-width: 480px) {
@@ -950,6 +983,30 @@
             
             .page-title {
                 font-size: 1.1rem;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 10px;
+            }
+            
+            .card-header h3 {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .stat-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .stat-card .icon {
+                width: 45px;
+                height: 45px;
             }
         }
         
@@ -1149,35 +1206,16 @@
                                 <tr>
                                     <td>
                                         <div class="employee-cell">
-                                            <div class="employee-avatar">MK</div>
+                                            <div class="employee-avatar">AA</div>
                                             <div class="employee-info">
-                                                <h4>Mehmet Koç</h4>
+                                                <h4>Abdulcelil Arslan</h4>
                                                 <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>Yozgat</td>
-                                    <td><strong>45</strong></td>
-                                    <td><span class="euro-amount">1.575€</span></td>
-                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
-                                    <td>
-                                        <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="employee-cell">
-                                            <div class="employee-avatar">AY</div>
-                                            <div class="employee-info">
-                                                <h4>Ayşe Yılmaz</h4>
-                                                <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>İzmit</td>
-                                    <td><strong>38</strong></td>
-                                    <td><span class="euro-amount">1.330€</span></td>
+                                    <td><strong>0</strong></td>
+                                    <td><span class="euro-amount">0€</span></td>
                                     <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
                                     <td>
                                         <button class="action-btn view"><i class="fas fa-eye"></i></button>
@@ -1189,53 +1227,72 @@
                                         <div class="employee-cell">
                                             <div class="employee-avatar">AK</div>
                                             <div class="employee-info">
-                                                <h4>Ahmet Kaya</h4>
-                                                <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Eskişehir</td>
-                                    <td><strong>23</strong></td>
-                                    <td><span class="euro-amount">805€</span></td>
-                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
-                                    <td>
-                                        <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="employee-cell">
-                                            <div class="employee-avatar">FD</div>
-                                            <div class="employee-info">
-                                                <h4>Fatma Demir</h4>
-                                                <p data-tr="Inbound Uzmanı" data-de="Inbound-Experte">Inbound Uzmanı</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>Yozgat</td>
-                                    <td>-</td>
-                                    <td><span class="euro-amount">Sabit</span></td>
-                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
-                                    <td>
-                                        <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="employee-cell">
-                                            <div class="employee-avatar">EC</div>
-                                            <div class="employee-info">
-                                                <h4>Emre Can</h4>
+                                                <h4>Ahmet Kömür</h4>
                                                 <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>İzmit</td>
-                                    <td><strong>19</strong></td>
-                                    <td><span class="euro-amount">665€</span></td>
-                                    <td><span class="status-badge pending" data-tr="İzinli" data-de="Beurlaubt">İzinli</span></td>
+                                    <td><strong>0</strong></td>
+                                    <td><span class="euro-amount">0€</span></td>
+                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
+                                    <td>
+                                        <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="employee-cell">
+                                            <div class="employee-avatar">DB</div>
+                                            <div class="employee-info">
+                                                <h4>Deniz Beyazkoç</h4>
+                                                <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>Eskişehir</td>
+                                    <td><strong>0</strong></td>
+                                    <td><span class="euro-amount">0€</span></td>
+                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
+                                    <td>
+                                        <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="employee-cell">
+                                            <div class="employee-avatar">MA</div>
+                                            <div class="employee-info">
+                                                <h4>Murat Atalay</h4>
+                                                <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>İzmit</td>
+                                    <td><strong>0</strong></td>
+                                    <td><span class="euro-amount">0€</span></td>
+                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
+                                    <td>
+                                        <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="employee-cell">
+                                            <div class="employee-avatar">BB</div>
+                                            <div class="employee-info">
+                                                <h4>Burak Balkaya</h4>
+                                                <p data-tr="Satış Temsilcisi" data-de="Verkaufsberater">Satış Temsilcisi</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>İzmit</td>
+                                    <td><strong>0</strong></td>
+                                    <td><span class="euro-amount">0€</span></td>
+                                    <td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td>
                                     <td>
                                         <button class="action-btn view"><i class="fas fa-eye"></i></button>
                                         <button class="action-btn edit"><i class="fas fa-edit"></i></button>
@@ -1266,9 +1323,9 @@
                                     <td data-tr="Aralık 2024 (Ay)" data-de="Dezember 2024 (Monat)">Aralık 2024 (Ay)</td>
                                     <td>
                                         <div class="employee-cell">
-                                            <div class="employee-avatar">MK</div>
+                                            <div class="employee-avatar">-</div>
                                             <div class="employee-info">
-                                                <h4>Mehmet Koç</h4>
+                                                <h4 data-tr="Henüz belirlenmedi" data-de="Noch nicht bestimmt">Henüz belirlenmedi</h4>
                                             </div>
                                         </div>
                                     </td>
@@ -1280,15 +1337,15 @@
                                     <td data-tr="Q4 2024 (3 Ay)" data-de="Q4 2024 (3 Monate)">Q4 2024 (3 Ay)</td>
                                     <td>
                                         <div class="employee-cell">
-                                            <div class="employee-avatar">AY</div>
+                                            <div class="employee-avatar">-</div>
                                             <div class="employee-info">
-                                                <h4>Ayşe Yılmaz</h4>
+                                                <h4 data-tr="Henüz belirlenmedi" data-de="Noch nicht bestimmt">Henüz belirlenmedi</h4>
                                             </div>
                                         </div>
                                     </td>
                                     <td data-tr="200€ Alışveriş Çeki" data-de="200€ Einkaufsgutschein">200€ Alışveriş Çeki</td>
                                     <td><span class="euro-amount">200€</span></td>
-                                    <td><span class="status-badge delivered" data-tr="Teslim Edildi" data-de="Geliefert">Teslim Edildi</span></td>
+                                    <td><span class="status-badge pending" data-tr="Bekliyor" data-de="Ausstehend">Bekliyor</span></td>
                                 </tr>
                             </tbody>
                         </table>
