@@ -18,6 +18,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    
     <style>
         :root {
             --primary-dark: #0d2b2a;
@@ -1704,6 +1708,9 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <!-- Firebase Config -->
+    <script src="js/firebase-config.js"></script>
+    
     <!-- JavaScript -->
     <script>
         // Mobile Menu Toggle
@@ -1725,13 +1732,13 @@
             });
         }
         
-        // Form Submit Handler
+        // Form Submit Handler - Firebase Integration
         const applicationForm = document.getElementById('jobApplicationForm');
         const formWrapper = document.getElementById('applicationFormWrapper');
         const successMessage = document.getElementById('successMessage');
         
         if (applicationForm) {
-            applicationForm.addEventListener('submit', function(e) {
+            applicationForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
                 const submitBtn = this.querySelector('button[type="submit"]');
@@ -1741,31 +1748,67 @@
                 
                 // Collect form data
                 const formData = {
-                    id: Date.now(),
                     firstName: document.getElementById('firstName')?.value || '',
                     lastName: document.getElementById('lastName')?.value || '',
                     email: document.getElementById('email')?.value || '',
                     phone: document.getElementById('phone')?.value || '',
                     birthDate: document.getElementById('birthDate')?.value || '',
                     city: document.getElementById('city')?.value || '',
-                    position: document.querySelector('input[name="position"]:checked')?.value || 'outbound',
+                    address: document.getElementById('address')?.value || '',
+                    education: document.getElementById('education')?.value || '',
                     experience: document.getElementById('experience')?.value || '',
+                    position: document.querySelector('input[name="position"]:checked')?.value || 'outbound',
+                    workType: document.querySelector('input[name="workType"]:checked')?.value || 'fulltime',
+                    startDate: document.getElementById('startDate')?.value || '',
+                    reference: document.getElementById('reference')?.value || '',
+                    about: document.getElementById('about')?.value || '',
                     motivation: document.getElementById('motivation')?.value || '',
+                    languages: Array.from(document.querySelectorAll('input[name="languages"]:checked')).map(cb => cb.value),
                     status: 'pending',
                     appliedAt: new Date().toISOString(),
                     appliedDate: new Date().toLocaleDateString('tr-TR')
                 };
                 
-                // Save to localStorage
-                const applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
-                applications.unshift(formData);
-                localStorage.setItem('blc_applications', JSON.stringify(applications));
-                
-                setTimeout(() => {
-                    formWrapper.style.display = 'none';
-                    successMessage.classList.add('show');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }, 1500);
+                try {
+                    // Save to Firebase using BeeLifeDB
+                    if (typeof BeeLifeDB !== 'undefined') {
+                        const result = await BeeLifeDB.saveApplication(formData);
+                        
+                        if (result.success) {
+                            console.log('✅ Başvuru Firebase\'e kaydedildi:', result.id);
+                            
+                            // Send notification to admin
+                            await BeeLifeDB.sendNotification({
+                                type: 'new_application',
+                                title: 'Yeni İş Başvurusu',
+                                message: `${formData.firstName} ${formData.lastName} - ${formData.position} pozisyonu için başvurdu`,
+                                read: false
+                            });
+                            
+                            formWrapper.style.display = 'none';
+                            successMessage.classList.add('show');
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        } else {
+                            throw new Error(result.error);
+                        }
+                    } else {
+                        // Fallback to localStorage if Firebase not loaded
+                        console.warn('⚠️ Firebase yüklenemedi, localStorage kullanılıyor');
+                        const applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
+                        formData.id = Date.now();
+                        applications.unshift(formData);
+                        localStorage.setItem('blc_applications', JSON.stringify(applications));
+                        
+                        formWrapper.style.display = 'none';
+                        successMessage.classList.add('show');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                } catch (error) {
+                    console.error('❌ Başvuru kaydetme hatası:', error);
+                    alert('Başvuru gönderilirken bir hata oluştu. Lütfen tekrar deneyin.');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
             });
         }
         
@@ -1775,6 +1818,19 @@
             const toggle = document.querySelector('.menu-toggle');
             if (menu.classList.contains('active') && !menu.contains(e.target) && !toggle.contains(e.target)) {
                 menu.classList.remove('active');
+            }
+        });
+        
+        // Check Firebase connection on load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof BeeLifeDB !== 'undefined') {
+                BeeLifeDB.checkConnection(function(connected) {
+                    if (connected) {
+                        console.log('🐝 Firebase bağlantısı başarılı');
+                    } else {
+                        console.warn('⚠️ Firebase bağlantısı yok');
+                    }
+                });
             }
         });
     </script>

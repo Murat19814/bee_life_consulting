@@ -19,6 +19,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    
     <style>
         :root {
             --sidebar-width: 260px;
@@ -2470,7 +2474,97 @@
         </div>
     </div>
 
+    <!-- Firebase Config -->
+    <script src="js/firebase-config.js"></script>
+    
     <script>
+        // ═══════════════════════════════════════════════════════════════
+        // FIREBASE REAL-TIME LISTENERS
+        // ═══════════════════════════════════════════════════════════════
+        let firebaseLoaded = typeof BeeLifeDB !== 'undefined';
+        
+        // Initialize Firebase listeners when page loads
+        function initFirebaseListeners() {
+            if (!firebaseLoaded) {
+                console.warn('⚠️ Firebase yüklenemedi, localStorage kullanılıyor');
+                return;
+            }
+            
+            console.log('🐝 Firebase listeners başlatılıyor...');
+            
+            // Listen to applications
+            BeeLifeDB.listenToApplications(function(applications) {
+                console.log('📋 Başvurular güncellendi:', applications.length);
+                updateApplicationsUI(applications);
+            });
+            
+            // Listen to notifications
+            BeeLifeDB.listenToNotifications(function(notifications) {
+                console.log('🔔 Bildirimler güncellendi:', notifications.length);
+                updateNotificationsUI(notifications);
+            });
+            
+            // Listen to all employees
+            BeeLifeDB.listenToAllEmployees(function(employees) {
+                console.log('👥 Personeller güncellendi:', employees.length);
+                updateEmployeesUI(employees);
+            });
+            
+            // Listen to all sales
+            BeeLifeDB.listenToAllSales(function(sales) {
+                console.log('💰 Satışlar güncellendi:', sales.length);
+                updateSalesUI(sales);
+            });
+            
+            // Check connection
+            BeeLifeDB.checkConnection(function(connected) {
+                const indicator = document.getElementById('connectionIndicator');
+                if (indicator) {
+                    indicator.innerHTML = connected ? 
+                        '<i class="fas fa-wifi" style="color: #4CAF50;"></i> Online' : 
+                        '<i class="fas fa-wifi-slash" style="color: #f44336;"></i> Offline';
+                }
+            });
+        }
+        
+        // Update UI functions for Firebase data
+        function updateApplicationsUI(applications) {
+            // Update count badges
+            const appCount = document.getElementById('applicationCount');
+            const totalAppCount = document.getElementById('totalApplicationCount');
+            if (appCount) appCount.textContent = applications.length;
+            if (totalAppCount) totalAppCount.textContent = applications.length;
+            
+            // Load recent applications
+            loadRecentApplicationsFromData(applications);
+            loadApplicationsTableFromData(applications);
+        }
+        
+        function updateNotificationsUI(notifications) {
+            const unreadCount = notifications.filter(n => !n.read).length;
+            const badge = document.getElementById('notificationBadge');
+            if (badge) {
+                badge.textContent = unreadCount;
+                badge.style.display = unreadCount > 0 ? 'flex' : 'none';
+            }
+        }
+        
+        function updateEmployeesUI(employees) {
+            const empCount = document.getElementById('employeeCount');
+            if (empCount) empCount.textContent = employees.length;
+            loadEmployeesTableFromData(employees);
+        }
+        
+        function updateSalesUI(sales) {
+            // Calculate total sales for today
+            const today = new Date().toISOString().split('T')[0];
+            const todaySales = sales.filter(s => s.date && s.date.startsWith(today));
+            const totalToday = todaySales.reduce((sum, s) => sum + (s.amount || 0), 0);
+            
+            const salesCount = document.getElementById('salesCount');
+            if (salesCount) salesCount.textContent = totalToday;
+        }
+        
         // ═══════════════════════════════════════════════════════════════
         // LANGUAGE SYSTEM
         // ═══════════════════════════════════════════════════════════════
@@ -2962,24 +3056,26 @@
         }
         
         // ═══════════════════════════════════════════════════════════════
-        // BAŞVURU YÖNETİMİ
+        // BAŞVURU YÖNETİMİ (Firebase Integrated)
         // ═══════════════════════════════════════════════════════════════
         
+        // Global applications cache for Firebase data
+        let cachedApplications = [];
+        
         function loadApplications() {
-            const applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
-            
-            // Update count badges
-            document.getElementById('applicationCount').textContent = applications.length;
-            document.getElementById('totalApplicationCount').textContent = applications.length;
-            
-            // Load recent applications (dashboard)
-            loadRecentApplications(applications);
-            
-            // Load full applications table
-            loadApplicationsTable(applications);
+            if (firebaseLoaded) {
+                // Firebase handles this via listener
+                console.log('📋 Firebase listener aktif, başvurular otomatik yükleniyor');
+            } else {
+                // Fallback to localStorage
+                const applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
+                updateApplicationsUI(applications);
+            }
         }
         
-        function loadRecentApplications(applications) {
+        function loadRecentApplicationsFromData(applications) {
+            cachedApplications = applications; // Cache for later use
+            
             const container = document.getElementById('recentApplicationsList');
             if (!container) return;
             
@@ -2996,16 +3092,16 @@
             // Show only last 4 applications
             const recentApps = applications.slice(0, 4);
             container.innerHTML = recentApps.map(app => {
-                const initials = (app.firstName[0] || '') + (app.lastName[0] || '');
+                const initials = ((app.firstName || '')[0] || '') + ((app.lastName || '')[0] || '');
                 const position = app.position === 'outbound' ? 'Outbound Satış' : app.position === 'inbound' ? 'Inbound Hotline' : 'Her İkisi';
-                const timeAgo = getTimeAgo(app.appliedAt);
+                const timeAgo = getTimeAgo(app.appliedAt || app.createdAt);
                 
                 return `
-                    <div class="application-item" onclick="viewApplication(${app.id})">
+                    <div class="application-item" onclick="viewApplication('${app.id}')">
                         <div class="application-avatar">${initials.toUpperCase()}</div>
                         <div class="application-info">
-                            <h4>${app.firstName} ${app.lastName}</h4>
-                            <p>${position} • ${app.branch || 'Belirtilmedi'}</p>
+                            <h4>${app.firstName || ''} ${app.lastName || ''}</h4>
+                            <p>${position} • ${app.city || 'Belirtilmedi'}</p>
                         </div>
                         <span class="application-time">${timeAgo}</span>
                     </div>
@@ -3013,7 +3109,9 @@
             }).join('');
         }
         
-        function loadApplicationsTable(applications) {
+        function loadApplicationsTableFromData(applications) {
+            cachedApplications = applications;
+            
             const tbody = document.getElementById('applicationsTableBody');
             if (!tbody) return;
             
@@ -3030,38 +3128,43 @@
             }
             
             tbody.innerHTML = applications.map(app => {
-                const initials = (app.firstName[0] || '') + (app.lastName[0] || '');
+                const initials = ((app.firstName || '')[0] || '') + ((app.lastName || '')[0] || '');
                 const position = app.position === 'outbound' ? 'Outbound Satış' : app.position === 'inbound' ? 'Inbound Hotline' : 'Her İkisi';
                 const statusClass = app.status === 'approved' ? 'active' : app.status === 'rejected' ? 'inactive' : 'pending';
                 const statusText = app.status === 'approved' ? 'Onaylandı' : app.status === 'rejected' ? 'Reddedildi' : 'Bekliyor';
                 
                 return `
-                    <tr data-status="${app.status}">
+                    <tr data-status="${app.status}" data-id="${app.id}">
                         <td>
                             <div class="employee-cell">
                                 <div class="employee-avatar">${initials.toUpperCase()}</div>
                                 <div class="employee-info">
-                                    <h4>${app.firstName} ${app.lastName}</h4>
+                                    <h4>${app.firstName || ''} ${app.lastName || ''}</h4>
                                     <p>${app.email || 'E-posta yok'}</p>
                                 </div>
                             </div>
                         </td>
                         <td>${position}</td>
-                        <td>${app.branch || 'Belirtilmedi'}</td>
+                        <td>${app.city || 'Belirtilmedi'}</td>
                         <td>${app.appliedDate || '-'}</td>
                         <td><span class="status-badge ${statusClass}">${statusText}</span></td>
                         <td>
-                            <button class="action-btn view" onclick="viewApplication(${app.id})" title="İncele"><i class="fas fa-eye"></i></button>
-                            <button class="action-btn edit" onclick="approveApplication(${app.id})" style="background: rgba(64,145,108,0.1); color: var(--accent-mint);" title="Onayla"><i class="fas fa-check"></i></button>
-                            <button class="action-btn delete" onclick="deleteApplication(${app.id})" title="Sil"><i class="fas fa-times"></i></button>
+                            <button class="action-btn view" onclick="viewApplication('${app.id}')" title="İncele"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit" onclick="approveApplication('${app.id}')" style="background: rgba(64,145,108,0.1); color: var(--accent-mint);" title="Onayla"><i class="fas fa-check"></i></button>
+                            <button class="action-btn delete" onclick="deleteApplication('${app.id}')" title="Sil"><i class="fas fa-times"></i></button>
                         </td>
                     </tr>
                 `;
             }).join('');
         }
         
-        function getTimeAgo(dateString) {
-            const date = new Date(dateString);
+        // Legacy function names for compatibility
+        function loadRecentApplications(applications) { loadRecentApplicationsFromData(applications); }
+        function loadApplicationsTable(applications) { loadApplicationsTableFromData(applications); }
+        
+        function getTimeAgo(dateInput) {
+            if (!dateInput) return '-';
+            const date = typeof dateInput === 'number' ? new Date(dateInput) : new Date(dateInput);
             const now = new Date();
             const diffMs = now - date;
             const diffMins = Math.floor(diffMs / 60000);
@@ -3075,55 +3178,133 @@
         }
         
         function viewApplication(id) {
-            const applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
-            const app = applications.find(a => a.id === id);
+            const app = cachedApplications.find(a => a.id === id);
             
-            if (!app) return;
+            if (!app) {
+                alert('Başvuru bulunamadı');
+                return;
+            }
             
             const position = app.position === 'outbound' ? 'Outbound Satış' : app.position === 'inbound' ? 'Inbound Hotline' : 'Her İkisi';
             const germanLevels = { 'native': 'Anadil', 'c2': 'C2', 'c1': 'C1', 'b2': 'B2', 'b1': 'B1', 'a2': 'A2', 'a1': 'A1', 'none': 'Yok' };
             
             alert(`📋 BAŞVURU DETAYI\n\n` +
-                  `👤 ${app.firstName} ${app.lastName}\n` +
+                  `👤 ${app.firstName || ''} ${app.lastName || ''}\n` +
                   `📧 ${app.email || '-'}\n` +
                   `📱 ${app.phone || '-'}\n` +
                   `🎂 ${app.birthDate || '-'}\n` +
                   `🏙️ ${app.city || '-'}\n\n` +
                   `💼 Pozisyon: ${position}\n` +
-                  `🏢 Şube: ${app.branch || '-'}\n` +
-                  `🇩🇪 Almanca: ${germanLevels[app.germanLevel] || '-'}\n` +
+                  `🏢 Adres: ${app.address || '-'}\n` +
+                  `📚 Eğitim: ${app.education || '-'}\n` +
                   `📝 Deneyim: ${app.experience || '-'}\n\n` +
                   `💬 Motivasyon:\n${app.motivation || '-'}\n\n` +
-                  `📅 Başvuru Tarihi: ${app.appliedDate}`);
+                  `📅 Başvuru Tarihi: ${app.appliedDate || '-'}`);
         }
         
-        function approveApplication(id) {
-            let applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
-            const index = applications.findIndex(a => a.id === id);
-            
-            if (index > -1) {
-                applications[index].status = 'approved';
-                localStorage.setItem('blc_applications', JSON.stringify(applications));
-                loadApplications();
-                alert('✅ Başvuru onaylandı!');
+        async function approveApplication(id) {
+            if (firebaseLoaded) {
+                try {
+                    const result = await BeeLifeDB.updateApplicationStatus(id, 'approved');
+                    if (result.success) {
+                        alert('✅ Başvuru onaylandı!');
+                    } else {
+                        throw new Error(result.error);
+                    }
+                } catch (error) {
+                    console.error('Onaylama hatası:', error);
+                    alert('❌ Onaylama sırasında hata oluştu');
+                }
+            } else {
+                // Fallback to localStorage
+                let applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
+                const index = applications.findIndex(a => a.id == id);
+                if (index > -1) {
+                    applications[index].status = 'approved';
+                    localStorage.setItem('blc_applications', JSON.stringify(applications));
+                    loadApplications();
+                    alert('✅ Başvuru onaylandı!');
+                }
             }
         }
         
-        function deleteApplication(id) {
+        async function deleteApplication(id) {
             if (!confirm('Bu başvuruyu silmek istediğinize emin misiniz?')) return;
             
-            let applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
-            applications = applications.filter(a => a.id !== id);
-            localStorage.setItem('blc_applications', JSON.stringify(applications));
-            loadApplications();
+            if (firebaseLoaded) {
+                try {
+                    const result = await BeeLifeDB.deleteApplication(id);
+                    if (result.success) {
+                        console.log('✅ Başvuru silindi');
+                    } else {
+                        throw new Error(result.error);
+                    }
+                } catch (error) {
+                    console.error('Silme hatası:', error);
+                    alert('❌ Silme sırasında hata oluştu');
+                }
+            } else {
+                let applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
+                applications = applications.filter(a => a.id != id);
+                localStorage.setItem('blc_applications', JSON.stringify(applications));
+                loadApplications();
+            }
         }
         
         function clearAllApplications() {
             if (!confirm('TÜM BAŞVURULARI silmek istediğinize emin misiniz?\n\nBu işlem geri alınamaz!')) return;
             
+            // Note: For Firebase, this would require iterating through all applications
+            // For now, just clear localStorage fallback
             localStorage.removeItem('blc_applications');
             loadApplications();
             alert('✅ Tüm başvurular silindi.');
+        }
+        
+        // Helper function for employees table from Firebase
+        function loadEmployeesTableFromData(employees) {
+            const tbody = document.getElementById('employeesTableBody');
+            if (!tbody) return;
+            
+            if (employees.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 40px; color: var(--text-light);">
+                            <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 10px; opacity: 0.5; display: block;"></i>
+                            <span>Henüz personel yok</span>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = employees.map(emp => {
+                const initials = ((emp.firstName || emp.name || '')[0] || '') + ((emp.lastName || '')[0] || '');
+                const statusClass = emp.status === 'active' ? 'active' : 'inactive';
+                const statusText = emp.status === 'active' ? 'Aktif' : 'Pasif';
+                
+                return `
+                    <tr data-id="${emp.id}">
+                        <td>
+                            <div class="employee-cell">
+                                <div class="employee-avatar">${initials.toUpperCase() || '??'}</div>
+                                <div class="employee-info">
+                                    <h4>${emp.firstName || emp.name || ''} ${emp.lastName || ''}</h4>
+                                    <p>${emp.email || ''}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${emp.position || emp.role || '-'}</td>
+                        <td>${emp.branch || emp.city || '-'}</td>
+                        <td>${emp.stats?.totalSales || 0}</td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td>
+                            <button class="action-btn view" onclick="viewEmployee('${emp.id}')" title="İncele"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit" onclick="editEmployee('${emp.id}')" title="Düzenle"><i class="fas fa-edit"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
         }
         
         function filterApplications() {

@@ -19,6 +19,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    
     <style>
         :root {
             --sidebar-width: 260px;
@@ -1907,7 +1911,116 @@
         <canvas class="confetti" id="confettiCanvas"></canvas>
     </div>
 
+    <!-- Firebase Config -->
+    <script src="js/firebase-config.js"></script>
+    
     <script>
+        // ═══════════════════════════════════════════════════════════════
+        // FIREBASE REAL-TIME INTEGRATION
+        // ═══════════════════════════════════════════════════════════════
+        let firebaseLoaded = typeof BeeLifeDB !== 'undefined';
+        let currentEmployeeId = null;
+        let employeeStats = {};
+        
+        function initFirebaseForEmployee() {
+            if (!firebaseLoaded) {
+                console.warn('⚠️ Firebase yüklenemedi');
+                return;
+            }
+            
+            const employeeData = localStorage.getItem('currentEmployee');
+            if (!employeeData) return;
+            
+            const employee = JSON.parse(employeeData);
+            currentEmployeeId = employee.id || employee.email.replace(/[.@]/g, '_');
+            
+            console.log('🐝 Employee Firebase başlatılıyor:', currentEmployeeId);
+            
+            // Listen to own data for real-time updates
+            BeeLifeDB.listenToEmployee(currentEmployeeId, function(data) {
+                if (data) {
+                    console.log('📊 Personel verisi güncellendi:', data);
+                    updateDashboardStats(data.stats || {});
+                }
+            });
+            
+            // Listen to own sales
+            BeeLifeDB.listenToEmployeeSales(currentEmployeeId, function(sales) {
+                console.log('💰 Satışlar güncellendi:', sales.length);
+                updateSalesHistory(sales);
+            });
+            
+            // Listen to notifications
+            BeeLifeDB.listenToNotifications(function(notifications) {
+                console.log('🔔 Bildirimler güncellendi');
+                updateNotificationsFromFirebase(notifications);
+            });
+            
+            // Check connection
+            BeeLifeDB.checkConnection(function(connected) {
+                console.log(connected ? '🟢 Firebase bağlı' : '🔴 Firebase bağlantısı yok');
+            });
+        }
+        
+        function updateDashboardStats(stats) {
+            employeeStats = stats;
+            
+            // Update stat cards
+            const statsMap = {
+                'totalSales': stats.totalSales || 0,
+                'qcOk': stats.qcOk || 0,
+                'wr': stats.wr || 0,
+                'rls': stats.rls || 0,
+                'callCount': stats.callCount || 0,
+                'workHours': stats.workHours || 0,
+                'commission': (stats.commission || 0).toFixed(2)
+            };
+            
+            Object.keys(statsMap).forEach(key => {
+                const el = document.getElementById('stat-' + key);
+                if (el) el.textContent = statsMap[key];
+            });
+        }
+        
+        function updateSalesHistory(sales) {
+            const container = document.getElementById('salesHistory');
+            if (!container) return;
+            
+            if (sales.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-light);">Henüz satış kaydı yok</p>';
+                return;
+            }
+            
+            container.innerHTML = sales.slice(0, 10).map(sale => `
+                <div class="sale-item" style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>${new Date(sale.createdAt || sale.date).toLocaleDateString('tr-TR')}</span>
+                        <span style="color: var(--gold);">+${sale.amount || 0}€</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function updateNotificationsFromFirebase(notifications) {
+            const container = document.getElementById('notificationsList');
+            if (!container) return;
+            
+            if (notifications.length === 0) {
+                container.innerHTML = '<p style="text-align: center; padding: 20px; color: var(--text-light);">Bildirim yok</p>';
+                return;
+            }
+            
+            container.innerHTML = notifications.slice(0, 5).map(notif => `
+                <div class="notification-item ${notif.read ? '' : 'unread'}" style="padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <div class="notif-icon" style="color: var(--gold);"><i class="fas fa-bell"></i></div>
+                    <div class="notif-content">
+                        <h5>${notif.title || 'Bildirim'}</h5>
+                        <p>${notif.message || ''}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
         // ═══════════════════════════════════════════════════════════════
         // LANGUAGE SYSTEM
         // ═══════════════════════════════════════════════════════════════
@@ -1954,6 +2067,9 @@
                 document.getElementById('userName').textContent = employee.name;
                 document.getElementById('userBranch').textContent = employee.branch + ' Şubesi';
                 
+                // Initialize Firebase for this employee
+                initFirebaseForEmployee();
+                
             } else {
                 // No login data, redirect to login
                 window.location.href = 'employee-login.html';
@@ -1962,6 +2078,9 @@
         
         // Logout function
         function logout() {
+            if (firebaseLoaded) {
+                BeeLifeDB.cleanup();
+            }
             localStorage.removeItem('currentEmployee');
             window.location.href = 'employee-login.html';
         }
