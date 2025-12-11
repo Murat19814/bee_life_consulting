@@ -3207,17 +3207,28 @@
             
             .mobile-nav-bar a.nav-lang {
                 background: rgba(255, 255, 255, 0.1);
-                min-width: 50px;
-                flex: 0.6;
+                min-width: 45px;
+                flex: 0.5;
+                padding: 10px 5px;
             }
             
             .mobile-nav-bar a.nav-lang .lang-flag {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 margin-bottom: 2px;
             }
             
             .mobile-nav-bar a.nav-lang:hover {
                 background: rgba(255, 255, 255, 0.2);
+            }
+            
+            .mobile-nav-bar a.nav-lang.active {
+                background: rgba(212, 175, 55, 0.25);
+                color: #D4AF37;
+                border-bottom: 2px solid #D4AF37;
+            }
+            
+            .mobile-nav-bar a.nav-lang.active .lang-flag {
+                transform: scale(1.1);
             }
             
             /* Adjust body padding for fixed nav */
@@ -3792,9 +3803,13 @@
             <i class="fas fa-paper-plane"></i>
             <span data-tr="Başvur" data-de="Bewerben">Başvur</span>
         </a>
-        <a href="#" onclick="toggleMobileLang(); return false;" class="nav-lang" id="mobileLangBtn">
+        <a href="#" onclick="setMobileLang('tr'); return false;" class="nav-lang mobile-lang-tr" id="mobileLangTR">
             <span class="lang-flag">🇹🇷</span>
-            <span id="mobileLangText">TR</span>
+            <span>TR</span>
+        </a>
+        <a href="#" onclick="setMobileLang('de'); return false;" class="nav-lang mobile-lang-de" id="mobileLangDE">
+            <span class="lang-flag">🇩🇪</span>
+            <span>DE</span>
         </a>
     </div>
 
@@ -5027,26 +5042,27 @@
         }
         
         // Toggle mobile language
-        function toggleMobileLang() {
-            const newLang = currentLang === 'tr' ? 'de' : 'tr';
-            setLanguage(newLang);
-            updateMobileLangBtn(newLang);
+        // Set mobile language
+        function setMobileLang(lang) {
+            setLanguage(lang);
+            updateMobileLangBtns(lang);
         }
         
-        // Update mobile language button
-        function updateMobileLangBtn(lang) {
-            const langText = document.getElementById('mobileLangText');
-            const langBtn = document.getElementById('mobileLangBtn');
-            if (langText && langBtn) {
-                langText.textContent = lang.toUpperCase();
-                langBtn.querySelector('.lang-flag').textContent = lang === 'tr' ? '🇹🇷' : '🇩🇪';
+        // Update mobile language buttons - show active state
+        function updateMobileLangBtns(lang) {
+            const trBtn = document.getElementById('mobileLangTR');
+            const deBtn = document.getElementById('mobileLangDE');
+            
+            if (trBtn && deBtn) {
+                trBtn.classList.toggle('active', lang === 'tr');
+                deBtn.classList.toggle('active', lang === 'de');
             }
         }
         
         // Initialize language on page load
         document.addEventListener('DOMContentLoaded', function() {
             setLanguage(currentLang);
-            updateMobileLangBtn(currentLang);
+            updateMobileLangBtns(currentLang);
             
             // Show QC popup after 2 seconds on mobile
             if (window.innerWidth <= 768) {
