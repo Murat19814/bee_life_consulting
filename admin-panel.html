@@ -729,11 +729,30 @@
         }
         
         .modal {
-            background: var(--white);
+            background: var(--primary-gray);
             width: 500px;
             max-width: 90%;
             max-height: 90vh;
             overflow-y: auto;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .modal input::placeholder,
+        .modal select::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .modal input,
+        .modal select {
+            background: var(--primary-darker) !important;
+            border: 1px solid rgba(212, 175, 55, 0.3) !important;
+            color: #fff !important;
+        }
+        
+        .modal input:focus,
+        .modal select:focus {
+            border-color: var(--gold) !important;
+            outline: none;
         }
         
         .modal-header {
@@ -1380,15 +1399,15 @@
                                 <i class="fas fa-user-plus"></i>
                                 <span data-tr="Çalışan Ekle" data-de="Mitarbeiter hinzufügen">Çalışan Ekle</span>
                             </button>
-                            <button class="quick-action-btn">
+                            <button class="quick-action-btn" onclick="showPage('sales')">
                                 <i class="fas fa-chart-bar"></i>
                                 <span data-tr="Rapor Oluştur" data-de="Bericht erstellen">Rapor Oluştur</span>
                             </button>
-                            <button class="quick-action-btn">
+                            <button class="quick-action-btn" onclick="showPage('rewards')">
                                 <i class="fas fa-gift"></i>
                                 <span data-tr="Ödül Dağıt" data-de="Prämie verteilen">Ödül Dağıt</span>
                             </button>
-                            <button class="quick-action-btn">
+                            <button class="quick-action-btn" onclick="showPage('notifications')">
                                 <i class="fas fa-bell"></i>
                                 <span data-tr="Duyuru Yap" data-de="Ankündigung machen">Duyuru Yap</span>
                             </button>
@@ -1481,8 +1500,8 @@
                     </thead>
                     <tbody id="employeesTableBody">
                         <!-- 32 Çalışan -->
-                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">AA</div><div class="employee-info"><h4>Abdulcelil Arslan</h4><p>aarslan</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
-                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">AK</div><div class="employee-info"><h4>Ahmet Kömür</h4><p>akomur</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">AA</div><div class="employee-info"><h4>Abdulcelil Arslan</h4><p>aarslan</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view" onclick="viewEmployee('Abdulcelil Arslan')"><i class="fas fa-eye"></i></button><button class="action-btn edit" onclick="editEmployee('Abdulcelil Arslan')"><i class="fas fa-edit"></i></button></td></tr>
+                        <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">AK</div><div class="employee-info"><h4>Ahmet Kömür</h4><p>akomur</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view" onclick="viewEmployee('Ahmet Kömür')"><i class="fas fa-eye"></i></button><button class="action-btn edit" onclick="editEmployee('Ahmet Kömür')"><i class="fas fa-edit"></i></button></td></tr>
                         <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">AS</div><div class="employee-info"><h4>Ahsen Saliha Arslan</h4><p>aharslan</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
                         <tr data-branch="Yozgat"><td><div class="employee-cell"><div class="employee-avatar">AA</div><div class="employee-info"><h4>Aslı Akdoğan</h4><p>aakdogan</p></div></div></td><td>Yozgat</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
                         <tr data-branch="İzmit"><td><div class="employee-cell"><div class="employee-avatar">AY</div><div class="employee-info"><h4>Ayhan Yıldızdoğan</h4><p>ayildizdogan</p></div></div></td><td>İzmit</td><td>Satış Temsilcisi</td><td><strong>0</strong></td><td><span class="euro-amount">0€</span></td><td><span class="status-badge active" data-tr="Aktif" data-de="Aktiv">Aktif</span></td><td><button class="action-btn view"><i class="fas fa-eye"></i></button><button class="action-btn edit"><i class="fas fa-edit"></i></button></td></tr>
@@ -2395,55 +2414,58 @@
     <div class="modal-overlay" id="employeeModal">
         <div class="modal">
             <div class="modal-header">
-                <h3>Yeni Çalışan Ekle</h3>
+                <h3 data-tr="Yeni Çalışan Ekle" data-de="Neuer Mitarbeiter hinzufügen">Yeni Çalışan Ekle</h3>
                 <button class="modal-close" id="closeModal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Ad</label>
-                        <input type="text" placeholder="Adı">
+                        <label style="color: var(--gold);" data-tr="Ad" data-de="Vorname">Ad</label>
+                        <input type="text" id="empFirstName" placeholder="Adı" style="color: #fff;">
                     </div>
                     <div class="form-group">
-                        <label>Soyad</label>
-                        <input type="text" placeholder="Soyadı">
+                        <label style="color: var(--gold);" data-tr="Soyad" data-de="Nachname">Soyad</label>
+                        <input type="text" id="empLastName" placeholder="Soyadı" style="color: #fff;">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>E-posta</label>
-                    <input type="email" placeholder="ornek@beelife.com">
+                    <label style="color: var(--gold);" data-tr="E-posta" data-de="E-Mail">E-posta</label>
+                    <input type="email" id="empEmail" placeholder="ornek@beelife.com" style="color: #fff;">
                 </div>
                 <div class="form-group">
-                    <label>Telefon</label>
-                    <input type="tel" placeholder="+90 5XX XXX XX XX">
+                    <label style="color: var(--gold);" data-tr="Telefon" data-de="Telefon">Telefon</label>
+                    <input type="tel" id="empPhone" placeholder="+90 5XX XXX XX XX" style="color: #fff;">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Şube</label>
-                        <select>
-                            <option>Yozgat</option>
-                            <option>İzmit</option>
-                            <option>Eskişehir</option>
-                            <option>Balıkesir</option>
+                        <label style="color: var(--gold);" data-tr="Şube" data-de="Filiale">Şube</label>
+                        <select id="empBranch" style="color: #fff;">
+                            <option value="Yozgat">Yozgat</option>
+                            <option value="İzmit">İzmit</option>
+                            <option value="Eskişehir">Eskişehir</option>
+                            <option value="Balıkesir">Balıkesir</option>
+                            <option value="İzmir">İzmir</option>
+                            <option value="Antep">Antep</option>
+                            <option value="Home Office">Home Office</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Pozisyon</label>
-                        <select>
-                            <option>Satış Temsilcisi</option>
-                            <option>Inbound Uzmanı</option>
-                            <option>Takım Lideri</option>
+                        <label style="color: var(--gold);" data-tr="Pozisyon" data-de="Position">Pozisyon</label>
+                        <select id="empPosition" style="color: #fff;">
+                            <option value="Satış Temsilcisi">Satış Temsilcisi</option>
+                            <option value="Inbound Uzmanı">Inbound Uzmanı</option>
+                            <option value="Takım Lideri">Takım Lideri</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Başlangıç Tarihi</label>
-                    <input type="date">
+                    <label style="color: var(--gold);" data-tr="Başlangıç Tarihi" data-de="Startdatum">Başlangıç Tarihi</label>
+                    <input type="date" id="empStartDate" style="color: #fff;">
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-outline" id="cancelModal">İptal</button>
-                <button class="btn btn-primary">Kaydet</button>
+                <button class="btn btn-outline" id="cancelModal" data-tr="İptal" data-de="Abbrechen">İptal</button>
+                <button class="btn btn-primary" onclick="saveEmployee()" data-tr="Kaydet" data-de="Speichern">Kaydet</button>
             </div>
         </div>
     </div>
@@ -3117,10 +3139,116 @@
             });
         }
         
+        // ═══════════════════════════════════════════════════════════════
+        // ÇALIŞAN YÖNETİMİ
+        // ═══════════════════════════════════════════════════════════════
+        
+        // Çalışan kaydet
+        function saveEmployee() {
+            const firstName = document.getElementById('empFirstName').value.trim();
+            const lastName = document.getElementById('empLastName').value.trim();
+            const email = document.getElementById('empEmail').value.trim();
+            const phone = document.getElementById('empPhone').value.trim();
+            const branch = document.getElementById('empBranch').value;
+            const position = document.getElementById('empPosition').value;
+            const startDate = document.getElementById('empStartDate').value;
+            
+            if (!firstName || !lastName) {
+                alert('❌ Lütfen ad ve soyad alanlarını doldurun!');
+                return;
+            }
+            
+            // Get existing employees
+            const employees = JSON.parse(localStorage.getItem('blc_employees') || '[]');
+            
+            // Create new employee
+            const initials = (firstName[0] || '') + (lastName[0] || '');
+            const username = (firstName[0] + lastName).toLowerCase().replace(/[^a-z]/g, '');
+            
+            const newEmployee = {
+                id: Date.now(),
+                firstName: firstName,
+                lastName: lastName,
+                initials: initials.toUpperCase(),
+                username: username,
+                email: email,
+                phone: phone,
+                branch: branch,
+                position: position,
+                startDate: startDate,
+                qcOk: 0,
+                earnings: 0,
+                status: 'active',
+                createdAt: new Date().toISOString()
+            };
+            
+            employees.push(newEmployee);
+            localStorage.setItem('blc_employees', JSON.stringify(employees));
+            
+            // Close modal
+            document.getElementById('employeeModal').classList.remove('active');
+            
+            // Clear form
+            document.getElementById('empFirstName').value = '';
+            document.getElementById('empLastName').value = '';
+            document.getElementById('empEmail').value = '';
+            document.getElementById('empPhone').value = '';
+            document.getElementById('empStartDate').value = '';
+            
+            alert('✅ Çalışan başarıyla eklendi!\n\n' +
+                  '👤 ' + firstName + ' ' + lastName + '\n' +
+                  '🏢 ' + branch + '\n' +
+                  '💼 ' + position);
+            
+            // Refresh employee list
+            loadEmployeeList();
+        }
+        
+        // Çalışan görüntüle
+        function viewEmployee(name) {
+            // Find in localStorage or show basic info
+            const employees = JSON.parse(localStorage.getItem('blc_employees') || '[]');
+            const emp = employees.find(e => e.firstName + ' ' + e.lastName === name);
+            
+            if (emp) {
+                alert('📋 ÇALIŞAN DETAYI\n\n' +
+                      '👤 ' + emp.firstName + ' ' + emp.lastName + '\n' +
+                      '📧 ' + (emp.email || '-') + '\n' +
+                      '📱 ' + (emp.phone || '-') + '\n' +
+                      '🏢 Şube: ' + emp.branch + '\n' +
+                      '💼 Pozisyon: ' + emp.position + '\n' +
+                      '📊 Bu Ay QC OK: ' + emp.qcOk + '\n' +
+                      '💰 Kazanç: ' + emp.earnings + '€\n' +
+                      '📅 Başlangıç: ' + (emp.startDate || '-'));
+            } else {
+                alert('📋 ÇALIŞAN: ' + name + '\n\nDetaylı bilgi için çalışanı sisteme ekleyin.');
+            }
+        }
+        
+        // Çalışan düzenle
+        function editEmployee(name) {
+            alert('✏️ Düzenleme Modu\n\n' +
+                  'Çalışan: ' + name + '\n\n' +
+                  'QC OK ve kazanç bilgileri "Günlük Satış Girişi" sayfasından güncellenebilir.');
+            showPage('daily-sales');
+        }
+        
+        // Çalışan listesini yükle
+        function loadEmployeeList() {
+            const employees = JSON.parse(localStorage.getItem('blc_employees') || '[]');
+            if (employees.length === 0) return;
+            
+            // Update stats if needed
+            const totalEmp = 32 + employees.length;
+            const statCards = document.querySelectorAll('.stat-card .stat-value');
+            if (statCards[0]) statCards[0].textContent = totalEmp;
+        }
+        
         // Kayıtlı verileri yükle
         function loadSavedData() {
             loadDailySalesTable();
             loadApplications();
+            loadEmployeeList();
             
             // RLS/WR verilerini yükle
             const month = document.getElementById('rlsMonth')?.value || '11';
@@ -3142,6 +3270,30 @@
                 }
             }
         }
+        
+        // Tüm çalışan action butonlarını dinamik olarak çalıştır
+        document.addEventListener('click', function(e) {
+            // View button
+            if (e.target.closest('.action-btn.view')) {
+                const row = e.target.closest('tr');
+                if (row) {
+                    const nameEl = row.querySelector('.employee-info h4');
+                    if (nameEl) {
+                        viewEmployee(nameEl.textContent);
+                    }
+                }
+            }
+            // Edit button
+            if (e.target.closest('.action-btn.edit')) {
+                const row = e.target.closest('tr');
+                if (row) {
+                    const nameEl = row.querySelector('.employee-info h4');
+                    if (nameEl) {
+                        editEmployee(nameEl.textContent);
+                    }
+                }
+            }
+        });
         
         // Mobile Menu Toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
