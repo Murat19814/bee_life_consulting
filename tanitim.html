@@ -15,6 +15,7 @@
             --dark-gray: #1a1a1a;
             --white: #ffffff;
             --green: #27ae60;
+            --orange: #e67e22;
             --tl-rate: 36;
         }
 
@@ -353,6 +354,12 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 60px rgba(212, 175, 55, 0.6); }
         }
 
         .per-sale-box::before {
@@ -370,6 +377,12 @@
             font-size: 4rem;
             color: var(--gold);
             margin-bottom: 20px;
+            animation: coinSpin 3s ease-in-out infinite;
+        }
+
+        @keyframes coinSpin {
+            0%, 100% { transform: rotateY(0deg); }
+            50% { transform: rotateY(180deg); }
         }
 
         .per-sale-label {
@@ -445,6 +458,24 @@
             padding: 25px;
             margin-top: 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calc-total::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .calc-total-label {
@@ -678,18 +709,49 @@
             background: linear-gradient(145deg, rgba(212, 175, 55, 0.15), rgba(10, 10, 10, 0.95));
         }
 
-        .reward-card.featured::before {
-            content: '👑';
+        /* Konfetti Container */
+        .confetti-container {
             position: absolute;
-            top: -10px;
-            right: -10px;
-            font-size: 3rem;
-            transform: rotate(15deg);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+        }
+
+        .reward-card:hover .confetti {
+            animation: confettiFall 1s ease-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-20px) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100px) rotate(720deg);
+            }
         }
 
         .reward-icon {
             font-size: 4rem;
             margin-bottom: 20px;
+            display: inline-block;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.1); }
         }
 
         .reward-period {
@@ -736,6 +798,7 @@
             gap: 20px;
             margin-top: 60px;
             flex-wrap: wrap;
+            position: relative;
         }
 
         .step-item {
@@ -746,35 +809,91 @@
             position: relative;
         }
 
-        .step-item:not(:last-child)::after {
-            content: '';
+        /* Animated Line Between Steps */
+        .step-line {
             position: absolute;
             top: 40px;
-            right: -30px;
-            width: 40px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            width: 60px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
         }
+
+        .step-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.8s ease;
+        }
+
+        .step-item.active .step-line::after {
+            width: 100%;
+        }
+
+        .step-item:nth-child(1) .step-line { right: -40px; }
+        .step-item:nth-child(2) .step-line { right: -40px; }
+        .step-item:nth-child(3) .step-line { right: -40px; }
+
+        .step-item:nth-child(1).active .step-line::after { background: var(--white); }
+        .step-item:nth-child(2).active .step-line::after { background: var(--gold); }
+        .step-item:nth-child(3).active .step-line::after { background: var(--orange); }
 
         .step-number {
             width: 80px;
             height: 80px;
-            background: linear-gradient(145deg, var(--gold), var(--gold-dark));
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
             font-weight: 700;
-            color: var(--black);
+            color: var(--white);
             margin-bottom: 20px;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-item.active .step-number {
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .step-item:nth-child(1).active .step-number {
+            background: linear-gradient(145deg, #ffffff, #cccccc);
+            color: #000;
+        }
+
+        .step-item:nth-child(2).active .step-number {
+            background: linear-gradient(145deg, var(--gold), var(--gold-dark));
+            color: #000;
+        }
+
+        .step-item:nth-child(3).active .step-number {
+            background: linear-gradient(145deg, var(--orange), #d35400);
+            color: #fff;
+        }
+
+        .step-item:nth-child(4).active .step-number {
+            background: linear-gradient(145deg, var(--green), #1e8449);
+            color: #fff;
         }
 
         .step-icon {
             font-size: 2rem;
             color: var(--gold);
             margin-bottom: 15px;
+            opacity: 0.5;
+            transition: all 0.5s ease;
+        }
+
+        .step-item.active .step-icon {
+            opacity: 1;
         }
 
         .step-title {
@@ -978,13 +1097,14 @@
                 align-items: center;
             }
 
-            .step-item:not(:last-child)::after {
+            .step-line {
                 display: none;
             }
 
             .step-item {
                 width: 100%;
                 max-width: 300px;
+                margin-bottom: 30px;
             }
 
             .motivation-quote {
@@ -1129,7 +1249,7 @@
                     <div class="calc-row">
                         <span class="calc-label" data-lang-tr>Aylık Satış Adedi</span>
                         <span class="calc-label" data-lang-de>Monatliche Verkäufe</span>
-                        <span class="calc-value">95 <span data-lang-tr-inline>adet</span><span data-lang-de-inline>Stück</span></span>
+                        <span class="calc-value"><span class="counter" data-target="95">0</span> <span data-lang-tr-inline>adet</span><span data-lang-de-inline>Stück</span></span>
                     </div>
 
                     <div class="calc-row">
@@ -1147,8 +1267,8 @@
                     <div class="calc-total">
                         <div class="calc-total-label" data-lang-tr>AYLIK TOPLAM KAZANÇ</div>
                         <div class="calc-total-label" data-lang-de>MONATLICHER GESAMTVERDIENST</div>
-                        <div class="calc-total-amount">3.325€</div>
-                        <div class="calc-total-tl">≈ 119.700 ₺</div>
+                        <div class="calc-total-amount"><span class="counter" data-target="3325" data-suffix="€">0</span></div>
+                        <div class="calc-total-tl">≈ <span class="counter" data-target="119700" data-suffix="₺">0</span></div>
                     </div>
                 </div>
             </div>
@@ -1190,7 +1310,7 @@
                             <p data-lang-de>Filiale İzmit | Verkaufsberater</p>
                         </div>
                         <div class="welcome-rank">
-                            <div class="welcome-rank-number">#3</div>
+                            <div class="welcome-rank-number">#<span class="counter" data-target="3">0</span></div>
                             <div class="welcome-rank-label" data-lang-tr>Sıralama</div>
                             <div class="welcome-rank-label" data-lang-de>Rang</div>
                         </div>
@@ -1200,25 +1320,25 @@
                     <div class="panel-stats-grid">
                         <div class="panel-stat-card">
                             <i class="fas fa-shopping-cart"></i>
-                            <div class="panel-stat-value">95</div>
+                            <div class="panel-stat-value"><span class="counter" data-target="95">0</span></div>
                             <div class="panel-stat-label" data-lang-tr>Toplam Satış</div>
                             <div class="panel-stat-label" data-lang-de>Verkäufe</div>
                         </div>
                         <div class="panel-stat-card">
                             <i class="fas fa-euro-sign"></i>
-                            <div class="panel-stat-value euro">3.325€</div>
+                            <div class="panel-stat-value euro"><span class="counter" data-target="3325" data-suffix="€">0</span></div>
                             <div class="panel-stat-label" data-lang-tr>Kazanç (EUR)</div>
                             <div class="panel-stat-label" data-lang-de>Verdienst (EUR)</div>
                         </div>
                         <div class="panel-stat-card">
                             <i class="fas fa-lira-sign"></i>
-                            <div class="panel-stat-value tl">119.700₺</div>
+                            <div class="panel-stat-value tl"><span class="counter" data-target="119700" data-suffix="₺">0</span></div>
                             <div class="panel-stat-label" data-lang-tr>Kazanç (TL)</div>
                             <div class="panel-stat-label" data-lang-de>Verdienst (TL)</div>
                         </div>
                         <div class="panel-stat-card">
                             <i class="fas fa-star"></i>
-                            <div class="panel-stat-value" style="color: var(--gold);">4.8</div>
+                            <div class="panel-stat-value" style="color: var(--gold);"><span class="counter" data-target="4.8" data-decimal="true">0</span></div>
                             <div class="panel-stat-label" data-lang-tr>Performans</div>
                             <div class="panel-stat-label" data-lang-de>Leistung</div>
                         </div>
@@ -1276,7 +1396,8 @@
 
             <div class="rewards-grid">
                 <!-- Aylık -->
-                <div class="reward-card fade-in">
+                <div class="reward-card fade-in" id="reward1">
+                    <div class="confetti-container" id="confetti1"></div>
                     <div class="reward-icon">🥇</div>
                     <div class="reward-period" data-lang-tr>AYLIK</div>
                     <div class="reward-period" data-lang-de>MONATLICH</div>
@@ -1290,7 +1411,8 @@
                 </div>
 
                 <!-- 3 Aylık -->
-                <div class="reward-card featured fade-in">
+                <div class="reward-card featured fade-in" id="reward2">
+                    <div class="confetti-container" id="confetti2"></div>
                     <div class="reward-icon">🏅</div>
                     <div class="reward-period" data-lang-tr>3 AYLIK</div>
                     <div class="reward-period" data-lang-de>QUARTALSWEISE</div>
@@ -1304,7 +1426,8 @@
                 </div>
 
                 <!-- Yıllık -->
-                <div class="reward-card fade-in">
+                <div class="reward-card fade-in" id="reward3">
+                    <div class="confetti-container" id="confetti3"></div>
                     <div class="reward-icon">👑</div>
                     <div class="reward-period" data-lang-tr>YILLIK</div>
                     <div class="reward-period" data-lang-de>JÄHRLICH</div>
@@ -1333,8 +1456,9 @@
             </p>
 
             <div class="steps-timeline">
-                <div class="step-item fade-in">
+                <div class="step-item fade-in" data-step="1">
                     <div class="step-number">1</div>
+                    <div class="step-line"></div>
                     <div class="step-icon"><i class="fas fa-file-alt"></i></div>
                     <h3 class="step-title" data-lang-tr>Formu Doldurun</h3>
                     <h3 class="step-title" data-lang-de>Formular Ausfüllen</h3>
@@ -1342,8 +1466,9 @@
                     <p class="step-desc" data-lang-de>Füllen Sie das Bewerbungsformular vollständig aus</p>
                 </div>
 
-                <div class="step-item fade-in">
+                <div class="step-item fade-in" data-step="2">
                     <div class="step-number">2</div>
+                    <div class="step-line"></div>
                     <div class="step-icon"><i class="fas fa-user-check"></i></div>
                     <h3 class="step-title" data-lang-tr>Değerlendirme</h3>
                     <h3 class="step-title" data-lang-de>Bewertung</h3>
@@ -1351,8 +1476,9 @@
                     <p class="step-desc" data-lang-de>Unser HR-Team prüft Ihre Bewerbung</p>
                 </div>
 
-                <div class="step-item fade-in">
+                <div class="step-item fade-in" data-step="3">
                     <div class="step-number">3</div>
+                    <div class="step-line"></div>
                     <div class="step-icon"><i class="fas fa-video"></i></div>
                     <h3 class="step-title" data-lang-tr>Online Mülakat</h3>
                     <h3 class="step-title" data-lang-de>Online-Interview</h3>
@@ -1360,7 +1486,7 @@
                     <p class="step-desc" data-lang-de>Kennenlernen per Videoanruf</p>
                 </div>
 
-                <div class="step-item fade-in">
+                <div class="step-item fade-in" data-step="4">
                     <div class="step-number">4</div>
                     <div class="step-icon"><i class="fas fa-handshake"></i></div>
                     <h3 class="step-title" data-lang-tr>İşe Başlayın!</h3>
@@ -1458,6 +1584,71 @@
             document.getElementById('navProgress').style.width = scrolled + '%';
         });
 
+        // Counter Animation
+        function animateCounter(element) {
+            const target = parseFloat(element.getAttribute('data-target'));
+            const suffix = element.getAttribute('data-suffix') || '';
+            const isDecimal = element.getAttribute('data-decimal') === 'true';
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+                
+                let current = target * easeProgress;
+                
+                if (isDecimal) {
+                    element.textContent = current.toFixed(1) + suffix;
+                } else if (target >= 1000) {
+                    element.textContent = Math.floor(current).toLocaleString('de-DE') + suffix;
+                } else {
+                    element.textContent = Math.floor(current) + suffix;
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Confetti Effect
+        function createConfetti(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            container.innerHTML = '';
+            const colors = ['#D4AF37', '#F4D03F', '#ffffff', '#ff6b6b', '#4ecdc4', '#45b7d1'];
+            
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.width = (Math.random() * 8 + 5) + 'px';
+                confetti.style.height = (Math.random() * 8 + 5) + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                container.appendChild(confetti);
+            }
+        }
+
+        // Step Animation
+        function animateSteps() {
+            const steps = document.querySelectorAll('.step-item');
+            let delay = 0;
+            
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.classList.add('active');
+                }, delay);
+                delay += 500;
+            });
+        }
+
         // Intersection Observer for animations
         const observerOptions = {
             root: null,
@@ -1469,6 +1660,20 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    
+                    // Counter animation
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        if (!counter.classList.contains('animated')) {
+                            counter.classList.add('animated');
+                            animateCounter(counter);
+                        }
+                    });
+                    
+                    // Steps animation
+                    if (entry.target.closest('.section-steps')) {
+                        setTimeout(animateSteps, 500);
+                    }
                 }
             });
         }, observerOptions);
@@ -1476,6 +1681,18 @@
         // Observe elements
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
+        });
+
+        // Create confetti for reward cards
+        createConfetti('confetti1');
+        createConfetti('confetti2');
+        createConfetti('confetti3');
+
+        // Reward card hover confetti refresh
+        document.querySelectorAll('.reward-card').forEach((card, index) => {
+            card.addEventListener('mouseenter', () => {
+                createConfetti('confetti' + (index + 1));
+            });
         });
 
         // Parallax effect for scroll indicator
