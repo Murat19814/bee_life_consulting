@@ -543,19 +543,56 @@
             .hero-visual { display: none; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .positions-grid { grid-template-columns: 1fr; }
-            .lang-switcher { top: 10px; right: 10px; padding: 6px 10px; }
-            .lang-btn { padding: 6px 10px; font-size: 0.75rem; }
+            .lang-switcher { 
+                top: 10px; 
+                right: 10px; 
+                padding: 6px 8px;
+                gap: 5px;
+            }
+            .lang-btn { 
+                padding: 10px 12px; 
+                font-size: 0.75rem;
+                min-height: 40px;
+                min-width: 50px;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
         }
         
         @media (max-width: 768px) {
+            .hero { padding-top: 70px; }
             .hero h1 { font-size: 2rem; }
             .hero-stats { flex-direction: column; gap: 20px; }
-            .hero-buttons { flex-direction: column; }
+            .hero-buttons { flex-direction: column; width: 100%; padding: 0 10px; }
+            .hero-buttons .btn { width: 100%; justify-content: center; }
             .features-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
             .position-features { grid-template-columns: 1fr; }
-            .cta h2 { font-size: 2rem; }
-            .cta-buttons { flex-direction: column; align-items: center; }
+            .cta h2 { font-size: 1.8rem; }
+            .cta-buttons { flex-direction: column; align-items: center; width: 100%; }
+            .cta-buttons .btn { width: 80%; justify-content: center; }
+            .position-box { padding: 30px 20px; }
+            .features { padding: 60px 0; }
+            .positions { padding: 60px 0; }
+            .cta { padding: 60px 0; }
+            .whatsapp-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+        }
+        
+        @media (max-width: 480px) {
+            .lang-switcher {
+                top: 8px;
+                right: 8px;
+                padding: 4px 6px;
+            }
+            .lang-btn {
+                padding: 8px 10px;
+                font-size: 0.7rem;
+                min-height: 36px;
+                min-width: 44px;
+            }
+            .hero h1 { font-size: 1.7rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .stat-value { font-size: 2rem; }
         }
     </style>
 </head>
@@ -563,9 +600,9 @@
 
     <!-- Language Switcher -->
     <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
-        <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
-        <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">🇬🇧 EN</button>
+        <button class="lang-btn active" data-lang="tr" type="button">🇹🇷 TR</button>
+        <button class="lang-btn" data-lang="de" type="button">🇩🇪 DE</button>
+        <button class="lang-btn" data-lang="en" type="button">🇬🇧 EN</button>
     </div>
 
     <!-- ═══ HERO ═══ -->
@@ -784,7 +821,7 @@
             // Update all translatable elements
             document.querySelectorAll('[data-tr]').forEach(el => {
                 const text = el.getAttribute('data-' + lang);
-                if (text) el.textContent = text;
+                if (text) el.innerHTML = text;
             });
             
             // Update page title
@@ -796,7 +833,24 @@
             document.title = titles[lang];
         }
         
-        document.addEventListener('DOMContentLoaded', () => setLanguage(currentLang));
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+            
+            // Add touch support for mobile
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setLanguage(this.dataset.lang);
+                });
+                btn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setLanguage(this.dataset.lang);
+                });
+            });
+        });
     </script>
 
 </body>

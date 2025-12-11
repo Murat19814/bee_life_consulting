@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bee Life Consulting - Home Office Work Opportunities. Work from anywhere with flexible hours!">
+    <meta name="description" content="Bee Life Consulting - Home Office Fırsatları. Evden çalışarak yüksek kazanç elde edin!">
     <title id="pageTitle">Home Office | Bee Life Consulting</title>
     
     <meta name="theme-color" content="#0d2b2a">
@@ -22,7 +22,6 @@
             --gray: #f8f9fa;
             --text: #1a1a1a;
             --text-light: #6b7280;
-            --gradient-warm: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -79,7 +78,7 @@
         /* ═══ HERO ═══ */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary) 0%, #1a3a50 50%, var(--primary-light) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             position: relative;
             display: flex;
             align-items: center;
@@ -91,14 +90,13 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: 
-                radial-gradient(circle at 10% 20%, rgba(212,175,55,0.12) 0%, transparent 35%),
-                radial-gradient(circle at 90% 80%, rgba(102,126,234,0.1) 0%, transparent 35%),
-                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50 Z' fill='none' stroke='%23D4AF37' stroke-opacity='0.03' stroke-width='1'/%3E%3C/svg%3E");
+                radial-gradient(circle at 20% 30%, rgba(212,175,55,0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(212,175,55,0.08) 0%, transparent 35%);
         }
         
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
             position: relative;
@@ -108,114 +106,83 @@
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background: rgba(212,175,55,0.1);
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(212,175,55,0.15);
             border: 1px solid rgba(212,175,55,0.3);
             border-radius: 50px;
             color: var(--gold);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 30px;
-            backdrop-filter: blur(5px);
-        }
-        
-        .hero-badge i {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            margin-bottom: 25px;
         }
         
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             color: var(--white);
-            line-height: 1.15;
+            line-height: 1.2;
             margin-bottom: 25px;
         }
         
-        .hero h1 span { 
-            color: var(--gold);
-            position: relative;
-        }
-        
-        .hero h1 span::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            right: 0;
-            height: 8px;
-            background: rgba(212,175,55,0.3);
-            z-index: -1;
-        }
+        .hero h1 span { color: var(--gold); }
         
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: rgba(255,255,255,0.85);
             margin-bottom: 35px;
-            max-width: 550px;
-            line-height: 1.8;
+            max-width: 500px;
         }
         
-        .hero-benefits {
+        .hero-features {
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
             margin-bottom: 40px;
         }
         
-        .benefit-tag {
+        .hero-feature {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             padding: 12px 20px;
             background: rgba(255,255,255,0.08);
             border-radius: 30px;
             color: var(--white);
             font-size: 0.9rem;
             border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
         }
         
-        .benefit-tag:hover {
-            background: rgba(212,175,55,0.15);
-            border-color: var(--gold);
-        }
-        
-        .benefit-tag i { color: var(--gold); }
+        .hero-feature i { color: var(--gold); }
         
         .hero-buttons {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
         
         .btn {
-            padding: 18px 40px;
-            border-radius: 14px;
+            padding: 16px 35px;
+            border-radius: 12px;
             font-size: 1rem;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             transition: all 0.3s ease;
-            border: none;
             cursor: pointer;
+            border: none;
         }
         
         .btn-gold {
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
             color: var(--primary);
-            box-shadow: 0 10px 35px rgba(212,175,55,0.4);
+            box-shadow: 0 8px 25px rgba(212,175,55,0.4);
         }
         
         .btn-gold:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 45px rgba(212,175,55,0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212,175,55,0.5);
         }
         
         .btn-outline {
@@ -230,87 +197,72 @@
             color: var(--gold);
         }
         
-        /* Hero Visual */
-        .hero-visual {
-            position: relative;
-        }
+        .hero-visual { position: relative; }
         
-        .hero-image-container {
-            position: relative;
-            padding: 20px;
-        }
-        
-        .floating-card {
+        .hero-card {
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 25px 30px;
+            border-radius: 24px;
+            padding: 40px;
             border: 1px solid rgba(255,255,255,0.2);
-            position: absolute;
-            animation: float 4s ease-in-out infinite;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        
-        .floating-card.card-1 {
-            top: 10%;
-            left: -10%;
-            animation-delay: 0s;
-        }
-        
-        .floating-card.card-2 {
-            bottom: 20%;
-            right: -5%;
-            animation-delay: 1s;
-        }
-        
-        .floating-card.card-3 {
-            bottom: 5%;
-            left: 10%;
-            animation-delay: 2s;
-        }
-        
-        .floating-card i {
-            font-size: 1.8rem;
-            color: var(--gold);
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        .floating-card h4 {
+        .hero-card h3 {
             color: var(--white);
-            font-size: 1rem;
-            margin-bottom: 5px;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         
-        .floating-card p {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.85rem;
+        .hero-card h3 i { color: var(--gold); }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
         }
         
-        .main-visual {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(13,43,42,0.3) 100%);
-            border-radius: 30px;
+        .benefit-item:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateX(10px);
+            border-color: var(--gold);
+        }
+        
+        .benefit-item i {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--primary);
+            font-size: 1.2rem;
         }
         
-        .main-visual i {
-            font-size: 8rem;
-            color: rgba(255,255,255,0.15);
+        .benefit-item div h4 {
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        
+        .benefit-item div p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
         }
         
         /* ═══ BENEFITS ═══ */
         .benefits {
             padding: 100px 0;
-            background: var(--white);
+            background: var(--gray);
         }
         
         .section-header {
@@ -350,52 +302,31 @@
         }
         
         .benefit-card {
-            background: var(--gray);
-            border-radius: 24px;
-            padding: 40px 30px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 35px 25px;
             text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
             transition: all 0.4s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .benefit-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--primary));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
+            border: 1px solid transparent;
         }
         
         .benefit-card:hover {
-            background: var(--white);
             transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
-            border-color: rgba(212,175,55,0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border-color: var(--gold);
         }
         
-        .benefit-card:hover::before { transform: scaleX(1); }
-        
         .benefit-icon {
-            width: 85px;
-            height: 85px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 22px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 25px;
-            box-shadow: 0 12px 30px rgba(13,43,42,0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .benefit-card:hover .benefit-icon {
-            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 25px rgba(13,43,42,0.3);
         }
         
         .benefit-icon i {
@@ -404,85 +335,66 @@
         }
         
         .benefit-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .benefit-card p {
             color: var(--text-light);
-            line-height: 1.7;
+            font-size: 0.9rem;
         }
         
         /* ═══ HOW IT WORKS ═══ */
         .how-it-works {
             padding: 100px 0;
-            background: var(--gray);
+            background: var(--white);
         }
         
-        .steps-container {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
         }
         
-        .steps-container::before {
-            content: '';
-            position: absolute;
-            top: 60px;
-            left: 15%;
-            right: 15%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
-            border-radius: 2px;
-        }
-        
-        .step {
-            flex: 1;
+        .step-card {
             text-align: center;
-            padding: 0 20px;
-            position: relative;
+            padding: 30px 20px;
+            background: var(--gray);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
         }
         
         .step-number {
-            width: 120px;
-            height: 120px;
-            background: var(--white);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            border: 4px solid var(--primary);
-            transition: all 0.4s ease;
-        }
-        
-        .step:hover .step-number {
-            transform: scale(1.1);
-            border-color: var(--gold);
-            box-shadow: 0 20px 50px rgba(212,175,55,0.3);
-        }
-        
-        .step-number span {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            color: var(--primary);
+            color: var(--gold);
+            margin: 0 auto 20px;
         }
         
-        .step h3 {
-            font-size: 1.3rem;
+        .step-card h4 {
             color: var(--primary);
-            margin-bottom: 12px;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
         }
         
-        .step p {
+        .step-card p {
             color: var(--text-light);
-            font-size: 0.95rem;
-            max-width: 250px;
-            margin: 0 auto;
+            font-size: 0.9rem;
         }
         
         /* ═══ REQUIREMENTS ═══ */
@@ -501,8 +413,6 @@
         
         .requirements .container { position: relative; z-index: 2; }
         
-        .requirements .section-header { margin-bottom: 50px; }
-        
         .requirements .section-tag {
             background: rgba(212,175,55,0.2);
             color: var(--gold);
@@ -513,20 +423,18 @@
         
         .req-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
-            max-width: 900px;
-            margin: 0 auto;
         }
         
         .req-item {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             background: rgba(255,255,255,0.08);
             backdrop-filter: blur(10px);
             border-radius: 16px;
-            padding: 25px 30px;
+            padding: 20px 25px;
             border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
         }
@@ -538,72 +446,51 @@
         }
         
         .req-item i {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             background: var(--gold);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary);
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
         }
         
         .req-item span {
             color: var(--white);
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             font-weight: 500;
         }
         
         /* ═══ CTA ═══ */
         .cta {
             padding: 100px 0;
-            background: var(--white);
+            background: var(--gray);
         }
         
         .cta-box {
-            background: var(--gray);
+            background: var(--white);
             border-radius: 30px;
-            padding: 70px;
+            padding: 60px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
         }
         
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: -100px; right: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
-        }
-        
-        .cta-box::after {
-            content: '';
-            position: absolute;
-            bottom: -100px; left: -100px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(13,43,42,0.1) 0%, transparent 70%);
-        }
-        
-        .cta-content { position: relative; z-index: 2; }
-        
-        .cta-content h2 {
+        .cta-box h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
-        .cta-content h2 span { color: var(--gold); }
+        .cta-box h2 span { color: var(--gold); }
         
-        .cta-content p {
+        .cta-box p {
             color: var(--text-light);
-            font-size: 1.2rem;
-            margin-bottom: 40px;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -619,12 +506,12 @@
         .btn-dark {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: var(--white);
-            box-shadow: 0 10px 30px rgba(13,43,42,0.3);
+            box-shadow: 0 8px 25px rgba(13,43,42,0.3);
         }
         
         .btn-dark:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(13,43,42,0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(13,43,42,0.4);
         }
         
         /* ═══ FOOTER ═══ */
@@ -683,30 +570,68 @@
         .whatsapp-btn:hover { transform: scale(1.1); }
         
         /* Responsive */
-        @media (max-width: 1024px) {
+        @media (max-width: 992px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero h1 { font-size: 3rem; }
-            .hero-subtitle { margin-left: auto; margin-right: auto; }
-            .hero-benefits { justify-content: center; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-features { justify-content: center; }
             .hero-buttons { justify-content: center; }
             .hero-visual { display: none; }
-            .benefits-grid { grid-template-columns: 1fr 1fr; }
-            .steps-container { flex-direction: column; gap: 40px; }
-            .steps-container::before { display: none; }
-            .req-grid { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .req-grid { grid-template-columns: 1fr 1fr; }
+            .lang-switcher { 
+                top: 10px; 
+                right: 10px; 
+                padding: 6px 8px;
+                gap: 5px;
+            }
+            .lang-btn { 
+                padding: 10px 12px; 
+                font-size: 0.75rem;
+                min-height: 40px;
+                min-width: 50px;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
         }
         
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero-benefits { flex-direction: column; align-items: center; }
-            .hero-buttons { flex-direction: column; }
+            .hero { padding-top: 70px; }
+            .hero h1 { font-size: 2rem; }
+            .hero-features { flex-direction: column; align-items: center; }
+            .hero-feature { width: 100%; justify-content: center; }
+            .hero-buttons { flex-direction: column; width: 100%; padding: 0 10px; }
+            .hero-buttons .btn { width: 100%; justify-content: center; }
             .benefits-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 2rem; }
+            .steps-grid { grid-template-columns: 1fr 1fr; }
+            .req-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.8rem; }
             .cta-box { padding: 40px 25px; }
-            .cta-content h2 { font-size: 2rem; }
+            .cta-box h2 { font-size: 1.8rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
-            .lang-switcher { top: 10px; right: 10px; padding: 6px 10px; }
-            .lang-btn { padding: 6px 10px; font-size: 0.75rem; }
+            .cta-buttons .btn { width: 80%; }
+            .benefits { padding: 60px 0; }
+            .how-it-works { padding: 60px 0; }
+            .requirements { padding: 60px 0; }
+            .cta { padding: 60px 0; }
+            .whatsapp-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+        }
+        
+        @media (max-width: 480px) {
+            .lang-switcher {
+                top: 8px;
+                right: 8px;
+                padding: 4px 6px;
+            }
+            .lang-btn {
+                padding: 8px 10px;
+                font-size: 0.7rem;
+                min-height: 36px;
+                min-width: 44px;
+            }
+            .hero h1 { font-size: 1.7rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .steps-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -714,9 +639,9 @@
 
     <!-- Language Switcher -->
     <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
-        <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
-        <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">🇬🇧 EN</button>
+        <button class="lang-btn active" data-lang="tr" type="button">🇹🇷 TR</button>
+        <button class="lang-btn" data-lang="de" type="button">🇩🇪 DE</button>
+        <button class="lang-btn" data-lang="en" type="button">🇬🇧 EN</button>
     </div>
 
     <!-- ═══ HERO ═══ -->
@@ -728,32 +653,26 @@
                         <i class="fas fa-home"></i>
                         <span data-tr="Evden Çalışma Fırsatı" data-de="Home-Office Möglichkeit" data-en="Work From Home Opportunity">Evden Çalışma Fırsatı</span>
                     </div>
-                    
                     <h1>
                         <span data-tr="Evinizden" data-de="Arbeiten Sie" data-en="Work From">Evinizden</span>
                         <br><span data-tr="Çalışın, Kazanın!" data-de="von Zuhause!" data-en="Home & Earn!">Çalışın, Kazanın!</span>
                     </h1>
-                    
-                    <p class="hero-subtitle" data-tr="Bee Life Consulting ile evinizden Almanya pazarına hizmet verin. Esnek çalışma saatleri, yüksek kazanç potansiyeli ve özgürlük sizin elinizde!" data-de="Bedienen Sie den deutschen Markt von zu Hause aus mit Bee Life Consulting. Flexible Arbeitszeiten, hohes Verdienstpotenzial und Freiheit liegen in Ihrer Hand!" data-en="Serve the German market from your home with Bee Life Consulting. Flexible working hours, high earning potential and freedom are in your hands!">
-                        Bee Life Consulting ile evinizden Almanya pazarına hizmet verin. Esnek çalışma saatleri, yüksek kazanç potansiyeli ve özgürlük sizin elinizde!
+                    <p class="hero-subtitle" data-tr="Bee Life Consulting ile evinizden Almanya pazarına hizmet verin. Esnek saatler, yüksek kazanç ve özgürlük sizin elinizde!" data-de="Bedienen Sie den deutschen Markt von zu Hause aus mit Bee Life Consulting. Flexible Zeiten, hoher Verdienst und Freiheit in Ihrer Hand!" data-en="Serve the German market from home with Bee Life Consulting. Flexible hours, high earnings and freedom in your hands!">
+                        Bee Life Consulting ile evinizden Almanya pazarına hizmet verin. Esnek saatler, yüksek kazanç ve özgürlük sizin elinizde!
                     </p>
                     
-                    <div class="hero-benefits">
-                        <div class="benefit-tag">
+                    <div class="hero-features">
+                        <div class="hero-feature">
                             <i class="fas fa-clock"></i>
                             <span data-tr="Esnek Saatler" data-de="Flexible Zeiten" data-en="Flexible Hours">Esnek Saatler</span>
                         </div>
-                        <div class="benefit-tag">
+                        <div class="hero-feature">
                             <i class="fas fa-euro-sign"></i>
-                            <span data-tr="Yüksek Kazanç" data-de="Hoher Verdienst" data-en="High Earnings">Yüksek Kazanç</span>
+                            <span data-tr="35€ Komisyon" data-de="35€ Provision" data-en="35€ Commission">35€ Komisyon</span>
                         </div>
-                        <div class="benefit-tag">
+                        <div class="hero-feature">
                             <i class="fas fa-laptop"></i>
                             <span data-tr="Uzaktan Çalışma" data-de="Remote-Arbeit" data-en="Remote Work">Uzaktan Çalışma</span>
-                        </div>
-                        <div class="benefit-tag">
-                            <i class="fas fa-graduation-cap"></i>
-                            <span data-tr="Eğitim Desteği" data-de="Schulungsunterstützung" data-en="Training Support">Eğitim Desteği</span>
                         </div>
                     </div>
                     
@@ -770,27 +689,31 @@
                 </div>
                 
                 <div class="hero-visual">
-                    <div class="hero-image-container">
-                        <div class="floating-card card-1">
+                    <div class="hero-card">
+                        <h3><i class="fas fa-gift"></i> <span data-tr="Home Office Avantajları" data-de="Home-Office Vorteile" data-en="Home Office Benefits">Home Office Avantajları</span></h3>
+                        
+                        <div class="benefit-item">
                             <i class="fas fa-wifi"></i>
-                            <h4 data-tr="Sadece İnternet" data-de="Nur Internet" data-en="Just Internet">Sadece İnternet</h4>
-                            <p data-tr="İhtiyacınız olan tek şey" data-de="Alles was Sie brauchen" data-en="All you need">İhtiyacınız olan tek şey</p>
+                            <div>
+                                <h4 data-tr="Sadece İnternet Yeterli" data-de="Nur Internet Erforderlich" data-en="Just Internet Required">Sadece İnternet Yeterli</h4>
+                                <p data-tr="Bilgisayar ve kulaklık ile başlayın" data-de="Starten Sie mit Computer und Headset" data-en="Start with computer and headset">Bilgisayar ve kulaklık ile başlayın</p>
+                            </div>
                         </div>
                         
-                        <div class="floating-card card-2">
+                        <div class="benefit-item">
                             <i class="fas fa-money-bill-wave"></i>
-                            <h4>35€</h4>
-                            <p data-tr="QC OK Komisyon" data-de="QC OK Provision" data-en="QC OK Commission">QC OK Komisyon</p>
+                            <div>
+                                <h4 data-tr="Yüksek Kazanç" data-de="Hoher Verdienst" data-en="High Earnings">Yüksek Kazanç</h4>
+                                <p data-tr="35€ komisyon + sabit maaş" data-de="35€ Provision + Festgehalt" data-en="35€ commission + fixed salary">35€ komisyon + sabit maaş</p>
+                            </div>
                         </div>
                         
-                        <div class="floating-card card-3">
-                            <i class="fas fa-globe"></i>
-                            <h4 data-tr="Global Proje" data-de="Globales Projekt" data-en="Global Project">Global Proje</h4>
-                            <p data-tr="Almanya Pazarı" data-de="Deutscher Markt" data-en="German Market">Almanya Pazarı</p>
-                        </div>
-                        
-                        <div class="main-visual">
-                            <i class="fas fa-laptop-house"></i>
+                        <div class="benefit-item">
+                            <i class="fas fa-balance-scale"></i>
+                            <div>
+                                <h4 data-tr="İş-Yaşam Dengesi" data-de="Work-Life-Balance" data-en="Work-Life Balance">İş-Yaşam Dengesi</h4>
+                                <p data-tr="Ailenize daha fazla zaman ayırın" data-de="Mehr Zeit für Ihre Familie" data-en="More time for your family">Ailenize daha fazla zaman ayırın</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -804,56 +727,44 @@
             <div class="section-header">
                 <span class="section-tag" data-tr="Avantajlar" data-de="Vorteile" data-en="Benefits">Avantajlar</span>
                 <h2 class="section-title" data-tr="Home Office Avantajları" data-de="Home-Office Vorteile" data-en="Home Office Benefits">Home Office Avantajları</h2>
-                <p class="section-subtitle" data-tr="Evden çalışmanın size sunduğu eşsiz fırsatlar" data-de="Einzigartige Möglichkeiten, die Ihnen das Arbeiten von zu Hause bietet" data-en="Unique opportunities that working from home offers you">Evden çalışmanın size sunduğu eşsiz fırsatlar</p>
+                <p class="section-subtitle" data-tr="Evden çalışmanın size sunduğu eşsiz fırsatlar" data-de="Einzigartige Möglichkeiten des Arbeitens von zu Hause" data-en="Unique opportunities of working from home">Evden çalışmanın size sunduğu eşsiz fırsatlar</p>
             </div>
             
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-clock"></i></div>
                     <h3 data-tr="Esnek Çalışma Saatleri" data-de="Flexible Arbeitszeiten" data-en="Flexible Working Hours">Esnek Çalışma Saatleri</h3>
-                    <p data-tr="Kendi programınızı kendiniz belirleyin. Sabah, öğlen veya akşam - size uygun zamanda çalışın." data-de="Bestimmen Sie Ihren eigenen Zeitplan. Morgens, mittags oder abends - arbeiten Sie, wann es Ihnen passt." data-en="Set your own schedule. Morning, afternoon or evening - work when it suits you.">
-                        Kendi programınızı kendiniz belirleyin. Sabah, öğlen veya akşam - size uygun zamanda çalışın.
-                    </p>
+                    <p data-tr="Kendi programınızı kendiniz belirleyin. Size uygun zamanda çalışın." data-de="Bestimmen Sie Ihren eigenen Zeitplan. Arbeiten Sie, wann es Ihnen passt." data-en="Set your own schedule. Work when it suits you.">Kendi programınızı kendiniz belirleyin. Size uygun zamanda çalışın.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-piggy-bank"></i></div>
                     <h3 data-tr="Ulaşım Masrafı Yok" data-de="Keine Fahrtkosten" data-en="No Transportation Costs">Ulaşım Masrafı Yok</h3>
-                    <p data-tr="Her gün işe gidip gelme stresi ve masrafından kurtulun. Hem zaman hem para kazanın." data-de="Befreien Sie sich vom Stress und den Kosten des täglichen Pendelns. Sparen Sie Zeit und Geld." data-en="Free yourself from the stress and costs of daily commuting. Save both time and money.">
-                        Her gün işe gidip gelme stresi ve masrafından kurtulun. Hem zaman hem para kazanın.
-                    </p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-balance-scale"></i></div>
-                    <h3 data-tr="İş-Yaşam Dengesi" data-de="Work-Life-Balance" data-en="Work-Life Balance">İş-Yaşam Dengesi</h3>
-                    <p data-tr="Aileniz ve özel hayatınız için daha fazla zaman ayırın. Mutlu bir denge kurun." data-de="Verbringen Sie mehr Zeit mit Ihrer Familie und Ihrem Privatleben. Finden Sie eine glückliche Balance." data-en="Spend more time with your family and personal life. Find a happy balance.">
-                        Aileniz ve özel hayatınız için daha fazla zaman ayırın. Mutlu bir denge kurun.
-                    </p>
+                    <p data-tr="Her gün işe gidip gelme stresi ve masrafından kurtulun." data-de="Befreien Sie sich vom Stress und den Kosten des täglichen Pendelns." data-en="Free yourself from the stress and costs of daily commuting.">Her gün işe gidip gelme stresi ve masrafından kurtulun.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-euro-sign"></i></div>
                     <h3 data-tr="Yüksek Kazanç" data-de="Hoher Verdienst" data-en="High Earnings">Yüksek Kazanç</h3>
-                    <p data-tr="Her satış için 35€ komisyon + sabit maaş. Performansınıza göre sınırsız kazanç potansiyeli." data-de="35€ Provision pro Verkauf + Festgehalt. Unbegrenztes Verdienstpotenzial je nach Leistung." data-en="35€ commission per sale + fixed salary. Unlimited earning potential based on your performance.">
-                        Her satış için 35€ komisyon + sabit maaş. Performansınıza göre sınırsız kazanç potansiyeli.
-                    </p>
+                    <p data-tr="Her satış için 35€ komisyon + sabit maaş. Sınırsız kazanç potansiyeli." data-de="35€ Provision pro Verkauf + Festgehalt. Unbegrenztes Verdienstpotenzial." data-en="35€ commission per sale + fixed salary. Unlimited earning potential.">Her satış için 35€ komisyon + sabit maaş. Sınırsız kazanç potansiyeli.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3 data-tr="İş-Yaşam Dengesi" data-de="Work-Life-Balance" data-en="Work-Life Balance">İş-Yaşam Dengesi</h3>
+                    <p data-tr="Aileniz ve özel hayatınız için daha fazla zaman ayırın." data-de="Verbringen Sie mehr Zeit mit Ihrer Familie und Ihrem Privatleben." data-en="Spend more time with your family and personal life.">Aileniz ve özel hayatınız için daha fazla zaman ayırın.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-headset"></i></div>
                     <h3 data-tr="Profesyonel Destek" data-de="Professionelle Unterstützung" data-en="Professional Support">Profesyonel Destek</h3>
-                    <p data-tr="Kapsamlı eğitim programı, teknik destek ve sürekli mentorluk ile her zaman yanınızdayız." data-de="Umfassendes Schulungsprogramm, technischer Support und kontinuierliches Mentoring - wir sind immer für Sie da." data-en="Comprehensive training program, technical support and continuous mentoring - we are always by your side.">
-                        Kapsamlı eğitim programı, teknik destek ve sürekli mentorluk ile her zaman yanınızdayız.
-                    </p>
+                    <p data-tr="Kapsamlı eğitim programı ve sürekli mentorluk desteği." data-de="Umfassendes Schulungsprogramm und kontinuierliche Mentoring-Unterstützung." data-en="Comprehensive training program and continuous mentoring support.">Kapsamlı eğitim programı ve sürekli mentorluk desteği.</p>
                 </div>
                 
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-globe-europe"></i></div>
                     <h3 data-tr="Uluslararası Deneyim" data-de="Internationale Erfahrung" data-en="International Experience">Uluslararası Deneyim</h3>
-                    <p data-tr="Almanya pazarında çalışarak değerli iş deneyimi kazanın. Kariyerinizi global düzeyde geliştirin." data-de="Sammeln Sie wertvolle Berufserfahrung auf dem deutschen Markt. Entwickeln Sie Ihre Karriere auf globaler Ebene." data-en="Gain valuable work experience in the German market. Develop your career on a global level.">
-                        Almanya pazarında çalışarak değerli iş deneyimi kazanın. Kariyerinizi global düzeyde geliştirin.
-                    </p>
+                    <p data-tr="Almanya pazarında çalışarak değerli iş deneyimi kazanın." data-de="Sammeln Sie wertvolle Berufserfahrung auf dem deutschen Markt." data-en="Gain valuable work experience in the German market.">Almanya pazarında çalışarak değerli iş deneyimi kazanın.</p>
                 </div>
             </div>
         </div>
@@ -868,29 +779,29 @@
                 <p class="section-subtitle" data-tr="4 basit adımda evden çalışmaya başlayın" data-de="Beginnen Sie in 4 einfachen Schritten mit der Arbeit von zu Hause" data-en="Start working from home in 4 simple steps">4 basit adımda evden çalışmaya başlayın</p>
             </div>
             
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number"><span>1</span></div>
-                    <h3 data-tr="Online Başvuru" data-de="Online Bewerbung" data-en="Online Application">Online Başvuru</h3>
-                    <p data-tr="Web sitemizdeki formu doldurun veya WhatsApp üzerinden bize ulaşın" data-de="Füllen Sie das Formular auf unserer Website aus oder kontaktieren Sie uns über WhatsApp" data-en="Fill out the form on our website or contact us via WhatsApp">Web sitemizdeki formu doldurun veya WhatsApp üzerinden bize ulaşın</p>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h4 data-tr="Online Başvuru" data-de="Online Bewerbung" data-en="Online Application">Online Başvuru</h4>
+                    <p data-tr="Formu doldurun veya WhatsApp'tan ulaşın" data-de="Formular ausfüllen oder per WhatsApp kontaktieren" data-en="Fill out the form or contact via WhatsApp">Formu doldurun veya WhatsApp'tan ulaşın</p>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number"><span>2</span></div>
-                    <h3 data-tr="Görüşme" data-de="Gespräch" data-en="Interview">Görüşme</h3>
-                    <p data-tr="Kısa bir telefon veya video görüşme ile tanışalım" data-de="Lassen Sie uns bei einem kurzen Telefon- oder Videogespräch kennenlernen" data-en="Let's meet through a short phone or video call">Kısa bir telefon veya video görüşme ile tanışalım</p>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h4 data-tr="Görüşme" data-de="Gespräch" data-en="Interview">Görüşme</h4>
+                    <p data-tr="Kısa bir telefon/video görüşme yapalım" data-de="Ein kurzes Telefon-/Videogespräch führen" data-en="Let's have a short phone/video call">Kısa bir telefon/video görüşme yapalım</p>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number"><span>3</span></div>
-                    <h3 data-tr="Eğitim" data-de="Schulung" data-en="Training">Eğitim</h3>
-                    <p data-tr="Online eğitim programımızla sizi projeye hazırlayalım" data-de="Bereiten wir Sie mit unserem Online-Schulungsprogramm auf das Projekt vor" data-en="Let us prepare you for the project with our online training program">Online eğitim programımızla sizi projeye hazırlayalım</p>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h4 data-tr="Eğitim" data-de="Schulung" data-en="Training">Eğitim</h4>
+                    <p data-tr="Online eğitim ile sizi hazırlayalım" data-de="Mit Online-Schulung bereiten wir Sie vor" data-en="We prepare you with online training">Online eğitim ile sizi hazırlayalım</p>
                 </div>
                 
-                <div class="step">
-                    <div class="step-number"><span>4</span></div>
-                    <h3 data-tr="Çalışmaya Başla" data-de="Mit der Arbeit Beginnen" data-en="Start Working">Çalışmaya Başla</h3>
-                    <p data-tr="Evinizden Almanya pazarına hizmet vermeye başlayın" data-de="Beginnen Sie, den deutschen Markt von zu Hause aus zu bedienen" data-en="Start serving the German market from your home">Evinizden Almanya pazarına hizmet vermeye başlayın</p>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h4 data-tr="Çalışmaya Başla" data-de="Mit der Arbeit Beginnen" data-en="Start Working">Çalışmaya Başla</h4>
+                    <p data-tr="Evinizden çalışmaya ve kazanmaya başlayın" data-de="Beginnen Sie von zu Hause aus zu arbeiten und zu verdienen" data-en="Start working and earning from home">Evinizden çalışmaya ve kazanmaya başlayın</p>
                 </div>
             </div>
         </div>
@@ -908,7 +819,7 @@
             <div class="req-grid">
                 <div class="req-item">
                     <i class="fas fa-language"></i>
-                    <span data-tr="Almanca B2-C2 seviye dil yetkinliği" data-de="Deutsch B2-C2 Sprachkenntnisse" data-en="German B2-C2 language proficiency">Almanca B2-C2 seviye dil yetkinliği</span>
+                    <span data-tr="Almanca B2-C2 seviye" data-de="Deutsch B2-C2 Niveau" data-en="German B2-C2 level">Almanca B2-C2 seviye</span>
                 </div>
                 
                 <div class="req-item">
@@ -933,7 +844,7 @@
                 
                 <div class="req-item">
                     <i class="fas fa-user-clock"></i>
-                    <span data-tr="Minimum 4 saat/gün müsaitlik" data-de="Mindestens 4 Stunden/Tag Verfügbarkeit" data-en="Minimum 4 hours/day availability">Minimum 4 saat/gün müsaitlik</span>
+                    <span data-tr="Minimum 4 saat/gün müsaitlik" data-de="Mind. 4 Stunden/Tag Verfügbarkeit" data-en="Min. 4 hours/day availability">Minimum 4 saat/gün müsaitlik</span>
                 </div>
             </div>
         </div>
@@ -943,21 +854,19 @@
     <section class="cta">
         <div class="container">
             <div class="cta-box">
-                <div class="cta-content">
-                    <h2><span data-tr="Evden Çalışmaya" data-de="Sind Sie Bereit" data-en="Ready to Start">Evden Çalışmaya</span> <span data-tr="Hazır mısınız?" data-de="für Home Office?" data-en="Home Office?">Hazır mısınız?</span></h2>
-                    <p data-tr="Bee Life ailesine katılın ve evinizin konforunda yüksek kazanç elde etmeye başlayın." data-de="Treten Sie der Bee Life Familie bei und beginnen Sie, bequem von zu Hause aus gut zu verdienen." data-en="Join the Bee Life family and start earning high income from the comfort of your home.">
-                        Bee Life ailesine katılın ve evinizin konforunda yüksek kazanç elde etmeye başlayın.
-                    </p>
-                    <div class="cta-buttons">
-                        <a href="basvuru.html" class="btn btn-dark">
-                            <i class="fas fa-paper-plane"></i>
-                            <span data-tr="Online Başvuru Yap" data-de="Online Bewerben" data-en="Apply Online">Online Başvuru Yap</span>
-                        </a>
-                        <a href="https://wa.me/905356634166" class="btn btn-gold" target="_blank">
-                            <i class="fab fa-whatsapp"></i>
-                            <span data-tr="WhatsApp İletişim" data-de="WhatsApp Kontakt" data-en="WhatsApp Contact">WhatsApp İletişim</span>
-                        </a>
-                    </div>
+                <h2><span data-tr="Evden Çalışmaya" data-de="Bereit für" data-en="Ready for">Evden Çalışmaya</span> <span data-tr="Hazır mısınız?" data-de="Home Office?" data-en="Home Office?">Hazır mısınız?</span></h2>
+                <p data-tr="Bee Life ailesine katılın ve evinizin konforunda yüksek kazanç elde etmeye başlayın." data-de="Treten Sie der Bee Life Familie bei und beginnen Sie, bequem von zu Hause aus gut zu verdienen." data-en="Join the Bee Life family and start earning well from the comfort of your home.">
+                    Bee Life ailesine katılın ve evinizin konforunda yüksek kazanç elde etmeye başlayın.
+                </p>
+                <div class="cta-buttons">
+                    <a href="basvuru.html" class="btn btn-dark">
+                        <i class="fas fa-paper-plane"></i>
+                        <span data-tr="Online Başvuru Yap" data-de="Online Bewerben" data-en="Apply Online">Online Başvuru Yap</span>
+                    </a>
+                    <a href="https://wa.me/905356634166" class="btn btn-gold" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span data-tr="WhatsApp İletişim" data-de="WhatsApp Kontakt" data-en="WhatsApp Contact">WhatsApp İletişim</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1006,7 +915,24 @@
             document.title = titles[lang];
         }
         
-        document.addEventListener('DOMContentLoaded', () => setLanguage(currentLang));
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+            
+            // Add touch support for mobile
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setLanguage(this.dataset.lang);
+                });
+                btn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setLanguage(this.dataset.lang);
+                });
+            });
+        });
     </script>
 
 </body>

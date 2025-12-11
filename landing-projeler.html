@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bee Life Consulting - B2B Projects for Call Centers. German Market Partner for Professional Call Centers">
+    <meta name="description" content="Bee Life Consulting - B2B Projeler. Çağrı merkezleri için Almanya pazarından projeler.">
     <title id="pageTitle">B2B Projeler | Bee Life Consulting</title>
     
     <meta name="theme-color" content="#0d2b2a">
@@ -78,7 +78,7 @@
         /* ═══ HERO ═══ */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, #1a1a2e 0%, #0d2b2a 50%, #16213e 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             position: relative;
             display: flex;
             align-items: center;
@@ -90,39 +90,36 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(212,175,55,0.08) 0%, transparent 30%),
-                radial-gradient(circle at 80% 20%, rgba(212,175,55,0.06) 0%, transparent 30%),
-                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+                radial-gradient(circle at 20% 30%, rgba(212,175,55,0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(212,175,55,0.08) 0%, transparent 35%);
         }
         
-        .hero-content {
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
             position: relative;
             z-index: 2;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
         }
         
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
-            background: rgba(212,175,55,0.1);
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(212,175,55,0.15);
             border: 1px solid rgba(212,175,55,0.3);
             border-radius: 50px;
             color: var(--gold);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 30px;
-            backdrop-filter: blur(5px);
+            margin-bottom: 25px;
         }
-        
-        .hero-badge i { font-size: 1rem; }
         
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--white);
             line-height: 1.2;
             margin-bottom: 25px;
@@ -131,55 +128,39 @@
         .hero h1 span { color: var(--gold); }
         
         .hero-subtitle {
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 45px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 35px;
+            max-width: 500px;
         }
         
-        .hero-features {
+        .hero-stats {
             display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
         }
         
-        .hero-feature {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--white);
-        }
+        .stat-item { text-align: center; }
         
-        .hero-feature i {
-            width: 45px;
-            height: 45px;
-            background: rgba(212,175,55,0.15);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
             color: var(--gold);
-            font-size: 1.1rem;
+            display: block;
         }
         
-        .hero-feature span {
-            font-size: 0.95rem;
-            text-align: left;
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
         }
         
         .hero-buttons {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .btn {
-            padding: 18px 40px;
+            padding: 16px 35px;
             border-radius: 12px;
             font-size: 1rem;
             font-weight: 700;
@@ -188,19 +169,19 @@
             align-items: center;
             gap: 10px;
             transition: all 0.3s ease;
-            border: none;
             cursor: pointer;
+            border: none;
         }
         
         .btn-gold {
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
             color: var(--primary);
-            box-shadow: 0 8px 30px rgba(212,175,55,0.4);
+            box-shadow: 0 8px 25px rgba(212,175,55,0.4);
         }
         
         .btn-gold:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(212,175,55,0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(212,175,55,0.5);
         }
         
         .btn-outline {
@@ -213,6 +194,64 @@
             background: rgba(255,255,255,0.1);
             border-color: var(--gold);
             color: var(--gold);
+        }
+        
+        .hero-visual { position: relative; }
+        
+        .hero-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .hero-card h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .hero-card h3 i { color: var(--gold); }
+        
+        .project-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateX(10px);
+            border-color: var(--gold);
+        }
+        
+        .project-card h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .project-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        
+        .project-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--gold);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
         }
         
         /* ═══ SERVICES ═══ */
@@ -259,72 +298,56 @@
         
         .service-card {
             background: var(--white);
-            border-radius: 24px;
-            padding: 45px 35px;
+            border-radius: 20px;
+            padding: 35px 25px;
             text-align: center;
             box-shadow: 0 10px 40px rgba(0,0,0,0.05);
             transition: all 0.4s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--gold));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
+            border: 1px solid transparent;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
-            border-color: rgba(212,175,55,0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border-color: var(--gold);
         }
         
-        .service-card:hover::before { transform: scaleX(1); }
-        
         .service-icon {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 24px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
-            box-shadow: 0 10px 30px rgba(13,43,42,0.3);
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 25px rgba(13,43,42,0.3);
         }
         
         .service-icon i {
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: var(--gold);
         }
         
         .service-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .service-card p {
             color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
         }
         
         .service-tag {
             display: inline-block;
-            padding: 8px 18px;
-            background: rgba(212,175,55,0.1);
+            padding: 6px 14px;
+            background: rgba(212,175,55,0.15);
             color: var(--gold);
-            border-radius: 25px;
-            font-size: 0.85rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 600;
         }
         
@@ -337,7 +360,7 @@
         .why-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 60px;
             align-items: center;
         }
         
@@ -345,7 +368,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         
         .why-content h2 span { color: var(--gold); }
@@ -353,7 +376,7 @@
         .why-content > p {
             color: var(--text-light);
             font-size: 1.1rem;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             line-height: 1.8;
         }
         
@@ -375,20 +398,22 @@
         }
         
         .why-list li i {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gold);
             flex-shrink: 0;
+            font-size: 1.1rem;
         }
         
         .why-list li div h4 {
             color: var(--primary);
             margin-bottom: 5px;
+            font-size: 1.05rem;
         }
         
         .why-list li div p {
@@ -396,96 +421,67 @@
             font-size: 0.9rem;
         }
         
-        .why-stats {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+            gap: 20px;
         }
         
         .stat-card {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             border-radius: 20px;
-            padding: 35px;
+            padding: 30px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
         }
         
         .stat-card h3 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--gold);
-            margin-bottom: 10px;
-            position: relative;
+            margin-bottom: 8px;
         }
         
         .stat-card p {
             color: rgba(255,255,255,0.8);
-            font-size: 0.95rem;
-            position: relative;
+            font-size: 0.9rem;
         }
         
-        /* ═══ PARTNERSHIP ═══ */
-        .partnership {
+        /* ═══ STEPS ═══ */
+        .steps {
             padding: 100px 0;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             position: relative;
         }
         
-        .partnership::before {
+        .steps::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: 
-                radial-gradient(circle at 0% 50%, rgba(212,175,55,0.08) 0%, transparent 40%),
-                radial-gradient(circle at 100% 50%, rgba(212,175,55,0.08) 0%, transparent 40%);
+            background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.08) 0%, transparent 50%);
         }
         
-        .partnership .container { position: relative; z-index: 2; }
+        .steps .container { position: relative; z-index: 2; }
         
-        .partnership-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 60px;
+        .steps .section-tag {
+            background: rgba(212,175,55,0.2);
+            color: var(--gold);
         }
         
-        .partnership-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--white);
-            margin-bottom: 20px;
-        }
+        .steps .section-title { color: var(--white); }
+        .steps .section-subtitle { color: rgba(255,255,255,0.7); }
         
-        .partnership-content h2 span { color: var(--gold); }
-        
-        .partnership-content p {
-            color: rgba(255,255,255,0.8);
-            font-size: 1.2rem;
-        }
-        
-        .partnership-steps {
+        .steps-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 30px;
         }
         
         .step-card {
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 35px 25px;
             text-align: center;
+            padding: 30px 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
         
         .step-card:hover {
@@ -511,7 +507,7 @@
         .step-card h4 {
             color: var(--white);
             font-size: 1.1rem;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         
         .step-card p {
@@ -529,28 +525,11 @@
             background: var(--white);
             border-radius: 30px;
             padding: 60px;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
             align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0;
-            width: 40%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 30px 0 0 30px;
-        }
-        
-        .cta-content {
-            position: relative;
-            z-index: 2;
-            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
         }
         
         .cta-content h2 {
@@ -560,39 +539,52 @@
             margin-bottom: 15px;
         }
         
+        .cta-content h2 span { color: var(--gold); }
+        
         .cta-content p {
             color: var(--text-light);
-            margin-bottom: 30px;
             font-size: 1.1rem;
+            margin-bottom: 25px;
         }
         
         .cta-info {
-            position: relative;
-            z-index: 2;
             text-align: center;
             padding: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 20px;
         }
         
         .cta-info h3 {
             color: var(--white);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 20px;
         }
         
         .cta-info a {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             color: var(--gold);
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
+            margin-bottom: 15px;
+            justify-content: center;
             transition: all 0.3s ease;
         }
         
         .cta-info a:hover { color: var(--gold-light); }
         
-        .cta-info a i { font-size: 1.5rem; }
+        .btn-dark {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            box-shadow: 0 8px 25px rgba(13,43,42,0.3);
+        }
+        
+        .btn-dark:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(13,43,42,0.4);
+        }
         
         /* ═══ FOOTER ═══ */
         .footer {
@@ -650,26 +642,66 @@
         .whatsapp-btn:hover { transform: scale(1.1); }
         
         /* Responsive */
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 3rem; }
-            .services-grid { grid-template-columns: 1fr 1fr; }
-            .partnership-steps { grid-template-columns: repeat(2, 1fr); }
-            .cta-box { flex-direction: column; text-align: center; }
-            .cta-box::before { width: 100%; height: 50%; top: auto; bottom: 0; border-radius: 0 0 30px 30px; }
+        @media (max-width: 992px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-stats { justify-content: center; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { display: none; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .cta-box { grid-template-columns: 1fr; text-align: center; }
+            .lang-switcher { 
+                top: 10px; 
+                right: 10px; 
+                padding: 6px 8px;
+                gap: 5px;
+            }
+            .lang-btn { 
+                padding: 10px 12px; 
+                font-size: 0.75rem;
+                min-height: 40px;
+                min-width: 50px;
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
         }
         
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero-features { gap: 25px; }
-            .hero-buttons { flex-direction: column; }
+            .hero { padding-top: 70px; }
+            .hero h1 { font-size: 2rem; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .hero-buttons { flex-direction: column; width: 100%; padding: 0 10px; }
+            .hero-buttons .btn { width: 100%; justify-content: center; }
             .services-grid { grid-template-columns: 1fr; }
-            .why-grid { grid-template-columns: 1fr; }
-            .why-stats { margin-top: 40px; }
-            .partnership-steps { grid-template-columns: 1fr; }
-            .section-title { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .steps-grid { grid-template-columns: 1fr 1fr; }
             .cta-box { padding: 40px 25px; }
-            .lang-switcher { top: 10px; right: 10px; padding: 6px 10px; }
-            .lang-btn { padding: 6px 10px; font-size: 0.75rem; }
+            .cta h2 { font-size: 1.8rem; }
+            .services { padding: 60px 0; }
+            .why-us { padding: 60px 0; }
+            .steps { padding: 60px 0; }
+            .cta { padding: 60px 0; }
+            .whatsapp-btn { bottom: 20px; right: 20px; width: 55px; height: 55px; }
+        }
+        
+        @media (max-width: 480px) {
+            .lang-switcher {
+                top: 8px;
+                right: 8px;
+                padding: 4px 6px;
+            }
+            .lang-btn {
+                padding: 8px 10px;
+                font-size: 0.7rem;
+                min-height: 36px;
+                min-width: 44px;
+            }
+            .hero h1 { font-size: 1.7rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .stat-value { font-size: 2rem; }
+            .steps-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -677,93 +709,111 @@
 
     <!-- Language Switcher -->
     <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
-        <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
-        <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">🇬🇧 EN</button>
+        <button class="lang-btn active" data-lang="tr" type="button">🇹🇷 TR</button>
+        <button class="lang-btn" data-lang="de" type="button">🇩🇪 DE</button>
+        <button class="lang-btn" data-lang="en" type="button">🇬🇧 EN</button>
     </div>
 
     <!-- ═══ HERO ═══ -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <i class="fas fa-handshake"></i>
-                    <span data-tr="Çağrı Merkezleri İçin B2B Partner" data-de="B2B Partner für Callcenter" data-en="B2B Partner for Call Centers">Çağrı Merkezleri İçin B2B Partner</span>
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="fas fa-handshake"></i>
+                        <span data-tr="Çağrı Merkezleri İçin B2B Partner" data-de="B2B Partner für Callcenter" data-en="B2B Partner for Call Centers">Çağrı Merkezleri İçin B2B Partner</span>
+                    </div>
+                    <h1>
+                        <span data-tr="Almanya Pazarına" data-de="Zugang zum" data-en="Access to the">Almanya Pazarına</span>
+                        <br><span data-tr="Güvenilir Köprünüz" data-de="Deutschen Markt" data-en="German Market">Güvenilir Köprünüz</span>
+                    </h1>
+                    <p class="hero-subtitle" data-tr="Bee Life Consulting, çağrı merkezlerine Almanya pazarından yüksek kaliteli Outbound satış projeleri sunuyor. 5 yıllık deneyim, güvenilir ortaklık." data-de="Bee Life Consulting bietet Callcentern hochwertige Outbound-Verkaufsprojekte aus dem deutschen Markt. 5 Jahre Erfahrung, zuverlässige Partnerschaft." data-en="Bee Life Consulting offers call centers high-quality Outbound sales projects from the German market. 5 years of experience, reliable partnership.">
+                        Bee Life Consulting, çağrı merkezlerine Almanya pazarından yüksek kaliteli Outbound satış projeleri sunuyor. 5 yıllık deneyim, güvenilir ortaklık.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">50+</span>
+                            <span class="stat-label" data-tr="Partner Çağrı Merkezi" data-de="Partner Callcenter" data-en="Partner Call Centers">Partner Çağrı Merkezi</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">10K+</span>
+                            <span class="stat-label" data-tr="Aylık Satış" data-de="Monatliche Verkäufe" data-en="Monthly Sales">Aylık Satış</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">5+</span>
+                            <span class="stat-label" data-tr="Yıllık Deneyim" data-de="Jahre Erfahrung" data-en="Years Experience">Yıllık Deneyim</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/905356634166" class="btn btn-gold" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-tr="İş Birliği Teklifi Al" data-de="Partnerschaftsangebot" data-en="Get Partnership Offer">İş Birliği Teklifi Al</span>
+                        </a>
+                        <a href="#services" class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i>
+                            <span data-tr="Hizmetlerimiz" data-de="Unsere Dienste" data-en="Our Services">Hizmetlerimiz</span>
+                        </a>
+                    </div>
                 </div>
                 
-                <h1>
-                    <span data-tr="Almanya Pazarına" data-de="Zugang zum" data-en="Access to the">Almanya Pazarına</span>
-                    <br><span data-tr="Güvenilir Köprünüz" data-de="Deutschen Markt" data-en="German Market">Güvenilir Köprünüz</span>
-                </h1>
-                
-                <p class="hero-subtitle" data-tr="Bee Life Consulting, çağrı merkezlerine Almanya pazarından yüksek kaliteli Outbound satış projeleri sunuyor. 5 yıllık deneyim, güvenilir ortaklık." data-de="Bee Life Consulting bietet Callcentern hochwertige Outbound-Verkaufsprojekte aus dem deutschen Markt. 5 Jahre Erfahrung, zuverlässige Partnerschaft." data-en="Bee Life Consulting offers call centers high-quality Outbound sales projects from the German market. 5 years of experience, reliable partnership.">
-                    Bee Life Consulting, çağrı merkezlerine Almanya pazarından yüksek kaliteli Outbound satış projeleri sunuyor. 5 yıllık deneyim, güvenilir ortaklık.
-                </p>
-                
-                <div class="hero-features">
-                    <div class="hero-feature">
-                        <i class="fas fa-euro-sign"></i>
-                        <span data-tr="Rekabetçi<br>Komisyonlar" data-de="Wettbewerbsfähige<br>Provisionen" data-en="Competitive<br>Commissions">Rekabetçi<br>Komisyonlar</span>
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <h3><i class="fas fa-project-diagram"></i> <span data-tr="Mevcut Projeler" data-de="Aktuelle Projekte" data-en="Current Projects">Mevcut Projeler</span></h3>
+                        
+                        <div class="project-card">
+                            <h4 data-tr="Outbound Satış Projeleri" data-de="Outbound-Verkaufsprojekte" data-en="Outbound Sales Projects">Outbound Satış Projeleri</h4>
+                            <p data-tr="Almanya'daki müşterilere B2C satış" data-de="B2C-Verkauf an Kunden in Deutschland" data-en="B2C sales to customers in Germany">Almanya'daki müşterilere B2C satış</p>
+                            <span class="project-tag" data-tr="Yüksek Komisyon" data-de="Hohe Provision" data-en="High Commission">Yüksek Komisyon</span>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h4 data-tr="Inbound Hotline Projeleri" data-de="Inbound-Hotline-Projekte" data-en="Inbound Hotline Projects">Inbound Hotline Projeleri</h4>
+                            <p data-tr="Müşteri hizmetleri ve teknik destek" data-de="Kundenservice und technischer Support" data-en="Customer service and technical support">Müşteri hizmetleri ve teknik destek</p>
+                            <span class="project-tag" data-tr="Sabit Gelir" data-de="Festes Einkommen" data-en="Fixed Income">Sabit Gelir</span>
+                        </div>
+                        
+                        <div class="project-card">
+                            <h4 data-tr="B2B Randevu Alma" data-de="B2B-Terminvereinbarung" data-en="B2B Appointment Setting">B2B Randevu Alma</h4>
+                            <p data-tr="İşletmeler arası randevu kampanyaları" data-de="Business-to-Business-Terminkampagnen" data-en="Business-to-business appointment campaigns">İşletmeler arası randevu kampanyaları</p>
+                            <span class="project-tag" data-tr="Premium Ödeme" data-de="Premium-Zahlung" data-en="Premium Payment">Premium Ödeme</span>
+                        </div>
                     </div>
-                    <div class="hero-feature">
-                        <i class="fas fa-chart-line"></i>
-                        <span data-tr="Sürekli<br>Proje Akışı" data-de="Kontinuierlicher<br>Projektfluss" data-en="Continuous<br>Project Flow">Sürekli<br>Proje Akışı</span>
-                    </div>
-                    <div class="hero-feature">
-                        <i class="fas fa-shield-alt"></i>
-                        <span data-tr="Güvenilir<br>Partnerlik" data-de="Zuverlässige<br>Partnerschaft" data-en="Reliable<br>Partnership">Güvenilir<br>Partnerlik</span>
-                    </div>
-                </div>
-                
-                <div class="hero-buttons">
-                    <a href="https://wa.me/905356634166" class="btn btn-gold" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        <span data-tr="İş Birliği Teklifi Al" data-de="Partnerschaftsangebot Erhalten" data-en="Get Partnership Offer">İş Birliği Teklifi Al</span>
-                    </a>
-                    <a href="mailto:info@bee-life-consulting.de" class="btn btn-outline">
-                        <i class="fas fa-envelope"></i>
-                        <span data-tr="E-posta Gönder" data-de="E-Mail Senden" data-en="Send Email">E-posta Gönder</span>
-                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ═══ SERVICES ═══ -->
-    <section class="services">
+    <section class="services" id="services">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag" data-tr="Hizmetlerimiz" data-de="Unsere Dienstleistungen" data-en="Our Services">Hizmetlerimiz</span>
+                <span class="section-tag" data-tr="Hizmetlerimiz" data-de="Unsere Dienste" data-en="Our Services">Hizmetlerimiz</span>
                 <h2 class="section-title" data-tr="Sunduğumuz Projeler" data-de="Unsere Projekte" data-en="Projects We Offer">Sunduğumuz Projeler</h2>
-                <p class="section-subtitle" data-tr="Almanya pazarından çağrı merkezlerine özel projeler" data-de="Spezielle Projekte aus dem deutschen Markt für Callcenter" data-en="Special projects from the German market for call centers">Almanya pazarından çağrı merkezlerine özel projeler</p>
+                <p class="section-subtitle" data-tr="Almanya pazarından çağrı merkezlerine özel projeler" data-de="Spezielle Projekte für Callcenter aus dem deutschen Markt" data-en="Special projects from the German market for call centers">Almanya pazarından çağrı merkezlerine özel projeler</p>
             </div>
             
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-phone-volume"></i></div>
-                    <h3 data-tr="Outbound Satış" data-de="Outbound Vertrieb" data-en="Outbound Sales">Outbound Satış</h3>
-                    <p data-tr="Almanya pazarına yönelik B2C ve B2B satış kampanyaları. Yüksek kaliteli lead'ler, cazip komisyon yapıları." data-de="B2C- und B2B-Verkaufskampagnen für den deutschen Markt. Hochwertige Leads, attraktive Provisionsstrukturen." data-en="B2C and B2B sales campaigns for the German market. High-quality leads, attractive commission structures.">
-                        Almanya pazarına yönelik B2C ve B2B satış kampanyaları. Yüksek kaliteli lead'ler, cazip komisyon yapıları.
-                    </p>
+                    <h3 data-tr="Outbound Satış" data-de="Outbound-Vertrieb" data-en="Outbound Sales">Outbound Satış</h3>
+                    <p data-tr="B2C ve B2B satış kampanyaları. Yüksek kaliteli lead'ler ve cazip komisyonlar." data-de="B2C- und B2B-Verkaufskampagnen. Hochwertige Leads und attraktive Provisionen." data-en="B2C and B2B sales campaigns. High-quality leads and attractive commissions.">B2C ve B2B satış kampanyaları. Yüksek kaliteli lead'ler ve cazip komisyonlar.</p>
                     <span class="service-tag" data-tr="En Popüler" data-de="Am Beliebtesten" data-en="Most Popular">En Popüler</span>
                 </div>
                 
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-headset"></i></div>
-                    <h3 data-tr="Inbound Hotline" data-de="Inbound Hotline" data-en="Inbound Hotline">Inbound Hotline</h3>
-                    <p data-tr="Müşteri hizmetleri, teknik destek ve sipariş hattı projeleri. Sabit gelir modeli ile stabil kazanç imkanı." data-de="Kundenservice, technischer Support und Bestellhotline-Projekte. Stabiles Einkommen mit Festpreismodell." data-en="Customer service, technical support and order hotline projects. Stable income with fixed price model.">
-                        Müşteri hizmetleri, teknik destek ve sipariş hattı projeleri. Sabit gelir modeli ile stabil kazanç imkanı.
-                    </p>
+                    <h3 data-tr="Inbound Hotline" data-de="Inbound-Hotline" data-en="Inbound Hotline">Inbound Hotline</h3>
+                    <p data-tr="Müşteri hizmetleri ve teknik destek projeleri. Sabit gelir modeli." data-de="Kundenservice- und technische Supportprojekte. Festeinkommensmodell." data-en="Customer service and technical support projects. Fixed income model.">Müşteri hizmetleri ve teknik destek projeleri. Sabit gelir modeli.</p>
                     <span class="service-tag" data-tr="Sabit Gelir" data-de="Festes Einkommen" data-en="Fixed Income">Sabit Gelir</span>
                 </div>
                 
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-calendar-check"></i></div>
                     <h3 data-tr="Randevu Alma" data-de="Terminvereinbarung" data-en="Appointment Setting">Randevu Alma</h3>
-                    <p data-tr="B2B randevu alma kampanyaları. Nitelikli randevular için cazip ödeme modelleri ve sürekli proje akışı." data-de="B2B-Terminvereinbarungskampagnen. Attraktive Zahlungsmodelle für qualifizierte Termine und kontinuierlicher Projektfluss." data-en="B2B appointment setting campaigns. Attractive payment models for qualified appointments and continuous project flow.">
-                        B2B randevu alma kampanyaları. Nitelikli randevular için cazip ödeme modelleri ve sürekli proje akışı.
-                    </p>
-                    <span class="service-tag" data-tr="B2B Odaklı" data-de="B2B Fokussiert" data-en="B2B Focused">B2B Odaklı</span>
+                    <p data-tr="B2B randevu kampanyaları. Nitelikli randevular için cazip ödemeler." data-de="B2B-Terminkampagnen. Attraktive Zahlungen für qualifizierte Termine." data-en="B2B appointment campaigns. Attractive payments for qualified appointments.">B2B randevu kampanyaları. Nitelikli randevular için cazip ödemeler.</p>
+                    <span class="service-tag" data-tr="B2B Odaklı" data-de="B2B-Fokus" data-en="B2B Focused">B2B Odaklı</span>
                 </div>
             </div>
         </div>
@@ -775,8 +825,8 @@
             <div class="why-grid">
                 <div class="why-content">
                     <h2><span data-tr="Neden" data-de="Warum" data-en="Why">Neden</span> Bee Life?</h2>
-                    <p data-tr="5 yıllık sektör deneyimi ile Almanya pazarında güvenilir iş ortağınız olmaya hazırız. Çağrı merkezinizin başarısı için gereken tüm desteği sağlıyoruz." data-de="Mit 5 Jahren Branchenerfahrung sind wir bereit, Ihr zuverlässiger Geschäftspartner auf dem deutschen Markt zu sein. Wir bieten alle Unterstützung, die Ihr Callcenter für den Erfolg benötigt." data-en="With 5 years of industry experience, we are ready to be your reliable business partner in the German market. We provide all the support your call center needs for success.">
-                        5 yıllık sektör deneyimi ile Almanya pazarında güvenilir iş ortağınız olmaya hazırız. Çağrı merkezinizin başarısı için gereken tüm desteği sağlıyoruz.
+                    <p data-tr="5 yıllık sektör deneyimi ile Almanya pazarında güvenilir iş ortağınız olmaya hazırız." data-de="Mit 5 Jahren Branchenerfahrung sind wir bereit, Ihr zuverlässiger Partner auf dem deutschen Markt zu sein." data-en="With 5 years of industry experience, we are ready to be your reliable partner in the German market.">
+                        5 yıllık sektör deneyimi ile Almanya pazarında güvenilir iş ortağınız olmaya hazırız.
                     </p>
                     
                     <ul class="why-list">
@@ -784,7 +834,7 @@
                             <i class="fas fa-check"></i>
                             <div>
                                 <h4 data-tr="Güvenilir Lead Kaynağı" data-de="Zuverlässige Lead-Quelle" data-en="Reliable Lead Source">Güvenilir Lead Kaynağı</h4>
-                                <p data-tr="Yüksek kaliteli, güncel ve doğrulanmış müşteri dataları" data-de="Hochwertige, aktuelle und verifizierte Kundendaten" data-en="High-quality, current and verified customer data">Yüksek kaliteli, güncel ve doğrulanmış müşteri dataları</p>
+                                <p data-tr="Yüksek kaliteli, güncel müşteri dataları" data-de="Hochwertige, aktuelle Kundendaten" data-en="High-quality, up-to-date customer data">Yüksek kaliteli, güncel müşteri dataları</p>
                             </div>
                         </li>
                         <li>
@@ -797,14 +847,14 @@
                         <li>
                             <i class="fas fa-check"></i>
                             <div>
-                                <h4 data-tr="Teknik Destek" data-de="Technische Unterstützung" data-en="Technical Support">Teknik Destek</h4>
-                                <p data-tr="Script desteği, eğitim materyalleri ve CRM entegrasyonu" data-de="Script-Support, Schulungsmaterialien und CRM-Integration" data-en="Script support, training materials and CRM integration">Script desteği, eğitim materyalleri ve CRM entegrasyonu</p>
+                                <h4 data-tr="Teknik Destek" data-de="Technischer Support" data-en="Technical Support">Teknik Destek</h4>
+                                <p data-tr="Script desteği, eğitim ve CRM entegrasyonu" data-de="Script-Support, Schulung und CRM-Integration" data-en="Script support, training and CRM integration">Script desteği, eğitim ve CRM entegrasyonu</p>
                             </div>
                         </li>
                     </ul>
                 </div>
                 
-                <div class="why-stats">
+                <div class="stats-grid">
                     <div class="stat-card">
                         <h3>5+</h3>
                         <p data-tr="Yıllık Deneyim" data-de="Jahre Erfahrung" data-en="Years Experience">Yıllık Deneyim</p>
@@ -826,17 +876,16 @@
         </div>
     </section>
 
-    <!-- ═══ PARTNERSHIP ═══ -->
-    <section class="partnership">
+    <!-- ═══ STEPS ═══ -->
+    <section class="steps">
         <div class="container">
-            <div class="partnership-content">
-                <h2><span data-tr="Ortaklık" data-de="Partnerschafts" data-en="Partnership">Ortaklık</span> <span data-tr="Süreci" data-de="Prozess" data-en="Process">Süreci</span></h2>
-                <p data-tr="Birlikte çalışmaya başlamak çok kolay. 4 basit adımda iş ortağınız olalım." data-de="Es ist ganz einfach, mit der Zusammenarbeit zu beginnen. In 4 einfachen Schritten werden wir Ihr Geschäftspartner." data-en="Starting to work together is very easy. Let us become your business partner in 4 simple steps.">
-                    Birlikte çalışmaya başlamak çok kolay. 4 basit adımda iş ortağınız olalım.
-                </p>
+            <div class="section-header">
+                <span class="section-tag" data-tr="Süreç" data-de="Prozess" data-en="Process">Süreç</span>
+                <h2 class="section-title" data-tr="Ortaklık Süreci" data-de="Partnerschaftsprozess" data-en="Partnership Process">Ortaklık Süreci</h2>
+                <p class="section-subtitle" data-tr="4 basit adımda iş ortağınız olalım" data-de="In 4 einfachen Schritten werden wir Ihr Partner" data-en="Let us become your partner in 4 simple steps">4 basit adımda iş ortağınız olalım</p>
             </div>
             
-            <div class="partnership-steps">
+            <div class="steps-grid">
                 <div class="step-card">
                     <div class="step-number">1</div>
                     <h4 data-tr="İletişim" data-de="Kontakt" data-en="Contact">İletişim</h4>
@@ -846,19 +895,19 @@
                 <div class="step-card">
                     <div class="step-number">2</div>
                     <h4 data-tr="Değerlendirme" data-de="Bewertung" data-en="Evaluation">Değerlendirme</h4>
-                    <p data-tr="Kapasitenizi ve ihtiyaçlarınızı birlikte değerlendirelim" data-de="Bewerten wir gemeinsam Ihre Kapazität und Bedürfnisse" data-en="Let's evaluate your capacity and needs together">Kapasitenizi ve ihtiyaçlarınızı birlikte değerlendirelim</p>
+                    <p data-tr="Kapasitenizi birlikte değerlendirelim" data-de="Bewerten wir gemeinsam Ihre Kapazität" data-en="Let's evaluate your capacity together">Kapasitenizi birlikte değerlendirelim</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <h4 data-tr="Anlaşma" data-de="Vereinbarung" data-en="Agreement">Anlaşma</h4>
-                    <p data-tr="Size özel proje teklifimizi sunalım" data-de="Lassen Sie uns Ihnen unser maßgeschneidertes Projektangebot unterbreiten" data-en="Let us present our customized project offer to you">Size özel proje teklifimizi sunalım</p>
+                    <p data-tr="Size özel proje teklifi sunalım" data-de="Unterbreiten wir Ihnen ein maßgeschneidertes Angebot" data-en="Let us present a customized offer">Size özel proje teklifi sunalım</p>
                 </div>
                 
                 <div class="step-card">
                     <div class="step-number">4</div>
                     <h4 data-tr="Başlangıç" data-de="Start" data-en="Start">Başlangıç</h4>
-                    <p data-tr="Projeyi başlatın ve kazanmaya başlayın" data-de="Starten Sie das Projekt und beginnen Sie zu verdienen" data-en="Start the project and begin earning">Projeyi başlatın ve kazanmaya başlayın</p>
+                    <p data-tr="Projeyi başlatın ve kazanın" data-de="Starten Sie das Projekt und verdienen Sie" data-en="Start the project and earn">Projeyi başlatın ve kazanın</p>
                 </div>
             </div>
         </div>
@@ -869,13 +918,13 @@
         <div class="container">
             <div class="cta-box">
                 <div class="cta-content">
-                    <h2 data-tr="İş Birliğine Hazır mısınız?" data-de="Bereit zur Zusammenarbeit?" data-en="Ready for Partnership?">İş Birliğine Hazır mısınız?</h2>
-                    <p data-tr="Almanya pazarında büyümek isteyen çağrı merkezleri için güvenilir iş ortağınız olmaya hazırız. Hemen iletişime geçin." data-de="Wir sind bereit, Ihr zuverlässiger Geschäftspartner für Callcenter zu sein, die auf dem deutschen Markt wachsen möchten. Kontaktieren Sie uns jetzt." data-en="We are ready to be your reliable business partner for call centers looking to grow in the German market. Contact us now.">
-                        Almanya pazarında büyümek isteyen çağrı merkezleri için güvenilir iş ortağınız olmaya hazırız. Hemen iletişime geçin.
+                    <h2 data-tr="İş Birliğine <span>Hazır mısınız?</span>" data-de="Bereit für <span>Zusammenarbeit?</span>" data-en="Ready for <span>Partnership?</span>">İş Birliğine <span>Hazır mısınız?</span></h2>
+                    <p data-tr="Almanya pazarında büyümek isteyen çağrı merkezleri için güvenilir iş ortağınız olmaya hazırız." data-de="Wir sind bereit, Ihr zuverlässiger Partner für Callcenter zu sein, die auf dem deutschen Markt wachsen möchten." data-en="We are ready to be your reliable partner for call centers looking to grow in the German market.">
+                        Almanya pazarında büyümek isteyen çağrı merkezleri için güvenilir iş ortağınız olmaya hazırız.
                     </p>
-                    <a href="https://wa.me/905356634166" class="btn btn-gold" target="_blank">
+                    <a href="https://wa.me/905356634166" class="btn btn-dark" target="_blank">
                         <i class="fab fa-whatsapp"></i>
-                        <span data-tr="WhatsApp ile İletişim" data-de="Kontakt per WhatsApp" data-en="Contact via WhatsApp">WhatsApp ile İletişim</span>
+                        <span data-tr="Hemen İletişime Geç" data-de="Jetzt Kontaktieren" data-en="Contact Now">Hemen İletişime Geç</span>
                     </a>
                 </div>
                 <div class="cta-info">
@@ -884,7 +933,6 @@
                         <i class="fas fa-envelope"></i>
                         info@bee-life-consulting.de
                     </a>
-                    <br><br>
                     <a href="tel:+905356634166">
                         <i class="fas fa-phone"></i>
                         +90 535 663 4166
@@ -937,7 +985,24 @@
             document.title = titles[lang];
         }
         
-        document.addEventListener('DOMContentLoaded', () => setLanguage(currentLang));
+        // Initialize on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
+            
+            // Add touch support for mobile
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setLanguage(this.dataset.lang);
+                });
+                btn.addEventListener('touchend', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setLanguage(this.dataset.lang);
+                });
+            });
+        });
     </script>
 
 </body>
