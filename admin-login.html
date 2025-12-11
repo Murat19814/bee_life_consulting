@@ -469,11 +469,19 @@
         
         const adminForm = document.getElementById('adminLoginForm');
         
+        // Admin Users Database
+        const adminUsers = [
+            { id: 1, name: 'Mert Çeliköz', username: 'mcelikoz', password: 'Blc#Mert2024!' },
+            { id: 2, name: 'Murat Atalay', username: 'matalay', password: 'Blc#Murat2024!' },
+            { id: 3, name: 'Ferhat Açıkgöz', username: 'facikgoz', password: 'Blc#Ferhat2024!' },
+            { id: 4, name: 'Burak Balkaya', username: 'bbalkaya', password: 'Blc#Burak2024!' }
+        ];
+        
         if (adminForm) {
             adminForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const username = document.getElementById('username').value;
+                const username = document.getElementById('username').value.toLowerCase().trim();
                 const password = document.getElementById('password').value;
                 const submitBtn = this.querySelector('button[type="submit"]');
                 const btnText = submitBtn.querySelector('span');
@@ -481,15 +489,20 @@
                 btnText.textContent = currentLang === 'tr' ? 'Doğrulanıyor...' : 'Überprüfung...';
                 submitBtn.disabled = true;
                 
-                if (username === 'admin' && password === 'admin123') {
+                // Find admin user
+                const admin = adminUsers.find(a => a.username === username && a.password === password);
+                
+                if (admin) {
+                    // Store admin info
+                    localStorage.setItem('currentAdmin', JSON.stringify(admin));
                     setTimeout(() => {
                         window.location.href = 'admin-panel.html';
                     }, 1500);
                 } else {
                     setTimeout(() => {
                         const msg = currentLang === 'tr' 
-                            ? '❌ Hatalı kullanıcı adı veya şifre!\n\nDemo: admin / admin123'
-                            : '❌ Falscher Benutzername oder Passwort!\n\nDemo: admin / admin123';
+                            ? '❌ Hatalı kullanıcı adı veya şifre!'
+                            : '❌ Falscher Benutzername oder Passwort!';
                         alert(msg);
                         btnText.textContent = currentLang === 'tr' ? 'Giriş Yap' : 'Anmelden';
                         submitBtn.disabled = false;
