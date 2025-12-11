@@ -2879,8 +2879,18 @@
         
         // Load notifications on page load
         document.addEventListener('DOMContentLoaded', function() {
-            loadSentNotifications();
-            loadSavedData();
+            // ⭐ Firebase başlat
+            firebaseLoaded = typeof BeeLifeDB !== 'undefined';
+            console.log('🐝 Firebase yüklendi mi?', firebaseLoaded);
+            
+            if (firebaseLoaded) {
+                initFirebaseListeners();
+            } else {
+                // Firebase yüklenemezse localStorage'dan yükle
+                loadSentNotifications();
+                loadSavedData();
+                loadApplications();
+            }
         });
         
         // ═══════════════════════════════════════════════════════════════
@@ -2984,42 +2994,80 @@
             });
         }
         
-        // Günlük satış kaydet
-        function saveDailySales() {
-            const employee = document.getElementById('salesEmployee').value;
+        // Günlük satış kaydet (Firebase entegrasyonlu)
+        async function saveDailySales() {
+            const employeeSelect = document.getElementById('salesEmployee');
+            const employee = employeeSelect.value;
+            const employeeName = employeeSelect.options[employeeSelect.selectedIndex]?.text || employee;
             const date = document.getElementById('salesDate').value;
             const branch = document.getElementById('salesBranch').value;
-            const qcOk = document.getElementById('qcOkCount').value;
-            const calls = document.getElementById('totalCalls').value;
-            const hours = document.getElementById('workHours').value;
+            const qcOk = parseInt(document.getElementById('qcOkCount').value) || 0;
+            const calls = parseInt(document.getElementById('totalCalls').value) || 0;
+            const hours = parseFloat(document.getElementById('workHours').value) || 8;
+            const earnings = qcOk * 35;
             
             if (!employee || !date) {
                 alert('❌ Lütfen çalışan ve tarih seçin!');
                 return;
             }
             
-            const salesData = JSON.parse(localStorage.getItem('blc_daily_sales') || '[]');
-            
-            salesData.push({
-                id: Date.now(),
+            const saleData = {
                 employee: employee,
+                employeeName: employeeName,
                 date: date,
                 branch: branch,
-                qcOk: parseInt(qcOk) || 0,
-                calls: parseInt(calls) || 0,
-                hours: parseFloat(hours) || 8,
-                earnings: (parseInt(qcOk) || 0) * 35
-            });
+                qcOk: qcOk,
+                calls: calls,
+                hours: hours,
+                earnings: earnings,
+                amount: earnings
+            };
             
-            localStorage.setItem('blc_daily_sales', JSON.stringify(salesData));
+            // Firebase'e kaydet
+            if (firebaseLoaded && typeof BeeLifeDB !== 'undefined') {
+                try {
+                    // Çalışan ID'sini oluştur
+                    const employeeId = employee.replace(/[^a-zA-Z0-9]/g, '_');
+                    
+                    const result = await BeeLifeDB.saveSale(employeeId, saleData);
+                    
+                    if (result.success) {
+                        alert('✅ Satış Firebase\'e kaydedildi!\\n\\nÇalışan: ' + employeeName + '\\nQC OK: ' + qcOk + '\\nKazanç: ' + earnings + '€');
+                        
+                        // Bildirim gönder
+                        await BeeLifeDB.sendNotification({
+                            type: 'sale_added',
+                            title: 'Yeni Satış Kaydı',
+                            message: employeeName + ' - ' + qcOk + ' QC OK (' + earnings + '€)',
+                            read: false
+                        });
+                    } else {
+                        throw new Error(result.error);
+                    }
+                } catch (error) {
+                    console.error('Firebase satış hatası:', error);
+                    // Fallback - localStorage'a kaydet
+                    saveToLocalStorage();
+                }
+            } else {
+                // localStorage'a kaydet
+                saveToLocalStorage();
+            }
             
-            alert('✅ Satış verisi kaydedildi!\\n\\nÇalışan: ' + document.getElementById('salesEmployee').options[document.getElementById('salesEmployee').selectedIndex].text + '\\nQC OK: ' + qcOk + '\\nKazanç: ' + ((parseInt(qcOk) || 0) * 35) + '€');
+            function saveToLocalStorage() {
+                const salesData = JSON.parse(localStorage.getItem('blc_daily_sales') || '[]');
+                salesData.push({
+                    id: Date.now(),
+                    ...saleData
+                });
+                localStorage.setItem('blc_daily_sales', JSON.stringify(salesData));
+                alert('✅ Satış kaydedildi (yerel)!\\n\\nÇalışan: ' + employeeName + '\\nQC OK: ' + qcOk + '\\nKazanç: ' + earnings + '€');
+                loadDailySalesTable();
+            }
             
             // Clear form
             document.getElementById('qcOkCount').value = '';
             document.getElementById('totalCalls').value = '';
-            
-            loadDailySalesTable();
         }
         
         // Günlük satış tablosunu yükle
