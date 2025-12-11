@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bee Life Consulting - Çağrı Merkezleri için B2B Proje Hizmetleri. Almanya pazarına açılın!">
+    <title>Çağrı Merkezleri için Projeler | B2B | Bee Life Consulting</title>
+    
+    <meta name="theme-color" content="#0d2b2a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0d2b2a;
+            --primary-light: #1a4a48;
+            --gold: #D4AF37;
+            --gold-light: #E8C547;
+            --blue: #1e40af;
+            --white: #ffffff;
+            --gray: #f8f9fa;
+            --text: #1a1a1a;
+            --text-light: #6b7280;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* ═══ NAVBAR ═══ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(13,43,42,0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon { font-size: 2rem; }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        
+        .logo-text span { color: var(--gold); }
+        
+        .nav-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .nav-contact a {
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-contact a:hover { color: var(--gold); }
+        
+        .nav-contact i { color: var(--gold); }
+        
+        /* ═══ HERO ═══ */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, #071d1c 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(212,175,55,0.15) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(30,64,175,0.1) 0%, transparent 35%);
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, rgba(30,64,175,0.2) 0%, rgba(212,175,55,0.1) 100%);
+            border: 1px solid rgba(30,64,175,0.3);
+            border-radius: 50px;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .hero-tag i { color: var(--gold); }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+        
+        .hero h1 span { color: var(--gold); }
+        
+        .hero-desc {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .hero-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        
+        .hero-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: rgba(255,255,255,0.9);
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+        
+        .hero-list li i {
+            width: 30px;
+            height: 30px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+        
+        .btn {
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.4);
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212,175,55,0.5);
+        }
+        
+        .hero-form-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        
+        .hero-form-card h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .hero-form-card .subtitle {
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .form-group select option {
+            background: var(--primary);
+            color: var(--white);
+        }
+        
+        .form-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--primary);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .form-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212,175,55,0.4);
+        }
+        
+        /* ═══ SERVICES ═══ */
+        .services {
+            padding: 100px 0;
+            background: var(--gray);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(13,43,42,0.1);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 10px 30px rgba(13,43,42,0.3);
+        }
+        
+        .service-icon i {
+            font-size: 2.2rem;
+            color: var(--gold);
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* ═══ WHY US ═══ */
+        .why-us {
+            padding: 100px 0;
+            background: var(--white);
+        }
+        
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .why-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .why-content h2 span { color: var(--gold); }
+        
+        .why-content > p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            line-height: 1.8;
+        }
+        
+        .why-list {
+            list-style: none;
+        }
+        
+        .why-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+        
+        .why-list li .icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .why-list li .icon i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        
+        .why-list li h4 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .why-list li p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .why-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, rgba(13,43,42,0.05) 0%, rgba(212,175,55,0.03) 100%);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            border: 1px solid rgba(13,43,42,0.1);
+        }
+        
+        .stat-box .value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .stat-box .value span { color: var(--gold); }
+        
+        .stat-box .label {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        /* ═══ CTA ═══ */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #071d1c 100%);
+            position: relative;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.1) 0%, transparent 50%);
+        }
+        
+        .cta-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+        
+        .cta h2 span { color: var(--gold); }
+        
+        .cta p {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            color: var(--white);
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        
+        /* ═══ FOOTER ═══ */
+        .footer {
+            background: #050f0f;
+            padding: 50px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-brand .logo { margin-bottom: 20px; }
+        
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        
+        .footer-column h4 {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .footer-column ul { list-style: none; }
+        
+        .footer-column ul li { margin-bottom: 12px; }
+        
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+        
+        .footer-column ul li a i { color: var(--gold); font-size: 0.8rem; }
+        
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+        
+        .footer-bottom a { color: var(--gold); text-decoration: none; }
+        
+        /* ═══ WHATSAPP ═══ */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 6px 25px rgba(37,211,102,0.4);
+            z-index: 99;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover { transform: scale(1.1); }
+        
+        /* ═══ RESPONSIVE ═══ */
+        @media (max-width: 992px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+            .hero h1 { font-size: 2.5rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; gap: 50px; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .footer-column ul li a { justify-content: center; }
+        }
+        
+        @media (max-width: 768px) {
+            .hero { padding-top: 100px; }
+            .hero h1 { font-size: 2rem; }
+            .nav-contact { display: none; }
+            .section-title { font-size: 2rem; }
+            .why-stats { grid-template-columns: 1fr; }
+            .cta h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🐝</span>
+                <span class="logo-text">Bee Life <span>Consulting</span></span>
+            </a>
+            <div class="nav-contact">
+                <a href="tel:+905317654166">
+                    <i class="fas fa-phone"></i> +90 531 765 41 66
+                </a>
+                <a href="mailto:info@beelife-consulting.com">
+                    <i class="fas fa-envelope"></i> info@beelife-consulting.com
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-tag">
+                        <i class="fas fa-handshake"></i> B2B Proje Ortaklığı
+                    </div>
+                    <h1>Çağrı Merkeziniz için <span>Almanya Projeleri</span></h1>
+                    <p class="hero-desc">
+                        Bee Life Consulting olarak, Almanya pazarındaki güçlü iş ortaklıklarımız sayesinde 
+                        çağrı merkezlerinize sürekli ve karlı projeler sunuyoruz.
+                    </p>
+                    
+                    <ul class="hero-list">
+                        <li><i class="fas fa-check"></i> Almanya merkezli prestijli projeler</li>
+                        <li><i class="fas fa-check"></i> Yüksek komisyon oranları</li>
+                        <li><i class="fas fa-check"></i> Düzenli proje akışı</li>
+                        <li><i class="fas fa-check"></i> Teknik ve eğitim desteği</li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn btn-gold">
+                        <i class="fas fa-arrow-right"></i> İş Ortağımız Olun
+                    </a>
+                </div>
+                
+                <div class="hero-form-card" id="contact">
+                    <h3>Bizimle İletişime Geçin</h3>
+                    <p class="subtitle">Proje detayları için formu doldurun</p>
+                    
+                    <form id="partnerForm">
+                        <div class="form-group">
+                            <label>Şirket Adı *</label>
+                            <input type="text" placeholder="Çağrı merkezi adınız" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Yetkili Adı Soyadı *</label>
+                            <input type="text" placeholder="Adınız Soyadınız" required>
+                        </div>
+                        <div class="form-group">
+                            <label>E-Posta *</label>
+                            <input type="email" placeholder="sirket@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Telefon *</label>
+                            <input type="tel" placeholder="+90 5XX XXX XX XX" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Ajan Sayısı</label>
+                            <select>
+                                <option value="">Seçin</option>
+                                <option value="1-10">1-10 Ajan</option>
+                                <option value="11-50">11-50 Ajan</option>
+                                <option value="51-100">51-100 Ajan</option>
+                                <option value="100+">100+ Ajan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Mesajınız</label>
+                            <textarea rows="3" placeholder="Proje hakkında sorularınız..."></textarea>
+                        </div>
+                        <button type="submit" class="form-btn">
+                            <i class="fas fa-paper-plane"></i> Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SERVICES ═══ -->
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Hizmetlerimiz</span>
+                <h2 class="section-title">Proje Türleri</h2>
+                <p class="section-subtitle">Çağrı merkeziniz için sunduğumuz proje fırsatları</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-phone-volume"></i>
+                    </div>
+                    <h3>Outbound Satış</h3>
+                    <p>Almanya pazarında aktif satış projeleri. Yüksek komisyon oranları ile karlı iş fırsatı. 35€/QC OK komisyon.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Inbound Hotline</h3>
+                    <p>Müşteri hizmetleri ve teknik destek hatları. Almanca konuşan kalifiye ajan gereksinimi. Sabit proje ücreti.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Karma Projeler</h3>
+                    <p>Inbound ve Outbound kombinasyonu ile çağrı merkezinizin kapasitesini tam kullanın. Esnek çalışma modeli.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ WHY US ═══ -->
+    <section class="why-us">
+        <div class="container">
+            <div class="why-grid">
+                <div class="why-content">
+                    <h2>Neden <span>Bee Life</span> ile Çalışmalısınız?</h2>
+                    <p>5 yılı aşkın Almanya pazarı deneyimimiz ve güçlü iş ortaklıklarımız ile çağrı merkezinize değer katıyoruz.</p>
+                    
+                    <ul class="why-list">
+                        <li>
+                            <div class="icon"><i class="fas fa-handshake"></i></div>
+                            <div>
+                                <h4>Güvenilir Ortaklık</h4>
+                                <p>Uzun vadeli ve şeffaf iş ilişkileri kuruyoruz</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div>
+                                <h4>Eğitim Desteği</h4>
+                                <p>Ajanlarınıza proje bazlı kapsamlı eğitimler veriyoruz</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon"><i class="fas fa-headset"></i></div>
+                            <div>
+                                <h4>Teknik Destek</h4>
+                                <p>7/24 teknik ve operasyonel destek sağlıyoruz</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon"><i class="fas fa-euro-sign"></i></div>
+                            <div>
+                                <h4>Zamanında Ödeme</h4>
+                                <p>Ödemelerinizi düzenli ve zamanında yapıyoruz</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="why-stats">
+                    <div class="stat-box">
+                        <span class="value">5<span>+</span></span>
+                        <span class="label">Yıllık Deneyim</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="value">50<span>+</span></span>
+                        <span class="label">İş Ortağı</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="value">1000<span>+</span></span>
+                        <span class="label">Aktif Ajan</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="value">%98</span>
+                        <span class="label">Memnuniyet</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Çağrı Merkezinizi <span>Büyütün</span></h2>
+                <p>Almanya pazarındaki fırsatları değerlendirin. Bee Life ile iş ortaklığı kurun, karlılığınızı artırın.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-gold">
+                        <i class="fas fa-paper-plane"></i> Teklif Alın
+                    </a>
+                    <a href="https://wa.me/905356634166" class="btn btn-outline" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">🐝</span>
+                        <span class="logo-text">Bee Life <span>Consulting</span></span>
+                    </a>
+                    <p>5 yılı aşkın deneyimimizle Almanya pazarında çağrı merkezi projeleri sunuyoruz. Güvenilir iş ortağınız.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Hızlı Linkler</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Ana Sayfa</a></li>
+                        <li><a href="landing-kariyer.html"><i class="fas fa-chevron-right"></i> Kariyer</a></li>
+                        <li><a href="basvuru.html"><i class="fas fa-chevron-right"></i> Başvuru</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>İletişim</h4>
+                    <ul>
+                        <li><a href="mailto:info@beelife-consulting.com"><i class="fas fa-envelope"></i> info@beelife-consulting.com</a></li>
+                        <li><a href="tel:+905317654166"><i class="fas fa-phone"></i> +90 531 765 41 66</a></li>
+                        <li><a href="https://wa.me/905356634166"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bee Life Consulting | <a href="datenschutz.html">Gizlilik</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/905356634166" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.getElementById('partnerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Talebiniz alındı! En kısa sürede sizinle iletişime geçeceğiz.');
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
+
