@@ -357,6 +357,11 @@
             color: #FFD700;
         }
         
+        /* Mobile Nav Bar - Hidden by default on desktop */
+        .mobile-nav-bar {
+            display: none;
+        }
+        
         .lang-btn img {
             width: 20px;
             height: 14px;
@@ -3078,70 +3083,103 @@
                 gap: 15px;
             }
             
-            /* Mobile Navigation Menu */
-            .nav-links.mobile-active {
+            /* Hide old mobile menu elements */
+            .nav-links, .nav-buttons, .menu-toggle {
+                display: none !important;
+            }
+            
+            /* Mobile Top Navigation Bar - VIP Style */
+            .mobile-nav-bar {
                 display: flex !important;
-                flex-direction: column;
                 position: fixed;
                 top: 70px;
                 left: 0;
                 right: 0;
-                background: rgba(7, 29, 28, 0.98);
-                padding: 20px;
-                gap: 0;
-                z-index: 999;
-                border-top: 1px solid rgba(64, 145, 108, 0.3);
-                max-height: calc(100vh - 70px);
-                overflow-y: auto;
+                background: linear-gradient(135deg, rgba(7, 29, 28, 0.98) 0%, rgba(13, 43, 42, 0.98) 100%);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                padding: 0;
+                z-index: 998;
+                border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             }
             
-            .nav-links.mobile-active a {
-                padding: 15px 20px;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-                font-size: 1.1rem;
-            }
-            
-            .nav-links.mobile-active a:last-child {
-                border-bottom: none;
-            }
-            
-            .nav-buttons.mobile-active {
-                display: flex !important;
+            .mobile-nav-bar a {
+                flex: 1;
+                display: flex;
                 flex-direction: column;
-                position: fixed;
-                top: auto;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: rgba(7, 29, 28, 0.98);
-                padding: 15px 20px;
-                gap: 10px;
-                z-index: 999;
-                border-top: 1px solid rgba(64, 145, 108, 0.3);
-            }
-            
-            .nav-buttons.mobile-active .nav-btn {
-                width: 100%;
+                align-items: center;
                 justify-content: center;
-                padding: 12px 20px;
+                padding: 12px 5px;
+                text-decoration: none;
+                color: rgba(255, 255, 255, 0.7);
+                font-size: 0.65rem;
+                font-weight: 500;
+                letter-spacing: 0.3px;
+                transition: all 0.3s ease;
+                border-right: 1px solid rgba(255, 255, 255, 0.05);
+                position: relative;
             }
             
-            /* Menu Toggle Animation */
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(6px, 6px);
+            .mobile-nav-bar a:last-child {
+                border-right: none;
             }
             
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
+            .mobile-nav-bar a i {
+                font-size: 1.1rem;
+                margin-bottom: 4px;
+                transition: all 0.3s ease;
             }
             
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(6px, -6px);
+            .mobile-nav-bar a:hover,
+            .mobile-nav-bar a.active {
+                color: #D4AF37;
+                background: rgba(212, 175, 55, 0.1);
             }
             
-            /* Body scroll lock when menu open */
-            body.menu-open {
-                overflow: hidden;
+            .mobile-nav-bar a:hover i,
+            .mobile-nav-bar a.active i {
+                transform: scale(1.1);
+                color: #D4AF37;
+            }
+            
+            /* Active indicator line */
+            .mobile-nav-bar a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 2px;
+                background: linear-gradient(90deg, #D4AF37, #FFD700);
+                transition: width 0.3s ease;
+            }
+            
+            .mobile-nav-bar a:hover::after,
+            .mobile-nav-bar a.active::after {
+                width: 80%;
+            }
+            
+            /* Special buttons styling */
+            .mobile-nav-bar a.nav-login {
+                background: rgba(212, 175, 55, 0.15);
+                color: #D4AF37;
+            }
+            
+            .mobile-nav-bar a.nav-apply {
+                background: linear-gradient(135deg, rgba(64, 145, 108, 0.3) 0%, rgba(45, 106, 79, 0.3) 100%);
+                color: #4ade80;
+            }
+            
+            /* Adjust body padding for fixed nav */
+            .hero {
+                padding-top: 130px !important;
+            }
+            
+            /* Hide desktop nav-buttons in mobile */
+            .navbar .nav-buttons {
+                display: none !important;
             }
         }
         
@@ -3496,6 +3534,34 @@
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Navigation Bar (VIP Style) -->
+    <div class="mobile-nav-bar" id="mobileNavBar">
+        <a href="#home">
+            <i class="fas fa-home"></i>
+            <span data-tr="Ana Sayfa" data-de="Startseite">Ana Sayfa</span>
+        </a>
+        <a href="#about">
+            <i class="fas fa-building"></i>
+            <span data-tr="Hakkımızda" data-de="Über uns">Hakkımızda</span>
+        </a>
+        <a href="#services">
+            <i class="fas fa-concierge-bell"></i>
+            <span data-tr="Hizmetler" data-de="Dienste">Hizmetler</span>
+        </a>
+        <a href="#rewards">
+            <i class="fas fa-gift"></i>
+            <span data-tr="Ödüller" data-de="Prämien">Ödüller</span>
+        </a>
+        <a href="#" onclick="openLoginModal(); return false;" class="nav-login">
+            <i class="fas fa-user-circle"></i>
+            <span data-tr="Giriş" data-de="Login">Giriş</span>
+        </a>
+        <a href="basvuru.html" class="nav-apply">
+            <i class="fas fa-paper-plane"></i>
+            <span data-tr="Başvur" data-de="Bewerben">Başvur</span>
+        </a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
