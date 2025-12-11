@@ -2796,10 +2796,18 @@
                 updateNotificationsUI(notifications);
             });
             
-            // Listen to all employees
+            // Listen to all employees - Firebase boşsa sabit listeyi koru
             BeeLifeDB.listenToAllEmployees(function(employees) {
-                console.log('👥 Personeller güncellendi:', employees.length);
-                updateEmployeesUI(employees);
+                console.log('👥 Firebase personeller:', employees.length);
+                // Sadece Firebase'de veri varsa güncelle, yoksa sabit HTML'i koru
+                if (employees && employees.length > 0) {
+                    updateEmployeesUI(employees);
+                } else {
+                    console.log('📋 Firebase boş, sabit çalışan listesi kullanılıyor (32 kişi)');
+                    // Çalışan sayısını güncelle
+                    const empCount = document.getElementById('employeeCount');
+                    if (empCount) empCount.textContent = '32';
+                }
             });
             
             // Listen to all sales
@@ -2841,10 +2849,55 @@
             }
         }
         
+        // Sabit çalışan listesi (32 çalışan)
+        const defaultEmployees = [
+            { id: 1, name: 'Abdulcelil Arslan', username: 'aarslan', branch: 'Yozgat', role: 'agent', status: 'active' },
+            { id: 2, name: 'Ahmet Kömür', username: 'akomur', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 3, name: 'Ahsen Saliha Arslan', username: 'aharslan', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 4, name: 'Aslı Akdoğan', username: 'aakdogan', branch: 'Yozgat', role: 'agent', status: 'active' },
+            { id: 5, name: 'Ayhan Yıldızdoğan', username: 'ayildizdogan', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 6, name: 'Burak Balkaya', username: 'bbalkaya', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 7, name: 'Deniz Beyazkoç', username: 'dbeyazkoc', branch: 'Eskişehir', role: 'agent', status: 'active' },
+            { id: 8, name: 'Duygu Çeliköz', username: 'dcelikoz', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 9, name: 'Eda Nur Bağır Hatipoğlu', username: 'ehatipoglu', branch: 'Yozgat', role: 'agent', status: 'active' },
+            { id: 10, name: 'Erdoğan Çuvoğlu', username: 'ecuvoglu', branch: 'Eskişehir', role: 'agent', status: 'active' },
+            { id: 11, name: 'Fatma Karipçin', username: 'fkaripcin', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 12, name: 'Fidan Açıkgöz', username: 'facikgoz', branch: 'Yozgat', role: 'agent', status: 'active' },
+            { id: 13, name: 'Gönül Dağ', username: 'gdag', branch: 'Eskişehir', role: 'agent', status: 'active' },
+            { id: 14, name: 'Gülay Dikmen', username: 'gdikmen', branch: 'Eskişehir', role: 'agent', status: 'active' },
+            { id: 15, name: 'Gülayfer Altuntaş', username: 'galtuntas', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 16, name: 'Hatice Yıldız', username: 'hyildiz', branch: 'Yozgat', role: 'agent', status: 'active' },
+            { id: 17, name: 'Hilal Coşkun', username: 'hcoskun', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 18, name: 'Kader Taşpınar', username: 'ktaspinar', branch: 'Eskişehir', role: 'agent', status: 'active' },
+            { id: 19, name: 'Leyla Doğan', username: 'ldogan', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 20, name: 'Meral Taşdoğan', username: 'mtasdogan', branch: 'Antep', role: 'agent', status: 'active' },
+            { id: 21, name: 'Murat Atalay', username: 'matalay', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 22, name: 'Nihat Kedi', username: 'nkedi', branch: 'Home Office', role: 'agent', status: 'active' },
+            { id: 23, name: 'Saliha Arslan Atalay', username: 'satalay', branch: 'Home Office', role: 'agent', status: 'active' },
+            { id: 24, name: 'Selma Delioğlu', username: 'sdelioglu', branch: 'İzmir', role: 'agent', status: 'active' },
+            { id: 25, name: 'Seval Çeliköz', username: 'scelikoz', branch: 'Home Office', role: 'agent', status: 'active' },
+            { id: 26, name: 'Şeyda Uludağ', username: 'suludag', branch: 'İzmir', role: 'agent', status: 'active' },
+            { id: 27, name: 'Taner Turan', username: 'tturan', branch: 'Balıkesir', role: 'agent', status: 'active' },
+            { id: 28, name: 'Tuncay Karaca', username: 'tkaraca', branch: 'İzmit', role: 'agent', status: 'active' },
+            { id: 29, name: 'Turgay Yumrukaya', username: 'tyumrukaya', branch: 'Eskişehir', role: 'agent', status: 'active' },
+            { id: 30, name: 'Yeter Uzun', username: 'yuzun', branch: 'Yozgat', role: 'agent', status: 'active' },
+            { id: 31, name: 'Yücel Gökçe', username: 'ygokce', branch: 'Home Office', role: 'agent', status: 'active' },
+            { id: 32, name: 'Yüksel Taşkın', username: 'ytaskin', branch: 'İzmit', role: 'agent', status: 'active' }
+        ];
+        
         function updateEmployeesUI(employees) {
+            // Firebase boş geldiyse sabit listeyi kullan
+            const employeeList = (employees && employees.length > 0) ? employees : defaultEmployees;
+            
             const empCount = document.getElementById('employeeCount');
-            if (empCount) empCount.textContent = employees.length;
-            loadEmployeesTableFromData(employees);
+            if (empCount) empCount.textContent = employeeList.length;
+            
+            // Çalışan tablosunu güncelleme - sabit HTML'i KORUMAK için kontrol
+            // Firebase'den veri geldiyse güncelle, gelmezse HTML'deki veriyi koru
+            if (employees && employees.length > 0) {
+                loadEmployeesTableFromData(employees);
+            }
+            // Boş gelirse mevcut HTML tablosu korunur
         }
         
         function updateSalesUI(sales) {
