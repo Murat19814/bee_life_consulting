@@ -1357,40 +1357,15 @@
                     <div class="card">
                         <div class="card-header">
                             <h3><i class="fas fa-file-alt"></i> <span data-tr="Son Başvurular" data-de="Letzte Bewerbungen">Son Başvurular</span></h3>
+                            <span class="badge" style="background: var(--accent-mint); color: white;" id="applicationCount">0</span>
                         </div>
-                        <div class="application-item">
-                            <div class="application-avatar">SK</div>
-                            <div class="application-info">
-                                <h4>Selin Kara</h4>
-                                <p>Outbound Satış • Yozgat</p>
+                        <div id="recentApplicationsList">
+                            <div style="text-align: center; padding: 30px; color: var(--text-light);">
+                                <i class="fas fa-inbox" style="font-size: 2rem; margin-bottom: 10px; opacity: 0.5; display: block;"></i>
+                                <span data-tr="Henüz başvuru yok" data-de="Noch keine Bewerbungen">Henüz başvuru yok</span>
                             </div>
-                            <span class="application-time" data-tr="2 saat önce" data-de="vor 2 Stunden">2 saat önce</span>
                         </div>
-                        <div class="application-item">
-                            <div class="application-avatar">BT</div>
-                            <div class="application-info">
-                                <h4>Burak Tunç</h4>
-                                <p>Inbound Hotline • İzmit</p>
-                            </div>
-                            <span class="application-time" data-tr="5 saat önce" data-de="vor 5 Stunden">5 saat önce</span>
-                        </div>
-                        <div class="application-item">
-                            <div class="application-avatar">ZA</div>
-                            <div class="application-info">
-                                <h4>Zeynep Arslan</h4>
-                                <p>Outbound Satış • Eskişehir</p>
-                            </div>
-                            <span class="application-time" data-tr="1 gün önce" data-de="vor 1 Tag">1 gün önce</span>
-                        </div>
-                        <div class="application-item">
-                            <div class="application-avatar">OD</div>
-                            <div class="application-info">
-                                <h4>Onur Demir</h4>
-                                <p data-tr="Her İkisi • Balıkesir" data-de="Beide • Balıkesir">Her İkisi • Balıkesir</p>
-                            </div>
-                            <span class="application-time" data-tr="2 gün önce" data-de="vor 2 Tagen">2 gün önce</span>
-                        </div>
-                        <button class="btn btn-outline" style="width: 100%; margin-top: 15px;" data-page="applications" data-tr="Tüm Başvuruları Gör" data-de="Alle Bewerbungen anzeigen">
+                        <button class="btn btn-outline" style="width: 100%; margin-top: 15px;" onclick="showPage('applications')" data-tr="Tüm Başvuruları Gör" data-de="Alle Bewerbungen anzeigen">
                             Tüm Başvuruları Gör
                         </button>
                     </div>
@@ -1547,13 +1522,18 @@
         <div class="page-content" id="page-applications">
             <div class="card">
                 <div class="card-header">
-                    <h3 data-tr="Tüm Başvurular (12)" data-de="Alle Bewerbungen (12)">Tüm Başvurular (12)</h3>
-                    <select style="padding: 8px 15px; border: 1px solid var(--light-gray);">
-                        <option data-tr="Tümü" data-de="Alle">Tümü</option>
-                        <option data-tr="Bekleyen" data-de="Ausstehend">Bekleyen</option>
-                        <option data-tr="Onaylanan" data-de="Genehmigt">Onaylanan</option>
-                        <option data-tr="Reddedilen" data-de="Abgelehnt">Reddedilen</option>
-                    </select>
+                    <h3><i class="fas fa-file-alt"></i> <span data-tr="Tüm Başvurular" data-de="Alle Bewerbungen">Tüm Başvurular</span> (<span id="totalApplicationCount">0</span>)</h3>
+                    <div style="display: flex; gap: 10px;">
+                        <select style="padding: 8px 15px; border: 1px solid var(--light-gray); border-radius: 5px;" id="applicationFilter" onchange="filterApplications()">
+                            <option value="all" data-tr="Tümü" data-de="Alle">Tümü</option>
+                            <option value="pending" data-tr="Bekleyen" data-de="Ausstehend">Bekleyen</option>
+                            <option value="approved" data-tr="Onaylanan" data-de="Genehmigt">Onaylanan</option>
+                            <option value="rejected" data-tr="Reddedilen" data-de="Abgelehnt">Reddedilen</option>
+                        </select>
+                        <button class="btn btn-outline" onclick="clearAllApplications()" style="color: #dc3545; border-color: #dc3545;">
+                            <i class="fas fa-trash"></i> <span data-tr="Tümünü Sil" data-de="Alle löschen">Tümünü Sil</span>
+                        </button>
+                    </div>
                 </div>
                 <table class="table">
                     <thead>
@@ -1566,65 +1546,11 @@
                             <th data-tr="İşlem" data-de="Aktion">İşlem</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="applicationsTableBody">
                         <tr>
-                            <td>
-                                <div class="employee-cell">
-                                    <div class="employee-avatar">SK</div>
-                                    <div class="employee-info">
-                                        <h4>Selin Kara</h4>
-                                        <p>selin@email.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Outbound Satış</td>
-                            <td>Yozgat</td>
-                            <td>09.12.2024</td>
-                            <td><span class="status-badge pending" data-tr="Bekliyor" data-de="Ausstehend">Bekliyor</span></td>
-                            <td>
-                                <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                                <button class="action-btn edit" style="background: rgba(64,145,108,0.1); color: var(--accent-mint);"><i class="fas fa-check"></i></button>
-                                <button class="action-btn delete"><i class="fas fa-times"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="employee-cell">
-                                    <div class="employee-avatar">BT</div>
-                                    <div class="employee-info">
-                                        <h4>Burak Tunç</h4>
-                                        <p>burak@email.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Inbound Hotline</td>
-                            <td>İzmit</td>
-                            <td>09.12.2024</td>
-                            <td><span class="status-badge pending" data-tr="Bekliyor" data-de="Ausstehend">Bekliyor</span></td>
-                            <td>
-                                <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                                <button class="action-btn edit" style="background: rgba(64,145,108,0.1); color: var(--accent-mint);"><i class="fas fa-check"></i></button>
-                                <button class="action-btn delete"><i class="fas fa-times"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="employee-cell">
-                                    <div class="employee-avatar">ZA</div>
-                                    <div class="employee-info">
-                                        <h4>Zeynep Arslan</h4>
-                                        <p>zeynep@email.com</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Outbound Satış</td>
-                            <td>Eskişehir</td>
-                            <td>08.12.2024</td>
-                            <td><span class="status-badge pending" data-tr="Bekliyor" data-de="Ausstehend">Bekliyor</span></td>
-                            <td>
-                                <button class="action-btn view"><i class="fas fa-eye"></i></button>
-                                <button class="action-btn edit" style="background: rgba(64,145,108,0.1); color: var(--accent-mint);"><i class="fas fa-check"></i></button>
-                                <button class="action-btn delete"><i class="fas fa-times"></i></button>
+                            <td colspan="6" style="text-align: center; padding: 40px; color: var(--text-light);">
+                                <i class="fas fa-inbox" style="font-size: 2rem; margin-bottom: 10px; opacity: 0.5; display: block;"></i>
+                                <span data-tr="Henüz başvuru yok" data-de="Noch keine Bewerbungen">Henüz başvuru yok</span>
                             </td>
                         </tr>
                     </tbody>
@@ -3013,9 +2939,188 @@
             loadDailySalesTable();
         }
         
+        // ═══════════════════════════════════════════════════════════════
+        // BAŞVURU YÖNETİMİ
+        // ═══════════════════════════════════════════════════════════════
+        
+        function loadApplications() {
+            const applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
+            
+            // Update count badges
+            document.getElementById('applicationCount').textContent = applications.length;
+            document.getElementById('totalApplicationCount').textContent = applications.length;
+            
+            // Load recent applications (dashboard)
+            loadRecentApplications(applications);
+            
+            // Load full applications table
+            loadApplicationsTable(applications);
+        }
+        
+        function loadRecentApplications(applications) {
+            const container = document.getElementById('recentApplicationsList');
+            if (!container) return;
+            
+            if (applications.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 30px; color: var(--text-light);">
+                        <i class="fas fa-inbox" style="font-size: 2rem; margin-bottom: 10px; opacity: 0.5; display: block;"></i>
+                        <span data-tr="Henüz başvuru yok" data-de="Noch keine Bewerbungen">Henüz başvuru yok</span>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Show only last 4 applications
+            const recentApps = applications.slice(0, 4);
+            container.innerHTML = recentApps.map(app => {
+                const initials = (app.firstName[0] || '') + (app.lastName[0] || '');
+                const position = app.position === 'outbound' ? 'Outbound Satış' : app.position === 'inbound' ? 'Inbound Hotline' : 'Her İkisi';
+                const timeAgo = getTimeAgo(app.appliedAt);
+                
+                return `
+                    <div class="application-item" onclick="viewApplication(${app.id})">
+                        <div class="application-avatar">${initials.toUpperCase()}</div>
+                        <div class="application-info">
+                            <h4>${app.firstName} ${app.lastName}</h4>
+                            <p>${position} • ${app.branch || 'Belirtilmedi'}</p>
+                        </div>
+                        <span class="application-time">${timeAgo}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        function loadApplicationsTable(applications) {
+            const tbody = document.getElementById('applicationsTableBody');
+            if (!tbody) return;
+            
+            if (applications.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 40px; color: var(--text-light);">
+                            <i class="fas fa-inbox" style="font-size: 2rem; margin-bottom: 10px; opacity: 0.5; display: block;"></i>
+                            <span data-tr="Henüz başvuru yok" data-de="Noch keine Bewerbungen">Henüz başvuru yok</span>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tbody.innerHTML = applications.map(app => {
+                const initials = (app.firstName[0] || '') + (app.lastName[0] || '');
+                const position = app.position === 'outbound' ? 'Outbound Satış' : app.position === 'inbound' ? 'Inbound Hotline' : 'Her İkisi';
+                const statusClass = app.status === 'approved' ? 'active' : app.status === 'rejected' ? 'inactive' : 'pending';
+                const statusText = app.status === 'approved' ? 'Onaylandı' : app.status === 'rejected' ? 'Reddedildi' : 'Bekliyor';
+                
+                return `
+                    <tr data-status="${app.status}">
+                        <td>
+                            <div class="employee-cell">
+                                <div class="employee-avatar">${initials.toUpperCase()}</div>
+                                <div class="employee-info">
+                                    <h4>${app.firstName} ${app.lastName}</h4>
+                                    <p>${app.email || 'E-posta yok'}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${position}</td>
+                        <td>${app.branch || 'Belirtilmedi'}</td>
+                        <td>${app.appliedDate || '-'}</td>
+                        <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                        <td>
+                            <button class="action-btn view" onclick="viewApplication(${app.id})" title="İncele"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit" onclick="approveApplication(${app.id})" style="background: rgba(64,145,108,0.1); color: var(--accent-mint);" title="Onayla"><i class="fas fa-check"></i></button>
+                            <button class="action-btn delete" onclick="deleteApplication(${app.id})" title="Sil"><i class="fas fa-times"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        function getTimeAgo(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMs / 3600000);
+            const diffDays = Math.floor(diffMs / 86400000);
+            
+            if (diffMins < 60) return diffMins + ' dk önce';
+            if (diffHours < 24) return diffHours + ' saat önce';
+            if (diffDays < 7) return diffDays + ' gün önce';
+            return date.toLocaleDateString('tr-TR');
+        }
+        
+        function viewApplication(id) {
+            const applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
+            const app = applications.find(a => a.id === id);
+            
+            if (!app) return;
+            
+            const position = app.position === 'outbound' ? 'Outbound Satış' : app.position === 'inbound' ? 'Inbound Hotline' : 'Her İkisi';
+            const germanLevels = { 'native': 'Anadil', 'c2': 'C2', 'c1': 'C1', 'b2': 'B2', 'b1': 'B1', 'a2': 'A2', 'a1': 'A1', 'none': 'Yok' };
+            
+            alert(`📋 BAŞVURU DETAYI\n\n` +
+                  `👤 ${app.firstName} ${app.lastName}\n` +
+                  `📧 ${app.email || '-'}\n` +
+                  `📱 ${app.phone || '-'}\n` +
+                  `🎂 ${app.birthDate || '-'}\n` +
+                  `🏙️ ${app.city || '-'}\n\n` +
+                  `💼 Pozisyon: ${position}\n` +
+                  `🏢 Şube: ${app.branch || '-'}\n` +
+                  `🇩🇪 Almanca: ${germanLevels[app.germanLevel] || '-'}\n` +
+                  `📝 Deneyim: ${app.experience || '-'}\n\n` +
+                  `💬 Motivasyon:\n${app.motivation || '-'}\n\n` +
+                  `📅 Başvuru Tarihi: ${app.appliedDate}`);
+        }
+        
+        function approveApplication(id) {
+            let applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
+            const index = applications.findIndex(a => a.id === id);
+            
+            if (index > -1) {
+                applications[index].status = 'approved';
+                localStorage.setItem('blc_applications', JSON.stringify(applications));
+                loadApplications();
+                alert('✅ Başvuru onaylandı!');
+            }
+        }
+        
+        function deleteApplication(id) {
+            if (!confirm('Bu başvuruyu silmek istediğinize emin misiniz?')) return;
+            
+            let applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
+            applications = applications.filter(a => a.id !== id);
+            localStorage.setItem('blc_applications', JSON.stringify(applications));
+            loadApplications();
+        }
+        
+        function clearAllApplications() {
+            if (!confirm('TÜM BAŞVURULARI silmek istediğinize emin misiniz?\n\nBu işlem geri alınamaz!')) return;
+            
+            localStorage.removeItem('blc_applications');
+            loadApplications();
+            alert('✅ Tüm başvurular silindi.');
+        }
+        
+        function filterApplications() {
+            const filter = document.getElementById('applicationFilter').value;
+            const rows = document.querySelectorAll('#applicationsTableBody tr[data-status]');
+            
+            rows.forEach(row => {
+                if (filter === 'all' || row.dataset.status === filter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+        
         // Kayıtlı verileri yükle
         function loadSavedData() {
             loadDailySalesTable();
+            loadApplications();
             
             // RLS/WR verilerini yükle
             const month = document.getElementById('rlsMonth')?.value || '11';

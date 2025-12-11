@@ -1278,10 +1278,33 @@
             applicationForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Simulate form submission
                 const submitBtn = this.querySelector('button[type="submit"]');
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
                 submitBtn.disabled = true;
+                
+                // Collect form data
+                const formData = {
+                    id: Date.now(),
+                    firstName: document.getElementById('firstName')?.value || '',
+                    lastName: document.getElementById('lastName')?.value || '',
+                    email: document.getElementById('email')?.value || '',
+                    phone: document.getElementById('phone')?.value || '',
+                    birthDate: document.getElementById('birthDate')?.value || '',
+                    city: document.getElementById('city')?.value || '',
+                    position: document.querySelector('input[name="position"]:checked')?.value || 'outbound',
+                    branch: document.getElementById('preferredBranch')?.value || '',
+                    germanLevel: document.getElementById('germanLevel')?.value || '',
+                    experience: document.getElementById('experience')?.value || '',
+                    motivation: document.getElementById('motivation')?.value || '',
+                    status: 'pending',
+                    appliedAt: new Date().toISOString(),
+                    appliedDate: new Date().toLocaleDateString('tr-TR')
+                };
+                
+                // Save to localStorage
+                const applications = JSON.parse(localStorage.getItem('blc_applications') || '[]');
+                applications.unshift(formData); // Add to beginning
+                localStorage.setItem('blc_applications', JSON.stringify(applications));
                 
                 setTimeout(() => {
                     formContainer.querySelector('form').style.display = 'none';
