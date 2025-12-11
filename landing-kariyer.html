@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bee Life Consulting - Inbound & Outbound Kariyer Fırsatları. 35€ komisyon, 500€ ödüller!">
-    <title>Kariyer Fırsatları - Inbound & Outbound | Bee Life Consulting</title>
+    <meta name="description" content="Bee Life Consulting - Inbound & Outbound Career Opportunities. 35€ commission, 500€ rewards!">
+    <title id="pageTitle">Kariyer Fırsatları | Bee Life Consulting</title>
     
     <meta name="theme-color" content="#0d2b2a">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,6 +34,46 @@
         }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 8px;
+            background: rgba(13,43,42,0.95);
+            padding: 8px 12px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+        
+        .lang-btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+        
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--primary);
+        }
         
         /* ═══ HERO ═══ */
         .hero {
@@ -100,9 +140,7 @@
             margin-bottom: 40px;
         }
         
-        .stat-item {
-            text-align: center;
-        }
+        .stat-item { text-align: center; }
         
         .stat-value {
             font-size: 2.5rem;
@@ -158,9 +196,7 @@
             color: var(--gold);
         }
         
-        .hero-visual {
-            position: relative;
-        }
+        .hero-visual { position: relative; }
         
         .hero-card {
             background: rgba(255,255,255,0.1);
@@ -179,9 +215,7 @@
             gap: 12px;
         }
         
-        .hero-card h3 i {
-            color: var(--gold);
-        }
+        .hero-card h3 i { color: var(--gold); }
         
         .position-card {
             background: rgba(255,255,255,0.08);
@@ -366,7 +400,7 @@
             font-size: 1.1rem;
         }
         
-        .position-box p {
+        .position-box > p {
             color: var(--text-light);
             margin-bottom: 25px;
             line-height: 1.8;
@@ -387,9 +421,7 @@
             font-size: 0.95rem;
         }
         
-        .pf-item i {
-            color: var(--gold);
-        }
+        .pf-item i { color: var(--gold); }
         
         .btn-dark {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
@@ -480,7 +512,7 @@
             text-decoration: none;
         }
         
-        /* ═══ WHATSAPP ═══ */
+        /* WhatsApp */
         .whatsapp-btn {
             position: fixed;
             bottom: 30px;
@@ -500,11 +532,9 @@
             transition: all 0.3s ease;
         }
         
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-        }
+        .whatsapp-btn:hover { transform: scale(1.1); }
         
-        /* ═══ RESPONSIVE ═══ */
+        /* Responsive */
         @media (max-width: 992px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
             .hero h1 { font-size: 2.5rem; }
@@ -513,6 +543,8 @@
             .hero-visual { display: none; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .positions-grid { grid-template-columns: 1fr; }
+            .lang-switcher { top: 10px; right: 10px; padding: 6px 10px; }
+            .lang-btn { padding: 6px 10px; font-size: 0.75rem; }
         }
         
         @media (max-width: 768px) {
@@ -529,65 +561,77 @@
 </head>
 <body>
 
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
+        <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
+        <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">🇬🇧 EN</button>
+    </div>
+
     <!-- ═══ HERO ═══ -->
     <section class="hero">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <i class="fas fa-star"></i> Almanya Merkezli Projeler
+                        <i class="fas fa-star"></i>
+                        <span data-tr="Almanya Merkezli Projeler" data-de="Projekte mit Sitz in Deutschland" data-en="Germany-Based Projects">Almanya Merkezli Projeler</span>
                     </div>
-                    <h1>Inbound & Outbound <span>Kariyer Fırsatları</span></h1>
-                    <p class="hero-subtitle">
-                        Bee Life Consulting ile profesyonel çağrı merkezi kariyerine başlayın. 
-                        Yüksek komisyon, cazip ödüller ve uluslararası deneyim sizi bekliyor!
+                    <h1>
+                        <span data-tr="Inbound & Outbound" data-de="Inbound & Outbound" data-en="Inbound & Outbound">Inbound & Outbound</span>
+                        <br><span data-tr="Kariyer Fırsatları" data-de="Karrieremöglichkeiten" data-en="Career Opportunities">Kariyer Fırsatları</span>
+                    </h1>
+                    <p class="hero-subtitle" data-tr="Bee Life Consulting ile profesyonel çağrı merkezi kariyerine başlayın. Yüksek komisyon, cazip ödüller ve uluslararası deneyim sizi bekliyor!" data-de="Starten Sie Ihre professionelle Callcenter-Karriere mit Bee Life Consulting. Hohe Provisionen, attraktive Prämien und internationale Erfahrung erwarten Sie!" data-en="Start your professional call center career with Bee Life Consulting. High commissions, attractive rewards and international experience await you!">
+                        Bee Life Consulting ile profesyonel çağrı merkezi kariyerine başlayın. Yüksek komisyon, cazip ödüller ve uluslararası deneyim sizi bekliyor!
                     </p>
                     
                     <div class="hero-stats">
                         <div class="stat-item">
                             <span class="stat-value">35€</span>
-                            <span class="stat-label">QC OK Komisyon</span>
+                            <span class="stat-label" data-tr="QC OK Komisyon" data-de="QC OK Provision" data-en="QC OK Commission">QC OK Komisyon</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-value">500€</span>
-                            <span class="stat-label">Aylık Ödüller</span>
+                            <span class="stat-label" data-tr="Aylık Ödüller" data-de="Monatliche Prämien" data-en="Monthly Rewards">Aylık Ödüller</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-value">5+</span>
-                            <span class="stat-label">Yıllık Deneyim</span>
+                            <span class="stat-label" data-tr="Yıllık Deneyim" data-de="Jahre Erfahrung" data-en="Years Experience">Yıllık Deneyim</span>
                         </div>
                     </div>
                     
                     <div class="hero-buttons">
                         <a href="basvuru.html" class="btn btn-gold">
-                            <i class="fas fa-paper-plane"></i> Hemen Başvur
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-tr="Hemen Başvur" data-de="Jetzt Bewerben" data-en="Apply Now">Hemen Başvur</span>
                         </a>
                         <a href="#positions" class="btn btn-outline">
-                            <i class="fas fa-info-circle"></i> Pozisyonları İncele
+                            <i class="fas fa-info-circle"></i>
+                            <span data-tr="Pozisyonları İncele" data-de="Positionen Ansehen" data-en="View Positions">Pozisyonları İncele</span>
                         </a>
                     </div>
                 </div>
                 
                 <div class="hero-visual">
                     <div class="hero-card">
-                        <h3><i class="fas fa-briefcase"></i> Açık Pozisyonlar</h3>
+                        <h3><i class="fas fa-briefcase"></i> <span data-tr="Açık Pozisyonlar" data-de="Offene Stellen" data-en="Open Positions">Açık Pozisyonlar</span></h3>
                         
                         <div class="position-card">
-                            <h4>Outbound Satış Temsilcisi</h4>
-                            <p>Almanca konuşan müşterilere satış</p>
+                            <h4 data-tr="Outbound Satış Temsilcisi" data-de="Outbound Vertriebsmitarbeiter" data-en="Outbound Sales Representative">Outbound Satış Temsilcisi</h4>
+                            <p data-tr="Almanca konuşan müşterilere satış" data-de="Verkauf an deutschsprachige Kunden" data-en="Sales to German-speaking customers">Almanca konuşan müşterilere satış</p>
                             <span class="position-tag">35€ / QC OK</span>
                         </div>
                         
                         <div class="position-card">
-                            <h4>Inbound Müşteri Temsilcisi</h4>
-                            <p>Hotline müşteri hizmetleri</p>
-                            <span class="position-tag">Sabit Maaş</span>
+                            <h4 data-tr="Inbound Müşteri Temsilcisi" data-de="Inbound Kundenberater" data-en="Inbound Customer Representative">Inbound Müşteri Temsilcisi</h4>
+                            <p data-tr="Hotline müşteri hizmetleri" data-de="Hotline Kundenservice" data-en="Hotline customer service">Hotline müşteri hizmetleri</p>
+                            <span class="position-tag" data-tr="Sabit Maaş" data-de="Festgehalt" data-en="Fixed Salary">Sabit Maaş</span>
                         </div>
                         
                         <div class="position-card">
                             <h4>Team Leader</h4>
-                            <p>Ekip yönetimi pozisyonu</p>
-                            <span class="position-tag">Yüksek Kazanç</span>
+                            <p data-tr="Ekip yönetimi pozisyonu" data-de="Teamleiter Position" data-en="Team management position">Ekip yönetimi pozisyonu</p>
+                            <span class="position-tag" data-tr="Yüksek Kazanç" data-de="Hoher Verdienst" data-en="High Earnings">Yüksek Kazanç</span>
                         </div>
                     </div>
                 </div>
@@ -599,42 +643,34 @@
     <section class="features">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Avantajlar</span>
-                <h2 class="section-title">Neden Bee Life?</h2>
-                <p class="section-subtitle">Çalışanlarımıza sunduğumuz eşsiz fırsatlar</p>
+                <span class="section-tag" data-tr="Avantajlar" data-de="Vorteile" data-en="Benefits">Avantajlar</span>
+                <h2 class="section-title" data-tr="Neden Bee Life?" data-de="Warum Bee Life?" data-en="Why Bee Life?">Neden Bee Life?</h2>
+                <p class="section-subtitle" data-tr="Çalışanlarımıza sunduğumuz eşsiz fırsatlar" data-de="Einzigartige Möglichkeiten für unsere Mitarbeiter" data-en="Unique opportunities we offer to our employees">Çalışanlarımıza sunduğumuz eşsiz fırsatlar</p>
             </div>
             
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-euro-sign"></i>
-                    </div>
-                    <h3>Yüksek Kazanç</h3>
-                    <p>Her QC OK satış için 35€ komisyon + sabit maaş ile sınırsız kazanç potansiyeli</p>
+                    <div class="feature-icon"><i class="fas fa-euro-sign"></i></div>
+                    <h3 data-tr="Yüksek Kazanç" data-de="Hoher Verdienst" data-en="High Earnings">Yüksek Kazanç</h3>
+                    <p data-tr="Her QC OK satış için 35€ komisyon + sabit maaş ile sınırsız kazanç potansiyeli" data-de="35€ Provision für jeden QC OK Verkauf + Festgehalt mit unbegrenztem Verdienstpotenzial" data-en="35€ commission for each QC OK sale + fixed salary with unlimited earning potential">Her QC OK satış için 35€ komisyon + sabit maaş ile sınırsız kazanç potansiyeli</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <h3>Ödül Sistemi</h3>
-                    <p>Aylık 500€'ya kadar hediye ödülleri, PS5, tatil paketleri ve daha fazlası</p>
+                    <div class="feature-icon"><i class="fas fa-gift"></i></div>
+                    <h3 data-tr="Ödül Sistemi" data-de="Prämiensystem" data-en="Reward System">Ödül Sistemi</h3>
+                    <p data-tr="Aylık 500€'ya kadar hediye ödülleri, PS5, tatil paketleri ve daha fazlası" data-de="Bis zu 500€ monatliche Prämien, PS5, Urlaubspakete und mehr" data-en="Up to 500€ monthly rewards, PS5, vacation packages and more">Aylık 500€'ya kadar hediye ödülleri, PS5, tatil paketleri ve daha fazlası</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Kariyer Fırsatı</h3>
-                    <p>Hızlı yükselme imkanları ile Team Leader ve yönetici pozisyonlarına ulaşın</p>
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3 data-tr="Kariyer Fırsatı" data-de="Karrierechance" data-en="Career Opportunity">Kariyer Fırsatı</h3>
+                    <p data-tr="Hızlı yükselme imkanları ile Team Leader ve yönetici pozisyonlarına ulaşın" data-de="Erreichen Sie Team Leader und Führungspositionen mit schnellen Aufstiegsmöglichkeiten" data-en="Reach Team Leader and management positions with fast advancement opportunities">Hızlı yükselme imkanları ile Team Leader ve yönetici pozisyonlarına ulaşın</p>
                 </div>
                 
                 <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-globe-europe"></i>
-                    </div>
-                    <h3>Global Deneyim</h3>
-                    <p>Almanya merkezli prestijli projeler ile uluslararası iş deneyimi kazanın</p>
+                    <div class="feature-icon"><i class="fas fa-globe-europe"></i></div>
+                    <h3 data-tr="Global Deneyim" data-de="Globale Erfahrung" data-en="Global Experience">Global Deneyim</h3>
+                    <p data-tr="Almanya merkezli prestijli projeler ile uluslararası iş deneyimi kazanın" data-de="Sammeln Sie internationale Berufserfahrung mit prestigeträchtigen Projekten mit Sitz in Deutschland" data-en="Gain international work experience with prestigious Germany-based projects">Almanya merkezli prestijli projeler ile uluslararası iş deneyimi kazanın</p>
                 </div>
             </div>
         </div>
@@ -644,59 +680,53 @@
     <section class="positions" id="positions">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Pozisyonlar</span>
-                <h2 class="section-title">Açık Pozisyonlarımız</h2>
-                <p class="section-subtitle">Size uygun pozisyonu seçin ve kariyerinize başlayın</p>
+                <span class="section-tag" data-tr="Pozisyonlar" data-de="Positionen" data-en="Positions">Pozisyonlar</span>
+                <h2 class="section-title" data-tr="Açık Pozisyonlarımız" data-de="Unsere Offenen Stellen" data-en="Our Open Positions">Açık Pozisyonlarımız</h2>
+                <p class="section-subtitle" data-tr="Size uygun pozisyonu seçin ve kariyerinize başlayın" data-de="Wählen Sie die passende Position und starten Sie Ihre Karriere" data-en="Choose the right position for you and start your career">Size uygun pozisyonu seçin ve kariyerinize başlayın</p>
             </div>
             
             <div class="positions-grid">
                 <div class="position-box">
                     <div class="position-box-header">
-                        <div class="position-icon">
-                            <i class="fas fa-phone-volume"></i>
-                        </div>
+                        <div class="position-icon"><i class="fas fa-phone-volume"></i></div>
                         <div>
-                            <h3>Outbound Satış</h3>
+                            <h3 data-tr="Outbound Satış" data-de="Outbound Vertrieb" data-en="Outbound Sales">Outbound Satış</h3>
                             <span class="subtitle">35€ / QC OK Komisyon</span>
                         </div>
                     </div>
-                    <p>
-                        Almanca konuşan müşterilere telefon ile satış yapacaksınız. 
-                        Her başarılı satış için 35€ komisyon kazanın. Üst sınır yok!
+                    <p data-tr="Almanca konuşan müşterilere telefon ile satış yapacaksınız. Her başarılı satış için 35€ komisyon kazanın. Üst sınır yok!" data-de="Sie werden telefonisch an deutschsprachige Kunden verkaufen. Verdienen Sie 35€ Provision für jeden erfolgreichen Verkauf. Keine Obergrenze!" data-en="You will sell by phone to German-speaking customers. Earn 35€ commission for each successful sale. No upper limit!">
+                        Almanca konuşan müşterilere telefon ile satış yapacaksınız. Her başarılı satış için 35€ komisyon kazanın. Üst sınır yok!
                     </p>
                     <div class="position-features">
-                        <div class="pf-item"><i class="fas fa-check"></i> Komisyon bazlı kazanç</div>
-                        <div class="pf-item"><i class="fas fa-check"></i> Sabit maaş garantisi</div>
-                        <div class="pf-item"><i class="fas fa-check"></i> Almanca C1-C2 seviye</div>
-                        <div class="pf-item"><i class="fas fa-check"></i> Eğitim desteği</div>
+                        <div class="pf-item"><i class="fas fa-check"></i> <span data-tr="Komisyon bazlı kazanç" data-de="Provisionsbasierter Verdienst" data-en="Commission-based earnings">Komisyon bazlı kazanç</span></div>
+                        <div class="pf-item"><i class="fas fa-check"></i> <span data-tr="Sabit maaş garantisi" data-de="Festgehalt garantiert" data-en="Fixed salary guarantee">Sabit maaş garantisi</span></div>
+                        <div class="pf-item"><i class="fas fa-check"></i> <span data-tr="Almanca C1-C2 seviye" data-de="Deutsch C1-C2 Niveau" data-en="German C1-C2 level">Almanca C1-C2 seviye</span></div>
+                        <div class="pf-item"><i class="fas fa-check"></i> <span data-tr="Eğitim desteği" data-de="Schulungsunterstützung" data-en="Training support">Eğitim desteği</span></div>
                     </div>
                     <a href="basvuru.html" class="btn btn-dark">
-                        <i class="fas fa-arrow-right"></i> Başvur
+                        <i class="fas fa-arrow-right"></i> <span data-tr="Başvur" data-de="Bewerben" data-en="Apply">Başvur</span>
                     </a>
                 </div>
                 
                 <div class="position-box">
                     <div class="position-box-header">
-                        <div class="position-icon">
-                            <i class="fas fa-headset"></i>
-                        </div>
+                        <div class="position-icon"><i class="fas fa-headset"></i></div>
                         <div>
-                            <h3>Inbound Hotline</h3>
-                            <span class="subtitle">Sabit Maaş + Bonus</span>
+                            <h3 data-tr="Inbound Hotline" data-de="Inbound Hotline" data-en="Inbound Hotline">Inbound Hotline</h3>
+                            <span class="subtitle" data-tr="Sabit Maaş + Bonus" data-de="Festgehalt + Bonus" data-en="Fixed Salary + Bonus">Sabit Maaş + Bonus</span>
                         </div>
                     </div>
-                    <p>
-                        Gelen müşteri çağrılarını yanıtlayın, sorunları çözün ve müşteri memnuniyeti sağlayın. 
-                        Stabil gelir ve performans bonusları.
+                    <p data-tr="Gelen müşteri çağrılarını yanıtlayın, sorunları çözün ve müşteri memnuniyeti sağlayın. Stabil gelir ve performans bonusları." data-de="Beantworten Sie eingehende Kundenanrufe, lösen Sie Probleme und sorgen Sie für Kundenzufriedenheit. Stabiles Einkommen und Leistungsboni." data-en="Answer incoming customer calls, solve problems and ensure customer satisfaction. Stable income and performance bonuses.">
+                        Gelen müşteri çağrılarını yanıtlayın, sorunları çözün ve müşteri memnuniyeti sağlayın. Stabil gelir ve performans bonusları.
                     </p>
                     <div class="position-features">
-                        <div class="pf-item"><i class="fas fa-check"></i> Sabit maaş garantisi</div>
-                        <div class="pf-item"><i class="fas fa-check"></i> Performans bonusu</div>
-                        <div class="pf-item"><i class="fas fa-check"></i> Almanca B2-C1 seviye</div>
-                        <div class="pf-item"><i class="fas fa-check"></i> Vardiyalı çalışma</div>
+                        <div class="pf-item"><i class="fas fa-check"></i> <span data-tr="Sabit maaş garantisi" data-de="Festgehalt garantiert" data-en="Fixed salary guarantee">Sabit maaş garantisi</span></div>
+                        <div class="pf-item"><i class="fas fa-check"></i> <span data-tr="Performans bonusu" data-de="Leistungsbonus" data-en="Performance bonus">Performans bonusu</span></div>
+                        <div class="pf-item"><i class="fas fa-check"></i> <span data-tr="Almanca B2-C1 seviye" data-de="Deutsch B2-C1 Niveau" data-en="German B2-C1 level">Almanca B2-C1 seviye</span></div>
+                        <div class="pf-item"><i class="fas fa-check"></i> <span data-tr="Vardiyalı çalışma" data-de="Schichtarbeit" data-en="Shift work">Vardiyalı çalışma</span></div>
                     </div>
                     <a href="basvuru.html" class="btn btn-dark">
-                        <i class="fas fa-arrow-right"></i> Başvur
+                        <i class="fas fa-arrow-right"></i> <span data-tr="Başvur" data-de="Bewerben" data-en="Apply">Başvur</span>
                     </a>
                 </div>
             </div>
@@ -707,14 +737,16 @@
     <section class="cta">
         <div class="container">
             <div class="cta-content">
-                <h2>Kariyerinize <span>Bugün</span> Başlayın!</h2>
-                <p>Bee Life ailesine katılın, Almanya merkezli projelerde çalışın ve yüksek kazanç elde edin.</p>
+                <h2><span data-tr="Kariyerinize" data-de="Starten Sie Ihre" data-en="Start Your">Kariyerinize</span> <span data-tr="Bugün Başlayın!" data-de="Karriere Heute!" data-en="Career Today!">Bugün Başlayın!</span></h2>
+                <p data-tr="Bee Life ailesine katılın, Almanya merkezli projelerde çalışın ve yüksek kazanç elde edin." data-de="Treten Sie der Bee Life Familie bei, arbeiten Sie an Projekten mit Sitz in Deutschland und erzielen Sie hohe Einnahmen." data-en="Join the Bee Life family, work on Germany-based projects and earn high income.">
+                    Bee Life ailesine katılın, Almanya merkezli projelerde çalışın ve yüksek kazanç elde edin.
+                </p>
                 <div class="cta-buttons">
                     <a href="basvuru.html" class="btn btn-gold">
-                        <i class="fas fa-paper-plane"></i> Online Başvuru Yap
+                        <i class="fas fa-paper-plane"></i> <span data-tr="Online Başvuru Yap" data-de="Online Bewerben" data-en="Apply Online">Online Başvuru Yap</span>
                     </a>
                     <a href="https://wa.me/905356634166" class="btn btn-outline" target="_blank">
-                        <i class="fab fa-whatsapp"></i> WhatsApp İletişim
+                        <i class="fab fa-whatsapp"></i> <span data-tr="WhatsApp İletişim" data-de="WhatsApp Kontakt" data-en="WhatsApp Contact">WhatsApp İletişim</span>
                     </a>
                 </div>
             </div>
@@ -728,17 +760,44 @@
                 <span>🐝</span>
                 <span>Bee Life <b>Consulting</b></span>
             </div>
-            <p>&copy; 2024 Bee Life Consulting. Tüm hakları saklıdır. | 
-            <a href="index.html">Ana Sayfa</a> | 
-            <a href="datenschutz.html">Gizlilik</a></p>
+            <p>&copy; 2024 Bee Life Consulting. <span data-tr="Tüm hakları saklıdır." data-de="Alle Rechte vorbehalten." data-en="All rights reserved.">Tüm hakları saklıdır.</span> | 
+            <a href="index.html" data-tr="Ana Sayfa" data-de="Startseite" data-en="Home">Ana Sayfa</a> | 
+            <a href="datenschutz.html" data-tr="Gizlilik" data-de="Datenschutz" data-en="Privacy">Gizlilik</a></p>
         </div>
     </footer>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/905356634166" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/905356634166" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        let currentLang = localStorage.getItem('blc_lang') || 'tr';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('blc_lang', lang);
+            
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-tr]').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text) el.textContent = text;
+            });
+            
+            // Update page title
+            const titles = {
+                tr: 'Kariyer Fırsatları | Bee Life Consulting',
+                de: 'Karrieremöglichkeiten | Bee Life Consulting',
+                en: 'Career Opportunities | Bee Life Consulting'
+            };
+            document.title = titles[lang];
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => setLanguage(currentLang));
+    </script>
 
 </body>
 </html>
-

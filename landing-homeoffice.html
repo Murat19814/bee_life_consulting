@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Bee Life Consulting - Evden Çalışma Fırsatları. Home Office ile 35€ komisyon kazanın!">
-    <title>Home Office - Evden Çalışma Fırsatı | Bee Life Consulting</title>
+    <meta name="description" content="Bee Life Consulting - Home Office Work Opportunities. Work from anywhere with flexible hours!">
+    <title id="pageTitle">Home Office | Bee Life Consulting</title>
     
     <meta name="theme-color" content="#0d2b2a">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,11 +18,11 @@
             --primary-light: #1a4a48;
             --gold: #D4AF37;
             --gold-light: #E8C547;
-            --purple: #7c3aed;
             --white: #ffffff;
             --gray: #f8f9fa;
             --text: #1a1a1a;
             --text-light: #6b7280;
+            --gradient-warm: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,17 +31,58 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            gap: 8px;
+            background: rgba(13,43,42,0.95);
+            padding: 8px 12px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+        
+        .lang-btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: rgba(255,255,255,0.7);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+        
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--primary);
+        }
+        
         /* ═══ HERO ═══ */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary) 0%, #0a1f1e 50%, #071615 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #1a3a50 50%, var(--primary-light) 100%);
+            position: relative;
             display: flex;
             align-items: center;
-            position: relative;
             overflow: hidden;
         }
         
@@ -50,14 +91,14 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(124,58,237,0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 30%, rgba(212,175,55,0.12) 0%, transparent 35%),
-                radial-gradient(circle at 60% 80%, rgba(124,58,237,0.08) 0%, transparent 30%);
+                radial-gradient(circle at 10% 20%, rgba(212,175,55,0.12) 0%, transparent 35%),
+                radial-gradient(circle at 90% 80%, rgba(102,126,234,0.1) 0%, transparent 35%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50 Z' fill='none' stroke='%23D4AF37' stroke-opacity='0.03' stroke-width='1'/%3E%3C/svg%3E");
         }
         
         .hero-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 1fr;
             gap: 60px;
             align-items: center;
             position: relative;
@@ -69,197 +110,207 @@
             align-items: center;
             gap: 10px;
             padding: 12px 25px;
-            background: linear-gradient(135deg, rgba(124,58,237,0.2) 0%, rgba(212,175,55,0.1) 100%);
-            border: 1px solid rgba(124,58,237,0.4);
+            background: rgba(212,175,55,0.1);
+            border: 1px solid rgba(212,175,55,0.3);
             border-radius: 50px;
-            color: var(--white);
+            color: var(--gold);
             font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .hero-badge i {
             animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(124,58,237,0.4); }
-            50% { box-shadow: 0 0 20px 5px rgba(124,58,237,0.2); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
-        
-        .hero-badge i { color: var(--gold); }
         
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             color: var(--white);
             line-height: 1.15;
             margin-bottom: 25px;
         }
         
         .hero h1 span { 
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--gold);
+            position: relative;
+        }
+        
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: rgba(212,175,55,0.3);
+            z-index: -1;
         }
         
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: rgba(255,255,255,0.85);
             margin-bottom: 35px;
+            max-width: 550px;
             line-height: 1.8;
         }
         
-        .hero-features {
+        .hero-benefits {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 40px;
         }
         
-        .hero-feature {
+        .benefit-tag {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 15px 25px;
+            gap: 8px;
+            padding: 12px 20px;
             background: rgba(255,255,255,0.08);
-            border-radius: 12px;
+            border-radius: 30px;
+            color: var(--white);
+            font-size: 0.9rem;
             border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
         }
         
-        .hero-feature i {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--purple) 0%, var(--gold) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
+        .benefit-tag:hover {
+            background: rgba(212,175,55,0.15);
+            border-color: var(--gold);
         }
         
-        .hero-feature span {
-            color: var(--white);
-            font-weight: 600;
-        }
+        .benefit-tag i { color: var(--gold); }
         
         .hero-buttons {
             display: flex;
-            gap: 15px;
+            gap: 20px;
         }
         
         .btn {
             padding: 18px 40px;
-            border-radius: 12px;
-            font-size: 1.05rem;
+            border-radius: 14px;
+            font-size: 1rem;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 12px;
             transition: all 0.3s ease;
-            cursor: pointer;
             border: none;
+            cursor: pointer;
         }
         
         .btn-gold {
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
             color: var(--primary);
-            box-shadow: 0 10px 30px rgba(212,175,55,0.4);
+            box-shadow: 0 10px 35px rgba(212,175,55,0.4);
         }
         
         .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(212,175,55,0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 18px 45px rgba(212,175,55,0.5);
         }
         
-        .btn-purple {
-            background: linear-gradient(135deg, var(--purple) 0%, #9333ea 100%);
+        .btn-outline {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
             color: var(--white);
-            box-shadow: 0 10px 30px rgba(124,58,237,0.4);
         }
         
-        .btn-purple:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(124,58,237,0.5);
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--gold);
+            color: var(--gold);
         }
         
+        /* Hero Visual */
         .hero-visual {
             position: relative;
         }
         
-        .hero-card {
-            background: rgba(255,255,255,0.06);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
+        .hero-image-container {
             position: relative;
+            padding: 20px;
         }
         
-        .hero-card::before {
-            content: '';
+        .floating-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 25px 30px;
+            border: 1px solid rgba(255,255,255,0.2);
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(135deg, var(--purple), var(--gold), var(--purple));
-            border-radius: 32px;
-            z-index: -1;
-            opacity: 0.5;
+            animation: float 4s ease-in-out infinite;
         }
         
-        .hero-card-icon {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .floating-card.card-1 {
+            top: 10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-card.card-2 {
+            bottom: 20%;
+            right: -5%;
+            animation-delay: 1s;
+        }
+        
+        .floating-card.card-3 {
+            bottom: 5%;
+            left: 10%;
+            animation-delay: 2s;
+        }
+        
+        .floating-card i {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .floating-card h4 {
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        
+        .floating-card p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+        }
+        
+        .main-visual {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.2) 0%, rgba(13,43,42,0.3) 100%);
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 30px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        .hero-card-icon i {
-            font-size: 3rem;
-            color: var(--gold);
+        .main-visual i {
+            font-size: 8rem;
+            color: rgba(255,255,255,0.15);
         }
         
-        .hero-card h3 {
-            color: var(--white);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .hero-card p {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 30px;
-        }
-        
-        .hero-card-stat {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-        }
-        
-        .hcs-item {
-            text-align: center;
-        }
-        
-        .hcs-value {
-            display: block;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--gold);
-        }
-        
-        .hcs-label {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.85rem;
-        }
-        
-        /* ═══ HOW IT WORKS ═══ */
-        .how-works {
+        /* ═══ BENEFITS ═══ */
+        .benefits {
             padding: 100px 0;
-            background: var(--gray);
+            background: var(--white);
         }
         
         .section-header {
@@ -270,8 +321,8 @@
         .section-tag {
             display: inline-block;
             padding: 8px 20px;
-            background: linear-gradient(135deg, rgba(124,58,237,0.1) 0%, rgba(212,175,55,0.1) 100%);
-            color: var(--purple);
+            background: rgba(13,43,42,0.1);
+            color: var(--primary);
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 600;
@@ -292,78 +343,6 @@
             margin: 0 auto;
         }
         
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-        
-        .step-card {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-            position: relative;
-            transition: all 0.4s ease;
-        }
-        
-        .step-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        }
-        
-        .step-number {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--purple) 0%, var(--gold) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 800;
-            font-size: 1.1rem;
-        }
-        
-        .step-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px auto 25px;
-            box-shadow: 0 10px 25px rgba(13,43,42,0.3);
-        }
-        
-        .step-icon i {
-            font-size: 1.8rem;
-            color: var(--gold);
-        }
-        
-        .step-card h3 {
-            font-size: 1.15rem;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-        
-        .step-card p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-        
-        /* ═══ BENEFITS ═══ */
-        .benefits {
-            padding: 100px 0;
-            background: var(--white);
-        }
-        
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -371,52 +350,145 @@
         }
         
         .benefit-card {
-            background: linear-gradient(135deg, rgba(13,43,42,0.03) 0%, rgba(124,58,237,0.02) 100%);
+            background: var(--gray);
             border-radius: 24px;
             padding: 40px 30px;
-            border: 2px solid rgba(13,43,42,0.08);
+            text-align: center;
             transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--primary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
         
         .benefit-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            background: var(--white);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.1);
+            border-color: rgba(212,175,55,0.3);
         }
         
+        .benefit-card:hover::before { transform: scaleX(1); }
+        
         .benefit-icon {
-            width: 70px;
-            height: 70px;
+            width: 85px;
+            height: 85px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 18px;
+            border-radius: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 25px rgba(13,43,42,0.25);
+            margin: 0 auto 25px;
+            box-shadow: 0 12px 30px rgba(13,43,42,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1) rotate(5deg);
         }
         
         .benefit-icon i {
-            font-size: 1.6rem;
+            font-size: 2rem;
             color: var(--gold);
         }
         
         .benefit-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--primary);
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
         
         .benefit-card p {
             color: var(--text-light);
-            font-size: 0.95rem;
             line-height: 1.7;
+        }
+        
+        /* ═══ HOW IT WORKS ═══ */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--gray);
+        }
+        
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 15%;
+            right: 15%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+            border-radius: 2px;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 120px;
+            height: 120px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border: 4px solid var(--primary);
+            transition: all 0.4s ease;
+        }
+        
+        .step:hover .step-number {
+            transform: scale(1.1);
+            border-color: var(--gold);
+            box-shadow: 0 20px 50px rgba(212,175,55,0.3);
+        }
+        
+        .step-number span {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .step h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        
+        .step p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            max-width: 250px;
+            margin: 0 auto;
         }
         
         /* ═══ REQUIREMENTS ═══ */
         .requirements {
             padding: 100px 0;
-            background: linear-gradient(135deg, var(--primary) 0%, #0a1f1e 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             position: relative;
         }
         
@@ -424,99 +496,76 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(124,58,237,0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 50% 50%, rgba(212,175,55,0.08) 0%, transparent 50%);
         }
+        
+        .requirements .container { position: relative; z-index: 2; }
+        
+        .requirements .section-header { margin-bottom: 50px; }
+        
+        .requirements .section-tag {
+            background: rgba(212,175,55,0.2);
+            color: var(--gold);
+        }
+        
+        .requirements .section-title { color: var(--white); }
+        .requirements .section-subtitle { color: rgba(255,255,255,0.7); }
         
         .req-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 2;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
         }
         
-        .req-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--white);
-            margin-bottom: 20px;
-        }
-        
-        .req-content h2 span { color: var(--gold); }
-        
-        .req-content > p {
-            color: rgba(255,255,255,0.8);
-            font-size: 1.1rem;
-            margin-bottom: 35px;
-        }
-        
-        .req-list {
-            list-style: none;
-        }
-        
-        .req-list li {
+        .req-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 18px 25px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 14px;
-            margin-bottom: 12px;
-            color: var(--white);
-            font-weight: 500;
+            gap: 20px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px 30px;
             border: 1px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
         }
         
-        .req-list li:hover {
-            background: rgba(255,255,255,0.1);
+        .req-item:hover {
+            background: rgba(255,255,255,0.12);
             transform: translateX(10px);
             border-color: var(--gold);
         }
         
-        .req-list li i {
-            width: 35px;
-            height: 35px;
+        .req-item i {
+            width: 50px;
+            height: 50px;
             background: var(--gold);
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary);
-            font-size: 0.9rem;
+            font-size: 1.3rem;
+            flex-shrink: 0;
         }
         
-        .req-cta {
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 50px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-        
-        .req-cta h3 {
+        .req-item span {
             color: var(--white);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-        }
-        
-        .req-cta p {
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 30px;
+            font-size: 1.05rem;
+            font-weight: 500;
         }
         
         /* ═══ CTA ═══ */
         .cta {
             padding: 100px 0;
-            background: var(--gray);
+            background: var(--white);
         }
         
         .cta-box {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: var(--gray);
             border-radius: 30px;
-            padding: 80px;
+            padding: 70px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -525,29 +574,35 @@
         .cta-box::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(212,175,55,0.2) 0%, transparent 40%),
-                radial-gradient(circle at 80% 20%, rgba(124,58,237,0.15) 0%, transparent 35%);
+            top: -100px; right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
         }
         
-        .cta-content {
-            position: relative;
-            z-index: 2;
+        .cta-box::after {
+            content: '';
+            position: absolute;
+            bottom: -100px; left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(13,43,42,0.1) 0%, transparent 70%);
         }
         
-        .cta h2 {
+        .cta-content { position: relative; z-index: 2; }
+        
+        .cta-content h2 {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
-            color: var(--white);
+            color: var(--primary);
             margin-bottom: 20px;
         }
         
-        .cta h2 span { color: var(--gold); }
+        .cta-content h2 span { color: var(--gold); }
         
-        .cta p {
+        .cta-content p {
+            color: var(--text-light);
             font-size: 1.2rem;
-            color: rgba(255,255,255,0.85);
             margin-bottom: 40px;
             max-width: 600px;
             margin-left: auto;
@@ -561,9 +616,20 @@
             flex-wrap: wrap;
         }
         
+        .btn-dark {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(13,43,42,0.3);
+        }
+        
+        .btn-dark:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(13,43,42,0.4);
+        }
+        
         /* ═══ FOOTER ═══ */
         .footer {
-            background: #050f0f;
+            background: #071d1c;
             padding: 50px 0 30px;
             text-align: center;
         }
@@ -576,18 +642,16 @@
             margin-bottom: 20px;
         }
         
-        .footer-logo span:first-child { font-size: 2rem; }
-        
-        .footer-logo span:last-child {
+        .footer-logo span {
             font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
             color: var(--white);
         }
         
-        .footer-logo b { color: var(--gold); }
+        .footer-logo span b { color: var(--gold); }
         
         .footer p {
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.6);
             font-size: 0.9rem;
         }
         
@@ -596,7 +660,7 @@
             text-decoration: none;
         }
         
-        /* ═══ WHATSAPP ═══ */
+        /* WhatsApp */
         .whatsapp-btn {
             position: fixed;
             bottom: 30px;
@@ -618,31 +682,42 @@
         
         .whatsapp-btn:hover { transform: scale(1.1); }
         
-        /* ═══ RESPONSIVE ═══ */
-        @media (max-width: 992px) {
+        /* Responsive */
+        @media (max-width: 1024px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero-features { justify-content: center; }
+            .hero h1 { font-size: 3rem; }
+            .hero-subtitle { margin-left: auto; margin-right: auto; }
+            .hero-benefits { justify-content: center; }
             .hero-buttons { justify-content: center; }
             .hero-visual { display: none; }
-            .steps-grid { grid-template-columns: repeat(2, 1fr); }
-            .benefits-grid { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: 1fr 1fr; }
+            .steps-container { flex-direction: column; gap: 40px; }
+            .steps-container::before { display: none; }
             .req-grid { grid-template-columns: 1fr; }
         }
         
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .hero-features { flex-direction: column; align-items: center; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-benefits { flex-direction: column; align-items: center; }
             .hero-buttons { flex-direction: column; }
-            .steps-grid { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: 1fr; }
             .section-title { font-size: 2rem; }
-            .cta-box { padding: 50px 30px; }
-            .cta h2 { font-size: 2rem; }
+            .cta-box { padding: 40px 25px; }
+            .cta-content h2 { font-size: 2rem; }
             .cta-buttons { flex-direction: column; align-items: center; }
+            .lang-switcher { top: 10px; right: 10px; padding: 6px 10px; }
+            .lang-btn { padding: 6px 10px; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('tr')" data-lang="tr">🇹🇷 TR</button>
+        <button class="lang-btn" onclick="setLanguage('de')" data-lang="de">🇩🇪 DE</button>
+        <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">🇬🇧 EN</button>
+    </div>
 
     <!-- ═══ HERO ═══ -->
     <section class="hero">
@@ -650,167 +725,172 @@
             <div class="hero-grid">
                 <div class="hero-content">
                     <div class="hero-badge">
-                        <i class="fas fa-home"></i> Evden Çalışma Fırsatı
+                        <i class="fas fa-home"></i>
+                        <span data-tr="Evden Çalışma Fırsatı" data-de="Home-Office Möglichkeit" data-en="Work From Home Opportunity">Evden Çalışma Fırsatı</span>
                     </div>
-                    <h1>Home Office ile <span>Özgürce Kazan!</span></h1>
-                    <p class="hero-subtitle">
-                        Bee Life Consulting ile evinizin konforunda çalışın. Almanya merkezli projelerde 
-                        yer alın, yüksek komisyon kazanın ve iş-yaşam dengenizi koruyun.
+                    
+                    <h1>
+                        <span data-tr="Evinizden" data-de="Arbeiten Sie" data-en="Work From">Evinizden</span>
+                        <br><span data-tr="Çalışın, Kazanın!" data-de="von Zuhause!" data-en="Home & Earn!">Çalışın, Kazanın!</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle" data-tr="Bee Life Consulting ile evinizden Almanya pazarına hizmet verin. Esnek çalışma saatleri, yüksek kazanç potansiyeli ve özgürlük sizin elinizde!" data-de="Bedienen Sie den deutschen Markt von zu Hause aus mit Bee Life Consulting. Flexible Arbeitszeiten, hohes Verdienstpotenzial und Freiheit liegen in Ihrer Hand!" data-en="Serve the German market from your home with Bee Life Consulting. Flexible working hours, high earning potential and freedom are in your hands!">
+                        Bee Life Consulting ile evinizden Almanya pazarına hizmet verin. Esnek çalışma saatleri, yüksek kazanç potansiyeli ve özgürlük sizin elinizde!
                     </p>
                     
-                    <div class="hero-features">
-                        <div class="hero-feature">
-                            <i class="fas fa-euro-sign"></i>
-                            <span>35€ / QC OK</span>
-                        </div>
-                        <div class="hero-feature">
+                    <div class="hero-benefits">
+                        <div class="benefit-tag">
                             <i class="fas fa-clock"></i>
-                            <span>Esnek Saatler</span>
+                            <span data-tr="Esnek Saatler" data-de="Flexible Zeiten" data-en="Flexible Hours">Esnek Saatler</span>
                         </div>
-                        <div class="hero-feature">
-                            <i class="fas fa-laptop-house"></i>
-                            <span>%100 Remote</span>
+                        <div class="benefit-tag">
+                            <i class="fas fa-euro-sign"></i>
+                            <span data-tr="Yüksek Kazanç" data-de="Hoher Verdienst" data-en="High Earnings">Yüksek Kazanç</span>
+                        </div>
+                        <div class="benefit-tag">
+                            <i class="fas fa-laptop"></i>
+                            <span data-tr="Uzaktan Çalışma" data-de="Remote-Arbeit" data-en="Remote Work">Uzaktan Çalışma</span>
+                        </div>
+                        <div class="benefit-tag">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span data-tr="Eğitim Desteği" data-de="Schulungsunterstützung" data-en="Training Support">Eğitim Desteği</span>
                         </div>
                     </div>
                     
                     <div class="hero-buttons">
                         <a href="basvuru.html" class="btn btn-gold">
-                            <i class="fas fa-paper-plane"></i> Hemen Başvur
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-tr="Hemen Başvur" data-de="Jetzt Bewerben" data-en="Apply Now">Hemen Başvur</span>
                         </a>
-                        <a href="https://wa.me/905356634166" class="btn btn-purple" target="_blank">
-                            <i class="fab fa-whatsapp"></i> Bilgi Al
+                        <a href="#benefits" class="btn btn-outline">
+                            <i class="fas fa-info-circle"></i>
+                            <span data-tr="Detaylı Bilgi" data-de="Mehr Erfahren" data-en="Learn More">Detaylı Bilgi</span>
                         </a>
                     </div>
                 </div>
                 
                 <div class="hero-visual">
-                    <div class="hero-card">
-                        <div class="hero-card-icon">
+                    <div class="hero-image-container">
+                        <div class="floating-card card-1">
+                            <i class="fas fa-wifi"></i>
+                            <h4 data-tr="Sadece İnternet" data-de="Nur Internet" data-en="Just Internet">Sadece İnternet</h4>
+                            <p data-tr="İhtiyacınız olan tek şey" data-de="Alles was Sie brauchen" data-en="All you need">İhtiyacınız olan tek şey</p>
+                        </div>
+                        
+                        <div class="floating-card card-2">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <h4>35€</h4>
+                            <p data-tr="QC OK Komisyon" data-de="QC OK Provision" data-en="QC OK Commission">QC OK Komisyon</p>
+                        </div>
+                        
+                        <div class="floating-card card-3">
+                            <i class="fas fa-globe"></i>
+                            <h4 data-tr="Global Proje" data-de="Globales Projekt" data-en="Global Project">Global Proje</h4>
+                            <p data-tr="Almanya Pazarı" data-de="Deutscher Markt" data-en="German Market">Almanya Pazarı</p>
+                        </div>
+                        
+                        <div class="main-visual">
                             <i class="fas fa-laptop-house"></i>
                         </div>
-                        <h3>Remote Çalışma</h3>
-                        <p>Türkiye'nin her yerinden çalışabilirsiniz</p>
-                        <div class="hero-card-stat">
-                            <div class="hcs-item">
-                                <span class="hcs-value">35€</span>
-                                <span class="hcs-label">Komisyon</span>
-                            </div>
-                            <div class="hcs-item">
-                                <span class="hcs-value">500€</span>
-                                <span class="hcs-label">Aylık Ödül</span>
-                            </div>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ HOW IT WORKS ═══ -->
-    <section class="how-works">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Nasıl Çalışır?</span>
-                <h2 class="section-title">4 Adımda İşe Başla</h2>
-                <p class="section-subtitle">Home office kariyerinize başlamak çok kolay</p>
-            </div>
-            
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <h3>Online Başvuru</h3>
-                    <p>Formu doldurun, CV'nizi yükleyin ve başvurunuzu tamamlayın</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3>Online Görüşme</h3>
-                    <p>Zoom üzerinden kısa bir tanışma görüşmesi yapıyoruz</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Online Eğitim</h3>
-                    <p>Uzaktan eğitim ile proje ve sistem hakkında bilgilendirilirsiniz</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">4</div>
-                    <div class="step-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>İşe Başla!</h3>
-                    <p>Eğitim sonrası hemen çalışmaya başlayın ve kazanın</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ═══ BENEFITS ═══ -->
-    <section class="benefits">
+    <section class="benefits" id="benefits">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Avantajlar</span>
-                <h2 class="section-title">Home Office Avantajları</h2>
-                <p class="section-subtitle">Evden çalışmanın sunduğu eşsiz fırsatlar</p>
+                <span class="section-tag" data-tr="Avantajlar" data-de="Vorteile" data-en="Benefits">Avantajlar</span>
+                <h2 class="section-title" data-tr="Home Office Avantajları" data-de="Home-Office Vorteile" data-en="Home Office Benefits">Home Office Avantajları</h2>
+                <p class="section-subtitle" data-tr="Evden çalışmanın size sunduğu eşsiz fırsatlar" data-de="Einzigartige Möglichkeiten, die Ihnen das Arbeiten von zu Hause bietet" data-en="Unique opportunities that working from home offers you">Evden çalışmanın size sunduğu eşsiz fırsatlar</p>
             </div>
             
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <h3>Esnek Çalışma Saatleri</h3>
-                    <p>Kendi programınızı belirleyin. Tam zamanlı veya yarı zamanlı çalışma seçenekleri.</p>
+                    <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+                    <h3 data-tr="Esnek Çalışma Saatleri" data-de="Flexible Arbeitszeiten" data-en="Flexible Working Hours">Esnek Çalışma Saatleri</h3>
+                    <p data-tr="Kendi programınızı kendiniz belirleyin. Sabah, öğlen veya akşam - size uygun zamanda çalışın." data-de="Bestimmen Sie Ihren eigenen Zeitplan. Morgens, mittags oder abends - arbeiten Sie, wann es Ihnen passt." data-en="Set your own schedule. Morning, afternoon or evening - work when it suits you.">
+                        Kendi programınızı kendiniz belirleyin. Sabah, öğlen veya akşam - size uygun zamanda çalışın.
+                    </p>
                 </div>
                 
                 <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>Yol Masrafı Yok</h3>
-                    <p>Evinizden çalışarak ulaşım masraflarından ve zamandan tasarruf edin.</p>
+                    <div class="benefit-icon"><i class="fas fa-piggy-bank"></i></div>
+                    <h3 data-tr="Ulaşım Masrafı Yok" data-de="Keine Fahrtkosten" data-en="No Transportation Costs">Ulaşım Masrafı Yok</h3>
+                    <p data-tr="Her gün işe gidip gelme stresi ve masrafından kurtulun. Hem zaman hem para kazanın." data-de="Befreien Sie sich vom Stress und den Kosten des täglichen Pendelns. Sparen Sie Zeit und Geld." data-en="Free yourself from the stress and costs of daily commuting. Save both time and money.">
+                        Her gün işe gidip gelme stresi ve masrafından kurtulun. Hem zaman hem para kazanın.
+                    </p>
                 </div>
                 
                 <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3>İş-Yaşam Dengesi</h3>
-                    <p>Ailenize ve kendinize daha fazla zaman ayırın, hayatınızın kontrolü sizde.</p>
+                    <div class="benefit-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3 data-tr="İş-Yaşam Dengesi" data-de="Work-Life-Balance" data-en="Work-Life Balance">İş-Yaşam Dengesi</h3>
+                    <p data-tr="Aileniz ve özel hayatınız için daha fazla zaman ayırın. Mutlu bir denge kurun." data-de="Verbringen Sie mehr Zeit mit Ihrer Familie und Ihrem Privatleben. Finden Sie eine glückliche Balance." data-en="Spend more time with your family and personal life. Find a happy balance.">
+                        Aileniz ve özel hayatınız için daha fazla zaman ayırın. Mutlu bir denge kurun.
+                    </p>
                 </div>
                 
                 <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-euro-sign"></i>
-                    </div>
-                    <h3>Yüksek Kazanç</h3>
-                    <p>Her QC OK satış için 35€ komisyon + performans bonusları kazanın.</p>
+                    <div class="benefit-icon"><i class="fas fa-euro-sign"></i></div>
+                    <h3 data-tr="Yüksek Kazanç" data-de="Hoher Verdienst" data-en="High Earnings">Yüksek Kazanç</h3>
+                    <p data-tr="Her satış için 35€ komisyon + sabit maaş. Performansınıza göre sınırsız kazanç potansiyeli." data-de="35€ Provision pro Verkauf + Festgehalt. Unbegrenztes Verdienstpotenzial je nach Leistung." data-en="35€ commission per sale + fixed salary. Unlimited earning potential based on your performance.">
+                        Her satış için 35€ komisyon + sabit maaş. Performansınıza göre sınırsız kazanç potansiyeli.
+                    </p>
                 </div>
                 
                 <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <h3>Ödül Sistemi</h3>
-                    <p>Aylık 500€'ya kadar hediye ödülleri, PS5, tatil paketleri.</p>
+                    <div class="benefit-icon"><i class="fas fa-headset"></i></div>
+                    <h3 data-tr="Profesyonel Destek" data-de="Professionelle Unterstützung" data-en="Professional Support">Profesyonel Destek</h3>
+                    <p data-tr="Kapsamlı eğitim programı, teknik destek ve sürekli mentorluk ile her zaman yanınızdayız." data-de="Umfassendes Schulungsprogramm, technischer Support und kontinuierliches Mentoring - wir sind immer für Sie da." data-en="Comprehensive training program, technical support and continuous mentoring - we are always by your side.">
+                        Kapsamlı eğitim programı, teknik destek ve sürekli mentorluk ile her zaman yanınızdayız.
+                    </p>
                 </div>
                 
                 <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>Teknik Destek</h3>
-                    <p>7/24 teknik destek ekibimiz her zaman yanınızda.</p>
+                    <div class="benefit-icon"><i class="fas fa-globe-europe"></i></div>
+                    <h3 data-tr="Uluslararası Deneyim" data-de="Internationale Erfahrung" data-en="International Experience">Uluslararası Deneyim</h3>
+                    <p data-tr="Almanya pazarında çalışarak değerli iş deneyimi kazanın. Kariyerinizi global düzeyde geliştirin." data-de="Sammeln Sie wertvolle Berufserfahrung auf dem deutschen Markt. Entwickeln Sie Ihre Karriere auf globaler Ebene." data-en="Gain valuable work experience in the German market. Develop your career on a global level.">
+                        Almanya pazarında çalışarak değerli iş deneyimi kazanın. Kariyerinizi global düzeyde geliştirin.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ HOW IT WORKS ═══ -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-tr="Nasıl Çalışır?" data-de="Wie Funktioniert Es?" data-en="How Does It Work?">Nasıl Çalışır?</span>
+                <h2 class="section-title" data-tr="Başlamak Çok Kolay" data-de="Der Einstieg ist Einfach" data-en="Getting Started is Easy">Başlamak Çok Kolay</h2>
+                <p class="section-subtitle" data-tr="4 basit adımda evden çalışmaya başlayın" data-de="Beginnen Sie in 4 einfachen Schritten mit der Arbeit von zu Hause" data-en="Start working from home in 4 simple steps">4 basit adımda evden çalışmaya başlayın</p>
+            </div>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number"><span>1</span></div>
+                    <h3 data-tr="Online Başvuru" data-de="Online Bewerbung" data-en="Online Application">Online Başvuru</h3>
+                    <p data-tr="Web sitemizdeki formu doldurun veya WhatsApp üzerinden bize ulaşın" data-de="Füllen Sie das Formular auf unserer Website aus oder kontaktieren Sie uns über WhatsApp" data-en="Fill out the form on our website or contact us via WhatsApp">Web sitemizdeki formu doldurun veya WhatsApp üzerinden bize ulaşın</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number"><span>2</span></div>
+                    <h3 data-tr="Görüşme" data-de="Gespräch" data-en="Interview">Görüşme</h3>
+                    <p data-tr="Kısa bir telefon veya video görüşme ile tanışalım" data-de="Lassen Sie uns bei einem kurzen Telefon- oder Videogespräch kennenlernen" data-en="Let's meet through a short phone or video call">Kısa bir telefon veya video görüşme ile tanışalım</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number"><span>3</span></div>
+                    <h3 data-tr="Eğitim" data-de="Schulung" data-en="Training">Eğitim</h3>
+                    <p data-tr="Online eğitim programımızla sizi projeye hazırlayalım" data-de="Bereiten wir Sie mit unserem Online-Schulungsprogramm auf das Projekt vor" data-en="Let us prepare you for the project with our online training program">Online eğitim programımızla sizi projeye hazırlayalım</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number"><span>4</span></div>
+                    <h3 data-tr="Çalışmaya Başla" data-de="Mit der Arbeit Beginnen" data-en="Start Working">Çalışmaya Başla</h3>
+                    <p data-tr="Evinizden Almanya pazarına hizmet vermeye başlayın" data-de="Beginnen Sie, den deutschen Markt von zu Hause aus zu bedienen" data-en="Start serving the German market from your home">Evinizden Almanya pazarına hizmet vermeye başlayın</p>
                 </div>
             </div>
         </div>
@@ -819,27 +899,41 @@
     <!-- ═══ REQUIREMENTS ═══ -->
     <section class="requirements">
         <div class="container">
+            <div class="section-header">
+                <span class="section-tag" data-tr="Gereksinimler" data-de="Anforderungen" data-en="Requirements">Gereksinimler</span>
+                <h2 class="section-title" data-tr="Başvuru Şartları" data-de="Bewerbungsvoraussetzungen" data-en="Application Requirements">Başvuru Şartları</h2>
+                <p class="section-subtitle" data-tr="Home office pozisyonu için gerekli nitelikler" data-de="Erforderliche Qualifikationen für die Home-Office-Position" data-en="Required qualifications for the home office position">Home office pozisyonu için gerekli nitelikler</p>
+            </div>
+            
             <div class="req-grid">
-                <div class="req-content">
-                    <h2>Home Office için <span>Gerekenler</span></h2>
-                    <p>Evden çalışmak için ihtiyacınız olan minimum gereksinimler</p>
-                    
-                    <ul class="req-list">
-                        <li><i class="fas fa-check"></i> Almanca C1-C2 seviye veya anadil</li>
-                        <li><i class="fas fa-check"></i> Bilgisayar ve stabil internet bağlantısı</li>
-                        <li><i class="fas fa-check"></i> Kulaklık (headset)</li>
-                        <li><i class="fas fa-check"></i> Sessiz çalışma ortamı</li>
-                        <li><i class="fas fa-check"></i> İletişim becerileri</li>
-                        <li><i class="fas fa-check"></i> Disiplinli çalışma alışkanlığı</li>
-                    </ul>
+                <div class="req-item">
+                    <i class="fas fa-language"></i>
+                    <span data-tr="Almanca B2-C2 seviye dil yetkinliği" data-de="Deutsch B2-C2 Sprachkenntnisse" data-en="German B2-C2 language proficiency">Almanca B2-C2 seviye dil yetkinliği</span>
                 </div>
                 
-                <div class="req-cta">
-                    <h3>Hazır mısınız?</h3>
-                    <p>Gereksinimleri karşılıyorsanız hemen başvurun, kariyerinize evden başlayın!</p>
-                    <a href="basvuru.html" class="btn btn-gold">
-                        <i class="fas fa-paper-plane"></i> Başvuru Yap
-                    </a>
+                <div class="req-item">
+                    <i class="fas fa-wifi"></i>
+                    <span data-tr="Stabil internet bağlantısı" data-de="Stabile Internetverbindung" data-en="Stable internet connection">Stabil internet bağlantısı</span>
+                </div>
+                
+                <div class="req-item">
+                    <i class="fas fa-laptop"></i>
+                    <span data-tr="Bilgisayar ve kulaklık" data-de="Computer und Headset" data-en="Computer and headset">Bilgisayar ve kulaklık</span>
+                </div>
+                
+                <div class="req-item">
+                    <i class="fas fa-door-closed"></i>
+                    <span data-tr="Sessiz çalışma ortamı" data-de="Ruhige Arbeitsumgebung" data-en="Quiet work environment">Sessiz çalışma ortamı</span>
+                </div>
+                
+                <div class="req-item">
+                    <i class="fas fa-comments"></i>
+                    <span data-tr="İyi iletişim becerileri" data-de="Gute Kommunikationsfähigkeiten" data-en="Good communication skills">İyi iletişim becerileri</span>
+                </div>
+                
+                <div class="req-item">
+                    <i class="fas fa-user-clock"></i>
+                    <span data-tr="Minimum 4 saat/gün müsaitlik" data-de="Mindestens 4 Stunden/Tag Verfügbarkeit" data-en="Minimum 4 hours/day availability">Minimum 4 saat/gün müsaitlik</span>
                 </div>
             </div>
         </div>
@@ -850,14 +944,18 @@
         <div class="container">
             <div class="cta-box">
                 <div class="cta-content">
-                    <h2>Evden <span>Çalışmaya</span> Hazır mısınız?</h2>
-                    <p>Bee Life ile home office kariyerinize bugün başlayın. Almanya merkezli projelerde çalışın, yüksek kazanç elde edin!</p>
+                    <h2><span data-tr="Evden Çalışmaya" data-de="Sind Sie Bereit" data-en="Ready to Start">Evden Çalışmaya</span> <span data-tr="Hazır mısınız?" data-de="für Home Office?" data-en="Home Office?">Hazır mısınız?</span></h2>
+                    <p data-tr="Bee Life ailesine katılın ve evinizin konforunda yüksek kazanç elde etmeye başlayın." data-de="Treten Sie der Bee Life Familie bei und beginnen Sie, bequem von zu Hause aus gut zu verdienen." data-en="Join the Bee Life family and start earning high income from the comfort of your home.">
+                        Bee Life ailesine katılın ve evinizin konforunda yüksek kazanç elde etmeye başlayın.
+                    </p>
                     <div class="cta-buttons">
-                        <a href="basvuru.html" class="btn btn-gold">
-                            <i class="fas fa-paper-plane"></i> Online Başvuru Yap
+                        <a href="basvuru.html" class="btn btn-dark">
+                            <i class="fas fa-paper-plane"></i>
+                            <span data-tr="Online Başvuru Yap" data-de="Online Bewerben" data-en="Apply Online">Online Başvuru Yap</span>
                         </a>
-                        <a href="https://wa.me/905356634166" class="btn btn-purple" target="_blank">
-                            <i class="fab fa-whatsapp"></i> WhatsApp'tan Bilgi Al
+                        <a href="https://wa.me/905356634166" class="btn btn-gold" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                            <span data-tr="WhatsApp İletişim" data-de="WhatsApp Kontakt" data-en="WhatsApp Contact">WhatsApp İletişim</span>
                         </a>
                     </div>
                 </div>
@@ -872,17 +970,44 @@
                 <span>🐝</span>
                 <span>Bee Life <b>Consulting</b></span>
             </div>
-            <p>&copy; 2024 Bee Life Consulting. Tüm hakları saklıdır. | 
-            <a href="index.html">Ana Sayfa</a> | 
-            <a href="datenschutz.html">Gizlilik</a></p>
+            <p>&copy; 2024 Bee Life Consulting. <span data-tr="Tüm hakları saklıdır." data-de="Alle Rechte vorbehalten." data-en="All rights reserved.">Tüm hakları saklıdır.</span> | 
+            <a href="index.html" data-tr="Ana Sayfa" data-de="Startseite" data-en="Home">Ana Sayfa</a> | 
+            <a href="datenschutz.html" data-tr="Gizlilik" data-de="Datenschutz" data-en="Privacy">Gizlilik</a></p>
         </div>
     </footer>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/905356634166" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/905356634166" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        let currentLang = localStorage.getItem('blc_lang') || 'tr';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('blc_lang', lang);
+            
+            // Update buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-tr]').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text) el.innerHTML = text;
+            });
+            
+            // Update page title
+            const titles = {
+                tr: 'Home Office Fırsatları | Bee Life Consulting',
+                de: 'Home-Office Möglichkeiten | Bee Life Consulting',
+                en: 'Home Office Opportunities | Bee Life Consulting'
+            };
+            document.title = titles[lang];
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => setLanguage(currentLang));
+    </script>
 
 </body>
 </html>
-
