@@ -431,12 +431,17 @@
         @media (max-width: 1024px) {
             body {
                 flex-direction: column;
+                overflow-y: auto !important;
+                overflow-x: hidden;
+                min-height: 100vh;
+                height: auto;
             }
             
             .login-left {
                 padding: 40px 30px;
                 text-align: center;
                 align-items: center;
+                min-height: auto;
             }
             
             .login-left h1 {
@@ -454,16 +459,80 @@
             .login-right {
                 width: 100%;
                 padding: 20px;
+                min-height: auto;
+            }
+            
+            .bg-animation {
+                position: absolute;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto !important;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .login-left {
+                padding: 30px 20px;
+            }
+            
+            .login-left h1 {
+                font-size: 1.8rem;
+            }
+            
+            .login-left > p {
+                font-size: 0.95rem;
+            }
+            
+            .login-right {
+                padding: 15px;
+            }
+            
+            .login-card {
+                padding: 35px 25px;
+            }
+            
+            .lang-switcher {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .lang-btn {
+                padding: 8px 12px;
+                font-size: 0.75rem;
             }
         }
         
         @media (max-width: 520px) {
             .login-card {
-                padding: 40px 25px;
+                padding: 30px 20px;
+                margin: 10px;
             }
             
             .login-left h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+            
+            .login-left > p {
+                font-size: 0.9rem;
+            }
+            
+            .login-header h2 {
+                font-size: 1.3rem;
+            }
+            
+            .form-input {
+                padding: 14px 16px;
+                font-size: 16px; /* Prevents iOS zoom */
+            }
+            
+            .submit-btn {
+                padding: 14px;
+            }
+            
+            .back-link {
+                margin-top: 20px;
             }
         }
     </style>

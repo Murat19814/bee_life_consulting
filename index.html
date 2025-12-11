@@ -3180,9 +3180,207 @@
                 font-size: 0.9rem;
             }
         }
+        
+        /* Login Selection Modal */
+        .login-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .login-modal-overlay.active {
+            display: flex;
+        }
+        
+        .login-modal {
+            background: linear-gradient(135deg, #0d2b2a 0%, #1a4a48 100%);
+            border-radius: 25px;
+            padding: 40px 35px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(64, 145, 108, 0.3);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .login-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.6);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .login-modal-close:hover {
+            color: #fff;
+        }
+        
+        .login-modal-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .login-modal h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .login-modal p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+        
+        .login-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .login-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 25px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        .login-option:hover {
+            background: rgba(64, 145, 108, 0.2);
+            border-color: rgba(64, 145, 108, 0.5);
+            transform: translateX(5px);
+        }
+        
+        .login-option-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #40916c 0%, #2d6a4f 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        .login-option.admin .login-option-icon {
+            background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%);
+            color: #000;
+        }
+        
+        .login-option-text {
+            text-align: left;
+        }
+        
+        .login-option-text h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        
+        .login-option-text span {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .login-option-arrow {
+            margin-left: auto;
+            color: rgba(255,255,255,0.4);
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 480px) {
+            .login-modal {
+                padding: 30px 25px;
+                margin: 15px;
+            }
+            
+            .login-modal h3 {
+                font-size: 1.3rem;
+            }
+            
+            .login-option {
+                padding: 15px 20px;
+            }
+            
+            .login-option-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Login Selection Modal -->
+    <div class="login-modal-overlay" id="loginModal">
+        <div class="login-modal">
+            <button class="login-modal-close" onclick="closeLoginModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="login-modal-icon">🐝</div>
+            <h3 data-tr="Giriş Türünü Seçin" data-de="Login-Typ auswählen">Giriş Türünü Seçin</h3>
+            <p data-tr="Devam etmek için giriş türünüzü seçin" data-de="Wählen Sie Ihren Login-Typ um fortzufahren">Devam etmek için giriş türünüzü seçin</p>
+            
+            <div class="login-options">
+                <a href="employee-login.html" class="login-option employee">
+                    <div class="login-option-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="login-option-text">
+                        <h4 data-tr="Personel Girişi" data-de="Mitarbeiter-Login">Personel Girişi</h4>
+                        <span data-tr="Çalışanlar için giriş paneli" data-de="Login-Panel für Mitarbeiter">Çalışanlar için giriş paneli</span>
+                    </div>
+                    <i class="fas fa-chevron-right login-option-arrow"></i>
+                </a>
+                
+                <a href="admin-login.html" class="login-option admin">
+                    <div class="login-option-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="login-option-text">
+                        <h4 data-tr="Admin Girişi" data-de="Admin-Login">Admin Girişi</h4>
+                        <span data-tr="Yöneticiler için giriş paneli" data-de="Login-Panel für Administratoren">Yöneticiler için giriş paneli</span>
+                    </div>
+                    <i class="fas fa-chevron-right login-option-arrow"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Global Honeycomb Canvas -->
     <canvas id="honeycombCanvas"></canvas>
@@ -3216,7 +3414,7 @@
                         🇩🇪 DE
                     </button>
                 </div>
-                <a href="employee-login.html" class="btn btn-outline" data-tr="Giriş" data-de="Login">Giriş</a>
+                <a href="#" class="btn btn-outline" onclick="openLoginModal()" data-tr="Giriş" data-de="Login">Giriş</a>
                 <a href="basvuru.html" class="btn btn-primary" data-tr="Başvuru" data-de="Bewerbung">Başvuru</a>
             </div>
             
@@ -4410,6 +4608,31 @@
         };
         
         let currentLang = localStorage.getItem('blc_lang') || 'tr';
+        
+        // Login Modal Functions
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal on overlay click
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLoginModal();
+            }
+        });
+        
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLoginModal();
+            }
+        });
         
         function setLanguage(lang) {
             currentLang = lang;
