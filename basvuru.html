@@ -713,18 +713,36 @@
         
         /* File Upload */
         .file-upload-area {
-            border: 2px dashed rgba(13, 43, 42, 0.25);
+            border: 2px solid rgba(13, 43, 42, 0.2);
             border-radius: 16px;
             padding: 45px;
             text-align: center;
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.02) 0%, rgba(212, 175, 55, 0.01) 100%);
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.03) 0%, rgba(212, 175, 55, 0.02) 100%);
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .file-upload-area::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            border: 2px dashed rgba(13, 43, 42, 0.15);
+            border-radius: 12px;
+            pointer-events: none;
         }
         
         .file-upload-area:hover {
             border-color: var(--primary-dark);
-            background: linear-gradient(135deg, rgba(13, 43, 42, 0.05) 0%, rgba(212, 175, 55, 0.03) 100%);
+            background: linear-gradient(135deg, rgba(13, 43, 42, 0.06) 0%, rgba(212, 175, 55, 0.04) 100%);
+            box-shadow: 0 8px 25px rgba(13, 43, 42, 0.1);
+        }
+        
+        .file-upload-area:hover::before {
+            border-color: rgba(13, 43, 42, 0.3);
         }
         
         .upload-icon {
