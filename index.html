@@ -5042,8 +5042,7 @@
             event.stopPropagation();
             const popup = document.getElementById('qcPopup');
             if (popup) {
-                popup.classList.remove('show');
-                sessionStorage.setItem('qcPopupClosed', 'true');
+                popup.classList.add('minimized');
             }
         }
         
