@@ -3000,23 +3000,31 @@
             
             .hero-text {
                 text-align: center;
-                padding: 0 15px;
+                padding: 0 10px;
+                width: 100%;
             }
             
             .hero-text h1 {
-                font-size: 1.5rem;
-                line-height: 1.4;
-                padding: 0;
+                font-size: 1.4rem;
+                line-height: 1.5;
+                padding: 0 5px;
                 word-wrap: break-word;
-                hyphens: auto;
+                word-break: break-word;
+                hyphens: none;
+                text-align: center;
+                width: 100%;
             }
             
             .hero-text p,
             .hero-tagline {
-                font-size: 0.9rem;
-                line-height: 1.7;
-                padding: 0;
+                font-size: 0.85rem;
+                line-height: 1.8;
+                padding: 0 5px;
                 text-align: center;
+                word-wrap: break-word;
+                word-break: break-word;
+                hyphens: none;
+                width: 100%;
             }
             
             .hero-badge {
@@ -5982,31 +5990,51 @@
     <script>
         // Tanıtım Popup - Her sayfa açılışında göster
         function showTanitimPopup() {
-            setTimeout(() => {
-                document.getElementById('tanitimPopup').classList.add('active');
-            }, 1500); // 1.5 saniye sonra göster
+            const popup = document.getElementById('tanitimPopup');
+            if (popup) {
+                setTimeout(() => {
+                    popup.classList.add('active');
+                }, 1000);
+            }
         }
         
         function closeTanitimPopup() {
-            document.getElementById('tanitimPopup').classList.remove('active');
+            const popup = document.getElementById('tanitimPopup');
+            if (popup) {
+                popup.classList.remove('active');
+            }
         }
         
-        // Overlay'e tıklanınca kapat
-        document.getElementById('tanitimPopup').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeTanitimPopup();
+        // Popup event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const popup = document.getElementById('tanitimPopup');
+            
+            // Overlay'e tıklanınca kapat
+            if (popup) {
+                popup.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeTanitimPopup();
+                    }
+                });
             }
-        });
-        
-        // ESC tuşu ile kapat
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeTanitimPopup();
+            
+            // ESC tuşu ile kapat
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeTanitimPopup();
+                }
+            });
+            
+            // Tanıtım label dilini güncelle
+            const tanitimLabel = document.getElementById('tanitimLabel');
+            if (tanitimLabel) {
+                const lang = localStorage.getItem('blc_lang') || 'tr';
+                tanitimLabel.textContent = lang === 'tr' ? 'Tanıtım' : 'Präsentation';
             }
+            
+            // Popup'ı göster
+            showTanitimPopup();
         });
-        
-        // Sayfa yüklendiğinde popup'ı göster
-        window.addEventListener('load', showTanitimPopup);
     </script>
 
 </body>
