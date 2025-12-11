@@ -2858,12 +2858,16 @@
             }
             
             .hero-text h1 {
-                font-size: 1.8rem;
-                line-height: 1.3;
+                font-size: 1.6rem;
+                line-height: 1.35;
+                padding: 0 10px;
             }
             
-            .hero-text p {
-                font-size: 1rem;
+            .hero-text p,
+            .hero-tagline {
+                font-size: 0.9rem;
+                line-height: 1.6;
+                padding: 0 10px;
             }
             
             .section-title {
@@ -3231,6 +3235,193 @@
             .btn-secondary {
                 padding: 12px 25px;
                 font-size: 0.9rem;
+            }
+        }
+        
+        /* 35€ QC OK Mobile Popup */
+        .qc-popup {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9998;
+            animation: qcPopupIn 0.5s ease;
+        }
+        
+        @keyframes qcPopupIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) scale(0.5) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) scale(1) translateY(0);
+            }
+        }
+        
+        .qc-popup.minimized {
+            bottom: 25px;
+            right: 90px;
+            left: auto;
+            transform: none;
+            animation: qcMinimize 0.3s ease;
+        }
+        
+        @keyframes qcMinimize {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(0.6);
+            }
+        }
+        
+        .qc-popup-card {
+            background: linear-gradient(145deg, #071d1c 0%, #0d2b2a 50%, #0a2322 100%);
+            border: 2px solid rgba(255,215,0,0.5);
+            border-radius: 20px;
+            padding: 25px 30px;
+            text-align: center;
+            box-shadow: 
+                0 20px 50px rgba(0,0,0,0.5),
+                0 0 30px rgba(255,215,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-width: 160px;
+            transition: transform 0.3s ease;
+        }
+        
+        .qc-popup.minimized .qc-popup-card {
+            padding: 15px 20px;
+            min-width: auto;
+            border-radius: 15px;
+        }
+        
+        .qc-popup-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255,215,0,0.1) 50%,
+                transparent 70%
+            );
+            animation: qcShimmer 3s infinite;
+        }
+        
+        @keyframes qcShimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        .qc-popup-icon {
+            font-size: 2rem;
+            color: #FFD700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .qc-popup.minimized .qc-popup-icon {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .qc-popup-label {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .qc-popup.minimized .qc-popup-label {
+            display: none;
+        }
+        
+        .qc-popup-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFD700;
+            font-family: 'Cormorant Garamond', serif;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .qc-popup.minimized .qc-popup-amount {
+            font-size: 1.3rem;
+        }
+        
+        .qc-popup-text {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #FFD700;
+            letter-spacing: 3px;
+            margin-top: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .qc-popup.minimized .qc-popup-text {
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+        
+        .qc-popup-subtitle {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .qc-popup.minimized .qc-popup-subtitle {
+            display: none;
+        }
+        
+        .qc-popup-close {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+            background: #dc3545;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: transform 0.2s;
+        }
+        
+        .qc-popup-close:hover {
+            transform: scale(1.1);
+        }
+        
+        .qc-popup.minimized .qc-popup-close {
+            display: none;
+        }
+        
+        /* Show popup only on mobile */
+        @media (max-width: 768px) {
+            .qc-popup.show {
+                display: block;
             }
         }
         
@@ -4827,7 +5018,34 @@
         document.addEventListener('DOMContentLoaded', function() {
             setLanguage(currentLang);
             updateMobileLangBtn(currentLang);
+            
+            // Show QC popup after 2 seconds on mobile
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    const qcPopup = document.getElementById('qcPopup');
+                    if (qcPopup && !sessionStorage.getItem('qcPopupClosed')) {
+                        qcPopup.classList.add('show');
+                    }
+                }, 2000);
+            }
         });
+        
+        // QC Popup Functions
+        function toggleQcPopup() {
+            const popup = document.getElementById('qcPopup');
+            if (popup) {
+                popup.classList.toggle('minimized');
+            }
+        }
+        
+        function closeQcPopup(event) {
+            event.stopPropagation();
+            const popup = document.getElementById('qcPopup');
+            if (popup) {
+                popup.classList.remove('show');
+                sessionStorage.setItem('qcPopupClosed', 'true');
+            }
+        }
         
         // ═══════════════════════════════════════════════════════════════
         // Honeycomb Animation - Visible on dark sections
@@ -5171,6 +5389,22 @@
             observer.observe(el);
         });
     </script>
+
+    <!-- 35€ QC OK Mobile Popup -->
+    <div class="qc-popup" id="qcPopup">
+        <button class="qc-popup-close" onclick="closeQcPopup(event)">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="qc-popup-card" onclick="toggleQcPopup()">
+            <div class="qc-popup-icon">
+                <i class="fas fa-euro-sign"></i>
+            </div>
+            <div class="qc-popup-label" data-tr="HER SATIŞTA" data-de="PRO VERKAUF">HER SATIŞTA</div>
+            <div class="qc-popup-amount">35€</div>
+            <div class="qc-popup-text">QC OK</div>
+            <div class="qc-popup-subtitle" data-tr="SATIŞ PRİMİ" data-de="VERKAUFSPRÄMIE">SATIŞ PRİMİ</div>
+        </div>
+    </div>
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/905356634166" class="whatsapp-float" target="_blank" rel="noopener" title="WhatsApp ile iletişime geçin">
