@@ -414,6 +414,105 @@
             background: var(--primary-light);
         }
         
+        /* Login Dropdown */
+        .login-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .login-dropdown-btn {
+            padding: 14px 32px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.5);
+            background: transparent;
+            color: var(--white);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .login-dropdown-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--gold);
+        }
+        
+        .login-dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: linear-gradient(135deg, rgba(7, 29, 28, 0.98) 0%, rgba(13, 43, 42, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            min-width: 220px;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .login-dropdown:hover .login-dropdown-content {
+            display: block;
+            animation: dropdownFadeIn 0.3s ease;
+        }
+        
+        @keyframes dropdownFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .login-dropdown-content a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .login-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
+        .login-dropdown-content a:hover {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--gold);
+        }
+        
+        .login-dropdown-content a i {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: 8px;
+            color: var(--gold);
+            font-size: 1rem;
+        }
+        
+        .login-dropdown-content a span {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .login-dropdown-content a span small {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 2px;
+        }
+        
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -3235,6 +3334,11 @@
                 color: #D4AF37;
             }
             
+            .mobile-nav-bar a.nav-admin {
+                background: rgba(220, 53, 69, 0.15);
+                color: #ff6b6b;
+            }
+            
             .mobile-nav-bar a.nav-apply {
                 background: linear-gradient(135deg, rgba(64, 145, 108, 0.3) 0%, rgba(45, 106, 79, 0.3) 100%);
                 color: #4ade80;
@@ -3824,7 +3928,23 @@
                         🇩🇪 DE
                     </button>
                 </div>
-                <a href="#" class="btn btn-outline" onclick="openLoginModal()" data-tr="Giriş" data-de="Login">Giriş</a>
+                <div class="login-dropdown">
+                    <button class="login-dropdown-btn">
+                        <i class="fas fa-user-circle"></i>
+                        <span data-tr="Giriş" data-de="Login">Giriş</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                    </button>
+                    <div class="login-dropdown-content">
+                        <a href="employee-login.html">
+                            <i class="fas fa-user"></i>
+                            <span data-tr="Çalışan Girişi" data-de="Mitarbeiter">Çalışan Girişi<small data-tr="Personel paneli" data-de="Personal-Panel">Personel paneli</small></span>
+                        </a>
+                        <a href="admin-login.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span data-tr="Admin Girişi" data-de="Administrator">Admin Girişi<small data-tr="Yönetici paneli" data-de="Admin-Panel">Yönetici paneli</small></span>
+                        </a>
+                    </div>
+                </div>
                 <a href="basvuru.html" class="btn btn-primary" data-tr="Başvuru" data-de="Bewerbung">Başvuru</a>
             </div>
             
@@ -3846,23 +3966,23 @@
             <i class="fas fa-building"></i>
             <span data-tr="Hakkımızda" data-de="Über uns">Hakkımızda</span>
         </a>
-        <a href="#services">
-            <i class="fas fa-concierge-bell"></i>
-            <span data-tr="Hizmetler" data-de="Dienste">Hizmetler</span>
+        <a href="employee-login.html" class="nav-login">
+            <i class="fas fa-user"></i>
+            <span data-tr="Çalışan" data-de="Personal">Çalışan</span>
         </a>
-        <a href="#" onclick="openLoginModal(); return false;" class="nav-login">
-            <i class="fas fa-user-circle"></i>
-            <span data-tr="Giriş" data-de="Login">Giriş</span>
+        <a href="admin-login.html" class="nav-admin">
+            <i class="fas fa-shield-alt"></i>
+            <span data-tr="Admin" data-de="Admin">Admin</span>
         </a>
         <a href="basvuru.html" class="nav-apply">
             <i class="fas fa-paper-plane"></i>
             <span data-tr="Başvur" data-de="Bewerben">Başvur</span>
         </a>
-        <a href="#" onclick="setMobileLang('tr'); return false;" class="nav-lang mobile-lang-tr" id="mobileLangTR">
+        <a href="#" onclick="setLanguage('tr'); return false;" class="nav-lang" data-lang="tr">
             <span class="lang-flag">🇹🇷</span>
             <span>TR</span>
         </a>
-        <a href="#" onclick="setMobileLang('de'); return false;" class="nav-lang mobile-lang-de" id="mobileLangDE">
+        <a href="#" onclick="setLanguage('de'); return false;" class="nav-lang" data-lang="de">
             <span class="lang-flag">🇩🇪</span>
             <span>DE</span>
         </a>
