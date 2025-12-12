@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bee Life Consulting - Reklam Banner'ları</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #1a1a1a;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            color: #D4AF37;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        p.info {
+            color: #888;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .banner-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+        
+        .banner-wrapper {
+            text-align: center;
+        }
+        
+        .banner-wrapper h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        /* ========== BANNER 1: Kare (1080x1080) ========== */
+        .banner-square {
+            width: 540px;
+            height: 540px;
+            background: linear-gradient(145deg, #0D2B2A 0%, #1a4a48 50%, #0D2B2A 100%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        .banner-square::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 60%);
+        }
+        
+        .banner-square .logo-area {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .banner-square .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(145deg, #D4AF37, #B8860B);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .banner-square .logo-text {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .banner-square .main-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+        }
+        
+        .banner-square .headline {
+            color: #D4AF37;
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .banner-square .subheadline {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .banner-square .price-box {
+            background: linear-gradient(145deg, #D4AF37, #B8860B);
+            color: #0D2B2A;
+            padding: 20px 40px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+        
+        .banner-square .price-box .amount {
+            font-size: 48px;
+            font-weight: 800;
+        }
+        
+        .banner-square .price-box .label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .banner-square .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .banner-square .feature {
+            color: #fff;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .banner-square .feature .check {
+            color: #D4AF37;
+            font-weight: bold;
+        }
+        
+        .banner-square .cta {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            color: #0D2B2A;
+            padding: 15px 50px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* ========== BANNER 2: Story (1080x1920) - Scaled ========== */
+        .banner-story {
+            width: 270px;
+            height: 480px;
+            background: linear-gradient(180deg, #0D2B2A 0%, #143d3b 30%, #0D2B2A 100%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        .banner-story::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(180deg, rgba(212,175,55,0.2) 0%, transparent 100%);
+        }
+        
+        .banner-story .logo-top {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        
+        .banner-story .logo-top .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, #D4AF37, #B8860B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 10px;
+            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+        }
+        
+        .banner-story .logo-top .name {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .banner-story .main-text {
+            position: absolute;
+            top: 140px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .banner-story .main-text h2 {
+            color: #D4AF37;
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .banner-story .main-text p {
+            color: rgba(255,255,255,0.8);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .banner-story .earning-box {
+            position: absolute;
+            top: 260px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(212,175,55,0.15);
+            border: 2px solid #D4AF37;
+            border-radius: 20px;
+            padding: 20px 30px;
+            text-align: center;
+        }
+        
+        .banner-story .earning-box .per-sale {
+            color: #D4AF37;
+            font-size: 36px;
+            font-weight: 800;
+        }
+        
+        .banner-story .earning-box .label {
+            color: #fff;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .banner-story .benefits {
+            position: absolute;
+            top: 360px;
+            left: 20px;
+            right: 20px;
+        }
+        
+        .banner-story .benefit {
+            color: #fff;
+            font-size: 11px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .banner-story .benefit .dot {
+            width: 6px;
+            height: 6px;
+            background: #D4AF37;
+            border-radius: 50%;
+        }
+        
+        .banner-story .cta-btn {
+            position: absolute;
+            bottom: 25px;
+            left: 20px;
+            right: 20px;
+            background: linear-gradient(145deg, #D4AF37, #B8860B);
+            color: #0D2B2A;
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 13px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* ========== BANNER 3: Facebook Feed (1200x628) - Scaled ========== */
+        .banner-feed {
+            width: 600px;
+            height: 314px;
+            background: linear-gradient(135deg, #0D2B2A 0%, #1a4a48 100%);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        .banner-feed::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 40%;
+            background: linear-gradient(135deg, transparent 0%, rgba(212,175,55,0.1) 100%);
+        }
+        
+        .banner-feed .left-content {
+            position: absolute;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 55%;
+        }
+        
+        .banner-feed .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .banner-feed .brand .icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(145deg, #D4AF37, #B8860B);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .banner-feed .brand .name {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .banner-feed .headline {
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .banner-feed .headline span {
+            color: #D4AF37;
+        }
+        
+        .banner-feed .desc {
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .banner-feed .cta-btn {
+            background: linear-gradient(145deg, #D4AF37, #B8860B);
+            color: #0D2B2A;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 13px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .banner-feed .right-content {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+        }
+        
+        .banner-feed .price-circle {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(145deg, #D4AF37, #B8860B);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(212,175,55,0.4);
+        }
+        
+        .banner-feed .price-circle .amount {
+            color: #0D2B2A;
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .banner-feed .price-circle .text {
+            color: #0D2B2A;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .banner-feed .gifts {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .banner-feed .gift {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 18px;
+        }
+        
+        /* ========== BANNER 4: Minimalist ========== */
+        .banner-minimal {
+            width: 540px;
+            height: 540px;
+            background: #0D2B2A;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        .banner-minimal .gold-corner {
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(145deg, #D4AF37, #B8860B);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+        
+        .banner-minimal .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 85%;
+        }
+        
+        .banner-minimal .bee-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .banner-minimal h2 {
+            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .banner-minimal .tagline {
+            color: #D4AF37;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .banner-minimal .divider {
+            width: 80px;
+            height: 2px;
+            background: #D4AF37;
+            margin: 0 auto 30px;
+        }
+        
+        .banner-minimal .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .banner-minimal .stat {
+            text-align: center;
+        }
+        
+        .banner-minimal .stat .number {
+            color: #D4AF37;
+            font-size: 36px;
+            font-weight: 800;
+        }
+        
+        .banner-minimal .stat .label {
+            color: rgba(255,255,255,0.6);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .banner-minimal .cta {
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
+            padding: 15px 50px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .banner-minimal .bottom-text {
+            position: absolute;
+            bottom: 25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🐝 Bee Life Consulting - Reklam Banner'ları</h1>
+    <p class="info">Her banner'ı ayrı ayrı ekran görüntüsü al (Sağ tık > Ekran görüntüsü al)</p>
+    
+    <div class="banner-container">
+        <!-- Banner 1: Kare -->
+        <div class="banner-wrapper">
+            <h3>📱 Instagram / Facebook Kare (1080x1080)</h3>
+            <div class="banner-square">
+                <div class="logo-area">
+                    <div class="logo-icon">🐝</div>
+                    <div class="logo-text">BEE LIFE</div>
+                </div>
+                
+                <div class="main-content">
+                    <div class="headline">Almanya'da<br>Kariyer Fırsatı!</div>
+                    <div class="subheadline">Evden çalışarak kazanmaya başla</div>
+                    
+                    <div class="price-box">
+                        <div class="label">Her Satışta</div>
+                        <div class="amount">35€</div>
+                        <div class="label">Prim Kazan</div>
+                    </div>
+                    
+                    <div class="features">
+                        <div class="feature"><span class="check">✓</span> Evden Çalışma</div>
+                        <div class="feature"><span class="check">✓</span> Almanca Şart Değil</div>
+                        <div class="feature"><span class="check">✓</span> Hediye Programı</div>
+                    </div>
+                </div>
+                
+                <div class="cta">Hemen Başvur</div>
+            </div>
+        </div>
+        
+        <!-- Banner 2: Story -->
+        <div class="banner-wrapper">
+            <h3>📱 Instagram Story (1080x1920)</h3>
+            <div class="banner-story">
+                <div class="logo-top">
+                    <div class="icon">🐝</div>
+                    <div class="name">BEE LIFE CONSULTING</div>
+                </div>
+                
+                <div class="main-text">
+                    <h2>Almanya'da Kariyer Fırsatını Yakala!</h2>
+                    <p>Evinden çalışarak euro kazan</p>
+                </div>
+                
+                <div class="earning-box">
+                    <div class="per-sale">35€</div>
+                    <div class="label">Her Satışta Prim</div>
+                </div>
+                
+                <div class="benefits">
+                    <div class="benefit"><span class="dot"></span> Evden çalışma imkanı</div>
+                    <div class="benefit"><span class="dot"></span> Almanca bilmene gerek yok</div>
+                    <div class="benefit"><span class="dot"></span> iPhone, PS5, Tatil hediyeleri</div>
+                    <div class="benefit"><span class="dot"></span> Aylık 3.000€+ kazanç</div>
+                </div>
+                
+                <div class="cta-btn">👆 Hemen Başvur</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="banner-container">
+        <!-- Banner 3: Facebook Feed -->
+        <div class="banner-wrapper">
+            <h3>💻 Facebook Feed (1200x628)</h3>
+            <div class="banner-feed">
+                <div class="left-content">
+                    <div class="brand">
+                        <div class="icon">🐝</div>
+                        <div class="name">Bee Life Consulting</div>
+                    </div>
+                    
+                    <div class="headline">Almanya'da <span>Kariyer</span><br>Fırsatını Kaçırma!</div>
+                    
+                    <div class="desc">Evinden çalışarak euro kazan. Almanca bilmene gerek yok. Hemen başvur, hayatını değiştir!</div>
+                    
+                    <div class="cta-btn">Hemen Başvur →</div>
+                </div>
+                
+                <div class="right-content">
+                    <div class="price-circle">
+                        <div class="amount">35€</div>
+                        <div class="text">Her Satışta</div>
+                        <div class="text">Prim</div>
+                    </div>
+                    <div class="gifts">
+                        <div class="gift">📱</div>
+                        <div class="gift">🎮</div>
+                        <div class="gift">✈️</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="banner-container">
+        <!-- Banner 4: Minimalist -->
+        <div class="banner-wrapper">
+            <h3>✨ Minimalist / Premium (1080x1080)</h3>
+            <div class="banner-minimal">
+                <div class="gold-corner"></div>
+                
+                <div class="content">
+                    <div class="bee-icon">🐝</div>
+                    <h2>Bee Life Consulting</h2>
+                    <div class="tagline">Almanya'da Kariyer</div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="number">35€</div>
+                            <div class="label">Satış Başı</div>
+                        </div>
+                        <div class="stat">
+                            <div class="number">3000€</div>
+                            <div class="label">Aylık Kazanç</div>
+                        </div>
+                    </div>
+                    
+                    <div class="cta">Başvur</div>
+                </div>
+                
+                <div class="bottom-text">Evden Çalışma • Almanca Şart Değil • Hediye Programı</div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
